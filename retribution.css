@@ -1,0 +1,18 @@
+/* BLEACH: RETRIBUTION
+   External Stylesheet Connection Test
+*/
+
+body::after {
+    content: "RETRIBUTION // EXTERNAL CSS ONLINE";
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 99999;
+    padding: 8px 12px;
+    background: #080808;
+    border-left: 3px solid #B00020;
+    color: #F2F2F2;
+    font: 700 10px monospace;
+    letter-spacing: 1px;
+    pointer-events: none;
+}
