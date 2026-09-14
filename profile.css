@@ -1,18 +1,37 @@
 /* =========================================================
    BLEACH: RETRIBUTION
-   ADVANCED PROFILE // DOSSIER ARCHITECTURE
+   ADVANCED PROFILE // CONSOLIDATED PROFILE SYSTEM
+   PASS 3 + PASS 4A + PASS 4B + PASS 4C
+   ========================================================= */
+
+
+/* =========================================================
+   DESIGN TOKENS
+   ========================================================= */
+
+:root{
+    --br-orange:#E06A16;
+    --br-orange-soft:#F28A2A;
+}
+
+
+/* =========================================================
+   PROFILE ARCHITECTURE
    ========================================================= */
 
 #profile-advanced-layout{
     width:100%;
-    max-width:1220px;
+    max-width:1380px;
     margin:0 auto;
+
     display:grid;
     grid-template-columns:290px minmax(0,1fr);
     grid-template-areas:"character dossier";
-    gap:20px;
+    gap:24px;
+
     align-items:start;
 }
+
 
 /* =========================================================
    CHARACTER COLUMN
@@ -20,127 +39,210 @@
 
 #profile-advanced-right{
     grid-area:character;
+
     width:auto!important;
     float:none!important;
     margin:0!important;
+
     min-width:0;
 }
+
 
 #profile-advanced-left{
     grid-area:dossier;
+
     width:auto!important;
     float:none!important;
     margin:0!important;
+
     min-width:0;
 }
 
-/* Character Stage */
+
+/* =========================================================
+   CHARACTER STAGE
+   ========================================================= */
+
 .br-character-stage{
     width:100%;
     margin:0 0 14px;
+
     background:#0d0d0d;
+
     border:1px solid #242424;
     border-left:3px solid #b00020;
+
     box-sizing:border-box;
 }
+
+
+/* ---------------------------------------------------------
+   CHARACTER STAGE HEADER
+   --------------------------------------------------------- */
 
 .br-character-stage-head{
     min-height:38px;
     padding:0 12px;
+
     display:flex;
     align-items:center;
     gap:7px;
+
     border-bottom:1px solid #242424;
+
     background:#080808;
 }
 
+
 .br-character-stage-mark{
     color:#b00020;
-    font:700 10px "JetBrains Mono",monospace;
+
+    font:700 10px
+        "JetBrains Mono",
+        monospace;
 }
+
 
 .br-character-stage-label{
     color:#f2f2f2;
-    font:700 9px "JetBrains Mono",monospace;
+
+    font:700 9px
+        "JetBrains Mono",
+        monospace;
+
     letter-spacing:1.3px;
 }
 
+
 .br-character-stage-status{
     margin-left:auto;
+
     color:#b00020;
-    font:700 8px "JetBrains Mono",monospace;
+
+    font:700 8px
+        "JetBrains Mono",
+        monospace;
+
     letter-spacing:1px;
     text-transform:uppercase;
 }
 
-/* Canonical 250x400 portrait */
+
+/* ---------------------------------------------------------
+   CHARACTER PORTRAIT
+   --------------------------------------------------------- */
+
 .br-character-portrait{
     width:250px;
     margin:14px auto 0;
+
     background:#080808;
+
     border:1px solid #242424;
 }
 
+
 .br-character-portrait img{
     display:block;
+
     width:250px!important;
     height:400px!important;
     max-width:none!important;
+
     object-fit:contain!important;
+
     border:0!important;
     border-radius:0!important;
 }
+
+
+/* ---------------------------------------------------------
+   CHARACTER IDENTITY
+   --------------------------------------------------------- */
 
 .br-character-identity{
     padding:14px 13px 15px;
 }
 
+
 .br-character-series{
     display:block;
+
     margin-bottom:5px;
+
     color:#b00020;
-    font:700 7px "JetBrains Mono",monospace;
+
+    font:700 7px
+        "JetBrains Mono",
+        monospace;
+
     letter-spacing:1.3px;
     text-transform:uppercase;
 }
 
+
 .br-character-name{
     margin:0 0 10px;
-    font:700 21px/1 "Oswald",Arial,sans-serif;
+
+    font:700 21px/1
+        "Oswald",
+        Arial,
+        sans-serif;
+
     text-transform:uppercase;
+
     letter-spacing:.4px;
 }
+
 
 .br-character-name a{
     font:inherit!important;
 }
 
+
 .br-character-rank{
     padding-top:10px;
+
     border-top:1px solid #242424;
+
     color:#777;
-    font:700 7px "JetBrains Mono",monospace;
+
+    font:700 7px
+        "JetBrains Mono",
+        monospace;
+
     letter-spacing:1px;
     text-transform:uppercase;
 }
+
 
 .br-character-follow{
     margin-top:12px;
 }
 
+
 .br-character-follow button,
 .br-character-follow .button1{
     width:100%;
     min-height:30px;
+
     background:#181818!important;
+
     color:#f2f2f2!important;
+
     border:1px solid #303030!important;
     border-left:2px solid #b00020!important;
+
     border-radius:0!important;
-    font:700 8px "JetBrains Mono",monospace!important;
+
+    font:700 8px
+        "JetBrains Mono",
+        monospace!important;
+
     letter-spacing:1px;
     text-transform:uppercase;
 }
+
 
 /* =========================================================
    DOSSIER COLUMN
@@ -150,90 +252,102 @@
     margin:0 0 10px;
 }
 
+
+/* =========================================================
+   PROFILE TABS
+   ========================================================= */
+
 #profile-advanced-left #tabs{
     border-bottom:2px solid #b00020;
+
     background:#080808;
 }
+
 
 #profile-advanced-left #tabs ul{
     margin:0!important;
     padding:0!important;
+
     display:flex;
     flex-wrap:wrap;
+
     gap:0;
 }
+
 
 #profile-advanced-left #tabs li{
     margin:0!important;
 }
 
+
 #profile-advanced-left #tabs a{
     display:block;
+
     padding:10px 12px!important;
+
     color:#aaa!important;
+
     background:transparent!important;
+
     border:0!important;
     border-right:1px solid #242424!important;
+
     border-radius:0!important;
-    font:700 8px "JetBrains Mono",monospace!important;
+
+    font:700 8px
+        "JetBrains Mono",
+        monospace!important;
+
     letter-spacing:.6px;
     text-transform:uppercase;
 }
 
+
 #profile-advanced-left #tabs a:hover,
 #profile-advanced-left #tabs .activetab a{
     color:#fff!important;
+
     background:#111!important;
 }
 
-/* Main dossier shell */
+
+/* =========================================================
+   PROFILE DOSSIER SHELL
+   ========================================================= */
+
 #profile-advanced-details{
+    position:relative;
+
     margin:0!important;
     padding:0!important;
+
+    overflow:hidden;
+
     background:#111!important;
+
     border:1px solid #242424!important;
     border-top:0!important;
+
     border-radius:0!important;
+
     box-shadow:none!important;
 }
+
 
 #profile-advanced-details>.inner{
     padding:0!important;
 }
 
+
 #profile-advanced-details #cp-main{
     padding:0!important;
 }
 
-/* Profile tab title */
-#profile-advanced-details:has(#profile-tab-field-profil) h1{
-    position:relative;
-    margin:0!important;
-    padding:16px 18px!important;
-    background:#080808!important;
-    border-bottom:1px solid #242424;
-    color:transparent!important;
-    font-size:0!important;
-}
 
-#profile-advanced-details:has(#profile-tab-field-profil) h1::before{
-    content:"// IDENTITY RECORD";
-    color:#f2f2f2;
-    font:700 11px "JetBrains Mono",monospace;
-    letter-spacing:1.6px;
-}
+/* ---------------------------------------------------------
+   REMOVE STOCK CORNERS
+   --------------------------------------------------------- */
 
-#profile-advanced-details:has(#profile-tab-field-profil) h1::after{
-    content:"SPIRITUAL DATA // ACTIVE";
-    position:absolute;
-    right:18px;
-    top:17px;
-    color:#777;
-    font:700 7px "JetBrains Mono",monospace;
-    letter-spacing:1px;
-}
-
-/* Remove redundant stock panel chrome */
 #profile-advanced-details>.inner>.corners-top,
 #profile-advanced-details>.inner>.corners-bottom,
 #profile-advanced-details #cp-main>.panel>.inner>.corners-top,
@@ -241,12 +355,98 @@
     display:none!important;
 }
 
+
+/* ---------------------------------------------------------
+   PANEL RESET
+   --------------------------------------------------------- */
+
 #profile-advanced-details #cp-main>.panel{
     margin:0!important;
     padding:0!important;
+
     background:transparent!important;
+
     border:0!important;
 }
+
+
+/* ---------------------------------------------------------
+   GENERIC LINKS
+   --------------------------------------------------------- */
+
+#profile-advanced-details a{
+    transition:none;
+}
+
+
+#profile-advanced-details #cp-main a:not(.button1):not(.button2){
+    color:#d0005b;
+
+    text-decoration:none;
+}
+
+
+#profile-advanced-details #cp-main a:not(.button1):not(.button2):hover{
+    color:#f2f2f2;
+}
+
+
+#profile-advanced-details strong{
+    color:#f2f2f2;
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+   PROFILE TAB // IDENTITY RECORD
+   ========================================================= */
+
+#profile-advanced-details:has(#profile-tab-field-profil) h1{
+    position:relative;
+
+    margin:0!important;
+    padding:16px 18px!important;
+
+    background:#080808!important;
+
+    border-bottom:1px solid #242424;
+
+    color:transparent!important;
+
+    font-size:0!important;
+}
+
+
+#profile-advanced-details:has(#profile-tab-field-profil) h1::before{
+    content:"// IDENTITY RECORD";
+
+    color:#f2f2f2;
+
+    font:700 11px
+        "JetBrains Mono",
+        monospace;
+
+    letter-spacing:1.6px;
+}
+
+
+#profile-advanced-details:has(#profile-tab-field-profil) h1::after{
+    content:"SPIRITUAL DATA // ACTIVE";
+
+    position:absolute;
+    right:18px;
+    top:17px;
+
+    color:#777;
+
+    font:700 7px
+        "JetBrains Mono",
+        monospace;
+
+    letter-spacing:1px;
+}
+
 
 /* =========================================================
    IDENTITY RECORD GRID
@@ -254,245 +454,86 @@
 
 #profile-tab-field-profil{
     display:grid;
+
     grid-template-columns:repeat(2,minmax(0,1fr));
+
     gap:1px;
+
     padding:1px;
+
     background:#303030;
 }
 
+
 #profile-tab-field-profil>dl{
     min-height:54px;
+
     margin:0!important;
+
     display:grid;
+
     grid-template-columns:120px minmax(0,1fr);
+
     align-items:stretch;
+
     background:#111;
+
     border:0!important;
 }
+
 
 #profile-tab-field-profil>dl>dt{
     margin:0!important;
     padding:13px 12px!important;
+
     display:flex;
     align-items:center;
+
     background:#0a0a0a;
+
     border-right:1px solid #303030;
+
     color:#777!important;
-    font:700 7px/1.35 "JetBrains Mono",monospace!important;
+
+    font:700 7px/1.35
+        "JetBrains Mono",
+        monospace!important;
+
     letter-spacing:1.1px;
     text-transform:uppercase;
 }
 
+
 #profile-tab-field-profil>dl>dd{
     margin:0!important;
     padding:13px 14px!important;
+
     display:flex;
     align-items:center;
+
     color:#f2f2f2!important;
-    font:500 10px/1.5 "Inter",Arial,sans-serif!important;
+
+    font:500 10px/1.5
+        "Inter",
+        Arial,
+        sans-serif!important;
+
     min-width:0;
 }
+
 
 #profile-tab-field-profil>.separator{
     display:none!important;
 }
 
-/* Admin line */
+
 #profile-tab-field-profil+.middleline{
     margin:0;
 }
 
-/* =========================================================
-   SECONDARY RIGHT-COLUMN MODULES
-   ========================================================= */
-
-#profile-advanced-right>.module{
-    background:#111;
-    border:1px solid #242424;
-    border-left:2px solid #b00020;
-    border-radius:0;
-}
-
-#profile-advanced-right>.module .h3{
-    padding:10px 12px;
-    background:#080808;
-    border-bottom:1px solid #242424;
-    color:#f2f2f2;
-    font:700 8px "JetBrains Mono",monospace;
-    letter-spacing:1px;
-    text-transform:uppercase;
-}
-
-/* Keep ads separate from dossier identity */
-#profile-advanced-right>div[style*="height:250px"]{
-    margin-top:12px;
-    opacity:.85;
-}
 
 /* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media(max-width:900px){
-    #profile-advanced-layout{
-        display:block;
-        max-width:100%;
-    }
-
-    #profile-advanced-right{
-        width:100%!important;
-        max-width:290px;
-        margin:0 auto 18px!important;
-    }
-
-    #profile-advanced-left{
-        width:100%!important;
-    }
-}
-
-@media(max-width:650px){
-    #profile-tab-field-profil{
-        grid-template-columns:1fr;
-    }
-
-    #profile-tab-field-profil>dl{
-        grid-template-columns:105px minmax(0,1fr);
-    }
-
-    #profile-advanced-left #tabs ul{
-        display:grid;
-        grid-template-columns:repeat(2,minmax(0,1fr));
-    }
-
-    #profile-advanced-left #tabs a{
-        border-bottom:1px solid #242424!important;
-    }
-}
-/* =========================================================
-   BLEACH: RETRIBUTION
-   PROFILE PASS 4A // STATISTICS RECORD
-   ========================================================= */
-
-/* Give the complete dossier more presence on wide displays */
-#profile-advanced-layout{
-    max-width:1380px;
-    grid-template-columns:290px minmax(0,1fr);
-    gap:24px;
-}
-
-/* Statistics dossier shell */
-#profile-advanced-details{
-    position:relative;
-    overflow:hidden;
-}
-
-/* Stock Statistics heading */
-#profile-advanced-details h1{
-    margin:0!important;
-    padding:16px 18px!important;
-    background:#080808!important;
-    border-bottom:1px solid #242424!important;
-    color:#f2f2f2!important;
-    font:700 11px/1 "JetBrains Mono",monospace!important;
-    letter-spacing:1.6px;
-    text-transform:uppercase;
-}
-
-/* Convert the plain Statistics title into archive language */
-#profile-advanced-details h1:first-letter{
-    color:#b00020;
-}
-
-/* General secondary headings generated by Forumotion */
-#profile-advanced-details h2,
-#profile-advanced-details h3{
-    position:relative;
-    margin:0!important;
-    padding:14px 18px 10px!important;
-    color:#f2f2f2!important;
-    background:#0d0d0d!important;
-    border-top:1px solid #242424!important;
-    border-bottom:1px solid #242424!important;
-    font:700 10px/1.2 "JetBrains Mono",monospace!important;
-    letter-spacing:1.2px;
-    text-transform:uppercase;
-}
-
-/* Crimson system marker */
-#profile-advanced-details h2::before,
-#profile-advanced-details h3::before{
-    content:"//";
-    margin-right:8px;
-    color:#b00020;
-}
-
-/* Stock information paragraphs */
-#profile-advanced-details p{
-    margin:0!important;
-    padding:5px 18px!important;
-    color:#aaa!important;
-    font:500 10px/1.65 "Inter",Arial,sans-serif!important;
-}
-
-/* First/last breathing room inside content areas */
-#profile-advanced-details p:first-of-type{
-    padding-top:12px!important;
-}
-
-#profile-advanced-details p:last-of-type{
-    padding-bottom:12px!important;
-}
-
-/* Forumotion links become controlled crimson telemetry */
-#profile-advanced-details a{
-    transition:none;
-}
-
-#profile-advanced-details #cp-main a:not(.button1):not(.button2){
-    color:#d0005b;
-    text-decoration:none;
-}
-
-#profile-advanced-details #cp-main a:not(.button1):not(.button2):hover{
-    color:#f2f2f2;
-}
-
-/* Remove soft phpBB/Forumotion presentation */
-#profile-advanced-details .panel,
-#profile-advanced-details .inner{
-    border-radius:0!important;
-    box-shadow:none!important;
-}
-
-/* Technical emphasis for bold statistics */
-#profile-advanced-details strong{
-    color:#f2f2f2;
-    font-weight:700;
-}
-
-/* Preserve our Profile-tab Identity Record treatment */
-#profile-advanced-details:has(#profile-tab-field-profil) h1{
-    color:transparent!important;
-    font-size:0!important;
-}
-
-/* Wide-screen composition */
-@media(min-width:1500px){
-    #profile-advanced-layout{
-        max-width:1420px;
-    }
-}
-
-/* Existing responsive architecture remains intact */
-@media(max-width:900px){
-    #profile-advanced-layout{
-        max-width:100%;
-        gap:0;
-    }
-}
-/* =========================================================
-   BLEACH: RETRIBUTION
-   PROFILE PASS 4B // ACTIVITY RECORD
+   STATISTICS TAB // ACTIVITY RECORD
    ========================================================= */
 
 
@@ -502,29 +543,46 @@
 
 #profile-advanced-details:has(.stats-field) h1{
     position:relative;
+
     margin:0!important;
     padding:16px 18px!important;
+
     background:#080808!important;
+
     border-bottom:1px solid #303030!important;
+
     color:transparent!important;
+
     font-size:0!important;
 }
 
+
 #profile-advanced-details:has(.stats-field) h1::before{
     content:"// ACTIVITY RECORD";
+
     color:#f2f2f2;
-    font:700 11px "JetBrains Mono",monospace;
+
+    font:700 11px
+        "JetBrains Mono",
+        monospace;
+
     letter-spacing:1.6px;
 }
 
+
 #profile-advanced-details:has(.stats-field) h1::after{
     content:"ARCHIVE // STATISTICS";
+
     position:absolute;
     right:18px;
     top:17px;
 
     color:#777;
-    font:700 7px "JetBrains Mono",monospace;
+
+    font:700 7px
+        "JetBrains Mono",
+        monospace;
+
     letter-spacing:1px;
 }
 
@@ -536,7 +594,9 @@
 #profile-advanced-details:has(.stats-field)
 #cp-main > .panel > .inner{
     display:grid;
+
     grid-template-columns:repeat(2,minmax(0,1fr));
+
     gap:1px;
 
     margin:0!important;
@@ -546,19 +606,8 @@
 }
 
 
-/* Forumotion decorative corners */
-
-#profile-advanced-details:has(.stats-field)
-#cp-main > .panel > .inner > .corners-top,
-
-#profile-advanced-details:has(.stats-field)
-#cp-main > .panel > .inner > .corners-bottom{
-    display:none!important;
-}
-
-
 /* ---------------------------------------------------------
-   INDIVIDUAL RECORD MODULES
+   STATISTICS FIELD MODULE
    --------------------------------------------------------- */
 
 #profile-advanced-details .stats-field{
@@ -568,21 +617,27 @@
     padding:0!important;
 
     background:#111!important;
+
     border:0!important;
 }
 
 
-/* Section title */
+/* ---------------------------------------------------------
+   STATISTICS SECTION TITLE
+   --------------------------------------------------------- */
 
 #profile-advanced-details .stats-field legend{
     float:none!important;
+
     display:block!important;
+
     width:100%!important;
 
     margin:0!important;
     padding:11px 14px!important;
 
     background:#080808;
+
     border:0!important;
     border-bottom:1px solid #242424;
 
@@ -597,18 +652,33 @@
 }
 
 
-/* Crimson archive marker */
-
 #profile-advanced-details .stats-field legend::before{
     content:"//";
+
     margin-right:7px;
 
     color:#b00020;
 }
 
 
+#profile-advanced-details .stats-field legend::after{
+    content:"";
+
+    display:inline-block;
+
+    width:3px;
+    height:3px;
+
+    margin-left:7px;
+
+    background:var(--br-orange);
+
+    vertical-align:middle;
+}
+
+
 /* ---------------------------------------------------------
-   RECORD CONTENT
+   STATISTICS CONTENT
    --------------------------------------------------------- */
 
 #profile-advanced-details .stats-field ul{
@@ -641,20 +711,20 @@
 }
 
 
-/* Numerical / principal record */
-
 #profile-advanced-details .stats-field li:first-child{
     color:#f2f2f2!important;
+
     font-weight:600!important;
 }
 
 
 /* ---------------------------------------------------------
-   LINKS / TELEMETRY
+   STATISTICS LINKS
    --------------------------------------------------------- */
 
 #profile-advanced-details .stats-field a{
     color:#b00020!important;
+
     text-decoration:none!important;
 }
 
@@ -664,23 +734,26 @@
 }
 
 
+/* =========================================================
+   PRIMARY SPIRITUAL TELEMETRY
+   ========================================================= */
+
+
 /* ---------------------------------------------------------
-   PRIMARY TELEMETRY MODULES
-   Soul Points + Reputation
+   SOUL POINTS
    --------------------------------------------------------- */
 
-#profile-advanced-details .stats-field:nth-of-type(1),
-#profile-advanced-details .stats-field:nth-of-type(2){
+#profile-advanced-details .stats-field:nth-of-type(1){
     position:relative;
+
     background:#0d0d0d!important;
 }
 
 
-#profile-advanced-details .stats-field:nth-of-type(1)::after,
-#profile-advanced-details .stats-field:nth-of-type(2)::after{
+#profile-advanced-details .stats-field:nth-of-type(1)::after{
     content:"";
-    position:absolute;
 
+    position:absolute;
     left:0;
     bottom:0;
 
@@ -691,74 +764,6 @@
 }
 
 
-/* Give the first statistic a little more authority */
-
-#profile-advanced-details .stats-field:nth-of-type(1) li:first-child,
-#profile-advanced-details .stats-field:nth-of-type(2) li:first-child{
-    padding-top:7px!important;
-    padding-bottom:7px!important;
-
-    color:#fff!important;
-
-    font:600 12px/1.4
-        "Inter",
-        Arial,
-        sans-serif!important;
-}
-
-
-/* ---------------------------------------------------------
-   PANEL CLEANUP
-   --------------------------------------------------------- */
-
-#profile-advanced-details:has(.stats-field)
-#cp-main > .panel{
-    margin:0!important;
-    padding:0!important;
-
-    background:transparent!important;
-    border:0!important;
-}
-
-
-/* Remove obsolete Forumotion spacing */
-
-#profile-advanced-details:has(.stats-field)
-#cp-main > br{
-    display:none!important;
-}
-
-
-/* ---------------------------------------------------------
-   RESPONSIVE
-   --------------------------------------------------------- */
-
-@media(max-width:700px){
-
-    #profile-advanced-details:has(.stats-field)
-    #cp-main > .panel > .inner{
-        grid-template-columns:1fr;
-    }
-
-    #profile-advanced-details:has(.stats-field) h1::after{
-        display:none;
-    }
-
-}
-/* =========================================================
-   BLEACH: RETRIBUTION
-   PROFILE PASS 4C // SPIRITUAL TELEMETRY
-   ========================================================= */
-
-:root{
-    --br-orange:#E06A16;
-    --br-orange-soft:#F28A2A;
-}
-
-/* ---------------------------------------------------------
-   SOUL POINTS // PRIMARY ENERGY VALUE
-   --------------------------------------------------------- */
-
 #profile-advanced-details .stats-field:nth-of-type(1) ul{
     min-height:104px;
 
@@ -768,6 +773,7 @@
 
     text-align:center;
 }
+
 
 #profile-advanced-details .stats-field:nth-of-type(1) li{
     width:100%;
@@ -784,8 +790,10 @@
     letter-spacing:.5px;
 }
 
+
 #profile-advanced-details .stats-field:nth-of-type(1) li::before{
     content:"SPIRITUAL OUTPUT";
+
     display:block;
 
     margin-bottom:8px;
@@ -799,8 +807,10 @@
     letter-spacing:1.5px;
 }
 
+
 #profile-advanced-details .stats-field:nth-of-type(1) li::after{
     content:"REIATSU INDEX";
+
     display:block;
 
     margin-top:8px;
@@ -816,10 +826,34 @@
 
 
 /* ---------------------------------------------------------
-   REPUTATION // RESPONSE TELEMETRY
+   REPUTATION
    --------------------------------------------------------- */
 
+#profile-advanced-details .stats-field:nth-of-type(2){
+    position:relative;
+
+    background:#0d0d0d!important;
+}
+
+
+#profile-advanced-details .stats-field:nth-of-type(2)::after{
+    content:"";
+
+    position:absolute;
+    left:0;
+    bottom:0;
+
+    width:42px;
+    height:2px;
+
+    background:#b00020;
+}
+
+
 #profile-advanced-details .stats-field:nth-of-type(2) li:first-child{
+    padding-top:7px!important;
+    padding-bottom:7px!important;
+
     color:var(--br-orange-soft)!important;
 
     font:700 13px/1.4
@@ -830,7 +864,7 @@
 
 
 /* ---------------------------------------------------------
-   TOPICS / POSTS // PUBLICATION SIGNAL
+   TOPICS + POSTS
    --------------------------------------------------------- */
 
 #profile-advanced-details .stats-field:nth-of-type(3) li:first-child,
@@ -843,25 +877,29 @@
         sans-serif!important;
 }
 
+
 #profile-advanced-details .stats-field:nth-of-type(3) li:first-child::before,
 #profile-advanced-details .stats-field:nth-of-type(4) li:first-child::before{
     content:"●";
+
     margin-right:7px;
 
     color:var(--br-orange);
 
     font-size:7px;
+
     vertical-align:middle;
 }
 
 
 /* ---------------------------------------------------------
-   INFORMATION // SYSTEM STATUS
+   INFORMATION STATUS
    --------------------------------------------------------- */
 
 #profile-advanced-details .stats-field:nth-of-type(6){
     position:relative;
 }
+
 
 #profile-advanced-details .stats-field:nth-of-type(6)::after{
     content:"ARCHIVE LINK // STABLE";
@@ -881,39 +919,142 @@
 
 
 /* ---------------------------------------------------------
-   ORANGE SIGNAL DETAILS
+   STOCK SPACING CLEANUP
    --------------------------------------------------------- */
 
-#profile-advanced-details .stats-field legend::after{
-    content:"";
-    display:inline-block;
-
-    width:3px;
-    height:3px;
-
-    margin-left:7px;
-
-    background:var(--br-orange);
-
-    vertical-align:middle;
+#profile-advanced-details:has(.stats-field)
+#cp-main > br{
+    display:none!important;
 }
 
 
-/* Keep crimson dominant */
-#profile-advanced-details .stats-field:nth-of-type(1)::after,
-#profile-advanced-details .stats-field:nth-of-type(2)::after{
-    background:#b00020;
+/* =========================================================
+   SECONDARY RIGHT-COLUMN MODULES
+   ========================================================= */
+
+#profile-advanced-right>.module{
+    background:#111;
+
+    border:1px solid #242424;
+    border-left:2px solid #b00020;
+
+    border-radius:0;
 }
 
 
-/* ---------------------------------------------------------
-   RESPONSIVE
-   --------------------------------------------------------- */
+#profile-advanced-right>.module .h3{
+    padding:10px 12px;
+
+    background:#080808;
+
+    border-bottom:1px solid #242424;
+
+    color:#f2f2f2;
+
+    font:700 8px
+        "JetBrains Mono",
+        monospace;
+
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+
+#profile-advanced-right>div[style*="height:250px"]{
+    margin-top:12px;
+
+    opacity:.85;
+}
+
+
+/* =========================================================
+   WIDE DISPLAY
+   ========================================================= */
+
+@media(min-width:1500px){
+
+    #profile-advanced-layout{
+        max-width:1420px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE // TABLET
+   ========================================================= */
+
+@media(max-width:900px){
+
+    #profile-advanced-layout{
+        display:block;
+
+        max-width:100%;
+
+        gap:0;
+    }
+
+
+    #profile-advanced-right{
+        width:100%!important;
+        max-width:290px;
+
+        margin:0 auto 18px!important;
+    }
+
+
+    #profile-advanced-left{
+        width:100%!important;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE // MOBILE
+   ========================================================= */
 
 @media(max-width:700px){
 
+    #profile-advanced-details:has(.stats-field)
+    #cp-main > .panel > .inner{
+        grid-template-columns:1fr;
+    }
+
+
+    #profile-advanced-details:has(.stats-field) h1::after{
+        display:none;
+    }
+
+
     #profile-advanced-details .stats-field:nth-of-type(1) ul{
         min-height:82px;
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    #profile-tab-field-profil{
+        grid-template-columns:1fr;
+    }
+
+
+    #profile-tab-field-profil>dl{
+        grid-template-columns:105px minmax(0,1fr);
+    }
+
+
+    #profile-advanced-left #tabs ul{
+        display:grid;
+
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+
+    #profile-advanced-left #tabs a{
+        border-bottom:1px solid #242424!important;
     }
 
 }
