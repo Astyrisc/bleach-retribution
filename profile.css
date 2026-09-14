@@ -745,3 +745,175 @@
     }
 
 }
+/* =========================================================
+   BLEACH: RETRIBUTION
+   PROFILE PASS 4C // SPIRITUAL TELEMETRY
+   ========================================================= */
+
+:root{
+    --br-orange:#E06A16;
+    --br-orange-soft:#F28A2A;
+}
+
+/* ---------------------------------------------------------
+   SOUL POINTS // PRIMARY ENERGY VALUE
+   --------------------------------------------------------- */
+
+#profile-advanced-details .stats-field:nth-of-type(1) ul{
+    min-height:104px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+}
+
+#profile-advanced-details .stats-field:nth-of-type(1) li{
+    width:100%;
+
+    border:0!important;
+
+    color:#f2f2f2!important;
+
+    font:700 18px/1.2
+        "Oswald",
+        Arial,
+        sans-serif!important;
+
+    letter-spacing:.5px;
+}
+
+#profile-advanced-details .stats-field:nth-of-type(1) li::before{
+    content:"SPIRITUAL OUTPUT";
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#777;
+
+    font:700 7px/1
+        "JetBrains Mono",
+        monospace;
+
+    letter-spacing:1.5px;
+}
+
+#profile-advanced-details .stats-field:nth-of-type(1) li::after{
+    content:"REIATSU INDEX";
+    display:block;
+
+    margin-top:8px;
+
+    color:var(--br-orange);
+
+    font:700 7px/1
+        "JetBrains Mono",
+        monospace;
+
+    letter-spacing:1.2px;
+}
+
+
+/* ---------------------------------------------------------
+   REPUTATION // RESPONSE TELEMETRY
+   --------------------------------------------------------- */
+
+#profile-advanced-details .stats-field:nth-of-type(2) li:first-child{
+    color:var(--br-orange-soft)!important;
+
+    font:700 13px/1.4
+        "Oswald",
+        Arial,
+        sans-serif!important;
+}
+
+
+/* ---------------------------------------------------------
+   TOPICS / POSTS // PUBLICATION SIGNAL
+   --------------------------------------------------------- */
+
+#profile-advanced-details .stats-field:nth-of-type(3) li:first-child,
+#profile-advanced-details .stats-field:nth-of-type(4) li:first-child{
+    color:#fff!important;
+
+    font:600 11px/1.5
+        "Inter",
+        Arial,
+        sans-serif!important;
+}
+
+#profile-advanced-details .stats-field:nth-of-type(3) li:first-child::before,
+#profile-advanced-details .stats-field:nth-of-type(4) li:first-child::before{
+    content:"●";
+    margin-right:7px;
+
+    color:var(--br-orange);
+
+    font-size:7px;
+    vertical-align:middle;
+}
+
+
+/* ---------------------------------------------------------
+   INFORMATION // SYSTEM STATUS
+   --------------------------------------------------------- */
+
+#profile-advanced-details .stats-field:nth-of-type(6){
+    position:relative;
+}
+
+#profile-advanced-details .stats-field:nth-of-type(6)::after{
+    content:"ARCHIVE LINK // STABLE";
+
+    position:absolute;
+    right:12px;
+    bottom:9px;
+
+    color:#555;
+
+    font:700 6px/1
+        "JetBrains Mono",
+        monospace;
+
+    letter-spacing:1px;
+}
+
+
+/* ---------------------------------------------------------
+   ORANGE SIGNAL DETAILS
+   --------------------------------------------------------- */
+
+#profile-advanced-details .stats-field legend::after{
+    content:"";
+    display:inline-block;
+
+    width:3px;
+    height:3px;
+
+    margin-left:7px;
+
+    background:var(--br-orange);
+
+    vertical-align:middle;
+}
+
+
+/* Keep crimson dominant */
+#profile-advanced-details .stats-field:nth-of-type(1)::after,
+#profile-advanced-details .stats-field:nth-of-type(2)::after{
+    background:#b00020;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media(max-width:700px){
+
+    #profile-advanced-details .stats-field:nth-of-type(1) ul{
+        min-height:82px;
+    }
+
+}
