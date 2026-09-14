@@ -490,3 +490,258 @@
         gap:0;
     }
 }
+/* =========================================================
+   BLEACH: RETRIBUTION
+   PROFILE PASS 4B // ACTIVITY RECORD
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   STATISTICS HEADER
+   --------------------------------------------------------- */
+
+#profile-advanced-details:has(.stats-field) h1{
+    position:relative;
+    margin:0!important;
+    padding:16px 18px!important;
+    background:#080808!important;
+    border-bottom:1px solid #303030!important;
+    color:transparent!important;
+    font-size:0!important;
+}
+
+#profile-advanced-details:has(.stats-field) h1::before{
+    content:"// ACTIVITY RECORD";
+    color:#f2f2f2;
+    font:700 11px "JetBrains Mono",monospace;
+    letter-spacing:1.6px;
+}
+
+#profile-advanced-details:has(.stats-field) h1::after{
+    content:"ARCHIVE // STATISTICS";
+    position:absolute;
+    right:18px;
+    top:17px;
+
+    color:#777;
+    font:700 7px "JetBrains Mono",monospace;
+    letter-spacing:1px;
+}
+
+
+/* ---------------------------------------------------------
+   STATISTICS GRID
+   --------------------------------------------------------- */
+
+#profile-advanced-details:has(.stats-field)
+#cp-main > .panel > .inner{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:1px;
+
+    margin:0!important;
+    padding:1px!important;
+
+    background:#303030!important;
+}
+
+
+/* Forumotion decorative corners */
+
+#profile-advanced-details:has(.stats-field)
+#cp-main > .panel > .inner > .corners-top,
+
+#profile-advanced-details:has(.stats-field)
+#cp-main > .panel > .inner > .corners-bottom{
+    display:none!important;
+}
+
+
+/* ---------------------------------------------------------
+   INDIVIDUAL RECORD MODULES
+   --------------------------------------------------------- */
+
+#profile-advanced-details .stats-field{
+    min-width:0;
+
+    margin:0!important;
+    padding:0!important;
+
+    background:#111!important;
+    border:0!important;
+}
+
+
+/* Section title */
+
+#profile-advanced-details .stats-field legend{
+    float:none!important;
+    display:block!important;
+    width:100%!important;
+
+    margin:0!important;
+    padding:11px 14px!important;
+
+    background:#080808;
+    border:0!important;
+    border-bottom:1px solid #242424;
+
+    color:#f2f2f2!important;
+
+    font:700 8px/1
+        "JetBrains Mono",
+        monospace!important;
+
+    letter-spacing:1.15px;
+    text-transform:uppercase;
+}
+
+
+/* Crimson archive marker */
+
+#profile-advanced-details .stats-field legend::before{
+    content:"//";
+    margin-right:7px;
+
+    color:#b00020;
+}
+
+
+/* ---------------------------------------------------------
+   RECORD CONTENT
+   --------------------------------------------------------- */
+
+#profile-advanced-details .stats-field ul{
+    list-style:none!important;
+
+    margin:0!important;
+    padding:12px 14px 14px!important;
+}
+
+
+#profile-advanced-details .stats-field li{
+    position:relative;
+
+    margin:0!important;
+    padding:5px 0!important;
+
+    border-bottom:1px solid #1d1d1d;
+
+    color:#aaa!important;
+
+    font:500 10px/1.5
+        "Inter",
+        Arial,
+        sans-serif!important;
+}
+
+
+#profile-advanced-details .stats-field li:last-child{
+    border-bottom:0;
+}
+
+
+/* Numerical / principal record */
+
+#profile-advanced-details .stats-field li:first-child{
+    color:#f2f2f2!important;
+    font-weight:600!important;
+}
+
+
+/* ---------------------------------------------------------
+   LINKS / TELEMETRY
+   --------------------------------------------------------- */
+
+#profile-advanced-details .stats-field a{
+    color:#b00020!important;
+    text-decoration:none!important;
+}
+
+
+#profile-advanced-details .stats-field a:hover{
+    color:#f2f2f2!important;
+}
+
+
+/* ---------------------------------------------------------
+   PRIMARY TELEMETRY MODULES
+   Soul Points + Reputation
+   --------------------------------------------------------- */
+
+#profile-advanced-details .stats-field:nth-of-type(1),
+#profile-advanced-details .stats-field:nth-of-type(2){
+    position:relative;
+    background:#0d0d0d!important;
+}
+
+
+#profile-advanced-details .stats-field:nth-of-type(1)::after,
+#profile-advanced-details .stats-field:nth-of-type(2)::after{
+    content:"";
+    position:absolute;
+
+    left:0;
+    bottom:0;
+
+    width:42px;
+    height:2px;
+
+    background:#b00020;
+}
+
+
+/* Give the first statistic a little more authority */
+
+#profile-advanced-details .stats-field:nth-of-type(1) li:first-child,
+#profile-advanced-details .stats-field:nth-of-type(2) li:first-child{
+    padding-top:7px!important;
+    padding-bottom:7px!important;
+
+    color:#fff!important;
+
+    font:600 12px/1.4
+        "Inter",
+        Arial,
+        sans-serif!important;
+}
+
+
+/* ---------------------------------------------------------
+   PANEL CLEANUP
+   --------------------------------------------------------- */
+
+#profile-advanced-details:has(.stats-field)
+#cp-main > .panel{
+    margin:0!important;
+    padding:0!important;
+
+    background:transparent!important;
+    border:0!important;
+}
+
+
+/* Remove obsolete Forumotion spacing */
+
+#profile-advanced-details:has(.stats-field)
+#cp-main > br{
+    display:none!important;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media(max-width:700px){
+
+    #profile-advanced-details:has(.stats-field)
+    #cp-main > .panel > .inner{
+        grid-template-columns:1fr;
+    }
+
+    #profile-advanced-details:has(.stats-field) h1::after{
+        display:none;
+    }
+
+}
