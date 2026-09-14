@@ -1058,3 +1058,177 @@
     }
 
 }
+/* =========================================================
+   BLEACH: RETRIBUTION
+   PROFILE PASS 4D-A // ASSOCIATED RECORDS
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   SECONDARY MODULE SHELL
+   --------------------------------------------------------- */
+
+#profile-advanced-right > .module{
+    margin-top:12px;
+
+    background:#111!important;
+
+    border:1px solid #242424!important;
+    border-left:2px solid #b00020!important;
+
+    border-radius:0!important;
+
+    box-shadow:none!important;
+
+    overflow:hidden;
+}
+
+
+/* ---------------------------------------------------------
+   MODULE HEADER
+   --------------------------------------------------------- */
+
+#profile-advanced-right > .module .h3{
+    position:relative;
+
+    margin:0!important;
+    padding:11px 12px!important;
+
+    background:#080808!important;
+
+    border:0!important;
+    border-bottom:1px solid #242424!important;
+
+    color:#f2f2f2!important;
+
+    font:700 8px/1
+        "JetBrains Mono",
+        monospace!important;
+
+    letter-spacing:1.1px;
+    text-transform:uppercase;
+}
+
+
+/* Replace decorative feel with dossier marker */
+
+#profile-advanced-right > .module .h3::before{
+    content:"//";
+
+    margin-right:7px;
+
+    color:#b00020;
+}
+
+
+/* Small live-system signal */
+
+#profile-advanced-right > .module .h3::after{
+    content:"ASSOCIATED RECORDS";
+
+    position:absolute;
+    right:11px;
+    top:11px;
+
+    color:#555;
+
+    font:700 6px/1
+        "JetBrains Mono",
+        monospace;
+
+    letter-spacing:.9px;
+}
+
+
+/* ---------------------------------------------------------
+   MODULE BODY
+   --------------------------------------------------------- */
+
+#profile-advanced-right > .module .inner{
+    padding:12px!important;
+
+    background:#0d0d0d!important;
+}
+
+
+/* Remove Forumotion rounded shell remnants */
+
+#profile-advanced-right > .module .corners-top,
+#profile-advanced-right > .module .corners-bottom{
+    display:none!important;
+}
+
+
+/* ---------------------------------------------------------
+   FRIEND AVATARS / MEMBER ICONS
+   --------------------------------------------------------- */
+
+#profile-advanced-right > .module img{
+    border-radius:0!important;
+
+    border:1px solid #303030!important;
+
+    background:#080808;
+
+    box-shadow:none!important;
+}
+
+
+/* ---------------------------------------------------------
+   FRIEND / MEMBER LINKS
+   --------------------------------------------------------- */
+
+#profile-advanced-right > .module a{
+    color:#f2f2f2;
+
+    text-decoration:none!important;
+}
+
+
+#profile-advanced-right > .module a:hover{
+    color:var(--br-orange)!important;
+}
+
+
+/* ---------------------------------------------------------
+   TECHNICAL LABELS / SMALL TEXT
+   --------------------------------------------------------- */
+
+#profile-advanced-right > .module span,
+#profile-advanced-right > .module small{
+    font-family:"JetBrains Mono",monospace;
+
+    letter-spacing:.4px;
+}
+
+
+/* ---------------------------------------------------------
+   FOOTER / SEE ALL FRIENDS LINK
+   --------------------------------------------------------- */
+
+#profile-advanced-right > .module p:last-child,
+#profile-advanced-right > .module div:last-child{
+    border-bottom:0;
+}
+
+
+#profile-advanced-right > .module a[href*="friends"],
+#profile-advanced-right > .module a[href*="friend"]{
+    color:#b00020;
+}
+
+
+/* ---------------------------------------------------------
+   MODULE SIGNAL LINE
+   --------------------------------------------------------- */
+
+#profile-advanced-right > .module::after{
+    content:"";
+
+    display:block;
+
+    width:38px;
+    height:2px;
+
+    background:var(--br-orange);
+}
