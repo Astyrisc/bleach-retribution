@@ -1,29 +1,24 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    PRIVATE TRANSMISSION NETWORK
-   LAYER 2 // TRANSMISSION PORTRAIT RESOLVER
-   VERSION 1.1
+   TRANSMISSION PORTRAIT RESOLVER
+   VERSION 1.2
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
     /* ---------------------------------------------------------
-       01 // ACTIVATE ONLY ON THE PM READER
+       01 // PM READER ONLY
        --------------------------------------------------------- */
 
-    const transmission = document.querySelector(".br-pm-message");
-
-    if (!transmission) {
+    if (!document.querySelector(".br-pm-message")) {
         return;
     }
 
 
     /* ---------------------------------------------------------
-       02 // CONFIGURATION
+       02 // SYSTEM STATE
        --------------------------------------------------------- */
-
-    const TRANSMISSION_FIELD_SELECTOR =
-        "#field_id13, .profile_field_13-1";
 
     const portraitCache = new Map();
 
@@ -32,15 +27,16 @@ document.addEventListener("DOMContentLoaded", function () {
        03 // UTILITIES
        --------------------------------------------------------- */
 
-    function normalizeName(name) {
-        return (name || "")
+    function normalizeName(value) {
+
+        return (value || "")
             .replace(/\s+/g, " ")
             .trim()
             .toLowerCase();
     }
 
 
-    function validImageURL(value) {
+    function isValidURL(value) {
 
         if (!value) {
             return false;
@@ -66,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ---------------------------------------------------------
-       04 // FETCH TRANSMISSION PORTRAIT FROM PROFILE
+       04 // READ TRANSMISSION PORTRAIT FROM PROFILE
        --------------------------------------------------------- */
 
     async function getTransmissionPortrait(profileURL) {
@@ -75,12 +71,13 @@ document.addEventListener("DOMContentLoaded", function () {
             return null;
         }
 
-        /*
-         * Do not fetch the same member profile repeatedly.
-         */
+
+        /* Use cached result when available. */
+
         if (portraitCache.has(profileURL)) {
             return portraitCache.get(profileURL);
         }
+
 
         try {
 
@@ -88,29 +85,54 @@ document.addEventListener("DOMContentLoaded", function () {
                 credentials: "same-origin"
             });
 
+
             if (!response.ok) {
+
                 throw new Error(
                     "Profile request failed: " +
                     response.status
                 );
             }
 
+
             const html = await response.text();
 
-            const parser = new DOMParser();
-
             const profileDocument =
-                parser.parseFromString(
+                new DOMParser().parseFromString(
                     html,
                     "text/html"
                 );
 
-            const field =
-                profileDocument.querySelector(
-                    TRANSMISSION_FIELD_SELECTOR
+
+            /*
+             * Forumotion renders custom profile records as
+             * definition lists.
+             *
+             * We identify the record by its visible label
+             * rather than depending on an internal field ID.
+             */
+
+            const records =
+                Array.from(
+                    profileDocument.querySelectorAll("dl")
                 );
 
-            if (!field) {
+
+            const portraitRecord =
+                records.find(function (record) {
+
+                    const label =
+                        record.querySelector("dt");
+
+                    return (
+                        label &&
+                        normalizeName(label.textContent) ===
+                        "transmission portrait"
+                    );
+                });
+
+
+            if (!portraitRecord) {
 
                 portraitCache.set(
                     profileURL,
@@ -120,13 +142,49 @@ document.addEventListener("DOMContentLoaded", function () {
                 return null;
             }
 
-            const portraitURL = (
-                field.value ||
-                field.getAttribute("value") ||
-                ""
-            ).trim();
 
-            if (!validImageURL(portraitURL)) {
+            /*
+             * First preference:
+             * the public, uneditable field value.
+             */
+
+            const publicValue =
+                portraitRecord.querySelector(
+                    "dd .field_uneditable"
+                );
+
+
+            let portraitURL =
+                publicValue
+                    ? publicValue.textContent.trim()
+                    : "";
+
+
+            /*
+             * Secondary fallback:
+             * Forumotion's hidden editable input.
+             */
+
+            if (!isValidURL(portraitURL)) {
+
+                const editableInput =
+                    portraitRecord.querySelector(
+                        "dd input[type='text']"
+                    );
+
+
+                portraitURL =
+                    editableInput
+                        ? (
+                            editableInput.value ||
+                            editableInput.getAttribute("value") ||
+                            ""
+                        ).trim()
+                        : "";
+            }
+
+
+            if (!isValidURL(portraitURL)) {
 
                 portraitCache.set(
                     profileURL,
@@ -135,11 +193,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 return null;
             }
+
 
             portraitCache.set(
                 profileURL,
                 portraitURL
             );
+
 
             return portraitURL;
 
@@ -151,10 +211,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 error
             );
 
+
             portraitCache.set(
                 profileURL,
                 null
             );
+
 
             return null;
         }
@@ -162,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ---------------------------------------------------------
-       05 // INSTALL RESOLVED PORTRAIT
+       05 // INSTALL PORTRAIT
        --------------------------------------------------------- */
 
     function installPortrait(
@@ -174,15 +236,15 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+
         const image = new Image();
 
+
         /*
-         * We only replace the original Forumotion avatar
-         * AFTER the custom portrait successfully loads.
-         *
-         * If anything fails, the normal avatar or empty
-         * fallback remains untouched.
+         * Do not remove the normal Forumotion avatar until
+         * the Transmission Portrait has successfully loaded.
          */
+
         image.onload = function () {
 
             container.innerHTML = "";
@@ -193,33 +255,38 @@ document.addEventListener("DOMContentLoaded", function () {
             image.className =
                 "br-transmission-portrait";
 
+
             container.appendChild(image);
+
 
             container.classList.add(
                 "br-pm-custom-portrait"
             );
         };
 
+
         image.onerror = function () {
 
             console.warn(
-                "RETRIBUTION // Portrait image failed to load:",
+                "RETRIBUTION // Transmission Portrait image failed:",
                 portraitURL
             );
         };
+
 
         image.src = portraitURL;
     }
 
 
     /* ---------------------------------------------------------
-       06 // IDENTIFY CURRENT MESSAGE SENDER
+       06 // CURRENT MESSAGE SENDER
        --------------------------------------------------------- */
 
     const senderNameElement =
         document.querySelector(
             ".br-pm-sender"
         );
+
 
     const senderName =
         normalizeName(
@@ -229,14 +296,11 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-    /*
-     * The current PM contact rail contains a direct
-     * link to the sender's Forumotion profile.
-     */
     const senderProfileLink =
         document.querySelector(
             ".br-pm-contact a[href^='/u']"
         );
+
 
     const senderProfileURL =
         senderProfileLink
@@ -245,7 +309,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ---------------------------------------------------------
-       07 // IDENTIFY OTHER PARTICIPANT FROM HISTORY
+       07 // OTHER CONVERSATION PARTICIPANT
        --------------------------------------------------------- */
 
     const historyNameElements =
@@ -255,20 +319,17 @@ document.addEventListener("DOMContentLoaded", function () {
             )
         );
 
+
     let selfName = "";
 
-    /*
-     * Private messages are one-to-one.
-     *
-     * The first history username that differs from the
-     * current sender identifies the logged-in participant.
-     */
+
     for (const element of historyNameElements) {
 
         const candidate =
             normalizeName(
                 element.textContent
             );
+
 
         if (
             candidate &&
@@ -282,58 +343,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ---------------------------------------------------------
-       08 // RESOLVE LOGGED-IN MEMBER PROFILE URL
+       08 // MATCH PARTICIPANT TO PROFILE LINK
        --------------------------------------------------------- */
 
-    const profileCandidates =
+    const profileLinks =
         Array.from(
             document.querySelectorAll(
                 "a[href^='/u']"
             )
         );
 
-    let selfProfileLink = null;
 
-    /*
-     * IMPORTANT:
-     *
-     * Retribution contains many /u# links on this page
-     * because widgets/member listings are also present.
-     *
-     * Therefore we NEVER assume the first /u# link is
-     * the logged-in member.
-     *
-     * Instead, match the visible username.
-     */
-    for (const link of profileCandidates) {
+    function findProfileURLByName(memberName) {
 
-        const linkName =
-            normalizeName(
-                link.textContent
-            );
-
-        if (
-            selfName &&
-            linkName === selfName
-        ) {
-
-            selfProfileLink = link;
-            break;
+        if (!memberName) {
+            return null;
         }
+
+
+        const match =
+            profileLinks.find(function (link) {
+
+                return (
+                    normalizeName(link.textContent) ===
+                    memberName
+                );
+            });
+
+
+        return match
+            ? match.getAttribute("href")
+            : null;
     }
 
 
     const selfProfileURL =
-        selfProfileLink
-            ? selfProfileLink.getAttribute("href")
-            : null;
+        findProfileURLByName(
+            selfName
+        );
 
 
     /* ---------------------------------------------------------
        09 // PARTICIPANT REGISTRY
        --------------------------------------------------------- */
 
-    const participants = new Map();
+    const participants =
+        new Map();
 
 
     if (
@@ -361,38 +416,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ---------------------------------------------------------
-       10 // RESOLVE CURRENT TRANSMISSION
+       10 // CURRENT TRANSMISSION
        --------------------------------------------------------- */
 
-    async function resolvePrimaryTransmission() {
+    async function resolveCurrentTransmission() {
 
         if (!senderProfileURL) {
             return;
         }
+
 
         const portraitURL =
             await getTransmissionPortrait(
                 senderProfileURL
             );
 
+
         if (!portraitURL) {
             return;
         }
 
-        const portraitContainer =
-            document.querySelector(
-                ".br-pm-avatar"
-            );
 
         installPortrait(
-            portraitContainer,
+            document.querySelector(
+                ".br-pm-avatar"
+            ),
             portraitURL
         );
     }
 
 
     /* ---------------------------------------------------------
-       11 // RESOLVE TRANSMISSION HISTORY
+       11 // TRANSMISSION HISTORY
        --------------------------------------------------------- */
 
     async function resolveHistory() {
@@ -409,6 +464,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 record.querySelector(
                     ".postprofile-name"
                 );
+
 
             const portraitContainer =
                 record.querySelector(
@@ -437,11 +493,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-            /*
-             * If we cannot confidently identify the
-             * member profile, preserve the original
-             * Forumotion avatar.
-             */
             if (!profileURL) {
                 continue;
             }
@@ -454,10 +505,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /*
-             * No custom portrait?
+             * No Transmission Portrait:
              *
-             * Preserve normal avatar / black fallback.
+             * Preserve the normal avatar or black
+             * fallback already supplied by Forumotion.
              */
+
             if (!portraitURL) {
                 continue;
             }
@@ -472,10 +525,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ---------------------------------------------------------
-       12 // INITIALIZE TRANSMISSION NETWORK
+       12 // INITIALIZE
        --------------------------------------------------------- */
 
-    resolvePrimaryTransmission();
+    resolveCurrentTransmission();
     resolveHistory();
 
 });
