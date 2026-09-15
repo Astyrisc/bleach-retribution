@@ -3857,3 +3857,329 @@ input[name="avatarremoteurl"]:focus{
     }
 
 }
+/* =========================================================
+   UCP PASS 4C-A // RELATIONSHIP NETWORK
+   FRIENDS & FOES ARCHITECTURE
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   PAGE SHELL
+   Unique to Friends/Foes because this UCP contains
+   Friends + Requests Sent + Received Requests + Foes.
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main:has(> h1.page-title:nth-of-type(4)){
+    background:#080808 !important;
+}
+
+
+/* ---------------------------------------------------------
+   SECTION HEADERS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main > h1.page-title{
+    position:relative;
+
+    margin:0 !important;
+    padding:14px 18px !important;
+
+    background:#0d0d0d !important;
+
+    border:1px solid #242424 !important;
+    border-left:2px solid #b00020 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:12px !important;
+    font-weight:600 !important;
+    line-height:1 !important;
+    letter-spacing:1.6px !important;
+    text-transform:uppercase !important;
+}
+
+
+/* RETRIBUTION technical marker */
+
+#cp-main.ucp-main > h1.page-title::before{
+    content:"// ";
+
+    color:#b00020;
+}
+
+
+/* ---------------------------------------------------------
+   SECTION STATUS LABELS
+   --------------------------------------------------------- */
+
+/* FRIENDS */
+
+#cp-main.ucp-main > h1.page-title:nth-of-type(1)::after{
+    content:"ASSOCIATION NETWORK // REGISTERED";
+}
+
+
+/* REQUESTS SENT */
+
+#cp-main.ucp-main > h1.page-title:nth-of-type(2)::after{
+    content:"OUTGOING CHANNEL // PENDING";
+}
+
+
+/* RECEIVED REQUESTS */
+
+#cp-main.ucp-main > h1.page-title:nth-of-type(3)::after{
+    content:"INCOMING CHANNEL // MONITORING";
+}
+
+
+/* FOES */
+
+#cp-main.ucp-main > h1.page-title:nth-of-type(4)::after{
+    content:"RESTRICTED ENTITIES // CONTROL";
+}
+
+
+/* Shared right-side telemetry */
+
+#cp-main.ucp-main > h1.page-title::after{
+    position:absolute;
+
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.3px;
+}
+
+
+/* ---------------------------------------------------------
+   CONTENT PANELS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main > .panel{
+    position:relative;
+
+    margin:0 0 14px !important;
+    padding:20px 18px !important;
+
+    background:#0a0a0a !important;
+
+    border:1px solid #242424 !important;
+    border-top:0 !important;
+
+    color:#aaa !important;
+
+    box-shadow:none !important;
+}
+
+
+/* Remove old ModernBB decorative corners */
+
+#cp-main.ucp-main > .panel > .inner > .corners-top,
+#cp-main.ucp-main > .panel > .inner > .corners-bottom{
+    display:none !important;
+}
+
+
+/* Keep content aligned */
+
+#cp-main.ucp-main > .panel > .inner{
+    padding:0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   FRIEND / FOE CONTENT TYPOGRAPHY
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main > .panel h2,
+#cp-main.ucp-main > .panel h3,
+#cp-main.ucp-main > .panel strong{
+    color:#f2f2f2;
+}
+
+
+/* Explanatory copy */
+
+#cp-main.ucp-main > .panel p{
+    color:#777 !important;
+
+    font-family:"Inter",sans-serif;
+    font-size:10px;
+    line-height:1.6;
+}
+
+
+/* ---------------------------------------------------------
+   MEMBER LINKS
+   Preserve Forumotion's dynamic group colors.
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main > .panel a{
+    font-weight:600;
+}
+
+
+/* Do NOT assign a color here.
+   Member/group colors remain authoritative. */
+
+
+/* ---------------------------------------------------------
+   EMPTY / PENDING STATES
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main > .panel em{
+    display:inline-block;
+
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:8px !important;
+    font-style:normal !important;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+
+/* Small inactive telemetry marker */
+
+#cp-main.ucp-main > .panel em::before{
+    content:"●";
+
+    margin-right:7px;
+
+    color:#555;
+
+    font-size:6px;
+}
+
+
+/* ---------------------------------------------------------
+   INPUTS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main > .panel input[type="text"]{
+    min-height:32px !important;
+
+    padding:6px 10px !important;
+
+    background:#0d0d0d !important;
+
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Inter",sans-serif !important;
+    font-size:10px !important;
+
+    box-shadow:none !important;
+    outline:none !important;
+}
+
+
+#cp-main.ucp-main > .panel input[type="text"]:focus{
+    border-color:#b00020 !important;
+
+    box-shadow:
+        inset 2px 0 0 #b00020 !important;
+}
+
+
+/* ---------------------------------------------------------
+   ACTION BUTTONS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main > .panel input[type="submit"],
+#cp-main.ucp-main > .panel input[type="button"],
+#cp-main.ucp-main > .panel .button1,
+#cp-main.ucp-main > .panel .button2{
+    min-height:31px !important;
+
+    padding:0 14px !important;
+
+    background:#111 !important;
+
+    border:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:9px !important;
+    font-weight:600 !important;
+    letter-spacing:1px !important;
+    text-transform:uppercase !important;
+
+    box-shadow:none !important;
+}
+
+
+#cp-main.ucp-main > .panel input[type="submit"]:hover,
+#cp-main.ucp-main > .panel input[type="button"]:hover,
+#cp-main.ucp-main > .panel .button1:hover,
+#cp-main.ucp-main > .panel .button2:hover{
+    background:#181818 !important;
+    border-color:#444 !important;
+}
+
+
+/* ---------------------------------------------------------
+   FRIENDS SECTION // LIVE NETWORK SIGNAL
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main > h1.page-title:first-of-type{
+    border-left-color:#b00020 !important;
+}
+
+
+#cp-main.ucp-main > h1.page-title:first-of-type::after{
+    padding-left:12px;
+}
+
+
+/* ---------------------------------------------------------
+   FOES SECTION // RESTRICTED RECORD
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main > h1.page-title:nth-of-type(4){
+    background:
+        linear-gradient(
+            90deg,
+            rgba(176,0,32,.055),
+            transparent 40%
+        ),
+        #0d0d0d !important;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width:760px){
+
+    #cp-main.ucp-main > h1.page-title::after{
+        display:none;
+    }
+
+    #cp-main.ucp-main > h1.page-title{
+        padding:13px 12px !important;
+    }
+
+    #cp-main.ucp-main > .panel{
+        padding:16px 12px !important;
+    }
+
+}
