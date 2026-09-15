@@ -1021,15 +1021,17 @@
     position:relative;
 
     grid-template-columns:180px minmax(0,1fr);
-
-    min-height:178px;
+    align-items:stretch;
 
     margin-bottom:8px !important;
+    padding:0 !important;
 
     background:#0d0d0d !important;
 
     border:1px solid #242424 !important;
     border-left:2px solid #303030 !important;
+
+    overflow:hidden;
 }
 
 
@@ -1142,7 +1144,7 @@
 .br-pm-history .postbody{
     position:relative;
 
-    padding:18px 22px 20px !important;
+   padding:16px 20px 16px !important;
 
     background:
         linear-gradient(
