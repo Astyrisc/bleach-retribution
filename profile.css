@@ -4200,7 +4200,7 @@ input[name="avatarremoteurl"]:focus{
     align-items:center !important;
 
     width:190px !important;
-    min-height:48px !important;
+    min-height:54px !important;
 
     margin:0 8px 8px 0 !important;
     padding:10px 34px 10px 14px !important;
@@ -4260,7 +4260,7 @@ input[name="avatarremoteurl"]:focus{
     white-space:nowrap;
 
     font-family:"Oswald",sans-serif !important;
-    font-size:11px !important;
+    font-size:12px !important;
     font-weight:600 !important;
     line-height:1.2 !important;
     letter-spacing:.6px !important;
@@ -4287,7 +4287,7 @@ input[name="avatarremoteurl"]:focus{
     color:#555;
 
     font-family:"JetBrains Mono",monospace;
-    font-size:6px;
+    font-size:7px;
     font-weight:600;
     line-height:1;
     letter-spacing:1px;
