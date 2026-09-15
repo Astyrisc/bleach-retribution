@@ -671,3 +671,20 @@
     }
 
 }
+/* =========================================================
+   LAYER 2 // RESOLVED TRANSMISSION PORTRAIT
+   ========================================================= */
+
+.br-transmission-portrait{
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
+    max-width:none !important;
+    max-height:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    object-fit:cover !important;
+    object-position:center !important;
+}
