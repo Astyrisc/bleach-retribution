@@ -5221,3 +5221,389 @@ input[name="avatarremoteurl"]:focus{
         content:"ROUTING // READY";
     }
 }
+/* =========================================================
+   UCP PASS 4E-B // SIGNAL ARCHIVE
+   Notification history / record management
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   ARCHIVE SHELL
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_list"]{
+    position:relative;
+
+    margin:10px 0 0 !important;
+    padding:0 !important;
+
+    background:#0a0a0a;
+    border:1px solid #242424;
+    border-left:2px solid #b00020;
+}
+
+
+/* ---------------------------------------------------------
+   ARCHIVE HEADER
+   "0 notification" → system record header
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_list"] > h1.page-title{
+    position:relative;
+
+    margin:0 !important;
+    padding:14px 18px !important;
+
+    background:#0d0d0d !important;
+    border:0 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:13px !important;
+    font-weight:600 !important;
+    line-height:1 !important;
+    letter-spacing:1.5px !important;
+    text-transform:uppercase !important;
+}
+
+
+/* Replace visible count wording with archive identity */
+#cp-main form[name="notif_list"] > h1.page-title{
+    font-size:0 !important;
+}
+
+#cp-main form[name="notif_list"] > h1.page-title::before{
+    content:"// SIGNAL ARCHIVE";
+
+    color:#f2f2f2;
+
+    font-family:"Oswald",sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:1.5px;
+}
+
+
+/* Right-side archive state */
+#cp-main form[name="notif_list"] > h1.page-title::after{
+    content:"COMMUNICATION LOG // STANDBY";
+
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.3px;
+}
+
+
+/* ---------------------------------------------------------
+   RECORD PANEL
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_list"] > .panel{
+    margin:0 !important;
+    padding:18px 12px 12px !important;
+
+    background:#080808 !important;
+    border:0 !important;
+    box-shadow:none !important;
+}
+
+#cp-main form[name="notif_list"] > .panel .inner{
+    margin:0 !important;
+    padding:0 !important;
+}
+
+#cp-main form[name="notif_list"] fieldset{
+    margin:0;
+    padding:0;
+
+    border:0;
+}
+
+
+/* ---------------------------------------------------------
+   SIGNAL TABLE
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_list"] table.table1{
+    width:100% !important;
+    margin:0 !important;
+
+    border-collapse:collapse !important;
+
+    background:#090909 !important;
+    border:1px solid #242424 !important;
+}
+
+
+/* Column header */
+#cp-main form[name="notif_list"] table.table1 thead th{
+    height:36px;
+    padding:0 12px !important;
+
+    background:#0d0d0d !important;
+    border:0 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    font-weight:600 !important;
+    letter-spacing:1.2px !important;
+    text-transform:uppercase !important;
+}
+
+
+/* Rename visual column labels */
+#cp-main form[name="notif_list"] table.table1 thead th.name{
+    font-size:0 !important;
+    text-align:left !important;
+}
+
+#cp-main form[name="notif_list"] table.table1 thead th.name::after{
+    content:"SIGNAL RECORD";
+
+    font-size:7px;
+}
+
+
+#cp-main form[name="notif_list"] table.table1 thead th:nth-child(2){
+    font-size:0 !important;
+}
+
+#cp-main form[name="notif_list"] table.table1 thead th:nth-child(2)::after{
+    content:"DATE RECEIVED";
+
+    font-size:7px;
+}
+
+
+#cp-main form[name="notif_list"] table.table1 thead th:nth-child(3){
+    font-size:0 !important;
+}
+
+#cp-main form[name="notif_list"] table.table1 thead th:nth-child(3)::after{
+    content:"SELECT";
+
+    font-size:7px;
+}
+
+
+/* Existing notification rows */
+#cp-main form[name="notif_list"] table.table1 tbody td{
+    padding:10px 12px !important;
+
+    background:#090909 !important;
+    border:0 !important;
+    border-bottom:1px solid #181818 !important;
+
+    color:#aaa !important;
+
+    font-family:"Inter",Arial,sans-serif !important;
+    font-size:10px !important;
+    line-height:1.4 !important;
+}
+
+#cp-main form[name="notif_list"] table.table1 tbody tr:hover td{
+    background:#0d0d0d !important;
+}
+
+
+/* Small live-record marker */
+#cp-main form[name="notif_list"] table.table1 tbody td:first-child::before{
+    content:"";
+
+    display:inline-block;
+
+    width:3px;
+    height:3px;
+
+    margin:0 8px 2px 0;
+
+    background:#e06a16;
+}
+
+
+/* ---------------------------------------------------------
+   MARK / UNMARK CONTROL
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_list"] p.right-box{
+    margin:10px 0 0 !important;
+    padding:0 !important;
+
+    color:#444 !important;
+    text-align:right !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    letter-spacing:.6px !important;
+}
+
+#cp-main form[name="notif_list"] p.right-box a{
+    color:#777 !important;
+    text-decoration:none !important;
+}
+
+#cp-main form[name="notif_list"] p.right-box a:hover{
+    color:#f2f2f2 !important;
+}
+
+
+/* ---------------------------------------------------------
+   ARCHIVE MANAGEMENT RAIL
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_list"] > fieldset.submit-buttons{
+    position:relative;
+
+    min-height:52px;
+
+    margin:0 !important;
+    padding:13px 18px !important;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:8px;
+
+    background:#0d0d0d !important;
+
+    border:0 !important;
+    border-top:1px solid #242424 !important;
+
+    text-align:right !important;
+}
+
+
+/* Management status */
+#cp-main form[name="notif_list"] > fieldset.submit-buttons::before{
+    content:"ARCHIVE MANAGEMENT // AUTHORIZED";
+
+    margin-right:auto;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.2px;
+}
+
+
+/* restrained active-system telemetry */
+#cp-main form[name="notif_list"] > fieldset.submit-buttons::after{
+    content:"";
+
+    position:absolute;
+    left:18px;
+    bottom:0;
+
+    width:28px;
+    height:1px;
+
+    background:#e06a16;
+}
+
+
+/* Both destructive controls */
+#cp-main form[name="notif_list"] > fieldset.submit-buttons input{
+    height:30px !important;
+    min-width:76px !important;
+
+    margin:0 !important;
+    padding:0 13px !important;
+
+    background:#111 !important;
+    border:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:8px !important;
+    font-weight:600 !important;
+    letter-spacing:1px !important;
+    text-transform:uppercase !important;
+
+    box-shadow:none !important;
+}
+
+
+/* DELETE — standard archive action */
+#cp-main form[name="notif_list"] input[name="delete"]{
+    border-left:2px solid #444 !important;
+}
+
+
+/* DELETE ALL — deliberate destructive emphasis */
+#cp-main form[name="notif_list"] input[name="delete_all"]{
+    border-left:2px solid #b00020 !important;
+    background:#100a0b !important;
+}
+
+
+#cp-main form[name="notif_list"] > fieldset.submit-buttons input:hover{
+    background:#181818 !important;
+    border-color:#444 !important;
+    color:#fff !important;
+}
+
+
+#cp-main form[name="notif_list"] input[name="delete_all"]:hover{
+    background:#180b0e !important;
+    border-left-color:#d0005b !important;
+}
+
+
+/* ---------------------------------------------------------
+   PAGINATION
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_list"] > p.pagination{
+    margin:0 !important;
+    padding:8px 18px !important;
+
+    background:#080808;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    letter-spacing:1px;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width:760px){
+
+    #cp-main form[name="notif_list"] > h1.page-title::after{
+        display:none;
+    }
+
+    #cp-main form[name="notif_list"] > .panel{
+        padding:12px 8px !important;
+    }
+
+    #cp-main form[name="notif_list"] > fieldset.submit-buttons{
+        padding:12px !important;
+    }
+
+    #cp-main form[name="notif_list"] > fieldset.submit-buttons::before{
+        content:"ARCHIVE // AUTHORIZED";
+    }
+
+}
