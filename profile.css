@@ -3860,16 +3860,20 @@ input[name="avatarremoteurl"]:focus{
 /* =========================================================
    UCP PASS 4C-A // RELATIONSHIP NETWORK
    FRIENDS & FOES ARCHITECTURE
+   CONTAINED REVISION
    ========================================================= */
 
 
 /* ---------------------------------------------------------
-   PAGE SHELL
-   Unique to Friends/Foes because this UCP contains
-   Friends + Requests Sent + Received Requests + Foes.
+   PAGE SCOPE
+
+   IMPORTANT:
+   All architecture below is restricted to a UCP containing
+   .friends-foes-list. This prevents Relationship Network
+   styling from leaking into other UCP modules.
    --------------------------------------------------------- */
 
-#cp-main.ucp-main:has(> h1.page-title:nth-of-type(4)){
+#cp-main.ucp-main:has(.friends-foes-list){
     background:#080808 !important;
 }
 
@@ -3878,7 +3882,7 @@ input[name="avatarremoteurl"]:focus{
    SECTION HEADERS
    --------------------------------------------------------- */
 
-#cp-main.ucp-main > h1.page-title{
+#cp-main.ucp-main:has(.friends-foes-list) > h1.page-title{
     position:relative;
 
     margin:0 !important;
@@ -3903,9 +3907,8 @@ input[name="avatarremoteurl"]:focus{
 
 /* RETRIBUTION technical marker */
 
-#cp-main.ucp-main > h1.page-title::before{
+#cp-main.ucp-main:has(.friends-foes-list) > h1.page-title::before{
     content:"// ";
-
     color:#b00020;
 }
 
@@ -3914,37 +3917,30 @@ input[name="avatarremoteurl"]:focus{
    SECTION STATUS LABELS
    --------------------------------------------------------- */
 
-/* FRIENDS */
-
-#cp-main.ucp-main > h1.page-title:nth-of-type(1)::after{
+#cp-main.ucp-main:has(.friends-foes-list)
+> h1.page-title:nth-of-type(1)::after{
     content:"ASSOCIATION NETWORK // REGISTERED";
 }
 
-
-/* REQUESTS SENT */
-
-#cp-main.ucp-main > h1.page-title:nth-of-type(2)::after{
+#cp-main.ucp-main:has(.friends-foes-list)
+> h1.page-title:nth-of-type(2)::after{
     content:"OUTGOING CHANNEL // PENDING";
 }
 
-
-/* RECEIVED REQUESTS */
-
-#cp-main.ucp-main > h1.page-title:nth-of-type(3)::after{
+#cp-main.ucp-main:has(.friends-foes-list)
+> h1.page-title:nth-of-type(3)::after{
     content:"INCOMING CHANNEL // MONITORING";
 }
 
-
-/* FOES */
-
-#cp-main.ucp-main > h1.page-title:nth-of-type(4)::after{
+#cp-main.ucp-main:has(.friends-foes-list)
+> h1.page-title:nth-of-type(4)::after{
     content:"RESTRICTED ENTITIES // CONTROL";
 }
 
 
 /* Shared right-side telemetry */
 
-#cp-main.ucp-main > h1.page-title::after{
+#cp-main.ucp-main:has(.friends-foes-list) > h1.page-title::after{
     position:absolute;
 
     right:18px;
@@ -3964,7 +3960,7 @@ input[name="avatarremoteurl"]:focus{
    CONTENT PANELS
    --------------------------------------------------------- */
 
-#cp-main.ucp-main > .panel{
+#cp-main.ucp-main:has(.friends-foes-list) > .panel{
     position:relative;
 
     margin:0 0 14px !important;
@@ -3981,17 +3977,21 @@ input[name="avatarremoteurl"]:focus{
 }
 
 
-/* Remove old ModernBB decorative corners */
+/* Remove stock ModernBB decorative corners */
 
-#cp-main.ucp-main > .panel > .inner > .corners-top,
-#cp-main.ucp-main > .panel > .inner > .corners-bottom{
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel > .inner > .corners-top,
+
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel > .inner > .corners-bottom{
     display:none !important;
 }
 
 
 /* Keep content aligned */
 
-#cp-main.ucp-main > .panel > .inner{
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel > .inner{
     padding:0 !important;
 }
 
@@ -4000,16 +4000,16 @@ input[name="avatarremoteurl"]:focus{
    FRIEND / FOE CONTENT TYPOGRAPHY
    --------------------------------------------------------- */
 
-#cp-main.ucp-main > .panel h2,
-#cp-main.ucp-main > .panel h3,
-#cp-main.ucp-main > .panel strong{
+#cp-main.ucp-main:has(.friends-foes-list) > .panel h2,
+#cp-main.ucp-main:has(.friends-foes-list) > .panel h3,
+#cp-main.ucp-main:has(.friends-foes-list) > .panel strong{
     color:#f2f2f2;
 }
 
 
 /* Explanatory copy */
 
-#cp-main.ucp-main > .panel p{
+#cp-main.ucp-main:has(.friends-foes-list) > .panel p{
     color:#777 !important;
 
     font-family:"Inter",sans-serif;
@@ -4020,23 +4020,19 @@ input[name="avatarremoteurl"]:focus{
 
 /* ---------------------------------------------------------
    MEMBER LINKS
-   Preserve Forumotion's dynamic group colors.
+   Preserve Forumotion dynamic group colors.
    --------------------------------------------------------- */
 
-#cp-main.ucp-main > .panel a{
+#cp-main.ucp-main:has(.friends-foes-list) > .panel a{
     font-weight:600;
 }
-
-
-/* Do NOT assign a color here.
-   Member/group colors remain authoritative. */
 
 
 /* ---------------------------------------------------------
    EMPTY / PENDING STATES
    --------------------------------------------------------- */
 
-#cp-main.ucp-main > .panel em{
+#cp-main.ucp-main:has(.friends-foes-list) > .panel em{
     display:inline-block;
 
     color:#777 !important;
@@ -4045,20 +4041,18 @@ input[name="avatarremoteurl"]:focus{
     font-size:8px !important;
     font-style:normal !important;
     font-weight:600;
+
     letter-spacing:1px;
     text-transform:uppercase;
 }
 
 
-/* Small inactive telemetry marker */
-
-#cp-main.ucp-main > .panel em::before{
+#cp-main.ucp-main:has(.friends-foes-list) > .panel em::before{
     content:"●";
 
     margin-right:7px;
 
     color:#555;
-
     font-size:6px;
 }
 
@@ -4067,7 +4061,8 @@ input[name="avatarremoteurl"]:focus{
    INPUTS
    --------------------------------------------------------- */
 
-#cp-main.ucp-main > .panel input[type="text"]{
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel input[type="text"]{
     min-height:32px !important;
 
     padding:6px 10px !important;
@@ -4076,7 +4071,6 @@ input[name="avatarremoteurl"]:focus{
 
     border:1px solid #303030 !important;
     border-left:2px solid #b00020 !important;
-
     border-radius:0 !important;
 
     color:#f2f2f2 !important;
@@ -4089,11 +4083,10 @@ input[name="avatarremoteurl"]:focus{
 }
 
 
-#cp-main.ucp-main > .panel input[type="text"]:focus{
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel input[type="text"]:focus{
     border-color:#b00020 !important;
-
-    box-shadow:
-        inset 2px 0 0 #b00020 !important;
+    box-shadow:inset 2px 0 0 #b00020 !important;
 }
 
 
@@ -4101,10 +4094,17 @@ input[name="avatarremoteurl"]:focus{
    ACTION BUTTONS
    --------------------------------------------------------- */
 
-#cp-main.ucp-main > .panel input[type="submit"],
-#cp-main.ucp-main > .panel input[type="button"],
-#cp-main.ucp-main > .panel .button1,
-#cp-main.ucp-main > .panel .button2{
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel input[type="submit"],
+
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel input[type="button"],
+
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel .button1,
+
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel .button2{
     min-height:31px !important;
 
     padding:0 14px !important;
@@ -4126,26 +4126,19 @@ input[name="avatarremoteurl"]:focus{
 }
 
 
-#cp-main.ucp-main > .panel input[type="submit"]:hover,
-#cp-main.ucp-main > .panel input[type="button"]:hover,
-#cp-main.ucp-main > .panel .button1:hover,
-#cp-main.ucp-main > .panel .button2:hover{
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel input[type="submit"]:hover,
+
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel input[type="button"]:hover,
+
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel .button1:hover,
+
+#cp-main.ucp-main:has(.friends-foes-list)
+> .panel .button2:hover{
     background:#181818 !important;
     border-color:#444 !important;
-}
-
-
-/* ---------------------------------------------------------
-   FRIENDS SECTION // LIVE NETWORK SIGNAL
-   --------------------------------------------------------- */
-
-#cp-main.ucp-main > h1.page-title:first-of-type{
-    border-left-color:#b00020 !important;
-}
-
-
-#cp-main.ucp-main > h1.page-title:first-of-type::after{
-    padding-left:12px;
 }
 
 
@@ -4153,7 +4146,8 @@ input[name="avatarremoteurl"]:focus{
    FOES SECTION // RESTRICTED RECORD
    --------------------------------------------------------- */
 
-#cp-main.ucp-main > h1.page-title:nth-of-type(4){
+#cp-main.ucp-main:has(.friends-foes-list)
+> h1.page-title:nth-of-type(4){
     background:
         linear-gradient(
             90deg,
@@ -4170,15 +4164,18 @@ input[name="avatarremoteurl"]:focus{
 
 @media (max-width:760px){
 
-    #cp-main.ucp-main > h1.page-title::after{
+    #cp-main.ucp-main:has(.friends-foes-list)
+    > h1.page-title::after{
         display:none;
     }
 
-    #cp-main.ucp-main > h1.page-title{
+    #cp-main.ucp-main:has(.friends-foes-list)
+    > h1.page-title{
         padding:13px 12px !important;
     }
 
-    #cp-main.ucp-main > .panel{
+    #cp-main.ucp-main:has(.friends-foes-list)
+    > .panel{
         padding:16px 12px !important;
     }
 
