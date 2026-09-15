@@ -3576,3 +3576,259 @@ body #tabs li.selected a::before{
     }
 
 }
+/* =========================================================
+   UCP PASS 4B-B // PORTRAIT STANDARD & PREFERRED SOURCE
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   PORTRAIT STANDARD // EDITORIAL TELEMETRY
+   --------------------------------------------------------- */
+
+/*
+   The current portrait DD already owns ::before and ::after,
+   so we use the parent DL as the secondary information layer.
+*/
+
+#cp-main.ucp-main form[action="/profile"]
+fieldset > dl:has(dd > img){
+    position:relative !important;
+}
+
+
+/* Deliberate technical record in the negative space */
+
+#cp-main.ucp-main form[action="/profile"]
+fieldset > dl:has(dd > img)::after{
+    content:
+        "CHARACTER PORTRAIT STANDARD\A"
+        "────────────────────────────\A"
+        "FORMAT        250 × 400\A"
+        "ASPECT        5:8\A"
+        "DISPLAY       FULL PORTRAIT\A"
+        "SOURCE        EXTERNAL LINK\A\A"
+        "●  VISUAL RECORD // REGISTERED";
+
+    white-space:pre;
+
+    position:absolute;
+    left:660px;
+    top:50%;
+    transform:translateY(-50%);
+
+    color:#555;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:8px;
+    font-weight:600;
+    line-height:2;
+    letter-spacing:1.1px;
+
+    pointer-events:none;
+}
+
+
+/* Give the dossier heading stronger hierarchy */
+
+#cp-main.ucp-main form[action="/profile"]
+fieldset > dl:has(dd > img)::before{
+    content:"// VISUAL IDENTITY RECORD";
+
+    position:absolute;
+    left:660px;
+    top:calc(50% - 112px);
+
+    color:#f2f2f2;
+
+    font-family:"Oswald",sans-serif;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:1.6px;
+    text-transform:uppercase;
+
+    pointer-events:none;
+}
+
+
+/* Tiny crimson registration line */
+
+#cp-main.ucp-main form[action="/profile"]
+fieldset > dl:has(dd > img) > dd{
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 330px,
+            #b00020 330px,
+            #b00020 362px,
+            transparent 362px
+        )
+        no-repeat !important;
+
+    background-size:100% 1px !important;
+    background-position:left 50% !important;
+}
+
+
+/* ---------------------------------------------------------
+   OFF-SITE AVATAR // CANONICAL PORTRAIT SOURCE
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"]
+fieldset > dl:has(input[name="avatarremoteurl"]){
+    position:relative !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(176,0,32,.055),
+            transparent 42%
+        ) !important;
+
+    border-left:2px solid #b00020 !important;
+}
+
+
+/* Preferred-source label */
+
+#cp-main.ucp-main form[action="/profile"]
+fieldset > dl:has(input[name="avatarremoteurl"])::after{
+    content:"RECOMMENDED // FULL PORTRAIT";
+
+    position:absolute;
+    right:14px;
+    top:8px;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    line-height:1;
+    letter-spacing:1.2px;
+
+    pointer-events:none;
+}
+
+
+/* Tiny live-system orange signal */
+
+#cp-main.ucp-main form[action="/profile"]
+fieldset > dl:has(input[name="avatarremoteurl"])::before{
+    content:"";
+
+    position:absolute;
+    right:185px;
+    top:10px;
+
+    width:4px;
+    height:4px;
+
+    background:#e06a16;
+    border-radius:50%;
+
+    pointer-events:none;
+}
+
+
+/* Make the canonical input visually distinct */
+
+#cp-main.ucp-main form[action="/profile"]
+input[name="avatarremoteurl"]{
+    border-color:#444 !important;
+    border-left:2px solid #b00020 !important;
+
+    background:#0d0d0d !important;
+
+    color:#f2f2f2 !important;
+}
+
+
+/* Focus state */
+
+#cp-main.ucp-main form[action="/profile"]
+input[name="avatarremoteurl"]:focus{
+    border-color:#b00020 !important;
+
+    box-shadow:
+        inset 2px 0 0 #b00020,
+        0 0 0 1px rgba(176,0,32,.10) !important;
+}
+
+
+/* Slightly strengthen its actual Forumotion label */
+
+#cp-main.ucp-main form[action="/profile"]
+dl:has(input[name="avatarremoteurl"]) > dt{
+    color:#f2f2f2 !important;
+}
+
+
+/* ---------------------------------------------------------
+   OTHER SOURCES // SECONDARY CHANNELS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"]
+input[name="avatar"],
+#cp-main.ucp-main form[action="/profile"]
+input[name="avatarurl"]{
+    opacity:.78;
+}
+
+#cp-main.ucp-main form[action="/profile"]
+input[name="avatar"]:focus,
+#cp-main.ucp-main form[action="/profile"]
+input[name="avatarurl"]:focus{
+    opacity:1;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width:1200px){
+
+    /*
+       At narrower widths the editorial dossier disappears.
+       The portrait itself remains the priority.
+    */
+
+    #cp-main.ucp-main form[action="/profile"]
+    fieldset > dl:has(dd > img)::before,
+
+    #cp-main.ucp-main form[action="/profile"]
+    fieldset > dl:has(dd > img)::after{
+        display:none !important;
+    }
+
+    #cp-main.ucp-main form[action="/profile"]
+    fieldset > dl:has(dd > img) > dd{
+        background:none !important;
+    }
+
+}
+
+
+@media (max-width:760px){
+
+    #cp-main.ucp-main form[action="/profile"]
+    fieldset > dl:has(input[name="avatarremoteurl"])::after{
+        position:static;
+
+        display:block;
+
+        grid-column:1 / -1;
+
+        margin:0 0 10px;
+        padding:0 12px;
+
+        text-align:left;
+    }
+
+    #cp-main.ucp-main form[action="/profile"]
+    fieldset > dl:has(input[name="avatarremoteurl"])::before{
+        display:none;
+    }
+
+}
