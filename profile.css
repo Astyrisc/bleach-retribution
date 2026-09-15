@@ -3285,3 +3285,294 @@ body #tabs li.selected a::before{
         content:"OUTPUT // READY";
     }
 }
+/* =========================================================
+   UCP PASS 4B // CHARACTER PORTRAIT CONTROL
+   RETRIBUTION CHARACTER PORTRAIT STANDARD // 250 × 400
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   AVATAR PAGE // CURRENT PORTRAIT RECORD
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img){
+    display:grid !important;
+    grid-template-columns:300px minmax(0, 1fr) !important;
+    min-height:450px !important;
+    margin:0 !important;
+    border-bottom:1px solid #242424 !important;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(176,0,32,.045) 0,
+            transparent 300px
+        ) !important;
+}
+
+
+/* Left explanatory column */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) > dt{
+    width:auto !important;
+    margin:0 !important;
+    padding:30px 34px 30px 0 !important;
+    border-right:1px solid #242424 !important;
+
+    color:#777 !important;
+    font-family:"Inter",sans-serif !important;
+    font-size:10px !important;
+    line-height:1.7 !important;
+}
+
+
+/* Portrait station */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) > dd{
+    position:relative !important;
+
+    width:auto !important;
+    min-width:0 !important;
+    min-height:450px !important;
+
+    margin:0 !important;
+    padding:28px 32px 28px 54px !important;
+
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    justify-content:center !important;
+
+    color:#777 !important;
+}
+
+
+/* Technical label above portrait */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) > dd::before{
+    content:"// CURRENT PORTRAIT";
+    display:block;
+
+    width:250px;
+    margin:0 0 8px 0;
+
+    color:#f2f2f2;
+    font-family:"JetBrains Mono",monospace;
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    line-height:1.4;
+}
+
+
+/* Character artwork */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) > dd > img{
+    display:block !important;
+
+    width:250px !important;
+    height:400px !important;
+    max-width:250px !important;
+    max-height:400px !important;
+
+    object-fit:contain !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    background:#080808 !important;
+
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+
+    box-shadow:
+        0 0 0 5px #0d0d0d,
+        0 0 0 6px #242424 !important;
+}
+
+
+/* Small active signal */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) > dd::after{
+    content:"●  PORTRAIT // ACTIVE     250 × 400";
+    display:block;
+
+    width:250px;
+    margin-top:12px;
+
+    color:#777;
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1.2px;
+    line-height:1.4;
+}
+
+
+/* Delete portrait control */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) > dd > input[type="checkbox"]{
+    margin:13px 6px 0 0 !important;
+    accent-color:#b00020;
+}
+
+
+/* ---------------------------------------------------------
+   AVATAR PAGE // INPUT CHANNELS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl{
+    display:grid !important;
+    grid-template-columns:300px minmax(0,1fr) !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    min-height:58px !important;
+
+    border-bottom:1px solid #181818 !important;
+}
+
+
+/* Channel labels */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl > dt{
+    width:auto !important;
+    margin:0 !important;
+    padding:20px 34px 18px 0 !important;
+
+    color:#777 !important;
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:8px !important;
+    font-weight:700 !important;
+    letter-spacing:.4px !important;
+    line-height:1.45 !important;
+}
+
+
+/* Channel controls */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl > dd{
+    width:auto !important;
+    min-width:0 !important;
+
+    margin:0 !important;
+    padding:13px 0 13px 54px !important;
+
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+}
+
+
+/* URL fields */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl input[type="text"]{
+    width:min(100%, 820px) !important;
+    min-height:32px !important;
+
+    padding:6px 10px !important;
+
+    background:#0b0b0b !important;
+    border:1px solid #303030 !important;
+
+    color:#f2f2f2 !important;
+    font-family:"Inter",sans-serif !important;
+    font-size:11px !important;
+
+    outline:none !important;
+}
+
+
+/* Input focus */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl input[type="text"]:focus{
+    border-color:#b00020 !important;
+    box-shadow:inset 2px 0 0 #b00020 !important;
+}
+
+
+/* File upload */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl input[type="file"]{
+    width:min(100%, 820px) !important;
+
+    padding:7px !important;
+
+    background:#0b0b0b !important;
+    border:1px solid #303030 !important;
+
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:9px !important;
+}
+
+
+/* Gallery / utility button */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl input[type="button"],
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl .button1,
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl .button2{
+    min-height:30px !important;
+
+    padding:0 15px !important;
+
+    background:#111 !important;
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:8px !important;
+    font-weight:700 !important;
+    letter-spacing:1px !important;
+    text-transform:uppercase !important;
+}
+
+
+/* Explanatory text beneath inputs */
+
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl .italic,
+#cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl em{
+    margin-top:5px !important;
+
+    color:#555 !important;
+
+    font-family:"Inter",sans-serif !important;
+    font-size:8px !important;
+    line-height:1.5 !important;
+}
+
+
+/* ---------------------------------------------------------
+   PORTRAIT RECORD // RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width:900px){
+
+    #cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img),
+    #cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl{
+        grid-template-columns:1fr !important;
+    }
+
+    #cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) > dt{
+        border-right:0 !important;
+        border-bottom:1px solid #242424 !important;
+        padding:18px 0 !important;
+    }
+
+    #cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) > dd{
+        padding:28px 0 !important;
+        align-items:center !important;
+    }
+
+    #cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl > dt{
+        padding:16px 0 6px !important;
+    }
+
+    #cp-main.ucp-main form[action="/profile"] fieldset > dl:has(dd > img) ~ dl > dd{
+        padding:6px 0 16px !important;
+    }
+
+}
