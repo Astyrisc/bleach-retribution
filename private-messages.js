@@ -1,31 +1,55 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    PRIVATE TRANSMISSION NETWORK
+
    TRANSMISSION PORTRAIT RESOLVER
-   VERSION 1.2
+   VERSION 1.3
+
+   PURPOSE:
+   - Resolve participants in a private-message conversation.
+   - Fetch each participant's public Forumotion profile.
+   - Locate the custom "Transmission Portrait" field.
+   - Load that member's dedicated transmission artwork.
+   - Preserve the normal Forumotion avatar/fallback if
+     anything cannot be resolved.
+
+   VERIFIED FORUMOTION BEHAVIOR:
+   - Current sender profile URL exists in PM contact rail.
+   - Other participant can be identified from PM history.
+   - Public profile contains "Transmission Portrait".
+   - Label is rendered inside a DT.
+   - Associated value is rendered in the following DD.
    ========================================================= */
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* ---------------------------------------------------------
-       01 // PM READER ONLY
-       --------------------------------------------------------- */
 
-    if (!document.querySelector(".br-pm-message")) {
+    /* =====================================================
+       01 // ACTIVATE ONLY ON PRIVATE TRANSMISSION READER
+       ===================================================== */
+
+    const transmissionReader =
+        document.querySelector(".br-pm-message");
+
+
+    if (!transmissionReader) {
         return;
     }
 
 
-    /* ---------------------------------------------------------
+
+    /* =====================================================
        02 // SYSTEM STATE
-       --------------------------------------------------------- */
+       ===================================================== */
 
     const portraitCache = new Map();
 
 
-    /* ---------------------------------------------------------
+
+    /* =====================================================
        03 // UTILITIES
-       --------------------------------------------------------- */
+       ===================================================== */
 
     function normalizeName(value) {
 
@@ -36,18 +60,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    function isValidURL(value) {
+
+    function isValidImageURL(value) {
 
         if (!value) {
             return false;
         }
 
+
         try {
 
-            const url = new URL(
-                value,
-                window.location.origin
-            );
+            const url =
+                new URL(
+                    value,
+                    window.location.origin
+                );
+
 
             return (
                 url.protocol === "http:" ||
@@ -61,29 +89,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ---------------------------------------------------------
-       04 // READ TRANSMISSION PORTRAIT FROM PROFILE
-       --------------------------------------------------------- */
+
+    /* =====================================================
+       04 // FETCH TRANSMISSION PORTRAIT
+       ===================================================== */
 
     async function getTransmissionPortrait(profileURL) {
+
 
         if (!profileURL) {
             return null;
         }
 
 
-        /* Use cached result when available. */
+        /*
+         * If this member has already been resolved during
+         * this page load, use the cached result.
+         */
 
         if (portraitCache.has(profileURL)) {
-            return portraitCache.get(profileURL);
+
+            return portraitCache.get(
+                profileURL
+            );
         }
 
 
         try {
 
-            const response = await fetch(profileURL, {
-                credentials: "same-origin"
-            });
+
+            /* ---------------------------------------------
+               FETCH MEMBER PROFILE
+               --------------------------------------------- */
+
+            const response =
+                await fetch(
+                    profileURL,
+                    {
+                        credentials: "same-origin"
+                    }
+                );
 
 
             if (!response.ok) {
@@ -95,7 +140,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-            const html = await response.text();
+
+            /* ---------------------------------------------
+               PARSE PROFILE HTML
+               --------------------------------------------- */
+
+            const html =
+                await response.text();
+
 
             const profileDocument =
                 new DOMParser().parseFromString(
@@ -104,35 +156,41 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-            /*
-             * Forumotion renders custom profile records as
-             * definition lists.
-             *
-             * We identify the record by its visible label
-             * rather than depending on an internal field ID.
-             */
 
-            const records =
+            /* ---------------------------------------------
+               LOCATE TRANSMISSION PORTRAIT LABEL
+
+               IMPORTANT:
+
+               We intentionally DO NOT depend on Forumotion
+               field IDs such as field_id13.
+
+               Our diagnostics proved that Forumotion uses
+               different markup between editable and public
+               profile contexts.
+
+               Instead we locate the actual visible label:
+               "Transmission Portrait"
+               --------------------------------------------- */
+
+            const portraitLabel =
                 Array.from(
-                    profileDocument.querySelectorAll("dl")
-                );
-
-
-            const portraitRecord =
-                records.find(function (record) {
-
-                    const label =
-                        record.querySelector("dt");
+                    profileDocument.querySelectorAll(
+                        "span"
+                    )
+                ).find(function (element) {
 
                     return (
-                        label &&
-                        normalizeName(label.textContent) ===
+                        normalizeName(
+                            element.textContent
+                        ) ===
                         "transmission portrait"
                     );
                 });
 
 
-            if (!portraitRecord) {
+
+            if (!portraitLabel) {
 
                 portraitCache.set(
                     profileURL,
@@ -143,14 +201,65 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-            /*
-             * First preference:
-             * the public, uneditable field value.
-             */
+
+            /* ---------------------------------------------
+               LOCATE ASSOCIATED VALUE
+
+               Verified structure:
+
+               <dt>
+                   <span>
+                       Transmission Portrait
+                   </span>
+               </dt>
+
+               <dd>
+                   ...
+               </dd>
+               --------------------------------------------- */
+
+            const labelDT =
+                portraitLabel.closest("dt");
+
+
+            if (!labelDT) {
+
+                portraitCache.set(
+                    profileURL,
+                    null
+                );
+
+                return null;
+            }
+
+
+
+            const valueDD =
+                labelDT.nextElementSibling;
+
+
+            if (
+                !valueDD ||
+                valueDD.tagName.toLowerCase() !== "dd"
+            ) {
+
+                portraitCache.set(
+                    profileURL,
+                    null
+                );
+
+                return null;
+            }
+
+
+
+            /* ---------------------------------------------
+               READ PUBLIC FIELD VALUE
+               --------------------------------------------- */
 
             const publicValue =
-                portraitRecord.querySelector(
-                    "dd .field_uneditable"
+                valueDD.querySelector(
+                    ".field_uneditable"
                 );
 
 
@@ -160,16 +269,23 @@ document.addEventListener("DOMContentLoaded", function () {
                     : "";
 
 
-            /*
-             * Secondary fallback:
-             * Forumotion's hidden editable input.
-             */
 
-            if (!isValidURL(portraitURL)) {
+            /* ---------------------------------------------
+               FALLBACK TO EDITABLE INPUT
+
+               Forumotion may also provide a hidden editable
+               representation of the same field.
+
+               We use it only when the public value is not a
+               usable URL.
+               --------------------------------------------- */
+
+            if (!isValidImageURL(portraitURL)) {
+
 
                 const editableInput =
-                    portraitRecord.querySelector(
-                        "dd input[type='text']"
+                    valueDD.querySelector(
+                        "input[type='text']"
                     );
 
 
@@ -177,14 +293,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     editableInput
                         ? (
                             editableInput.value ||
-                            editableInput.getAttribute("value") ||
+                            editableInput.getAttribute(
+                                "value"
+                            ) ||
                             ""
                         ).trim()
                         : "";
             }
 
 
-            if (!isValidURL(portraitURL)) {
+
+            /* ---------------------------------------------
+               VALIDATE RESULT
+               --------------------------------------------- */
+
+            if (!isValidImageURL(portraitURL)) {
 
                 portraitCache.set(
                     profileURL,
@@ -195,6 +318,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
+
+            /* ---------------------------------------------
+               CACHE SUCCESS
+               --------------------------------------------- */
+
             portraitCache.set(
                 profileURL,
                 portraitURL
@@ -203,7 +331,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             return portraitURL;
 
+
+
         } catch (error) {
+
 
             console.warn(
                 "RETRIBUTION // Transmission Portrait unavailable:",
@@ -223,40 +354,59 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ---------------------------------------------------------
-       05 // INSTALL PORTRAIT
-       --------------------------------------------------------- */
+
+    /* =====================================================
+       05 // INSTALL TRANSMISSION PORTRAIT
+       ===================================================== */
 
     function installPortrait(
         container,
         portraitURL
     ) {
 
-        if (!container || !portraitURL) {
+
+        if (
+            !container ||
+            !portraitURL
+        ) {
+
             return;
         }
 
 
-        const image = new Image();
+
+        const image =
+            new Image();
+
 
 
         /*
-         * Do not remove the normal Forumotion avatar until
-         * the Transmission Portrait has successfully loaded.
+         * IMPORTANT:
+         *
+         * Never remove the Forumotion avatar until the
+         * dedicated Transmission Portrait has successfully
+         * loaded.
+         *
+         * This guarantees graceful fallback.
          */
 
         image.onload = function () {
 
+
             container.innerHTML = "";
+
 
             image.alt =
                 "Transmission Portrait";
+
 
             image.className =
                 "br-transmission-portrait";
 
 
-            container.appendChild(image);
+            container.appendChild(
+                image
+            );
 
 
             container.classList.add(
@@ -265,7 +415,17 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
 
+
+        /*
+         * Failed custom image?
+         *
+         * Do nothing.
+         *
+         * Existing avatar or black fallback remains.
+         */
+
         image.onerror = function () {
+
 
             console.warn(
                 "RETRIBUTION // Transmission Portrait image failed:",
@@ -274,13 +434,16 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
 
-        image.src = portraitURL;
+
+        image.src =
+            portraitURL;
     }
 
 
-    /* ---------------------------------------------------------
-       06 // CURRENT MESSAGE SENDER
-       --------------------------------------------------------- */
+
+    /* =====================================================
+       06 // IDENTIFY CURRENT MESSAGE SENDER
+       ===================================================== */
 
     const senderNameElement =
         document.querySelector(
@@ -296,6 +459,12 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
+
+    /*
+     * The current message contact rail contains the
+     * sender's direct Forumotion profile link.
+     */
+
     const senderProfileLink =
         document.querySelector(
             ".br-pm-contact a[href^='/u']"
@@ -304,13 +473,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const senderProfileURL =
         senderProfileLink
-            ? senderProfileLink.getAttribute("href")
+            ? senderProfileLink.getAttribute(
+                "href"
+            )
             : null;
 
 
-    /* ---------------------------------------------------------
-       07 // OTHER CONVERSATION PARTICIPANT
-       --------------------------------------------------------- */
+
+    /* =====================================================
+       07 // IDENTIFY OTHER PARTICIPANT
+       ===================================================== */
 
     const historyNameElements =
         Array.from(
@@ -323,7 +495,20 @@ document.addEventListener("DOMContentLoaded", function () {
     let selfName = "";
 
 
-    for (const element of historyNameElements) {
+
+    /*
+     * Forumotion PM conversations are one-to-one.
+     *
+     * Therefore the first history username that differs
+     * from the current sender identifies the other
+     * participant.
+     */
+
+    for (
+        const element
+        of historyNameElements
+    ) {
+
 
         const candidate =
             normalizeName(
@@ -336,15 +521,20 @@ document.addEventListener("DOMContentLoaded", function () {
             candidate !== senderName
         ) {
 
-            selfName = candidate;
+
+            selfName =
+                candidate;
+
+
             break;
         }
     }
 
 
-    /* ---------------------------------------------------------
-       08 // MATCH PARTICIPANT TO PROFILE LINK
-       --------------------------------------------------------- */
+
+    /* =====================================================
+       08 // RESOLVE PROFILE URL BY USERNAME
+       ===================================================== */
 
     const profileLinks =
         Array.from(
@@ -354,21 +544,43 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-    function findProfileURLByName(memberName) {
+
+    function findProfileURLByName(
+        memberName
+    ) {
+
 
         if (!memberName) {
             return null;
         }
 
 
-        const match =
-            profileLinks.find(function (link) {
 
-                return (
-                    normalizeName(link.textContent) ===
-                    memberName
-                );
-            });
+        /*
+         * IMPORTANT:
+         *
+         * This page contains many /u# links because
+         * Retribution's widgets also list members.
+         *
+         * Therefore we NEVER use the first /u# link.
+         *
+         * We match the link's visible username instead.
+         */
+
+        const match =
+            profileLinks.find(
+                function (link) {
+
+
+                    return (
+                        normalizeName(
+                            link.textContent
+                        ) ===
+                        memberName
+                    );
+                }
+            );
+
 
 
         return match
@@ -377,24 +589,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     const selfProfileURL =
         findProfileURLByName(
             selfName
         );
 
 
-    /* ---------------------------------------------------------
+
+    /* =====================================================
        09 // PARTICIPANT REGISTRY
-       --------------------------------------------------------- */
+       ===================================================== */
 
     const participants =
         new Map();
+
 
 
     if (
         senderName &&
         senderProfileURL
     ) {
+
 
         participants.set(
             senderName,
@@ -403,10 +619,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     if (
         selfName &&
         selfProfileURL
     ) {
+
 
         participants.set(
             selfName,
@@ -415,15 +633,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ---------------------------------------------------------
-       10 // CURRENT TRANSMISSION
-       --------------------------------------------------------- */
+
+    /* =====================================================
+       10 // RESOLVE CURRENT TRANSMISSION
+       ===================================================== */
 
     async function resolveCurrentTransmission() {
+
 
         if (!senderProfileURL) {
             return;
         }
+
 
 
         const portraitURL =
@@ -432,25 +653,40 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
+
+        /*
+         * Sender has no Transmission Portrait.
+         *
+         * Preserve Forumotion avatar / black fallback.
+         */
+
         if (!portraitURL) {
             return;
         }
 
 
-        installPortrait(
+
+        const portraitContainer =
             document.querySelector(
                 ".br-pm-avatar"
-            ),
+            );
+
+
+
+        installPortrait(
+            portraitContainer,
             portraitURL
         );
     }
 
 
-    /* ---------------------------------------------------------
-       11 // TRANSMISSION HISTORY
-       --------------------------------------------------------- */
+
+    /* =====================================================
+       11 // RESOLVE TRANSMISSION HISTORY
+       ===================================================== */
 
     async function resolveHistory() {
+
 
         const records =
             document.querySelectorAll(
@@ -458,7 +694,12 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        for (const record of records) {
+
+        for (
+            const record
+            of records
+        ) {
+
 
             const nameElement =
                 record.querySelector(
@@ -472,6 +713,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
+
             if (
                 !nameElement ||
                 !portraitContainer
@@ -481,10 +723,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
+
             const memberName =
                 normalizeName(
                     nameElement.textContent
                 );
+
 
 
             const profileURL =
@@ -493,9 +737,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
+
+            /*
+             * Unknown participant?
+             *
+             * Preserve existing Forumotion portrait.
+             */
+
             if (!profileURL) {
                 continue;
             }
+
 
 
             const portraitURL =
@@ -504,16 +756,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
+
             /*
-             * No Transmission Portrait:
+             * Member has no custom Transmission Portrait?
              *
-             * Preserve the normal avatar or black
-             * fallback already supplied by Forumotion.
+             * Preserve normal avatar / black fallback.
              */
 
             if (!portraitURL) {
                 continue;
             }
+
 
 
             installPortrait(
@@ -524,11 +777,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ---------------------------------------------------------
-       12 // INITIALIZE
-       --------------------------------------------------------- */
+
+    /* =====================================================
+       12 // INITIALIZE PRIVATE TRANSMISSION NETWORK
+       ===================================================== */
 
     resolveCurrentTransmission();
+
     resolveHistory();
+
 
 });
