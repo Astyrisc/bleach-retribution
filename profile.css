@@ -2701,3 +2701,290 @@ textarea::placeholder{
 #cp-main.ucp-main form[action="/profile"] dl{
     padding:13px 0!important;
 }
+/* =========================================================
+   BLEACH: RETRIBUTION
+   UCP PASS 3 // CONFIGURATION NAVIGATION
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   UCP TAB CONTAINER
+
+   Forumotion places the profile navigation in #tabs.
+   Scope this specifically to profile/UCP pages.
+   --------------------------------------------------------- */
+
+body #tabs{
+    position:relative;
+
+    width:100%;
+    margin:0 0 10px!important;
+    padding:27px 0 0!important;
+
+    background:#080808;
+
+    border:1px solid #242424;
+    border-top:0;
+    border-bottom:1px solid #303030;
+
+    box-sizing:border-box;
+}
+
+
+/* ---------------------------------------------------------
+   SYSTEM LABEL
+   --------------------------------------------------------- */
+
+body #tabs::before{
+    content:"// ACCOUNT CONFIGURATION";
+
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+
+    height:27px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 12px;
+
+    background:#111;
+
+    border-top:2px solid #B00020;
+    border-bottom:1px solid #242424;
+
+    color:#777;
+
+    font:700 7px/1 "JetBrains Mono",monospace;
+    letter-spacing:1.2px;
+
+    box-sizing:border-box;
+}
+
+
+/* Tiny live-system indicator */
+
+body #tabs::after{
+    content:"";
+
+    position:absolute;
+    top:12px;
+    right:12px;
+
+    width:4px;
+    height:4px;
+
+    background:#E06A16;
+}
+
+
+/* ---------------------------------------------------------
+   TAB LIST
+   --------------------------------------------------------- */
+
+body #tabs ul{
+    display:flex!important;
+    flex-wrap:wrap;
+
+    width:100%;
+
+    margin:0!important;
+    padding:0!important;
+
+    list-style:none!important;
+
+    background:#080808;
+
+    border:0!important;
+
+    box-sizing:border-box;
+}
+
+
+body #tabs li{
+    position:relative;
+
+    flex:1 1 auto;
+
+    margin:0!important;
+    padding:0!important;
+
+    background:transparent!important;
+
+    border:0!important;
+    border-right:1px solid #242424!important;
+    border-bottom:1px solid #242424!important;
+
+    list-style:none!important;
+
+    box-sizing:border-box;
+}
+
+
+/* ---------------------------------------------------------
+   TAB LINKS
+   --------------------------------------------------------- */
+
+body #tabs li a{
+    position:relative;
+
+    display:flex!important;
+    align-items:center;
+    justify-content:center;
+
+    min-height:38px;
+
+    padding:0 11px!important;
+
+    background:#0B0B0B!important;
+
+    border:0!important;
+
+    color:#777!important;
+
+    font:700 8px/1.15 "Oswald",sans-serif!important;
+
+    letter-spacing:.55px;
+
+    text-align:center;
+    text-decoration:none!important;
+    text-transform:uppercase;
+
+    white-space:nowrap;
+
+    box-sizing:border-box;
+
+    transition:
+        background .15s ease,
+        color .15s ease;
+}
+
+
+/* ---------------------------------------------------------
+   HOVER
+   --------------------------------------------------------- */
+
+body #tabs li a:hover{
+    background:#111!important;
+
+    color:#F2F2F2!important;
+}
+
+
+/* Crimson interaction line */
+
+body #tabs li a::after{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    right:50%;
+    bottom:0;
+
+    height:2px;
+
+    background:#B00020;
+
+    transition:
+        left .15s ease,
+        right .15s ease;
+}
+
+
+body #tabs li a:hover::after{
+    left:0;
+    right:0;
+}
+
+
+/* ---------------------------------------------------------
+   ACTIVE TAB
+
+   Forumotion commonly marks the selected UCP tab on the
+   <li> itself. Cover the usual ModernBB states.
+   --------------------------------------------------------- */
+
+body #tabs li.activetab a,
+body #tabs li.active a,
+body #tabs li.selected a{
+    background:#111!important;
+
+    color:#FFFFFF!important;
+}
+
+
+body #tabs li.activetab a::before,
+body #tabs li.active a::before,
+body #tabs li.selected a::before{
+    content:"";
+
+    position:absolute;
+
+    top:8px;
+    right:8px;
+
+    width:3px;
+    height:3px;
+
+    background:#E06A16;
+}
+
+
+body #tabs li.activetab a::after,
+body #tabs li.active a::after,
+body #tabs li.selected a::after{
+    left:0;
+    right:0;
+}
+
+
+/* ---------------------------------------------------------
+   REMOVE OLD FORUMOTION TAB DECORATION
+   --------------------------------------------------------- */
+
+body #tabs span{
+    background:transparent!important;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media(max-width:1000px){
+
+    body #tabs li{
+        flex:1 1 25%;
+    }
+
+    body #tabs li a{
+        white-space:normal;
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    body #tabs li{
+        flex:1 1 50%;
+    }
+
+    body #tabs li a{
+        min-height:42px;
+        padding:7px 9px!important;
+    }
+
+}
+
+
+@media(max-width:420px){
+
+    body #tabs li{
+        flex-basis:100%;
+    }
+
+}
