@@ -5607,3 +5607,472 @@ input[name="avatarremoteurl"]:focus{
     }
 
 }
+/* =========================================================
+   UCP // WATCHED TRANSMISSION INDEX
+   Topics Being Watched
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   01 // PAGE SHELL
+   Confirmed anchor:
+   form[action*="search_id=watchsearch"]
+   --------------------------------------------------------- */
+
+#cp-main form[action*="search_id=watchsearch"]{
+    position:relative;
+    margin:0 !important;
+    padding:0 !important;
+
+    background:#0b0b0b;
+    border:1px solid #242424;
+    border-left:2px solid #b00020;
+}
+
+
+/* ---------------------------------------------------------
+   02 // PRIMARY SYSTEM HEADER
+   "385 topic(s) being watched"
+   --------------------------------------------------------- */
+
+#cp-main form[action*="search_id=watchsearch"] > h1.page-title{
+    position:relative;
+
+    margin:0 !important;
+    padding:15px 18px !important;
+
+    background:#0d0d0d !important;
+    border:0 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:13px !important;
+    font-weight:600 !important;
+    line-height:1 !important;
+    letter-spacing:1.7px !important;
+    text-transform:uppercase !important;
+}
+
+/* Replace the visual heading without altering Forumotion text */
+#cp-main form[action*="search_id=watchsearch"] > h1.page-title{
+    font-size:0 !important;
+}
+
+#cp-main form[action*="search_id=watchsearch"] > h1.page-title::before{
+    content:"// WATCHED TRANSMISSIONS";
+
+    color:#f2f2f2;
+
+    font-family:"Oswald",sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:1.7px;
+}
+
+/* Right-side system status */
+#cp-main form[action*="search_id=watchsearch"] > h1.page-title::after{
+    content:"TRACKING NETWORK // ACTIVE";
+
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.4px;
+}
+
+
+/* ---------------------------------------------------------
+   03 // MAIN RECORD PANEL
+   --------------------------------------------------------- */
+
+#cp-main form[action*="search_id=watchsearch"] > .panel{
+    margin:0 !important;
+    padding:18px 12px 10px !important;
+
+    background:#0b0b0b !important;
+    border:0 !important;
+    box-shadow:none !important;
+}
+
+#cp-main form[action*="search_id=watchsearch"] > .panel > .inner{
+    padding:0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   04 // TRANSMISSION TABLE
+   --------------------------------------------------------- */
+
+#cp-main form[action*="search_id=watchsearch"] table.table1{
+    width:100% !important;
+    margin:0 !important;
+
+    border-collapse:collapse !important;
+    border-spacing:0 !important;
+
+    background:#080808 !important;
+    border:1px solid #242424 !important;
+}
+
+
+/* Column header */
+#cp-main form[action*="search_id=watchsearch"] table.table1 thead{
+    background:#0d0d0d !important;
+}
+
+#cp-main form[action*="search_id=watchsearch"] table.table1 thead th{
+    height:38px !important;
+    padding:0 10px !important;
+
+    background:#0d0d0d !important;
+    border:0 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    font-weight:600 !important;
+    line-height:1.3 !important;
+    letter-spacing:1.1px !important;
+    text-transform:uppercase !important;
+}
+
+
+/* ---------------------------------------------------------
+   05 // RECORD ROWS
+   --------------------------------------------------------- */
+
+#cp-main form[action*="search_id=watchsearch"] table.table1 tbody tr{
+    position:relative;
+
+    background:#0b0b0b !important;
+
+    transition:
+        background-color .15s ease,
+        box-shadow .15s ease;
+}
+
+#cp-main form[action*="search_id=watchsearch"] table.table1 tbody td{
+    padding:8px 10px !important;
+
+    background:transparent !important;
+    border:0 !important;
+    border-bottom:1px solid #242424 !important;
+
+    color:#e8e8e8;
+
+    font-family:"Inter",Arial,sans-serif;
+    font-size:11px;
+    line-height:1.4;
+}
+
+
+/* Gentle alternating depth */
+#cp-main form[action*="search_id=watchsearch"] table.table1 tbody tr:nth-child(even){
+    background:#0e0e0e !important;
+}
+
+
+/* ---------------------------------------------------------
+   06 // ROW INTERACTION
+   Kill stock full-crimson flood.
+   Retribution uses crimson as structure, not wallpaper.
+   --------------------------------------------------------- */
+
+#cp-main form[action*="search_id=watchsearch"] table.table1 tbody tr:hover,
+#cp-main form[action*="search_id=watchsearch"] table.table1 tbody tr.row1:hover,
+#cp-main form[action*="search_id=watchsearch"] table.table1 tbody tr.row2:hover{
+    background:#121212 !important;
+
+    box-shadow:
+        inset 2px 0 0 #b00020,
+        inset 0 1px 0 rgba(176,0,32,.12),
+        inset 0 -1px 0 rgba(176,0,32,.12) !important;
+}
+
+#cp-main form[action*="search_id=watchsearch"] table.table1 tbody tr:hover td{
+    background:transparent !important;
+}
+
+
+/* Preserve links / dynamic member colors */
+#cp-main form[action*="search_id=watchsearch"] table.table1 tbody td a{
+    font-weight:500;
+    text-decoration:none;
+}
+
+
+/* ---------------------------------------------------------
+   07 // SELECTION COLUMN
+   --------------------------------------------------------- */
+
+#cp-main form[action*="search_id=watchsearch"] table.table1 input[type="checkbox"]{
+    width:12px;
+    height:12px;
+
+    margin:0 !important;
+
+    accent-color:#b00020;
+    cursor:pointer;
+}
+
+
+/* ---------------------------------------------------------
+   08 // MARK ALL / UNMARK ALL
+   --------------------------------------------------------- */
+
+#cp-main form[action*="search_id=watchsearch"] p.right-box{
+    margin:9px 0 0 !important;
+    padding:0 !important;
+
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    letter-spacing:.8px !important;
+}
+
+#cp-main form[action*="search_id=watchsearch"] p.right-box a{
+    color:#b00020 !important;
+    font-weight:600 !important;
+}
+
+#cp-main form[action*="search_id=watchsearch"] p.right-box a:hover{
+    color:#f2f2f2 !important;
+}
+
+
+/* ---------------------------------------------------------
+   09 // SELECTION COMMAND RAIL
+   --------------------------------------------------------- */
+
+#cp-main form[action*="search_id=watchsearch"] fieldset.submit-buttons{
+    position:relative;
+
+    min-height:52px !important;
+    margin:14px -12px 0 !important;
+    padding:14px 18px !important;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+
+    background:#0d0d0d !important;
+    border:0 !important;
+    border-top:1px solid #303030 !important;
+
+    text-align:right !important;
+}
+
+/* Technical status */
+#cp-main form[action*="search_id=watchsearch"] fieldset.submit-buttons::before{
+    content:"SELECTION CONTROL // READY";
+
+    margin-right:auto;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.3px;
+}
+
+/* Live telemetry signal */
+#cp-main form[action*="search_id=watchsearch"] fieldset.submit-buttons::after{
+    content:"";
+
+    position:absolute;
+    left:18px;
+    bottom:0;
+
+    width:28px;
+    height:1px;
+
+    background:#e06a16;
+}
+
+
+/* Stop watching button */
+#cp-main form[action*="search_id=watchsearch"] fieldset.submit-buttons input{
+    min-height:31px !important;
+    margin:0 !important;
+    padding:0 14px !important;
+
+    background:#111 !important;
+
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:9px !important;
+    font-weight:600 !important;
+    letter-spacing:1px !important;
+    text-transform:uppercase !important;
+
+    box-shadow:none !important;
+}
+
+#cp-main form[action*="search_id=watchsearch"] fieldset.submit-buttons input:hover{
+    background:#181818 !important;
+    border-color:#444 !important;
+    border-left-color:#b00020 !important;
+}
+
+
+/* ---------------------------------------------------------
+   10 // PAGINATION
+   Keep Forumotion behavior completely intact.
+   --------------------------------------------------------- */
+
+#cp-main form[action*="search_id=watchsearch"] p.pagination{
+    margin:14px 0 4px !important;
+
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:8px !important;
+    letter-spacing:.5px !important;
+}
+
+#cp-main form[action*="search_id=watchsearch"] .pagination a{
+    min-width:25px;
+    height:25px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    margin:0 2px !important;
+
+    background:#111 !important;
+    border:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    color:#e8e8e8 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:8px !important;
+}
+
+#cp-main form[action*="search_id=watchsearch"] .pagination a:hover{
+    background:#181818 !important;
+    border-color:#b00020 !important;
+    color:#fff !important;
+}
+
+
+/* ---------------------------------------------------------
+   11 // FORUM JUMP SYSTEM
+   Separate form confirmed by DevTools.
+   Keep scope dependent on cp-main + jumpbox.
+   --------------------------------------------------------- */
+
+#cp-main form[name="jumpbox"]{
+    margin:8px 12px 12px !important;
+    padding:10px 0 0 !important;
+
+    border-top:1px solid #242424;
+
+    text-align:right;
+}
+
+#cp-main form[name="jumpbox"] select{
+    min-height:30px;
+
+    background:#111 !important;
+    border:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    color:#e8e8e8 !important;
+
+    font-family:"Inter",Arial,sans-serif !important;
+    font-size:10px !important;
+}
+
+#cp-main form[name="jumpbox"] input[type="submit"]{
+    min-width:42px;
+    height:30px;
+
+    margin-left:6px !important;
+
+    background:#111 !important;
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:9px !important;
+    font-weight:600 !important;
+    letter-spacing:1px !important;
+
+    box-shadow:none !important;
+}
+
+
+/* ---------------------------------------------------------
+   12 // FORUMOTION PAGINATION POPUP
+   Minimal intervention only.
+   --------------------------------------------------------- */
+
+#cp-main .pagination span strong,
+#cp-main .pagination strong{
+    color:#f2f2f2;
+}
+
+
+/* ---------------------------------------------------------
+   13 // RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width:900px){
+
+    #cp-main form[action*="search_id=watchsearch"] > h1.page-title::after{
+        display:none;
+    }
+
+    #cp-main form[action*="search_id=watchsearch"] > .panel{
+        overflow-x:auto;
+    }
+
+    #cp-main form[action*="search_id=watchsearch"] table.table1{
+        min-width:820px;
+    }
+}
+
+
+@media (max-width:760px){
+
+    #cp-main form[action*="search_id=watchsearch"] > h1.page-title{
+        padding:13px 12px !important;
+    }
+
+    #cp-main form[action*="search_id=watchsearch"] fieldset.submit-buttons{
+        margin-left:-12px !important;
+        margin-right:-12px !important;
+        padding:13px 12px !important;
+    }
+
+    #cp-main form[action*="search_id=watchsearch"] fieldset.submit-buttons::before{
+        content:"SELECTION // READY";
+    }
+
+    #cp-main form[name="jumpbox"]{
+        margin-left:10px !important;
+        margin-right:10px !important;
+    }
+}
