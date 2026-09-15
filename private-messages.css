@@ -1,1 +1,673 @@
+/* =========================================================
+   BLEACH // RETRIBUTION
+   PRIVATE TRANSMISSION NETWORK
+   LAYER 1 // MESSAGE READER
+   ========================================================= */
 
+
+/* =========================================================
+   01 // PM NAVIGATION
+   ========================================================= */
+
+.br-pm-nav{
+    margin-bottom:18px !important;
+}
+
+.br-pm-nav li{
+    transition:none;
+}
+
+
+/* =========================================================
+   02 // NETWORK HEADER
+   ========================================================= */
+
+.br-pm-system-head{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin:0 0 8px;
+    padding:13px 16px;
+
+    background:#080808;
+    border:1px solid #242424;
+    border-left:2px solid #b00020;
+}
+
+.br-pm-system-head::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-1px;
+
+    width:84px;
+    height:1px;
+
+    background:#b00020;
+}
+
+.br-pm-system-title{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    color:#f2f2f2;
+    font-family:"Oswald",sans-serif;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:1.7px;
+    text-transform:uppercase;
+}
+
+.br-pm-mark{
+    color:#b00020;
+}
+
+.br-pm-system-status,
+.br-pm-record-status{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    color:#777;
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+}
+
+.br-pm-signal{
+    display:inline-block;
+
+    width:4px;
+    height:4px;
+
+    background:#e06a16;
+}
+
+
+/* =========================================================
+   03 // TRANSMISSION RECORD HEADER
+   ========================================================= */
+
+.br-pm-record-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:10px 14px;
+
+    background:#111;
+    border:1px solid #303030;
+    border-bottom:0;
+
+    color:#f2f2f2;
+}
+
+.br-pm-record-label{
+    margin-left:7px;
+
+    font-family:"Oswald",sans-serif;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   04 // PRIMARY TRANSMISSION
+   ========================================================= */
+
+.br-pm-message{
+    display:grid !important;
+    grid-template-columns:190px minmax(0,1fr);
+
+    margin:0 !important;
+    padding:0 !important;
+
+    background:#0d0d0d !important;
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+
+    overflow:hidden;
+}
+
+
+/* =========================================================
+   05 // SOURCE / PORTRAIT RAIL
+   ========================================================= */
+
+.br-pm-message .br-pm-profile{
+    float:none !important;
+    width:auto !important;
+    min-height:100% !important;
+
+    margin:0 !important;
+    padding:18px !important;
+
+    background:#090909 !important;
+    border:0 !important;
+    border-right:1px solid #303030 !important;
+
+    text-align:left !important;
+}
+
+.br-pm-profile dl,
+.br-pm-profile dt{
+    margin:0 !important;
+    padding:0 !important;
+}
+
+.br-pm-avatar{
+    width:150px;
+    height:150px;
+
+    margin:0 auto 13px !important;
+
+    background:#080808;
+    border:1px solid #303030;
+    border-left:2px solid #b00020;
+
+    overflow:hidden;
+}
+
+/*
+   LAYER 1 CONTROL CASE:
+   This is still the normal Forumotion avatar.
+   Layer 2 will replace the image source with the
+   dedicated Transmission Portrait.
+*/
+.br-pm-avatar img{
+    display:block !important;
+
+    width:150px !important;
+    height:150px !important;
+    max-width:none !important;
+    max-height:none !important;
+
+    margin:0 !important;
+
+    border:0 !important;
+    border-radius:0 !important;
+
+    object-fit:cover;
+    object-position:center 20%;
+}
+
+.br-pm-profile-code{
+    margin:0 0 5px;
+
+    color:#777;
+    font-family:"JetBrains Mono",monospace;
+    font-size:6px;
+    font-weight:600;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+}
+
+.br-pm-sender{
+    margin:0 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:14px !important;
+    font-weight:600 !important;
+    line-height:1.2 !important;
+    letter-spacing:.5px !important;
+    text-align:left !important;
+    text-transform:uppercase;
+}
+
+.br-pm-contact{
+    margin-top:12px !important;
+    padding-top:9px !important;
+
+    border-top:1px solid #242424;
+
+    text-align:left !important;
+}
+
+
+/* =========================================================
+   06 // MESSAGE BODY
+   ========================================================= */
+
+.br-pm-message .br-pm-body{
+    float:none !important;
+    width:auto !important;
+
+    margin:0 !important;
+    padding:20px 22px 0 !important;
+
+    background:#111 !important;
+}
+
+.br-pm-message-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:20px;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #303030;
+}
+
+.br-pm-record-code{
+    margin-bottom:6px;
+
+    color:#b00020;
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.4px;
+}
+
+.br-pm-subject{
+    margin:0 !important;
+    padding:0 !important;
+
+    border:0 !important;
+
+    color:#f2f2f2 !important;
+    font-family:"Oswald",sans-serif !important;
+    font-size:18px !important;
+    font-weight:500 !important;
+    line-height:1.2 !important;
+    letter-spacing:.35px !important;
+}
+
+.br-pm-icons{
+    margin:0 !important;
+}
+
+.br-pm-metadata{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 22px;
+
+    padding:10px 0;
+
+    border-bottom:1px solid #242424;
+
+    color:#777;
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    line-height:1.5;
+    letter-spacing:.65px;
+    text-transform:uppercase;
+}
+
+.br-pm-content{
+    min-height:125px;
+
+    padding:20px 2px 28px !important;
+
+    color:#e8e8e8 !important;
+    font-family:"Inter",Arial,sans-serif !important;
+    font-size:13px !important;
+    line-height:1.75 !important;
+}
+
+.br-pm-content p{
+    line-height:1.75 !important;
+}
+
+.br-pm-message-foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin:0 -22px;
+    padding:10px 22px;
+
+    background:#0d0d0d;
+    border-top:1px solid #303030;
+
+    color:#666;
+    font-family:"JetBrains Mono",monospace;
+    font-size:6px;
+    font-weight:600;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+}
+
+.br-pm-message-foot span:last-child{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+
+/* =========================================================
+   07 // TRANSMISSION CONTROLS
+   ========================================================= */
+
+.br-pm-controls{
+    display:flex !important;
+    align-items:center;
+    justify-content:space-between;
+
+    min-height:50px;
+
+    margin:0 !important;
+    padding:10px 14px !important;
+
+    background:#0a0a0a !important;
+    border:1px solid #242424 !important;
+    border-top:0 !important;
+
+    text-align:initial !important;
+}
+
+.br-pm-control-label{
+    position:relative;
+
+    padding-left:16px;
+
+    color:#777;
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.2px;
+}
+
+.br-pm-control-label::before{
+    content:"";
+
+    position:absolute;
+    left:0;
+    top:50%;
+
+    width:8px;
+    height:1px;
+
+    background:#e06a16;
+}
+
+.br-pm-control-actions{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.br-pm-control-actions input{
+    height:30px !important;
+
+    margin:0 !important;
+    padding:0 12px !important;
+
+    background:#111 !important;
+    border:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+    font-family:"Oswald",sans-serif !important;
+    font-size:8px !important;
+    font-weight:600 !important;
+    letter-spacing:.8px !important;
+    text-transform:uppercase !important;
+
+    box-shadow:none !important;
+}
+
+.br-pm-control-actions input[name="delete"]{
+    border-left:2px solid #b00020 !important;
+}
+
+.br-pm-control-actions input:hover{
+    background:#181818 !important;
+    border-color:#444 !important;
+}
+
+
+/* =========================================================
+   08 // REPLY CONTROL
+   ========================================================= */
+
+.br-pm-reply{
+    margin:10px 0 20px !important;
+}
+
+.br-pm-reply .buttons{
+    float:none !important;
+}
+
+.br-pm-reply a{
+    border-radius:0 !important;
+}
+
+
+/* =========================================================
+   09 // TRANSMISSION HISTORY HEADER
+   ========================================================= */
+
+.br-pm-history{
+    margin-top:8px;
+}
+
+.br-pm-history-head{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:7px;
+    padding:12px 14px;
+
+    background:#080808;
+    border:1px solid #242424;
+    border-left:2px solid #b00020;
+
+    color:#f2f2f2;
+    font-family:"Oswald",sans-serif;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:1.4px;
+    text-transform:uppercase;
+}
+
+.br-pm-history-head > span{
+    color:#777;
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    letter-spacing:1.2px;
+}
+
+
+/* Hide stock review heading; our header replaces it */
+.br-pm-history > h2{
+    display:none !important;
+}
+
+
+/* =========================================================
+   10 // HISTORY RECORDS
+   Forumotion TOPIC_REVIEW_BOX output
+   ========================================================= */
+
+.br-pm-history .post{
+    display:grid !important;
+    grid-template-columns:150px minmax(0,1fr);
+
+    margin:0 0 7px !important;
+    padding:0 !important;
+
+    background:#0d0d0d !important;
+    border:1px solid #242424 !important;
+    border-left:1px solid #303030 !important;
+
+    overflow:hidden;
+}
+
+.br-pm-history .postprofile{
+    float:none !important;
+    width:auto !important;
+
+    margin:0 !important;
+    padding:12px !important;
+
+    background:#090909 !important;
+    border:0 !important;
+    border-right:1px solid #242424 !important;
+}
+
+.br-pm-history .postprofile dl,
+.br-pm-history .postprofile dt{
+    margin:0 !important;
+    padding:0 !important;
+}
+
+.br-pm-history .postprofile-avatar{
+    width:110px;
+    height:110px;
+
+    margin:0 auto 8px !important;
+
+    border:1px solid #303030;
+
+    overflow:hidden;
+}
+
+.br-pm-history .postprofile-avatar img{
+    display:block !important;
+
+    width:110px !important;
+    height:110px !important;
+    max-width:none !important;
+    max-height:none !important;
+
+    margin:0 !important;
+
+    border:0 !important;
+    border-radius:0 !important;
+
+    object-fit:cover;
+    object-position:center 20%;
+}
+
+.br-pm-history .postprofile-name{
+    font-family:"Oswald",sans-serif !important;
+    font-size:11px !important;
+    font-weight:600 !important;
+    line-height:1.2 !important;
+    text-align:center !important;
+    text-transform:uppercase;
+}
+
+.br-pm-history .postbody{
+    float:none !important;
+    width:auto !important;
+
+    margin:0 !important;
+    padding:14px 18px !important;
+
+    background:#111 !important;
+}
+
+.br-pm-history .postbody .h3{
+    margin:0 0 6px !important;
+    padding:0 0 8px !important;
+
+    border-bottom:1px solid #242424 !important;
+
+    color:#f2f2f2 !important;
+    font-family:"Oswald",sans-serif !important;
+    font-size:13px !important;
+    font-weight:500 !important;
+}
+
+.br-pm-history .author{
+    margin:0 0 12px !important;
+
+    color:#777 !important;
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    letter-spacing:.5px !important;
+}
+
+.br-pm-history .content{
+    color:#ddd !important;
+    font-family:"Inter",Arial,sans-serif !important;
+    font-size:12px !important;
+    line-height:1.7 !important;
+}
+
+
+/* =========================================================
+   11 // JUMPBOX
+   ========================================================= */
+
+.br-pm-jump{
+    margin-top:14px;
+}
+
+
+/* =========================================================
+   12 // RESPONSIVE
+   ========================================================= */
+
+@media (max-width:760px){
+
+    .br-pm-system-status,
+    .br-pm-record-status{
+        display:none;
+    }
+
+    .br-pm-message{
+        display:block !important;
+    }
+
+    .br-pm-message .br-pm-profile{
+        border-right:0 !important;
+        border-bottom:1px solid #303030 !important;
+    }
+
+    .br-pm-avatar{
+        width:130px;
+        height:130px;
+    }
+
+    .br-pm-avatar img{
+        width:130px !important;
+        height:130px !important;
+    }
+
+    .br-pm-message .br-pm-body{
+        padding:16px 14px 0 !important;
+    }
+
+    .br-pm-message-foot{
+        margin:0 -14px;
+        padding:10px 14px;
+    }
+
+    .br-pm-controls{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .br-pm-control-actions{
+        flex-wrap:wrap;
+    }
+
+    .br-pm-history .post{
+        grid-template-columns:100px minmax(0,1fr);
+    }
+
+    .br-pm-history .postprofile-avatar{
+        width:76px;
+        height:76px;
+    }
+
+    .br-pm-history .postprofile-avatar img{
+        width:76px !important;
+        height:76px !important;
+    }
+
+}
