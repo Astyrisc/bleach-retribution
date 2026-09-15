@@ -1201,3 +1201,96 @@
     }
 
 }
+/* =========================================================
+   BLEACH: RETRIBUTION
+   PROFILE PASS 4E // EXTERNAL PLATFORM CONTENT
+   Reorder only — advertisement remains intact
+   ========================================================= */
+
+
+/* Right profile rail becomes an ordered stack */
+#profile-advanced-right{
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* Character Stage always leads the profile rail */
+#profile-advanced-right > .br-character-stage{
+    order:10;
+}
+
+
+/* Secondary profile modules come next */
+#profile-advanced-right > .module{
+    order:20;
+}
+
+
+/* Forumotion 300x250 advertising container */
+#profile-advanced-right > div[style*="height:250px"]{
+    order:30;
+
+    position:relative;
+
+    height:auto!important;
+
+    margin:22px 0 18px!important;
+    padding:24px 0 22px!important;
+
+    border-top:1px solid #242424;
+    border-bottom:1px solid #242424;
+
+    background:transparent!important;
+
+    text-align:center;
+
+    box-sizing:border-box;
+}
+
+
+/* External-content identifier */
+#profile-advanced-right > div[style*="height:250px"]::before{
+    content:"// EXTERNAL PLATFORM CONTENT";
+
+    display:block;
+
+    margin:0 0 9px;
+
+    color:#555;
+
+    font:700 6px/1 "JetBrains Mono", monospace;
+    letter-spacing:1.1px;
+    text-align:left;
+}
+
+
+/* Forumotion iframe remains untouched in size */
+#profile-advanced-right > div[style*="height:250px"] iframe{
+    display:block;
+
+    width:300px!important;
+    height:250px!important;
+
+    max-width:100%;
+
+    margin:0 auto!important;
+
+    border:0!important;
+}
+
+
+/* External feed footer */
+#profile-advanced-right > div[style*="height:250px"]::after{
+    content:"THIRD-PARTY FEED // FORUMOTION";
+
+    display:block;
+
+    margin:9px 0 0;
+
+    color:#444;
+
+    font:700 6px/1 "JetBrains Mono", monospace;
+    letter-spacing:1px;
+    text-align:right;
+}
