@@ -1967,3 +1967,303 @@
     }
 
 }
+/* =========================================================
+   BLEACH: RETRIBUTION
+   UCP PASS 1 // SYSTEM ARCHITECTURE
+   Profile / Account Configuration
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   UCP ROOT
+   Scope everything to Forumotion's edit-profile form.
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"]{
+    position:relative;
+
+    width:100%;
+
+    margin:0;
+    padding:0;
+
+    background:#080808;
+
+    border:1px solid #242424;
+    border-top:2px solid #B00020;
+
+    box-sizing:border-box;
+}
+
+
+/* ---------------------------------------------------------
+   SYSTEM IDENTIFIER
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"]::before{
+    content:"// USER CONTROL PANEL";
+
+    display:block;
+
+    padding:12px 16px;
+
+    background:#080808;
+
+    border-bottom:1px solid #242424;
+
+    color:#F2F2F2;
+
+    font:700 9px/1 "JetBrains Mono",monospace;
+
+    letter-spacing:1.5px;
+}
+
+
+/* ---------------------------------------------------------
+   SECTION HEADERS
+   Registration Information
+   Personalized profile
+   Contact field
+   Data export
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"] > h1.page-title{
+    position:relative;
+
+    min-height:38px;
+
+    margin:0!important;
+    padding:13px 16px 11px 38px!important;
+
+    background:#111!important;
+
+    border:0!important;
+    border-top:1px solid #242424!important;
+    border-bottom:1px solid #303030!important;
+
+    color:#F2F2F2!important;
+
+    font:700 10px/1 "Oswald",sans-serif!important;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
+
+    box-sizing:border-box;
+}
+
+
+/* Crimson system marker */
+
+#cp-main.ucp-main form[action="/profile"] > h1.page-title::before{
+    content:"//";
+
+    position:absolute;
+
+    left:16px;
+    top:13px;
+
+    color:#B00020;
+
+    font:700 8px/1 "JetBrains Mono",monospace;
+}
+
+
+/* Orange live indicator */
+
+#cp-main.ucp-main form[action="/profile"] > h1.page-title::after{
+    content:"";
+
+    position:absolute;
+
+    right:16px;
+    top:17px;
+
+    width:4px;
+    height:4px;
+
+    background:#E06A16;
+}
+
+
+/* ---------------------------------------------------------
+   CONTENT PANELS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"] > .panel{
+    position:relative;
+
+    margin:0!important;
+    padding:20px 18px 24px!important;
+
+    background:#0B0B0B!important;
+
+    border:0!important;
+    border-bottom:1px solid #242424!important;
+
+    box-shadow:none!important;
+
+    box-sizing:border-box;
+}
+
+
+#cp-main.ucp-main form[action="/profile"] > .panel > .inner{
+    margin:0!important;
+    padding:0!important;
+
+    background:transparent!important;
+}
+
+
+/* Remove old Forumotion corner decoration */
+
+#cp-main.ucp-main form[action="/profile"] .corners-top,
+#cp-main.ucp-main form[action="/profile"] .corners-bottom{
+    display:none!important;
+}
+
+
+/* ---------------------------------------------------------
+   FORM ROW ARCHITECTURE
+   Keep native controls functional; only establish rhythm.
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"] dl{
+    display:grid;
+
+    grid-template-columns:minmax(180px,32%) minmax(0,1fr);
+
+    align-items:start;
+
+    margin:0!important;
+    padding:11px 0!important;
+
+    border-bottom:1px solid #181818;
+
+    box-sizing:border-box;
+}
+
+
+#cp-main.ucp-main form[action="/profile"] dl:last-child{
+    border-bottom:0;
+}
+
+
+#cp-main.ucp-main form[action="/profile"] dt{
+    margin:0!important;
+    padding:4px 24px 4px 0!important;
+
+    color:#777!important;
+
+    font:600 8px/1.45 "Inter",sans-serif!important;
+
+    box-sizing:border-box;
+}
+
+
+#cp-main.ucp-main form[action="/profile"] dd{
+    min-width:0;
+
+    margin:0!important;
+    padding:0!important;
+
+    color:#F2F2F2!important;
+
+    font:500 8px/1.5 "Inter",sans-serif!important;
+
+    box-sizing:border-box;
+}
+
+
+/* ---------------------------------------------------------
+   HELPER / EXPLANATORY TEXT
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"] .italic,
+#cp-main.ucp-main form[action="/profile"] em{
+    color:#777!important;
+
+    font-size:7px!important;
+
+    line-height:1.5;
+
+    letter-spacing:.15px;
+}
+
+
+/* ---------------------------------------------------------
+   SUBMIT AREA
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"] > fieldset.submit-buttons{
+    position:relative;
+
+    margin:0!important;
+    padding:16px 18px!important;
+
+    background:#080808;
+
+    border:0!important;
+    border-top:1px solid #303030!important;
+
+    text-align:right;
+}
+
+
+/* Small system status */
+
+#cp-main.ucp-main form[action="/profile"] > fieldset.submit-buttons::before{
+    content:"CONFIGURATION // READY";
+
+    position:absolute;
+
+    left:18px;
+    top:22px;
+
+    color:#555;
+
+    font:700 6px/1 "JetBrains Mono",monospace;
+
+    letter-spacing:1px;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media(max-width:750px){
+
+    #cp-main.ucp-main form[action="/profile"] dl{
+        grid-template-columns:1fr;
+        row-gap:7px;
+    }
+
+    #cp-main.ucp-main form[action="/profile"] dt{
+        padding-right:0!important;
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    #cp-main.ucp-main form[action="/profile"] > .panel{
+        padding:16px 12px 20px!important;
+    }
+
+    #cp-main.ucp-main form[action="/profile"] > h1.page-title{
+        padding-left:34px!important;
+    }
+
+    #cp-main.ucp-main form[action="/profile"] > fieldset.submit-buttons{
+        padding-top:34px!important;
+
+        text-align:left;
+    }
+
+    #cp-main.ucp-main form[action="/profile"] > fieldset.submit-buttons::before{
+        top:14px;
+    }
+
+}
