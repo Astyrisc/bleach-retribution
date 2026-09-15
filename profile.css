@@ -6076,3 +6076,456 @@ input[name="avatarremoteurl"]:focus{
         margin-right:10px !important;
     }
 }
+/* =========================================================
+   UCP // PRESERVED RECORDS
+   FAVOURITES ARCHIVE
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   PAGE SHELL
+   --------------------------------------------------------- */
+
+#cp-main form[action*="favouritesearch"]{
+    margin:0 !important;
+    padding:0 !important;
+
+    background:#0b0b0b;
+    border:1px solid #242424;
+    border-left:2px solid #b00020;
+}
+
+
+/* ---------------------------------------------------------
+   ARCHIVE HEADER
+   --------------------------------------------------------- */
+
+#cp-main form[action*="favouritesearch"] > h1.page-title{
+    position:relative;
+
+    margin:0 !important;
+    padding:15px 18px !important;
+
+    background:#0d0d0d !important;
+
+    border:0 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:transparent !important;
+
+    font-size:0 !important;
+    line-height:1 !important;
+}
+
+/* Main title */
+#cp-main form[action*="favouritesearch"] > h1.page-title::before{
+    content:"// PRESERVED RECORDS";
+
+    color:#f2f2f2;
+
+    font-family:"Oswald",sans-serif;
+    font-size:13px;
+    font-weight:600;
+
+    letter-spacing:1.7px;
+    text-transform:uppercase;
+}
+
+/* Archive telemetry */
+#cp-main form[action*="favouritesearch"] > h1.page-title::after{
+    content:"PERSONAL ARCHIVE // INDEXED";
+
+    position:absolute;
+
+    right:18px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+
+    letter-spacing:1.4px;
+}
+
+
+/* ---------------------------------------------------------
+   MAIN PANEL
+   --------------------------------------------------------- */
+
+#cp-main form[action*="favouritesearch"] > .panel{
+    margin:0 !important;
+    padding:0 !important;
+
+    background:#080808 !important;
+
+    border:0 !important;
+    border-radius:0 !important;
+
+    box-shadow:none !important;
+}
+
+#cp-main form[action*="favouritesearch"] > .panel > .inner{
+    margin:0 !important;
+    padding:12px 12px 0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   RECORD TABLE
+   --------------------------------------------------------- */
+
+#cp-main form[action*="favouritesearch"] table.table1{
+    width:100%;
+
+    margin:0 !important;
+
+    border-collapse:collapse;
+
+    background:#080808 !important;
+    border:1px solid #242424;
+}
+
+
+/* Column header */
+#cp-main form[action*="favouritesearch"] table.table1 thead{
+    background:#0d0d0d !important;
+}
+
+#cp-main form[action*="favouritesearch"] table.table1 thead th{
+    height:30px;
+
+    padding:0 10px !important;
+
+    background:#0d0d0d !important;
+
+    border:0 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    font-weight:600 !important;
+
+    letter-spacing:1.2px !important;
+    text-transform:uppercase;
+}
+
+
+/* Crimson archive marker */
+#cp-main form[action*="favouritesearch"] table.table1 thead th:first-child::before{
+    content:"// ";
+
+    color:#b00020;
+}
+
+
+/* ---------------------------------------------------------
+   ARCHIVED RECORD ROWS
+   --------------------------------------------------------- */
+
+#cp-main form[action*="favouritesearch"] table.table1 tbody tr{
+    position:relative;
+
+    background:#0b0b0b !important;
+
+    transition:
+        background .15s ease,
+        border-color .15s ease;
+}
+
+#cp-main form[action*="favouritesearch"] table.table1 tbody td{
+    padding:10px !important;
+
+    background:transparent !important;
+
+    border:0 !important;
+    border-bottom:1px solid #1d1d1d !important;
+
+    color:#e8e8e8;
+}
+
+
+/* Fine crimson registry edge */
+#cp-main form[action*="favouritesearch"] table.table1 tbody td:first-child{
+    border-left:1px solid #780014 !important;
+}
+
+
+/* Restrained hover */
+#cp-main form[action*="favouritesearch"] table.table1 tbody tr:hover{
+    background:#111 !important;
+}
+
+
+/* ---------------------------------------------------------
+   TOPIC / RECORD IDENTITY
+   --------------------------------------------------------- */
+
+/* Topic links */
+#cp-main form[action*="favouritesearch"] table.table1 tbody td a{
+    text-decoration:none !important;
+}
+
+/* Primary topic title */
+#cp-main form[action*="favouritesearch"] table.table1 tbody td:nth-child(2) > a{
+    font-family:"Oswald",sans-serif;
+    font-size:12px;
+    font-weight:500;
+
+    letter-spacing:.15px;
+}
+
+
+/* Forum / secondary archive location */
+#cp-main form[action*="favouritesearch"] table.table1 tbody td:nth-child(3) a{
+    font-family:"Inter",Arial,sans-serif;
+    font-size:9px;
+}
+
+
+/* Numeric / technical columns */
+#cp-main form[action*="favouritesearch"] table.table1 tbody td:nth-child(4),
+#cp-main form[action*="favouritesearch"] table.table1 tbody td:nth-child(6){
+    color:#d8d8d8;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:9px;
+
+    text-align:center;
+}
+
+
+/* Author */
+#cp-main form[action*="favouritesearch"] table.table1 tbody td:nth-child(5){
+    font-family:"Inter",Arial,sans-serif;
+    font-size:9px;
+}
+
+
+/* Last record */
+#cp-main form[action*="favouritesearch"] table.table1 tbody td:nth-child(7){
+    color:#d8d8d8;
+
+    font-family:"Inter",Arial,sans-serif;
+    font-size:9px;
+
+    line-height:1.45;
+}
+
+
+/* Selection */
+#cp-main form[action*="favouritesearch"] table.table1 tbody td:last-child{
+    text-align:center;
+}
+
+
+/* ---------------------------------------------------------
+   STATUS ICON
+   --------------------------------------------------------- */
+
+#cp-main form[action*="favouritesearch"] table.table1 tbody td:first-child{
+    text-align:center;
+}
+
+/* Give existing Forumotion topic icon room to breathe */
+#cp-main form[action*="favouritesearch"] table.table1 tbody td:first-child img{
+    opacity:.82;
+
+    transition:opacity .15s ease;
+}
+
+#cp-main form[action*="favouritesearch"] table.table1 tbody tr:hover td:first-child img{
+    opacity:1;
+}
+
+
+/* ---------------------------------------------------------
+   EMPTY ARCHIVE
+   --------------------------------------------------------- */
+
+#cp-main form[action*="favouritesearch"] table.table1 tbody td[colspan]{
+    padding:22px 14px !important;
+
+    background:#0b0b0b !important;
+
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:8px !important;
+
+    letter-spacing:1px;
+    text-align:center;
+    text-transform:uppercase;
+}
+
+#cp-main form[action*="favouritesearch"] table.table1 tbody td[colspan]::before{
+    content:"ARCHIVE STATUS // ";
+
+    color:#b00020;
+}
+
+
+/* ---------------------------------------------------------
+   MARK / UNMARK
+   --------------------------------------------------------- */
+
+#cp-main form[action*="favouritesearch"] .right-box{
+    margin:9px 0 0 !important;
+
+    color:#555;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+
+    letter-spacing:.6px;
+}
+
+#cp-main form[action*="favouritesearch"] .right-box a{
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+
+    text-decoration:none !important;
+    text-transform:uppercase;
+}
+
+#cp-main form[action*="favouritesearch"] .right-box a:hover{
+    color:#f2f2f2 !important;
+}
+
+
+/* ---------------------------------------------------------
+   ARCHIVE CONTROL RAIL
+   --------------------------------------------------------- */
+
+#cp-main form[action*="favouritesearch"] fieldset.submit-buttons{
+    position:relative;
+
+    min-height:52px;
+
+    margin:12px -12px 0 !important;
+    padding:14px 18px !important;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+
+    background:#0d0d0d !important;
+
+    border:0 !important;
+    border-top:1px solid #303030 !important;
+
+    text-align:right !important;
+}
+
+
+/* Control status */
+#cp-main form[action*="favouritesearch"] fieldset.submit-buttons::before{
+    content:"ARCHIVE CONTROL // READY";
+
+    margin-right:auto;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+
+    letter-spacing:1.4px;
+}
+
+
+/* Living-system telemetry */
+#cp-main form[action*="favouritesearch"] fieldset.submit-buttons::after{
+    content:"";
+
+    position:absolute;
+
+    left:18px;
+    bottom:0;
+
+    width:28px;
+    height:1px;
+
+    background:#e06a16;
+}
+
+
+/* Delete selected favourites */
+#cp-main form[action*="favouritesearch"] fieldset.submit-buttons input{
+    min-width:168px !important;
+    height:31px !important;
+
+    margin:0 !important;
+    padding:0 14px !important;
+
+    background:#111 !important;
+
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:8px !important;
+    font-weight:600 !important;
+
+    letter-spacing:1px !important;
+    text-transform:uppercase;
+
+    box-shadow:none !important;
+}
+
+#cp-main form[action*="favouritesearch"] fieldset.submit-buttons input:hover{
+    background:#181818 !important;
+
+    border-color:#444 !important;
+    border-left-color:#b00020 !important;
+
+    color:#fff !important;
+}
+
+
+/* ---------------------------------------------------------
+   CHECKBOXES
+   Native controls remain functional and recognizable.
+   --------------------------------------------------------- */
+
+#cp-main form[action*="favouritesearch"] input[type="checkbox"]{
+    accent-color:#b00020;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width:760px){
+
+    #cp-main form[action*="favouritesearch"] > h1.page-title::after{
+        display:none;
+    }
+
+    #cp-main form[action*="favouritesearch"] > .panel > .inner{
+        padding:8px 8px 0 !important;
+    }
+
+    #cp-main form[action*="favouritesearch"] fieldset.submit-buttons{
+        margin:10px -8px 0 !important;
+        padding:12px !important;
+    }
+
+    #cp-main form[action*="favouritesearch"] fieldset.submit-buttons::before{
+        content:"ARCHIVE // READY";
+    }
+
+    #cp-main form[action*="favouritesearch"] fieldset.submit-buttons input{
+        min-width:0 !important;
+    }
+}
