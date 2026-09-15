@@ -2267,3 +2267,363 @@
     }
 
 }
+/* =========================================================
+   BLEACH: RETRIBUTION
+   UCP PASS 2 // INPUT SYSTEMS
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   TEXT / PASSWORD / EMAIL / NUMBER / URL
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="text"],
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="password"],
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="email"],
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="number"],
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="url"]{
+    min-height:30px;
+
+    padding:6px 9px!important;
+
+    background:#0D0D0D!important;
+
+    border:1px solid #303030!important;
+    border-left:2px solid #303030!important;
+
+    border-radius:0!important;
+
+    color:#F2F2F2!important;
+
+    font:500 8px/1.2 "Inter",sans-serif!important;
+
+    box-shadow:none!important;
+
+    box-sizing:border-box;
+
+    transition:
+        border-color .15s ease,
+        background .15s ease;
+}
+
+
+/* Focus = active system input */
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="text"]:focus,
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="password"]:focus,
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="email"]:focus,
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="number"]:focus,
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="url"]:focus{
+    outline:none!important;
+
+    background:#111!important;
+
+    border-color:#444!important;
+    border-left-color:#B00020!important;
+}
+
+
+/* ---------------------------------------------------------
+   TEXTAREA
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"] textarea{
+    width:100%!important;
+    min-height:120px;
+
+    padding:10px!important;
+
+    resize:vertical;
+
+    background:#0D0D0D!important;
+
+    border:1px solid #303030!important;
+    border-left:2px solid #303030!important;
+
+    border-radius:0!important;
+
+    color:#F2F2F2!important;
+
+    font:500 8px/1.55 "Inter",sans-serif!important;
+
+    box-shadow:none!important;
+
+    box-sizing:border-box;
+}
+
+
+#cp-main.ucp-main form[action="/profile"] textarea:focus{
+    outline:none!important;
+
+    background:#111!important;
+
+    border-color:#444!important;
+    border-left-color:#B00020!important;
+}
+
+
+/* ---------------------------------------------------------
+   SELECT CONTROLS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"] select{
+    min-height:29px;
+
+    padding:5px 26px 5px 8px!important;
+
+    background:#111!important;
+
+    border:1px solid #303030!important;
+
+    border-radius:0!important;
+
+    color:#F2F2F2!important;
+
+    font:600 7px/1 "Inter",sans-serif!important;
+
+    box-shadow:none!important;
+
+    cursor:pointer;
+}
+
+
+#cp-main.ucp-main form[action="/profile"] select:focus{
+    outline:none!important;
+
+    border-color:#B00020!important;
+}
+
+
+/* ---------------------------------------------------------
+   RADIO + CHECKBOX CONTROLS
+   Native mechanics preserved.
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="radio"],
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="checkbox"]{
+    width:11px;
+    height:11px;
+
+    margin:0 5px 0 0;
+
+    accent-color:#B00020;
+
+    vertical-align:-2px;
+
+    cursor:pointer;
+}
+
+
+/* ---------------------------------------------------------
+   LABELS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"] label{
+    color:#F2F2F2!important;
+
+    font:500 8px/1.45 "Inter",sans-serif!important;
+
+    cursor:pointer;
+}
+
+
+/* ---------------------------------------------------------
+   LINKS / INLINE ACTIONS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"] a{
+    color:#B00020;
+
+    text-decoration:none;
+
+    transition:color .15s ease;
+}
+
+
+#cp-main.ucp-main form[action="/profile"] a:hover{
+    color:#F2F2F2;
+}
+
+
+/* ---------------------------------------------------------
+   STANDARD BUTTON SYSTEM
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="submit"],
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="reset"],
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="button"],
+
+#cp-main.ucp-main form[action="/profile"]
+button{
+    min-height:30px;
+
+    padding:7px 13px!important;
+
+    background:#111!important;
+
+    border:1px solid #303030!important;
+    border-left:2px solid #B00020!important;
+
+    border-radius:0!important;
+
+    color:#F2F2F2!important;
+
+    font:700 7px/1 "JetBrains Mono",monospace!important;
+
+    letter-spacing:.7px;
+
+    text-transform:uppercase;
+
+    box-shadow:none!important;
+
+    cursor:pointer;
+
+    transition:
+        background .15s ease,
+        border-color .15s ease,
+        color .15s ease;
+}
+
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="submit"]:hover,
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="reset"]:hover,
+
+#cp-main.ucp-main form[action="/profile"]
+input[type="button"]:hover,
+
+#cp-main.ucp-main form[action="/profile"]
+button:hover{
+    background:#181818!important;
+
+    border-color:#444!important;
+    border-left-color:#B00020!important;
+
+    color:#FFFFFF!important;
+}
+
+
+/* Primary save action */
+
+#cp-main.ucp-main form[action="/profile"]
+fieldset.submit-buttons input[type="submit"]{
+    background:#B00020!important;
+
+    border-color:#B00020!important;
+
+    color:#FFFFFF!important;
+}
+
+
+#cp-main.ucp-main form[action="/profile"]
+fieldset.submit-buttons input[type="submit"]:hover{
+    background:#780014!important;
+
+    border-color:#B00020!important;
+}
+
+
+/* Reset remains intentionally subordinate */
+
+#cp-main.ucp-main form[action="/profile"]
+fieldset.submit-buttons input[type="reset"]{
+    margin-left:7px;
+
+    color:#777!important;
+
+    border-left-color:#303030!important;
+}
+
+
+/* ---------------------------------------------------------
+   DISABLED CONTROLS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"]
+input:disabled,
+
+#cp-main.ucp-main form[action="/profile"]
+select:disabled,
+
+#cp-main.ucp-main form[action="/profile"]
+textarea:disabled{
+    opacity:.45;
+
+    cursor:not-allowed;
+}
+
+
+/* ---------------------------------------------------------
+   PLACEHOLDER
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"]
+input::placeholder,
+
+#cp-main.ucp-main form[action="/profile"]
+textarea::placeholder{
+    color:#555!important;
+
+    opacity:1;
+}
+
+
+/* ---------------------------------------------------------
+   SMALL INLINE FIELD GROUPS
+   Birthday etc.
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main form[action="/profile"] dd > select + select{
+    margin-left:4px;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media(max-width:750px){
+
+    #cp-main.ucp-main form[action="/profile"]
+    input[type="text"],
+
+    #cp-main.ucp-main form[action="/profile"]
+    input[type="password"],
+
+    #cp-main.ucp-main form[action="/profile"]
+    input[type="email"],
+
+    #cp-main.ucp-main form[action="/profile"]
+    input[type="url"]{
+        max-width:100%!important;
+    }
+
+}
