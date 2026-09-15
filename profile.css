@@ -6919,9 +6919,13 @@ input[name="avatarremoteurl"]:focus{
 }
 /* =========================================================
    RETRIBUTION // TRANSMISSION PORTRAIT DATA FIELD
-   Keep available to PM resolver, hide from profile UI.
+   System-readable, interface-hidden.
    ========================================================= */
 
-#profile-advanced-details dl#field_id1 {
+#profile-tab-field-profil > dl#field_id1 {
+    display: none !important;
+}
+
+#profile-tab-field-profil > dl#field_id1 + .separator {
     display: none !important;
 }
