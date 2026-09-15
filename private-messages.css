@@ -688,3 +688,640 @@
     object-fit:cover !important;
     object-position:center !important;
 }
+/* =========================================================
+   BLEACH // RETRIBUTION
+   PRIVATE TRANSMISSION NETWORK
+
+   VISUAL REFINEMENT PASS // 01
+   CHARACTER PRESENCE + RECORD HIERARCHY
+   ========================================================= */
+
+
+/* =========================================================
+   01 // NETWORK COMMAND RAIL
+   ========================================================= */
+
+.br-pm-system-head{
+    min-height:46px;
+    padding:0 18px;
+    margin-bottom:10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #080808 0%,
+            #0d0d0d 72%,
+            #111 100%
+        );
+}
+
+.br-pm-system-title{
+    font-size:13px;
+    letter-spacing:1.9px;
+}
+
+.br-pm-system-status{
+    font-size:8px;
+    letter-spacing:1.35px;
+}
+
+
+/* =========================================================
+   02 // RECEIVED TRANSMISSION HEADER
+   ========================================================= */
+
+.br-pm-record-head{
+    min-height:38px;
+    padding:0 16px;
+
+    background:#0d0d0d;
+
+    border-top:1px solid #303030;
+    border-right:1px solid #303030;
+    border-left:2px solid #b00020;
+}
+
+.br-pm-record-label{
+    font-size:11px;
+    letter-spacing:1.65px;
+}
+
+.br-pm-record-status{
+    font-size:8px;
+}
+
+
+/* =========================================================
+   03 // PRIMARY TRANSMISSION FRAME
+   ========================================================= */
+
+.br-pm-message{
+    grid-template-columns:200px minmax(0,1fr);
+
+    border-left:2px solid #b00020 !important;
+}
+
+
+/* =========================================================
+   04 // TRANSMISSION SOURCE
+   ========================================================= */
+
+.br-pm-message .br-pm-profile{
+    position:relative;
+
+    padding:22px 24px 18px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #090909 0%,
+            #0b0b0b 100%
+        ) !important;
+}
+
+
+/* Small technical registration mark */
+
+.br-pm-message .br-pm-profile::before{
+    content:"";
+
+    position:absolute;
+    top:0;
+    left:0;
+
+    width:34px;
+    height:2px;
+
+    background:#b00020;
+}
+
+
+.br-pm-avatar{
+    position:relative;
+
+    width:150px;
+    height:150px;
+
+    margin:0 auto 16px !important;
+
+    background:#060606;
+
+    border:1px solid #303030;
+    border-left:2px solid #b00020;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.015);
+}
+
+
+/* Technical corner registration mark */
+
+.br-pm-avatar::after{
+    content:"";
+
+    position:absolute;
+    right:5px;
+    bottom:5px;
+
+    width:11px;
+    height:11px;
+
+    border-right:1px solid #444;
+    border-bottom:1px solid #444;
+
+    pointer-events:none;
+}
+
+
+.br-pm-profile-code{
+    margin-bottom:6px;
+
+    color:#777;
+
+    font-size:7px;
+    letter-spacing:1.3px;
+}
+
+
+.br-pm-sender{
+    font-size:16px !important;
+    letter-spacing:.65px !important;
+}
+
+
+.br-pm-contact{
+    margin-top:14px !important;
+    padding-top:10px !important;
+}
+
+
+/* =========================================================
+   05 // PRIMARY MESSAGE DOSSIER
+   ========================================================= */
+
+.br-pm-message .br-pm-body{
+    padding:24px 28px 0 !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            #111 0%,
+            #101010 100%
+        ) !important;
+}
+
+
+.br-pm-message-top{
+    padding-bottom:14px;
+}
+
+
+.br-pm-record-code{
+    margin-bottom:7px;
+
+    font-size:8px;
+    letter-spacing:1.5px;
+}
+
+
+.br-pm-subject{
+    font-size:21px !important;
+    letter-spacing:.45px !important;
+}
+
+
+/* =========================================================
+   06 // TRANSMISSION METADATA
+   ========================================================= */
+
+.br-pm-metadata{
+    gap:8px 26px;
+
+    padding:11px 0;
+
+    color:#858585;
+
+    font-size:8px;
+    letter-spacing:.7px;
+}
+
+
+/* =========================================================
+   07 // MESSAGE CONTENT
+   ========================================================= */
+
+.br-pm-content{
+    /*
+       Prevent extremely wide displays from turning messages
+       into one enormous horizontal line.
+    */
+    max-width:920px;
+
+    min-height:140px;
+
+    padding:24px 4px 34px !important;
+
+    color:#ededed !important;
+
+    font-size:14px !important;
+    line-height:1.8 !important;
+}
+
+
+.br-pm-content p{
+    line-height:1.8 !important;
+}
+
+
+/* =========================================================
+   08 // VERIFICATION RAIL
+   ========================================================= */
+
+.br-pm-message-foot{
+    margin:0 -28px;
+
+    padding:11px 28px;
+
+    background:#090909;
+
+    color:#707070;
+
+    font-size:7px;
+    letter-spacing:1.25px;
+}
+
+
+/* =========================================================
+   09 // TRANSMISSION CONTROL
+   ========================================================= */
+
+.br-pm-controls{
+    min-height:54px;
+
+    padding:10px 16px !important;
+
+    background:#080808 !important;
+}
+
+
+.br-pm-control-label{
+    font-size:8px;
+    letter-spacing:1.25px;
+}
+
+
+.br-pm-control-actions input{
+    min-width:86px;
+
+    height:31px !important;
+
+    padding:0 14px !important;
+
+    font-size:9px !important;
+}
+
+
+/* =========================================================
+   10 // HISTORY COMMAND RAIL
+   ========================================================= */
+
+.br-pm-history{
+    margin-top:12px;
+}
+
+
+.br-pm-history-head{
+    min-height:42px;
+
+    margin-bottom:8px;
+    padding:0 16px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #080808 0%,
+            #0d0d0d 100%
+        );
+
+    font-size:11px;
+    letter-spacing:1.55px;
+}
+
+
+.br-pm-history-head > span{
+    font-size:8px;
+}
+
+
+/* =========================================================
+   11 // ARCHIVED TRANSMISSION RECORDS
+   ========================================================= */
+
+.br-pm-history .post{
+    position:relative;
+
+    grid-template-columns:180px minmax(0,1fr);
+
+    min-height:178px;
+
+    margin-bottom:8px !important;
+
+    background:#0d0d0d !important;
+
+    border:1px solid #242424 !important;
+    border-left:2px solid #303030 !important;
+}
+
+
+/*
+   The current message inside history receives the stronger
+   crimson registration mark without recoloring the whole card.
+*/
+
+.br-pm-history .post.curr_privmsg{
+    border-left-color:#b00020 !important;
+}
+
+
+/* =========================================================
+   12 // HISTORY CHARACTER RAIL
+   ========================================================= */
+
+.br-pm-history .postprofile{
+    position:relative;
+
+    padding:14px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #080808 0%,
+            #0b0b0b 100%
+        ) !important;
+
+    border-right:1px solid #303030 !important;
+}
+
+
+.br-pm-history .postprofile::after{
+    content:"SIGNATURE // REGISTERED";
+
+    display:block;
+
+    margin-top:9px;
+
+    color:#555;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:6px;
+    font-weight:600;
+    line-height:1.4;
+    letter-spacing:1px;
+    text-align:center;
+}
+
+
+/*
+   History now uses the full dedicated Transmission Portrait
+   standard instead of reducing it to 110 × 110.
+*/
+
+.br-pm-history .postprofile-avatar{
+    position:relative;
+
+    width:150px;
+    height:150px;
+
+    margin:0 auto 10px !important;
+
+    background:#060606;
+
+    border:1px solid #303030;
+    border-left:2px solid #b00020;
+}
+
+
+.br-pm-history .postprofile-avatar::after{
+    content:"";
+
+    position:absolute;
+    right:5px;
+    bottom:5px;
+
+    width:9px;
+    height:9px;
+
+    border-right:1px solid #444;
+    border-bottom:1px solid #444;
+
+    pointer-events:none;
+}
+
+
+.br-pm-history .postprofile-avatar img{
+    width:150px !important;
+    height:150px !important;
+
+    object-fit:cover !important;
+    object-position:center !important;
+}
+
+
+.br-pm-history .postprofile-name{
+    margin-top:2px !important;
+
+    font-size:13px !important;
+    letter-spacing:.45px !important;
+}
+
+
+/* =========================================================
+   13 // HISTORY MESSAGE DATA
+   ========================================================= */
+
+.br-pm-history .postbody{
+    position:relative;
+
+    padding:18px 22px 20px !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            #111 0%,
+            #101010 100%
+        ) !important;
+}
+
+
+/* Small archival registration line */
+
+.br-pm-history .postbody::after{
+    content:"";
+
+    position:absolute;
+    right:18px;
+    bottom:14px;
+
+    width:28px;
+    height:1px;
+
+    background:#b00020;
+
+    opacity:.65;
+}
+
+
+.br-pm-history .postbody .h3{
+    margin-bottom:8px !important;
+    padding-bottom:10px !important;
+
+    font-size:15px !important;
+    letter-spacing:.35px !important;
+}
+
+
+.br-pm-history .author{
+    margin-bottom:16px !important;
+
+    color:#777 !important;
+
+    font-size:8px !important;
+    letter-spacing:.6px !important;
+}
+
+
+.br-pm-history .content{
+    max-width:900px;
+
+    color:#e5e5e5 !important;
+
+    font-size:13px !important;
+    line-height:1.75 !important;
+}
+
+
+/* =========================================================
+   14 // RESOLVED TRANSMISSION PORTRAIT
+   ========================================================= */
+
+.br-pm-custom-portrait{
+    border-left-color:#b00020 !important;
+}
+
+
+.br-pm-custom-portrait::before{
+    content:"";
+
+    position:absolute;
+    z-index:2;
+
+    top:6px;
+    left:6px;
+
+    width:4px;
+    height:4px;
+
+    background:#e06a16;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   15 // RESPONSIVE REFINEMENT
+   ========================================================= */
+
+@media (max-width:900px){
+
+    .br-pm-message{
+        grid-template-columns:190px minmax(0,1fr);
+    }
+
+    .br-pm-content{
+        max-width:none;
+    }
+
+    .br-pm-history .post{
+        grid-template-columns:160px minmax(0,1fr);
+    }
+
+    .br-pm-history .postprofile-avatar,
+    .br-pm-history .postprofile-avatar img{
+        width:130px !important;
+        height:130px !important;
+    }
+
+}
+
+
+@media (max-width:760px){
+
+    .br-pm-message{
+        display:block !important;
+    }
+
+    .br-pm-message .br-pm-profile{
+        padding:18px !important;
+    }
+
+    .br-pm-message .br-pm-body{
+        padding:18px 16px 0 !important;
+    }
+
+    .br-pm-message-foot{
+        margin:0 -16px;
+        padding:10px 16px;
+    }
+
+    .br-pm-history .post{
+        grid-template-columns:112px minmax(0,1fr);
+
+        min-height:0;
+    }
+
+    .br-pm-history .postprofile{
+        padding:10px !important;
+    }
+
+    .br-pm-history .postprofile-avatar,
+    .br-pm-history .postprofile-avatar img{
+        width:88px !important;
+        height:88px !important;
+    }
+
+    .br-pm-history .postprofile::after{
+        display:none;
+    }
+
+    .br-pm-history .postbody{
+        padding:14px 15px 18px !important;
+    }
+
+}
+
+
+@media (max-width:520px){
+
+    .br-pm-system-head,
+    .br-pm-record-head,
+    .br-pm-history-head{
+        padding-left:12px;
+        padding-right:12px;
+    }
+
+    .br-pm-history .post{
+        display:block !important;
+    }
+
+    .br-pm-history .postprofile{
+        border-right:0 !important;
+        border-bottom:1px solid #303030 !important;
+    }
+
+    .br-pm-history .postprofile-avatar,
+    .br-pm-history .postprofile-avatar img{
+        width:110px !important;
+        height:110px !important;
+    }
+
+}
