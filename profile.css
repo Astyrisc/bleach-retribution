@@ -1751,3 +1751,219 @@
     }
 
 }
+/* =========================================================
+   BLEACH: RETRIBUTION
+   PROFILE PASS 4F // ADMINISTRATIVE ACCESS
+   ========================================================= */
+
+.br-admin-access{
+    position:relative;
+
+    margin:14px 0 0;
+    padding:0;
+
+    background:#0B0B0B;
+
+    border:1px solid #242424;
+    border-left:2px solid #B00020;
+
+    box-sizing:border-box;
+}
+
+
+/* ---------------------------------------------------------
+   HEADER
+   --------------------------------------------------------- */
+
+.br-admin-access-head{
+    display:flex;
+    align-items:center;
+
+    min-height:32px;
+
+    padding:0 12px;
+
+    background:#080808;
+
+    border-bottom:1px solid #242424;
+
+    box-sizing:border-box;
+}
+
+
+.br-admin-access-mark{
+    margin-right:7px;
+
+    color:#B00020;
+
+    font:700 8px/1 "JetBrains Mono",monospace;
+}
+
+
+.br-admin-access-title{
+    color:#F2F2F2;
+
+    font:700 8px/1 "JetBrains Mono",monospace;
+
+    letter-spacing:1.2px;
+}
+
+
+.br-admin-access-status{
+    margin-left:auto;
+
+    color:#777;
+
+    font:700 6px/1 "JetBrains Mono",monospace;
+
+    letter-spacing:1px;
+}
+
+
+/* Tiny authorized-system signal */
+
+.br-admin-access-status::before{
+    content:"";
+
+    display:inline-block;
+
+    width:4px;
+    height:4px;
+
+    margin-right:6px;
+
+    background:#E06A16;
+
+    vertical-align:1px;
+}
+
+
+/* ---------------------------------------------------------
+   CONTROL BODY
+   --------------------------------------------------------- */
+
+.br-admin-access-body{
+    display:flex;
+    align-items:center;
+
+    min-height:52px;
+
+    padding:10px 12px;
+
+    box-sizing:border-box;
+}
+
+
+.br-admin-access-ident{
+    display:flex;
+    flex-direction:column;
+
+    min-width:0;
+}
+
+
+.br-admin-access-label{
+    color:#F2F2F2;
+
+    font:700 8px/1.2 "Oswald",sans-serif;
+
+    letter-spacing:.8px;
+}
+
+
+.br-admin-access-desc{
+    margin-top:5px;
+
+    color:#555;
+
+    font:600 6px/1 "JetBrains Mono",monospace;
+
+    letter-spacing:.7px;
+
+    text-transform:uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   FORUMOTION ADMIN ACTION
+   --------------------------------------------------------- */
+
+.br-admin-access-action{
+    margin-left:auto;
+
+    padding-left:20px;
+
+    text-align:right;
+
+    color:#555;
+
+    font:700 6px/1 "JetBrains Mono",monospace;
+
+    letter-spacing:.8px;
+
+    text-transform:uppercase;
+}
+
+
+.br-admin-access-action a{
+    display:inline-block;
+
+    padding:7px 10px;
+
+    color:#F2F2F2!important;
+
+    background:#111;
+
+    border:1px solid #303030;
+    border-left:2px solid #B00020;
+
+    font:700 6px/1 "JetBrains Mono",monospace!important;
+
+    letter-spacing:1px;
+
+    text-decoration:none!important;
+
+    text-transform:uppercase;
+}
+
+
+.br-admin-access-action a::before{
+    content:"OPEN RECORD // ";
+
+    color:#B00020;
+}
+
+
+.br-admin-access-action a:hover{
+    background:#181818;
+
+    border-color:#444;
+    border-left-color:#B00020;
+
+    color:#FFFFFF!important;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media(max-width:650px){
+
+    .br-admin-access-status{
+        display:none;
+    }
+
+    .br-admin-access-body{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .br-admin-access-action{
+        margin:10px 0 0;
+        padding:0;
+
+        text-align:left;
+    }
+
+}
