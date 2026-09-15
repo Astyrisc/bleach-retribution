@@ -2627,3 +2627,77 @@ textarea::placeholder{
     }
 
 }
+/* =========================================================
+   UCP PASS 2.1 // READABILITY CORRECTION
+   ========================================================= */
+
+/* Field names */
+#cp-main.ucp-main form[action="/profile"] dt{
+    font-size:10px!important;
+    line-height:1.45!important;
+}
+
+/* Field content */
+#cp-main.ucp-main form[action="/profile"] dd{
+    font-size:10px!important;
+    line-height:1.5!important;
+}
+
+/* Text inputs */
+#cp-main.ucp-main form[action="/profile"] input[type="text"],
+#cp-main.ucp-main form[action="/profile"] input[type="password"],
+#cp-main.ucp-main form[action="/profile"] input[type="email"],
+#cp-main.ucp-main form[action="/profile"] input[type="number"],
+#cp-main.ucp-main form[action="/profile"] input[type="url"]{
+    min-height:34px;
+    padding:7px 10px!important;
+    font-size:10px!important;
+}
+
+/* Selects */
+#cp-main.ucp-main form[action="/profile"] select{
+    min-height:32px;
+    padding:6px 28px 6px 9px!important;
+    font-size:9px!important;
+}
+
+/* Radio / checkbox labels */
+#cp-main.ucp-main form[action="/profile"] label{
+    font-size:10px!important;
+    line-height:1.5!important;
+}
+
+/* Radio / checkbox controls */
+#cp-main.ucp-main form[action="/profile"] input[type="radio"],
+#cp-main.ucp-main form[action="/profile"] input[type="checkbox"]{
+    width:13px;
+    height:13px;
+}
+
+/* Text areas */
+#cp-main.ucp-main form[action="/profile"] textarea{
+    min-height:130px;
+    padding:11px!important;
+    font-size:10px!important;
+}
+
+/* Explanatory/helper copy */
+#cp-main.ucp-main form[action="/profile"] .italic,
+#cp-main.ucp-main form[action="/profile"] em{
+    font-size:8px!important;
+}
+
+/* Buttons */
+#cp-main.ucp-main form[action="/profile"] input[type="submit"],
+#cp-main.ucp-main form[action="/profile"] input[type="reset"],
+#cp-main.ucp-main form[action="/profile"] input[type="button"],
+#cp-main.ucp-main form[action="/profile"] button{
+    min-height:32px;
+    padding:8px 14px!important;
+    font-size:8px!important;
+}
+
+/* Give each editable record slightly more breathing room */
+#cp-main.ucp-main form[action="/profile"] dl{
+    padding:13px 0!important;
+}
