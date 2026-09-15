@@ -2,49 +2,82 @@
    BLEACH // RETRIBUTION
    PRIVATE TRANSMISSION NETWORK
    LAYER 2 // TRANSMISSION PORTRAIT RESOLVER
+   VERSION 1.1
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* Only operate inside the Private Transmission reader. */
+    /* ---------------------------------------------------------
+       01 // ACTIVATE ONLY ON THE PM READER
+       --------------------------------------------------------- */
+
     const transmission = document.querySelector(".br-pm-message");
 
     if (!transmission) {
         return;
     }
 
+
+    /* ---------------------------------------------------------
+       02 // CONFIGURATION
+       --------------------------------------------------------- */
+
+    const TRANSMISSION_FIELD_SELECTOR =
+        "#field_id13, .profile_field_13-1";
+
     const portraitCache = new Map();
 
-    const normalizeName = (name) => {
+
+    /* ---------------------------------------------------------
+       03 // UTILITIES
+       --------------------------------------------------------- */
+
+    function normalizeName(name) {
         return (name || "")
             .replace(/\s+/g, " ")
             .trim()
             .toLowerCase();
-    };
+    }
 
-    const validImageURL = (value) => {
-        if (!value) return false;
 
-        try {
-            const url = new URL(value, window.location.origin);
-            return url.protocol === "http:" || url.protocol === "https:";
-        } catch (error) {
+    function validImageURL(value) {
+
+        if (!value) {
             return false;
         }
-    };
 
-    /*
-     * Retrieve a member's Transmission Portrait.
-     *
-     * Forumotion custom profile field:
-     * Field ID // 13
-     */
+        try {
+
+            const url = new URL(
+                value,
+                window.location.origin
+            );
+
+            return (
+                url.protocol === "http:" ||
+                url.protocol === "https:"
+            );
+
+        } catch (error) {
+
+            return false;
+        }
+    }
+
+
+    /* ---------------------------------------------------------
+       04 // FETCH TRANSMISSION PORTRAIT FROM PROFILE
+       --------------------------------------------------------- */
+
     async function getTransmissionPortrait(profileURL) {
 
         if (!profileURL) {
             return null;
         }
 
+        /*
+         * Do not fetch the same member profile repeatedly.
+         */
         if (portraitCache.has(profileURL)) {
             return portraitCache.get(profileURL);
         }
@@ -56,49 +89,86 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             if (!response.ok) {
-                throw new Error("Profile request failed");
+                throw new Error(
+                    "Profile request failed: " +
+                    response.status
+                );
             }
 
             const html = await response.text();
+
             const parser = new DOMParser();
-            const profile = parser.parseFromString(html, "text/html");
+
+            const profileDocument =
+                parser.parseFromString(
+                    html,
+                    "text/html"
+                );
 
             const field =
-                profile.querySelector("#field_id13") ||
-                profile.querySelector(".profile_field_13-1");
+                profileDocument.querySelector(
+                    TRANSMISSION_FIELD_SELECTOR
+                );
 
-            const portraitURL = field
-                ? (field.value || field.getAttribute("value") || "").trim()
-                : "";
+            if (!field) {
 
-            const result = validImageURL(portraitURL)
-                ? portraitURL
-                : null;
+                portraitCache.set(
+                    profileURL,
+                    null
+                );
 
-            portraitCache.set(profileURL, result);
+                return null;
+            }
 
-            return result;
+            const portraitURL = (
+                field.value ||
+                field.getAttribute("value") ||
+                ""
+            ).trim();
+
+            if (!validImageURL(portraitURL)) {
+
+                portraitCache.set(
+                    profileURL,
+                    null
+                );
+
+                return null;
+            }
+
+            portraitCache.set(
+                profileURL,
+                portraitURL
+            );
+
+            return portraitURL;
 
         } catch (error) {
 
             console.warn(
                 "RETRIBUTION // Transmission Portrait unavailable:",
-                profileURL
+                profileURL,
+                error
             );
 
-            portraitCache.set(profileURL, null);
+            portraitCache.set(
+                profileURL,
+                null
+            );
 
             return null;
         }
     }
 
-    /*
-     * Replace the existing portrait only after the custom
-     * image successfully loads.
-     *
-     * If loading fails, Forumotion's original avatar remains.
-     */
-    function installPortrait(container, portraitURL) {
+
+    /* ---------------------------------------------------------
+       05 // INSTALL RESOLVED PORTRAIT
+       --------------------------------------------------------- */
+
+    function installPortrait(
+        container,
+        portraitURL
+    ) {
 
         if (!container || !portraitURL) {
             return;
@@ -106,125 +176,194 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const image = new Image();
 
+        /*
+         * We only replace the original Forumotion avatar
+         * AFTER the custom portrait successfully loads.
+         *
+         * If anything fails, the normal avatar or empty
+         * fallback remains untouched.
+         */
         image.onload = function () {
 
             container.innerHTML = "";
 
-            image.alt = "Transmission Portrait";
-            image.className = "br-transmission-portrait";
+            image.alt =
+                "Transmission Portrait";
+
+            image.className =
+                "br-transmission-portrait";
 
             container.appendChild(image);
-            container.classList.add("br-pm-custom-portrait");
+
+            container.classList.add(
+                "br-pm-custom-portrait"
+            );
         };
 
         image.onerror = function () {
-            /* Preserve original avatar / empty fallback. */
+
+            console.warn(
+                "RETRIBUTION // Portrait image failed to load:",
+                portraitURL
+            );
         };
 
         image.src = portraitURL;
     }
 
-    /*
-     * PARTICIPANT 01
-     * Current PM sender.
-     *
-     * The contact rail gives us a reliable /u# profile link.
-     */
-    const senderProfileLink = document.querySelector(
-        ".br-pm-contact a[href^='/u']"
-    );
 
-    const senderNameElement = document.querySelector(
-        ".br-pm-sender"
-    );
+    /* ---------------------------------------------------------
+       06 // IDENTIFY CURRENT MESSAGE SENDER
+       --------------------------------------------------------- */
 
-    const senderName = normalizeName(
-        senderNameElement
-            ? senderNameElement.textContent
-            : ""
-    );
+    const senderNameElement =
+        document.querySelector(
+            ".br-pm-sender"
+        );
 
-    const senderProfileURL = senderProfileLink
-        ? senderProfileLink.getAttribute("href")
-        : null;
+    const senderName =
+        normalizeName(
+            senderNameElement
+                ? senderNameElement.textContent
+                : ""
+        );
+
 
     /*
-     * PARTICIPANT 02
-     * Logged-in member.
-     *
-     * Prefer the normal site Profile navigation link.
-     * Do not hardcode a user ID.
+     * The current PM contact rail contains a direct
+     * link to the sender's Forumotion profile.
      */
-    let selfProfileLink = null;
+    const senderProfileLink =
+        document.querySelector(
+            ".br-pm-contact a[href^='/u']"
+        );
 
-    const profileCandidates = Array.from(
-        document.querySelectorAll("a[href^='/u']")
-    );
+    const senderProfileURL =
+        senderProfileLink
+            ? senderProfileLink.getAttribute("href")
+            : null;
 
-    /*
-     * Exclude the sender's contact link.
-     * A profile link outside the PM record is normally the
-     * logged-in member's own profile link.
-     */
-    for (const link of profileCandidates) {
 
-        if (senderProfileLink && link === senderProfileLink) {
-            continue;
-        }
+    /* ---------------------------------------------------------
+       07 // IDENTIFY OTHER PARTICIPANT FROM HISTORY
+       --------------------------------------------------------- */
 
-        if (
-            !link.closest(".br-pm-message") &&
-            !link.closest(".br-pm-history")
-        ) {
-            selfProfileLink = link;
-            break;
-        }
-    }
-
-    /*
-     * Determine the logged-in participant name from history.
-     *
-     * Since a private-message conversation is one-to-one,
-     * the history contains the sender and the logged-in member.
-     */
-    const historyNames = Array.from(
-        document.querySelectorAll(
-            ".br-pm-history .postprofile-name"
-        )
-    );
+    const historyNameElements =
+        Array.from(
+            document.querySelectorAll(
+                ".br-pm-history .postprofile-name"
+            )
+        );
 
     let selfName = "";
 
-    for (const element of historyNames) {
+    /*
+     * Private messages are one-to-one.
+     *
+     * The first history username that differs from the
+     * current sender identifies the logged-in participant.
+     */
+    for (const element of historyNameElements) {
 
-        const candidate = normalizeName(element.textContent);
+        const candidate =
+            normalizeName(
+                element.textContent
+            );
 
-        if (candidate && candidate !== senderName) {
+        if (
+            candidate &&
+            candidate !== senderName
+        ) {
+
             selfName = candidate;
             break;
         }
     }
 
-    const selfProfileURL = selfProfileLink
-        ? selfProfileLink.getAttribute("href")
-        : null;
+
+    /* ---------------------------------------------------------
+       08 // RESOLVE LOGGED-IN MEMBER PROFILE URL
+       --------------------------------------------------------- */
+
+    const profileCandidates =
+        Array.from(
+            document.querySelectorAll(
+                "a[href^='/u']"
+            )
+        );
+
+    let selfProfileLink = null;
 
     /*
-     * Build our participant registry.
+     * IMPORTANT:
+     *
+     * Retribution contains many /u# links on this page
+     * because widgets/member listings are also present.
+     *
+     * Therefore we NEVER assume the first /u# link is
+     * the logged-in member.
+     *
+     * Instead, match the visible username.
      */
+    for (const link of profileCandidates) {
+
+        const linkName =
+            normalizeName(
+                link.textContent
+            );
+
+        if (
+            selfName &&
+            linkName === selfName
+        ) {
+
+            selfProfileLink = link;
+            break;
+        }
+    }
+
+
+    const selfProfileURL =
+        selfProfileLink
+            ? selfProfileLink.getAttribute("href")
+            : null;
+
+
+    /* ---------------------------------------------------------
+       09 // PARTICIPANT REGISTRY
+       --------------------------------------------------------- */
+
     const participants = new Map();
 
-    if (senderName && senderProfileURL) {
-        participants.set(senderName, senderProfileURL);
+
+    if (
+        senderName &&
+        senderProfileURL
+    ) {
+
+        participants.set(
+            senderName,
+            senderProfileURL
+        );
     }
 
-    if (selfName && selfProfileURL) {
-        participants.set(selfName, selfProfileURL);
+
+    if (
+        selfName &&
+        selfProfileURL
+    ) {
+
+        participants.set(
+            selfName,
+            selfProfileURL
+        );
     }
 
-    /*
-     * Resolve the primary/current transmission.
-     */
+
+    /* ---------------------------------------------------------
+       10 // RESOLVE CURRENT TRANSMISSION
+       --------------------------------------------------------- */
+
     async function resolvePrimaryTransmission() {
 
         if (!senderProfileURL) {
@@ -232,57 +371,97 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const portraitURL =
-            await getTransmissionPortrait(senderProfileURL);
+            await getTransmissionPortrait(
+                senderProfileURL
+            );
 
         if (!portraitURL) {
             return;
         }
 
+        const portraitContainer =
+            document.querySelector(
+                ".br-pm-avatar"
+            );
+
         installPortrait(
-            document.querySelector(".br-pm-avatar"),
+            portraitContainer,
             portraitURL
         );
     }
 
-    /*
-     * Resolve every archived transmission.
-     */
+
+    /* ---------------------------------------------------------
+       11 // RESOLVE TRANSMISSION HISTORY
+       --------------------------------------------------------- */
+
     async function resolveHistory() {
 
-        const records = document.querySelectorAll(
-            ".br-pm-history .post"
-        );
+        const records =
+            document.querySelectorAll(
+                ".br-pm-history .post"
+            );
+
 
         for (const record of records) {
 
-            const nameElement = record.querySelector(
-                ".postprofile-name"
-            );
+            const nameElement =
+                record.querySelector(
+                    ".postprofile-name"
+                );
 
-            const portraitContainer = record.querySelector(
-                ".postprofile-avatar"
-            );
+            const portraitContainer =
+                record.querySelector(
+                    ".postprofile-avatar"
+                );
 
-            if (!nameElement || !portraitContainer) {
+
+            if (
+                !nameElement ||
+                !portraitContainer
+            ) {
+
                 continue;
             }
 
-            const memberName = normalizeName(
-                nameElement.textContent
-            );
 
-            const profileURL = participants.get(memberName);
+            const memberName =
+                normalizeName(
+                    nameElement.textContent
+                );
 
+
+            const profileURL =
+                participants.get(
+                    memberName
+                );
+
+
+            /*
+             * If we cannot confidently identify the
+             * member profile, preserve the original
+             * Forumotion avatar.
+             */
             if (!profileURL) {
                 continue;
             }
 
-            const portraitURL =
-                await getTransmissionPortrait(profileURL);
 
+            const portraitURL =
+                await getTransmissionPortrait(
+                    profileURL
+                );
+
+
+            /*
+             * No custom portrait?
+             *
+             * Preserve normal avatar / black fallback.
+             */
             if (!portraitURL) {
                 continue;
             }
+
 
             installPortrait(
                 portraitContainer,
@@ -290,6 +469,11 @@ document.addEventListener("DOMContentLoaded", function () {
             );
         }
     }
+
+
+    /* ---------------------------------------------------------
+       12 // INITIALIZE TRANSMISSION NETWORK
+       --------------------------------------------------------- */
 
     resolvePrimaryTransmission();
     resolveHistory();
