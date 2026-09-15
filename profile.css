@@ -2988,3 +2988,50 @@ body #tabs span{
     }
 
 }
+/* =========================================================
+   UCP PASS 3.1 // NAVIGATION SCALE CORRECTION
+   ========================================================= */
+
+/* System header */
+body #tabs::before{
+    height:30px;
+    padding:0 14px;
+
+    font-size:8px;
+    letter-spacing:1.35px;
+}
+
+/* Account for taller header */
+body #tabs{
+    padding-top:30px!important;
+}
+
+/* Orange telemetry indicator */
+body #tabs::after{
+    top:13px;
+    right:14px;
+
+    width:4px;
+    height:4px;
+}
+
+/* Navigation cells */
+body #tabs li a{
+    min-height:42px;
+
+    padding:0 12px!important;
+
+    font-size:9px!important;
+    letter-spacing:.65px;
+}
+
+/* Active-state telemetry */
+body #tabs li.activetab a::before,
+body #tabs li.active a::before,
+body #tabs li.selected a::before{
+    width:4px;
+    height:4px;
+
+    top:9px;
+    right:9px;
+}
