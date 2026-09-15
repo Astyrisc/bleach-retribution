@@ -4799,3 +4799,425 @@ input[name="avatarremoteurl"]:focus{
         display:none;
     }
 }
+/* =========================================================
+   UCP PASS 4E-A // NOTIFICATION ROUTING
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   ROUTING SYSTEM SHELL
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_opts"]{
+    position:relative;
+    margin:0 !important;
+    padding:0 !important;
+}
+
+/* OPTIONS → NOTIFICATION ROUTING */
+#cp-main form[name="notif_opts"] > h1.page-title{
+    position:relative;
+
+    margin:0 !important;
+    padding:15px 18px !important;
+
+    background:#0d0d0d !important;
+    border:1px solid #242424 !important;
+    border-left:2px solid #b00020 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:13px !important;
+    font-weight:600 !important;
+    line-height:1 !important;
+    letter-spacing:1.7px !important;
+    text-transform:uppercase !important;
+}
+
+#cp-main form[name="notif_opts"] > h1.page-title::before{
+    content:"// ";
+    color:#b00020;
+}
+
+/* Replace visible stock title */
+#cp-main form[name="notif_opts"] > h1.page-title{
+    font-size:0 !important;
+}
+
+#cp-main form[name="notif_opts"] > h1.page-title::before{
+    content:"// NOTIFICATION ROUTING";
+
+    color:#f2f2f2;
+
+    font-family:"Oswald",sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:1.7px;
+}
+
+/* system status */
+#cp-main form[name="notif_opts"] > h1.page-title::after{
+    content:"COMMUNICATION NETWORK // CONFIGURATION";
+
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.3px;
+}
+
+/* orange live indicator */
+#cp-main form[name="notif_opts"] > h1.page-title span{
+    display:none;
+}
+
+
+/* ---------------------------------------------------------
+   MATRIX PANEL
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_opts"] > .panel{
+    margin:0 !important;
+    padding:18px !important;
+
+    background:#080808 !important;
+
+    border:1px solid #242424 !important;
+    border-top:0 !important;
+
+    box-shadow:none !important;
+}
+
+#cp-main form[name="notif_opts"] > .panel .inner{
+    margin:0 !important;
+    padding:0 !important;
+}
+
+#cp-main form[name="notif_opts"] fieldset{
+    margin:0 !important;
+    padding:0 !important;
+    border:0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   NOTIFICATION MATRIX
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_opts"] table.table1{
+    width:100% !important;
+
+    margin:0 !important;
+
+    background:#080808 !important;
+
+    border-collapse:collapse !important;
+    border-spacing:0 !important;
+
+    border:1px solid #242424 !important;
+}
+
+
+/* COLUMN HEADER */
+
+#cp-main form[name="notif_opts"] table.table1 thead{
+    background:#0d0d0d !important;
+}
+
+#cp-main form[name="notif_opts"] table.table1 thead th{
+    height:42px !important;
+    padding:0 14px !important;
+
+    background:#0d0d0d !important;
+
+    border:0 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:9px !important;
+    font-weight:600 !important;
+    letter-spacing:1px !important;
+    text-transform:uppercase !important;
+
+    vertical-align:middle !important;
+}
+
+/* First header */
+#cp-main form[name="notif_opts"] table.table1 thead th:first-child{
+    position:relative;
+    padding-left:18px !important;
+    text-align:left !important;
+}
+
+/* crimson system marker */
+#cp-main form[name="notif_opts"] table.table1 thead th:first-child::before{
+    content:"//";
+    margin-right:8px;
+    color:#b00020;
+}
+
+/* Channel columns */
+#cp-main form[name="notif_opts"] table.table1 thead th:nth-child(2),
+#cp-main form[name="notif_opts"] table.table1 thead th:nth-child(3){
+    width:130px !important;
+
+    color:#aaa !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    letter-spacing:1.1px !important;
+
+    text-align:center !important;
+}
+
+
+/* ---------------------------------------------------------
+   ROUTING ROWS
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_opts"] table.table1 tbody tr{
+    background:#0a0a0a !important;
+}
+
+#cp-main form[name="notif_opts"] table.table1 tbody td{
+    height:34px !important;
+    padding:0 14px !important;
+
+    background:#0a0a0a !important;
+
+    border:0 !important;
+    border-bottom:1px solid #181818 !important;
+
+    color:#aaa !important;
+
+    vertical-align:middle !important;
+}
+
+/* notification name */
+#cp-main form[name="notif_opts"] table.table1 tbody td:first-child{
+    position:relative;
+
+    padding-left:28px !important;
+
+    color:#d8d8d8 !important;
+
+    font-family:"Inter",Arial,sans-serif !important;
+    font-size:10px !important;
+    font-weight:500 !important;
+}
+
+/* tiny routing node */
+#cp-main form[name="notif_opts"] table.table1 tbody td:first-child::before{
+    content:"";
+
+    position:absolute;
+    left:14px;
+    top:50%;
+
+    width:3px;
+    height:3px;
+
+    transform:translateY(-50%);
+
+    background:#444;
+}
+
+/* routing columns */
+#cp-main form[name="notif_opts"] table.table1 tbody td:nth-child(2),
+#cp-main form[name="notif_opts"] table.table1 tbody td:nth-child(3){
+    width:130px !important;
+    text-align:center !important;
+
+    border-left:1px solid #181818 !important;
+}
+
+
+/* ---------------------------------------------------------
+   CHECKBOXES // ROUTING SWITCHES
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_opts"] table.table1 input[type="checkbox"]{
+    width:13px !important;
+    height:13px !important;
+
+    margin:0 !important;
+
+    accent-color:#b00020;
+
+    cursor:pointer;
+}
+
+
+/* ---------------------------------------------------------
+   MARK / UNMARK COMMANDS
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_opts"] > p.right-box{
+    position:relative;
+
+    margin:0 !important;
+    padding:12px 2px 4px !important;
+
+    color:#555 !important;
+
+    text-align:right !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    letter-spacing:.8px !important;
+    text-transform:uppercase !important;
+}
+
+#cp-main form[name="notif_opts"] > p.right-box::before{
+    content:"ROUTING COMMAND // ";
+
+    color:#555;
+}
+
+#cp-main form[name="notif_opts"] > p.right-box a{
+    color:#888 !important;
+    text-decoration:none !important;
+}
+
+#cp-main form[name="notif_opts"] > p.right-box a:hover{
+    color:#f2f2f2 !important;
+}
+
+
+/* ---------------------------------------------------------
+   SAVE / COMMAND RAIL
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_opts"] > fieldset.submit-buttons{
+    position:relative;
+
+    min-height:52px;
+
+    margin:14px 0 0 !important;
+    padding:12px 14px !important;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+
+    background:#0d0d0d !important;
+
+    border:1px solid #242424 !important;
+    border-left:2px solid #b00020 !important;
+
+    text-align:right !important;
+}
+
+/* terminal status */
+#cp-main form[name="notif_opts"] > fieldset.submit-buttons::before{
+    content:"ROUTING CONFIGURATION // READY";
+
+    margin-right:auto;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.3px;
+}
+
+/* live signal */
+#cp-main form[name="notif_opts"] > fieldset.submit-buttons::after{
+    content:"";
+
+    position:absolute;
+    left:14px;
+    bottom:0;
+
+    width:28px;
+    height:1px;
+
+    background:#e06a16;
+}
+
+
+/* SAVE BUTTON */
+
+#cp-main form[name="notif_opts"] > fieldset.submit-buttons input{
+    min-width:76px !important;
+    height:31px !important;
+
+    margin:0 !important;
+    padding:0 15px !important;
+
+    background:#111 !important;
+
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:9px !important;
+    font-weight:600 !important;
+    letter-spacing:1px !important;
+    text-transform:uppercase !important;
+
+    box-shadow:none !important;
+}
+
+#cp-main form[name="notif_opts"] > fieldset.submit-buttons input:hover{
+    background:#181818 !important;
+    border-color:#444 !important;
+    border-left-color:#b00020 !important;
+
+    color:#fff !important;
+}
+
+
+/* ---------------------------------------------------------
+   ROW FEEDBACK
+   static now — motion comes in final Motion Pass
+   --------------------------------------------------------- */
+
+#cp-main form[name="notif_opts"] table.table1 tbody tr:hover td{
+    background:#0d0d0d !important;
+}
+
+#cp-main form[name="notif_opts"] table.table1 tbody tr:hover td:first-child::before{
+    background:#e06a16;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width:760px){
+
+    #cp-main form[name="notif_opts"] > h1.page-title::after{
+        display:none;
+    }
+
+    #cp-main form[name="notif_opts"] > .panel{
+        padding:10px !important;
+        overflow-x:auto;
+    }
+
+    #cp-main form[name="notif_opts"] table.table1{
+        min-width:620px;
+    }
+
+    #cp-main form[name="notif_opts"] > fieldset.submit-buttons{
+        padding:12px !important;
+    }
+
+    #cp-main form[name="notif_opts"] > fieldset.submit-buttons::before{
+        content:"ROUTING // READY";
+    }
+}
