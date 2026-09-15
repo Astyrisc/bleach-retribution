@@ -6529,3 +6529,391 @@ input[name="avatarremoteurl"]:focus{
         min-width:0 !important;
     }
 }
+/* =========================================================
+   UCP // TOPIC DRAFTS
+   UNFINISHED RECORDS
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   PRIMARY DRAFT ARCHIVE SHELL
+   --------------------------------------------------------- */
+
+#cp-main form.drafts-list{
+    position:relative;
+}
+
+#cp-main form.drafts-list > h1.page-title{
+    position:relative;
+    margin:0 !important;
+    padding:15px 18px !important;
+
+    background:#0d0d0d !important;
+    border:1px solid #242424 !important;
+    border-left:2px solid #b00020 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:#f2f2f2 !important;
+    font-family:"Oswald",sans-serif !important;
+    font-size:13px !important;
+    font-weight:600 !important;
+    line-height:1 !important;
+    letter-spacing:1.7px !important;
+    text-transform:uppercase !important;
+}
+
+/* Replace stock "1 draft" visually */
+#cp-main form.drafts-list > h1.page-title{
+    font-size:0 !important;
+}
+
+#cp-main form.drafts-list > h1.page-title::before{
+    content:"// UNFINISHED RECORDS";
+
+    color:#f2f2f2;
+    font-family:"Oswald",sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:1.7px;
+}
+
+/* Right-side archive telemetry */
+#cp-main form.drafts-list > h1.page-title::after{
+    content:"COMPOSITION ARCHIVE // ACTIVE";
+
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+
+    color:#777;
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.4px;
+}
+
+
+/* ---------------------------------------------------------
+   FORUMOTION PANEL RESET
+   --------------------------------------------------------- */
+
+#cp-main form.drafts-list > .panel{
+    margin:0 !important;
+    padding:0 !important;
+
+    background:#0a0a0a !important;
+    border:1px solid #242424 !important;
+    border-top:0 !important;
+    box-shadow:none !important;
+}
+
+#cp-main form.drafts-list > .panel > .inner{
+    margin:0 !important;
+    padding:12px 10px 8px !important;
+}
+
+
+/* ---------------------------------------------------------
+   DRAFT RECORD TABLE
+   --------------------------------------------------------- */
+
+#cp-main form.drafts-list table.table1{
+    width:100% !important;
+    margin:0 !important;
+
+    border-collapse:collapse !important;
+    border:1px solid #242424 !important;
+
+    background:#080808 !important;
+}
+
+/* Column header */
+#cp-main form.drafts-list table.table1 thead{
+    background:#0d0d0d !important;
+}
+
+#cp-main form.drafts-list table.table1 thead th{
+    height:32px !important;
+    padding:0 12px !important;
+
+    background:#0d0d0d !important;
+    border:0 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:#777 !important;
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    font-weight:600 !important;
+    line-height:32px !important;
+    letter-spacing:1.3px !important;
+    text-transform:uppercase !important;
+}
+
+
+/* ---------------------------------------------------------
+   INDIVIDUAL DRAFT RECORD
+   --------------------------------------------------------- */
+
+#cp-main form.drafts-list table.table1 tbody tr{
+    position:relative;
+
+    background:#0b0b0b !important;
+    border-left:2px solid #b00020 !important;
+}
+
+#cp-main form.drafts-list table.table1 tbody td{
+    height:43px !important;
+    padding:8px 12px !important;
+
+    background:#0b0b0b !important;
+    border:0 !important;
+    border-bottom:1px solid #242424 !important;
+
+    color:#cfcfcf !important;
+    font-family:"Inter",Arial,sans-serif !important;
+    font-size:10px !important;
+    vertical-align:middle !important;
+}
+
+/* Draft title */
+#cp-main form.drafts-list table.table1 tbody td:first-child a{
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:11px !important;
+    font-weight:500 !important;
+    letter-spacing:.3px !important;
+}
+
+/* Tiny crimson record marker before title */
+#cp-main form.drafts-list table.table1 tbody td:first-child::before{
+    content:"//";
+    display:inline-block;
+    margin-right:9px;
+
+    color:#b00020;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+/* Forum / archive location */
+#cp-main form.drafts-list table.table1 tbody td:nth-child(2),
+#cp-main form.drafts-list table.table1 tbody td:nth-child(2) a{
+    color:#b00020 !important;
+}
+
+/* Date becomes technical metadata */
+#cp-main form.drafts-list table.table1 tbody td:nth-child(3){
+    color:#aaa !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:8px !important;
+    letter-spacing:.25px !important;
+}
+
+
+/* ---------------------------------------------------------
+   MODIFY = PRIMARY DRAFT ACTION
+   --------------------------------------------------------- */
+
+#cp-main form.drafts-list table.table1 tbody a[href*="edit"],
+#cp-main form.drafts-list table.table1 tbody a[href*="modify"]{
+    color:#f2f2f2 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:8px !important;
+    font-weight:600 !important;
+    letter-spacing:1px !important;
+    text-transform:uppercase !important;
+}
+
+/* Forumotion may output the literal Modify link without
+   a predictable URL fragment, so retain clean action styling */
+#cp-main form.drafts-list table.table1 tbody td:nth-last-child(2) a{
+    display:inline-block;
+    padding:5px 9px !important;
+
+    background:#111 !important;
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    font-weight:600 !important;
+    letter-spacing:1px !important;
+    text-transform:uppercase !important;
+}
+
+#cp-main form.drafts-list table.table1 tbody td:nth-last-child(2) a:hover{
+    background:#181818 !important;
+    border-color:#444 !important;
+    border-left-color:#b00020 !important;
+    color:#fff !important;
+}
+
+
+/* ---------------------------------------------------------
+   DELETE / SELECTION CONTROL
+   --------------------------------------------------------- */
+
+#cp-main form.drafts-list table.table1 tbody td:last-child{
+    text-align:center !important;
+}
+
+#cp-main form.drafts-list table.table1 input[type="checkbox"]{
+    width:11px !important;
+    height:11px !important;
+    margin:0 !important;
+
+    accent-color:#b00020;
+}
+
+
+/* ---------------------------------------------------------
+   MARK / UNMARK UTILITY LINKS
+   --------------------------------------------------------- */
+
+#cp-main form.drafts-list .right-box{
+    margin:7px 0 0 !important;
+    padding:0 !important;
+
+    color:#555 !important;
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    letter-spacing:.5px !important;
+}
+
+#cp-main form.drafts-list .right-box a{
+    color:#777 !important;
+}
+
+#cp-main form.drafts-list .right-box a:hover{
+    color:#f2f2f2 !important;
+}
+
+
+/* ---------------------------------------------------------
+   DRAFT COMMAND RAIL
+   --------------------------------------------------------- */
+
+#cp-main form.drafts-list fieldset.submit-buttons{
+    position:relative;
+
+    min-height:52px !important;
+    margin:10px 0 0 !important;
+    padding:14px 12px !important;
+
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+
+    background:#0d0d0d !important;
+    border:0 !important;
+    border-top:1px solid #303030 !important;
+
+    text-align:right !important;
+}
+
+/* Command status */
+#cp-main form.drafts-list fieldset.submit-buttons::before{
+    content:"DRAFT CONTROL // READY";
+
+    margin-right:auto;
+
+    color:#777;
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.4px;
+}
+
+/* Tiny live-system orange signal */
+#cp-main form.drafts-list fieldset.submit-buttons::after{
+    content:"";
+
+    position:absolute;
+    left:12px;
+    bottom:0;
+
+    width:28px;
+    height:1px;
+
+    background:#e06a16;
+}
+
+/* Delete selected drafts */
+#cp-main form.drafts-list fieldset.submit-buttons input{
+    min-height:30px !important;
+    margin:0 !important;
+    padding:0 13px !important;
+
+    background:#111 !important;
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:8px !important;
+    font-weight:600 !important;
+    letter-spacing:.8px !important;
+    text-transform:uppercase !important;
+
+    box-shadow:none !important;
+}
+
+#cp-main form.drafts-list fieldset.submit-buttons input:hover{
+    background:#181818 !important;
+    border-color:#444 !important;
+    border-left-color:#b00020 !important;
+    color:#fff !important;
+}
+
+
+/* ---------------------------------------------------------
+   EMPTY DRAFT ARCHIVE
+   --------------------------------------------------------- */
+
+#cp-main form.drafts-list table.table1 tbody td[colspan]{
+    height:70px !important;
+
+    color:#666 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:8px !important;
+    letter-spacing:1px !important;
+    text-align:center !important;
+    text-transform:uppercase !important;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width:760px){
+
+    #cp-main form.drafts-list > h1.page-title::after{
+        display:none;
+    }
+
+    #cp-main form.drafts-list > .panel > .inner{
+        padding:8px 6px !important;
+    }
+
+    #cp-main form.drafts-list table.table1 thead th,
+    #cp-main form.drafts-list table.table1 tbody td{
+        padding-left:7px !important;
+        padding-right:7px !important;
+    }
+
+    #cp-main form.drafts-list fieldset.submit-buttons::before{
+        content:"DRAFTS // READY";
+    }
+}
