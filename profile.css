@@ -4183,3 +4183,199 @@ input[name="avatarremoteurl"]:focus{
     }
 
 }
+/* =========================================================
+   UCP PASS 4C-B // REGISTERED ASSOCIATIONS
+   FRIEND NETWORK RECORDS
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   FRIEND RECORD CONTAINERS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main .friends-foes-list{
+    position:relative;
+
+    display:inline-flex !important;
+    align-items:center !important;
+
+    width:190px !important;
+    min-height:48px !important;
+
+    margin:0 8px 8px 0 !important;
+    padding:10px 34px 10px 14px !important;
+
+    background:#0d0d0d !important;
+
+    border:1px solid #242424 !important;
+    border-left:2px solid #303030 !important;
+
+    vertical-align:top;
+
+    box-sizing:border-box !important;
+}
+
+
+/* Subtle registration line */
+
+#cp-main.ucp-main .friends-foes-list::before{
+    content:"";
+
+    position:absolute;
+    left:14px;
+    bottom:7px;
+
+    width:22px;
+    height:1px;
+
+    background:#b00020;
+}
+
+
+/* ---------------------------------------------------------
+   MEMBER IDENTITY
+   --------------------------------------------------------- */
+
+/* Primary profile link */
+
+#cp-main.ucp-main .friends-foes-list > a:first-child{
+    display:block !important;
+
+    max-width:100%;
+
+    text-decoration:none !important;
+}
+
+
+/*
+   Preserve Forumotion group colors.
+   Absolutely no forced color here.
+*/
+
+#cp-main.ucp-main .friends-foes-list > a:first-child span{
+    display:block;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:11px !important;
+    font-weight:600 !important;
+    line-height:1.2 !important;
+    letter-spacing:.6px !important;
+}
+
+
+/* Username itself */
+
+#cp-main.ucp-main .friends-foes-list > a:first-child strong{
+    color:inherit !important;
+    font-weight:600 !important;
+}
+
+
+/* Small system classification */
+
+#cp-main.ucp-main .friends-foes-list > a:first-child::after{
+    content:"REGISTERED ENTITY";
+
+    display:block;
+
+    margin-top:5px;
+
+    color:#555;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:6px;
+    font-weight:600;
+    line-height:1;
+    letter-spacing:1px;
+}
+
+
+/* ---------------------------------------------------------
+   REMOVE ASSOCIATION CONTROL
+   --------------------------------------------------------- */
+
+/*
+   Forumotion places the delete/remove link after
+   the member profile link.
+*/
+
+#cp-main.ucp-main .friends-foes-list > a:last-child:not(:first-child){
+    position:absolute;
+
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+
+    width:18px;
+    height:18px;
+
+    background:#080808;
+
+    border:1px solid #303030;
+
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:0 !important;
+
+    text-decoration:none !important;
+}
+
+
+/* Replace Forumotion's tiny delete mark with system control */
+
+#cp-main.ucp-main .friends-foes-list > a:last-child:not(:first-child)::before{
+    content:"×";
+
+    color:#777;
+
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    font-weight:400;
+    line-height:1;
+}
+
+
+#cp-main.ucp-main .friends-foes-list > a:last-child:not(:first-child):hover{
+    border-color:#b00020;
+    color:#f2f2f2 !important;
+}
+
+
+#cp-main.ucp-main .friends-foes-list > a:last-child:not(:first-child):hover::before{
+    color:#f2f2f2;
+}
+
+
+/* ---------------------------------------------------------
+   RECORD INTERACTION
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main .friends-foes-list:hover{
+    background:#111 !important;
+
+    border-color:#303030 !important;
+    border-left-color:#b00020 !important;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width:760px){
+
+    #cp-main.ucp-main .friends-foes-list{
+        width:100% !important;
+        margin:0 0 7px !important;
+    }
+
+}
