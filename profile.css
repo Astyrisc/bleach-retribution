@@ -4376,3 +4376,426 @@ input[name="avatarremoteurl"]:focus{
     }
 
 }
+/* =========================================================
+   UCP PASS 4D // FOLLOWED MEMBERS
+   SPIRITUAL SIGNATURE TRACKING REGISTRY
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   01 // MODULE HEADER
+   Scope exists only when the Followed Members block exists.
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main:has(.followers_block) > h1.page-title{
+    position:relative;
+
+    margin:0 !important;
+    padding:14px 18px !important;
+
+    background:#0d0d0d !important;
+    border:1px solid #242424 !important;
+    border-left:2px solid #b00020 !important;
+
+    color:#f2f2f2 !important;
+    font-family:"Oswald",sans-serif !important;
+    font-size:12px !important;
+    font-weight:600 !important;
+    line-height:1 !important;
+    letter-spacing:1.6px !important;
+    text-transform:uppercase !important;
+
+    box-shadow:none !important;
+}
+
+#cp-main.ucp-main:has(.followers_block) > h1.page-title::before{
+    content:"// ";
+    color:#b00020;
+}
+
+#cp-main.ucp-main:has(.followers_block) > h1.page-title::after{
+    content:"TRACKING NETWORK // ACTIVE";
+
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.35px;
+}
+
+
+/* ---------------------------------------------------------
+   02 // REGISTRY CHASSIS
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main .followers_block.panel{
+    position:relative;
+
+    margin:0 !important;
+    padding:44px 18px 34px !important;
+    min-height:128px;
+
+    background:#090909 !important;
+    border:1px solid #242424 !important;
+    border-top:0 !important;
+    border-left:2px solid #b00020 !important;
+
+    color:#777 !important;
+    box-shadow:none !important;
+}
+
+
+/* registry identification */
+
+#cp-main.ucp-main .followers_block.panel::before{
+    content:"SPIRITUAL SIGNATURE REGISTRY";
+
+    position:absolute;
+    top:16px;
+    left:18px;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.45px;
+}
+
+
+/* tiny live-system signal */
+
+#cp-main.ucp-main .followers_block.panel::after{
+    content:"";
+
+    position:absolute;
+    top:18px;
+    right:18px;
+
+    width:4px;
+    height:4px;
+
+    background:#e06a16;
+}
+
+
+/* ---------------------------------------------------------
+   03 // FOLLOWER RECORD
+   Forumotion native structure:
+   .follower-card
+      img
+      .details
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main .followers_block .follower-card{
+    position:relative;
+
+    display:inline-grid !important;
+    grid-template-columns:60px minmax(150px,1fr);
+    grid-template-rows:auto;
+    align-items:stretch;
+
+    width:285px;
+    min-height:84px;
+
+    margin:0 10px 10px 0 !important;
+    padding:0 !important;
+
+    vertical-align:top;
+
+    background:#0d0d0d !important;
+    border:1px solid #242424 !important;
+    border-left:2px solid #b00020 !important;
+
+    box-shadow:none !important;
+    overflow:hidden;
+}
+
+
+/* ---------------------------------------------------------
+   04 // CHARACTER THUMBNAIL
+   Preserve Forumotion's actual member avatar.
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main .followers_block .follower-card > img{
+    display:block !important;
+
+    width:60px !important;
+    height:84px !important;
+    min-width:60px;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    object-fit:cover;
+    object-position:center top;
+
+    background:#080808;
+
+    border:0 !important;
+    border-right:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    box-shadow:none !important;
+}
+
+
+/* ---------------------------------------------------------
+   05 // IDENTITY DATA
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main .followers_block .follower-card .details{
+    position:relative;
+
+    display:flex !important;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+
+    min-width:0;
+
+    padding:12px 12px 11px !important;
+
+    background:#0d0d0d !important;
+}
+
+
+/* Member name */
+
+#cp-main.ucp-main .followers_block .follower-card .details > a{
+    display:block;
+
+    max-width:100%;
+    margin:0 0 5px !important;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    color:#f2f2f2;
+
+    font-family:"Oswald",sans-serif !important;
+    font-size:12px !important;
+    font-weight:600 !important;
+    line-height:1.15 !important;
+    letter-spacing:.5px !important;
+
+    text-decoration:none !important;
+}
+
+
+/* Preserve group/user color when Forumotion places it
+   directly on nested username markup. */
+
+#cp-main.ucp-main .followers_block .follower-card .details > a strong,
+#cp-main.ucp-main .followers_block .follower-card .details > a span{
+    font-family:"Oswald",sans-serif !important;
+    font-size:12px !important;
+    font-weight:600 !important;
+}
+
+
+/* technical identity classification */
+
+#cp-main.ucp-main .followers_block .follower-card .details::before{
+    content:"TRACKED ENTITY";
+
+    order:2;
+
+    margin-bottom:9px;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:6px;
+    font-weight:600;
+    line-height:1;
+    letter-spacing:1.25px;
+}
+
+
+/* tiny acquired-signal mark */
+
+#cp-main.ucp-main .followers_block .follower-card .details::after{
+    content:"SIGNAL ACQUIRED";
+
+    position:absolute;
+    right:10px;
+    top:13px;
+
+    padding-left:9px;
+
+    color:#555;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:5px;
+    font-weight:600;
+    line-height:1;
+    letter-spacing:.8px;
+}
+
+
+/* orange live dot */
+
+#cp-main.ucp-main .followers_block .follower-card::after{
+    content:"";
+
+    position:absolute;
+    right:73px;
+    top:15px;
+
+    width:3px;
+    height:3px;
+
+    background:#e06a16;
+}
+
+
+/* ---------------------------------------------------------
+   06 // NATIVE FOLLOW / UNFOLLOW CONTROL
+   Keep Forumotion's JavaScript behavior intact.
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main .followers_block .followBtn{
+    order:3;
+
+    min-width:72px !important;
+    height:23px !important;
+
+    margin:0 !important;
+    padding:0 9px !important;
+
+    background:#111 !important;
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+    border-radius:0 !important;
+
+    color:#aaa !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:6px !important;
+    font-weight:600 !important;
+    line-height:21px !important;
+    letter-spacing:1px !important;
+    text-transform:uppercase !important;
+
+    box-shadow:none !important;
+    text-shadow:none !important;
+
+    cursor:pointer;
+}
+
+#cp-main.ucp-main .followers_block .followBtn:hover{
+    background:#181818 !important;
+    border-color:#444 !important;
+    border-left-color:#b00020 !important;
+
+    color:#fff !important;
+}
+
+
+/* ---------------------------------------------------------
+   07 // EMPTY REGISTRY STATE
+   Applies naturally when no .follower-card exists.
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main .followers_block.panel:not(:has(.follower-card)){
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding-top:46px !important;
+    padding-bottom:38px !important;
+
+    color:#555 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    font-weight:500 !important;
+    letter-spacing:1.2px !important;
+    text-align:center !important;
+    text-transform:uppercase !important;
+}
+
+
+/* Empty registry switches system status to standby */
+
+#cp-main.ucp-main:has(.followers_block.panel:not(:has(.follower-card)))
+    > h1.page-title::after{
+    content:"TRACKING NETWORK // STANDBY";
+}
+
+
+/* ---------------------------------------------------------
+   08 // REGISTERED RECORD FOOTER
+   Only appears while tracked entities exist.
+   --------------------------------------------------------- */
+
+#cp-main.ucp-main .followers_block.panel:has(.follower-card){
+    padding-bottom:44px !important;
+}
+
+#cp-main.ucp-main .followers_block.panel:has(.follower-card)
+    .follower-card:last-of-type{
+    margin-bottom:10px !important;
+}
+
+
+/* subtle bottom registry rail */
+
+#cp-main.ucp-main .followers_block.panel:has(.follower-card){
+    background:
+        linear-gradient(
+            to bottom,
+            #090909 0,
+            #090909 calc(100% - 28px),
+            #0d0d0d calc(100% - 28px),
+            #0d0d0d 100%
+        ) !important;
+}
+
+
+/* ---------------------------------------------------------
+   09 // RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width:760px){
+
+    #cp-main.ucp-main:has(.followers_block) > h1.page-title::after{
+        display:none;
+    }
+
+    #cp-main.ucp-main .followers_block.panel{
+        padding:
+            42px 12px 34px !important;
+    }
+
+    #cp-main.ucp-main .followers_block .follower-card{
+        display:grid !important;
+
+        grid-template-columns:58px minmax(0,1fr);
+
+        width:100%;
+        max-width:none;
+
+        margin:
+            0 0 9px !important;
+    }
+
+    #cp-main.ucp-main .followers_block .follower-card > img{
+        width:58px !important;
+        min-width:58px;
+        height:82px !important;
+    }
+
+    #cp-main.ucp-main .followers_block .follower-card .details::after,
+    #cp-main.ucp-main .followers_block .follower-card::after{
+        display:none;
+    }
+}
