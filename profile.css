@@ -3035,3 +3035,253 @@ body #tabs li.selected a::before{
     top:9px;
     right:9px;
 }
+/* =========================================================
+   UCP PASS 4A // SIGNATURE TERMINAL
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   SIGNATURE WORKSPACE
+   --------------------------------------------------------- */
+
+#cp-main form[action*="page_profil=signature"] #postingbox{
+    margin:0 !important;
+    padding:0 !important;
+    background:#0b0b0b !important;
+    border:1px solid #242424 !important;
+    border-top:0 !important;
+}
+
+/* Signature page title becomes system header */
+#cp-main form[action*="page_profil=signature"] > h1.page-title{
+    position:relative;
+    margin:0 !important;
+    padding:15px 18px !important;
+
+    background:#0d0d0d !important;
+    border:1px solid #242424 !important;
+    border-left:2px solid #b00020 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:#f2f2f2 !important;
+    font-family:"Oswald",sans-serif !important;
+    font-size:13px !important;
+    font-weight:600 !important;
+    line-height:1 !important;
+    letter-spacing:1.7px !important;
+    text-transform:uppercase !important;
+}
+
+/* Technical marker */
+#cp-main form[action*="page_profil=signature"] > h1.page-title::before{
+    content:"// ";
+    color:#b00020;
+}
+
+/* Live-status indicator */
+#cp-main form[action*="page_profil=signature"] > h1.page-title::after{
+    content:"COMPOSITION TERMINAL // ACTIVE";
+
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+
+    color:#777;
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.4px;
+}
+
+/* ---------------------------------------------------------
+   EDITOR AREA
+   --------------------------------------------------------- */
+
+#cp-main form[action*="page_profil=signature"] #postingbox .inner{
+    padding:22px 18px 20px !important;
+}
+
+#cp-main form[action*="page_profil=signature"] fieldset.fields1{
+    margin:0 !important;
+    padding:0 !important;
+}
+
+/* SCEditor outer chassis */
+#cp-main form[action*="page_profil=signature"] .sceditor-container{
+    background:#080808 !important;
+    border:1px solid #303030 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+}
+
+/* Toolbar */
+#cp-main form[action*="page_profil=signature"] .sceditor-toolbar{
+    min-height:38px !important;
+    padding:7px 10px !important;
+
+    background:#111 !important;
+    border:0 !important;
+    border-bottom:1px solid #303030 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+}
+
+/* Keep the writing surface intentionally light.
+   Same philosophy as Quick Reply: ink on paper. */
+#cp-main form[action*="page_profil=signature"] .sceditor-container textarea,
+#cp-main form[action*="page_profil=signature"] .sceditor-container iframe{
+    background:#f2f2f2 !important;
+    border:0 !important;
+    border-radius:0 !important;
+}
+
+/* Source-mode textarea typography */
+#cp-main form[action*="page_profil=signature"] .sceditor-container textarea{
+    color:#111 !important;
+    padding:14px !important;
+
+    font-family:"Inter",Arial,sans-serif !important;
+    font-size:12px !important;
+    line-height:1.65 !important;
+}
+
+/* ---------------------------------------------------------
+   SMILIES / AUXILIARY TOOL RAIL
+   --------------------------------------------------------- */
+
+#cp-main form[action*="page_profil=signature"] #smiley-box{
+    margin-left:14px !important;
+    padding:10px !important;
+
+    background:#0d0d0d !important;
+    border:1px solid #242424 !important;
+    border-left:1px solid #b00020 !important;
+
+    color:#777 !important;
+}
+
+/* Status labels beneath smiley selector */
+#cp-main form[action*="page_profil=signature"] #smiley-box,
+#cp-main form[action*="page_profil=signature"] #smiley-box a{
+    font-family:"JetBrains Mono",monospace;
+}
+
+/* ---------------------------------------------------------
+   COMMAND / SUBMIT RAIL
+   --------------------------------------------------------- */
+
+#cp-main form[action*="page_profil=signature"] .panel.row2.sig{
+    position:relative;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    background:#0a0a0a !important;
+    border:1px solid #242424 !important;
+    border-top:0 !important;
+}
+
+/* kill stock pale-blue slab */
+#cp-main form[action*="page_profil=signature"] fieldset.submit-buttons{
+    position:relative;
+
+    margin:0 !important;
+    padding:15px 18px !important;
+    min-height:52px;
+
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:8px;
+
+    background:#0d0d0d !important;
+    border:0 !important;
+    border-top:1px solid #303030 !important;
+
+    text-align:right !important;
+}
+
+/* technical footer label */
+#cp-main form[action*="page_profil=signature"] fieldset.submit-buttons::before{
+    content:"SIGNATURE OUTPUT // READY";
+
+    margin-right:auto;
+
+    color:#777;
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.4px;
+}
+
+/* orange = live/ready telemetry */
+#cp-main form[action*="page_profil=signature"] fieldset.submit-buttons::after{
+    content:"";
+    position:absolute;
+    left:18px;
+    bottom:0;
+
+    width:28px;
+    height:1px;
+
+    background:#e06a16;
+}
+
+/* Preview / Save */
+#cp-main form[action*="page_profil=signature"] fieldset.submit-buttons input{
+    min-width:74px !important;
+    height:31px !important;
+    margin:0 !important;
+    padding:0 14px !important;
+
+    background:#111 !important;
+    border:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+    font-family:"Oswald",sans-serif !important;
+    font-size:9px !important;
+    font-weight:600 !important;
+    letter-spacing:1px !important;
+    text-transform:uppercase !important;
+
+    box-shadow:none !important;
+}
+
+/* Primary action */
+#cp-main form[action*="page_profil=signature"] fieldset.submit-buttons input[type="submit"]{
+    border-left:2px solid #b00020 !important;
+}
+
+#cp-main form[action*="page_profil=signature"] fieldset.submit-buttons input:hover{
+    background:#181818 !important;
+    border-color:#444 !important;
+    color:#fff !important;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width:760px){
+
+    #cp-main form[action*="page_profil=signature"] > h1.page-title::after{
+        display:none;
+    }
+
+    #cp-main form[action*="page_profil=signature"] #postingbox .inner{
+        padding:14px 10px !important;
+    }
+
+    #cp-main form[action*="page_profil=signature"] #smiley-box{
+        margin-left:8px !important;
+    }
+
+    #cp-main form[action*="page_profil=signature"] fieldset.submit-buttons{
+        padding:13px 12px !important;
+    }
+
+    #cp-main form[action*="page_profil=signature"] fieldset.submit-buttons::before{
+        content:"OUTPUT // READY";
+    }
+}
