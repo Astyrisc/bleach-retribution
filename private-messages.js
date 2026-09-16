@@ -63,30 +63,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function isValidImageURL(value) {
 
-        if (!value) {
-            return false;
-        }
-
-
-        try {
-
-            const url =
-                new URL(
-                    value,
-                    window.location.origin
-                );
-
-
-            return (
-                url.protocol === "http:" ||
-                url.protocol === "https:"
-            );
-
-        } catch (error) {
-
-            return false;
-        }
+    if (!value) {
+        return false;
     }
+
+
+    const cleanedValue =
+        value.trim();
+
+
+    /*
+     * Transmission Portraits must be explicit
+     * absolute HTTP(S) URLs.
+     *
+     * This intentionally rejects Forumotion
+     * placeholders such as "-" and prevents
+     * relative paths from being interpreted
+     * against the forum origin.
+     */
+
+    if (
+        !/^https?:\/\//i.test(cleanedValue)
+    ) {
+
+        return false;
+    }
+
+
+    try {
+
+        const url =
+            new URL(cleanedValue);
+
+
+        return (
+            url.protocol === "http:" ||
+            url.protocol === "https:"
+        );
+
+    } catch (error) {
+
+        return false;
+    }
+}
 
 
 
