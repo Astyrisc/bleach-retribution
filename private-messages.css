@@ -760,8 +760,8 @@
     align-items:center;
     justify-content:center;
 
-    width:38px !important;
-    height:38px !important;
+    width:42px !important;
+    height:42px !important;
 
     background:#0d0d0d !important;
 
@@ -824,9 +824,9 @@
     color:#777;
 
     font-family:"JetBrains Mono",monospace;
-    font-size:7px;
+    font-size:8px;
     font-weight:600;
-    letter-spacing:1.2px;
+    letter-spacing:1.35px;
     text-transform:uppercase;
 
     white-space:nowrap;
