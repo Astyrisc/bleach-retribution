@@ -2952,3 +2952,74 @@ form[name="privmsg_list"] .br-transmission-pagination{
         min-height:58px;
     }
 }
+/* =========================================================
+   TRANSMISSION CONTROL // COMPOSE NODE
+   ========================================================= */
+
+form[name="privmsg_list"]
+.br-transmission-compose .button-round{
+    position:relative !important;
+
+    width:34px !important;
+    height:34px !important;
+    min-width:34px !important;
+    min-height:34px !important;
+
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    background:#0c0c0c !important;
+
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-size:16px !important;
+    line-height:1 !important;
+
+    box-shadow:none !important;
+
+    transition:
+        background .15s ease,
+        border-color .15s ease,
+        color .15s ease;
+}
+
+
+form[name="privmsg_list"]
+.br-transmission-compose .button-round:hover{
+    background:#151515 !important;
+
+    border-color:#444 !important;
+    border-left-color:#b00020 !important;
+
+    color:#fff !important;
+}
+
+
+/* registration corner */
+
+form[name="privmsg_list"]
+.br-transmission-compose .button-round::after{
+    content:"";
+
+    position:absolute;
+
+    right:-4px;
+    bottom:-4px;
+
+    width:7px;
+    height:7px;
+
+    border-right:1px solid #b00020;
+    border-bottom:1px solid #b00020;
+
+    pointer-events:none;
+}
