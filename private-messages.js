@@ -269,9 +269,10 @@ document.addEventListener("DOMContentLoaded", function () {
                --------------------------------------------- */
 
             const publicValue =
-                valueDD.querySelector(
-                    ".field_uneditable"
-                );
+    valueDD.querySelector(
+        ".field_uneditable"
+    );
+
 
 console.log(
     "RETRIBUTION // PROFILE FIELD DEBUG",
@@ -297,6 +298,10 @@ console.log(
 );
 
 
+let portraitURL =
+    publicValue
+        ? publicValue.textContent.trim()
+        : "";
 
             /* ---------------------------------------------
                FALLBACK TO EDITABLE INPUT
