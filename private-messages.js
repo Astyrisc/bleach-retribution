@@ -273,11 +273,28 @@ document.addEventListener("DOMContentLoaded", function () {
                     ".field_uneditable"
                 );
 
+console.log(
+    "RETRIBUTION // PROFILE FIELD DEBUG",
+    {
+        profileURL: profileURL,
 
-            let portraitURL =
-                publicValue
-                    ? publicValue.textContent.trim()
-                    : "";
+        label: portraitLabel
+            ? portraitLabel.textContent.trim()
+            : null,
+
+        dt: labelDT
+            ? labelDT.outerHTML
+            : null,
+
+        dd: valueDD
+            ? valueDD.outerHTML
+            : null,
+
+        publicValue: publicValue
+            ? publicValue.textContent.trim()
+            : null
+    }
+);
 
 
 
