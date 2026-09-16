@@ -348,28 +348,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       05 // INSTALL TRANSMISSION PORTRAIT
-       ===================================================== */
+   05 // INSTALL TRANSMISSION PORTRAIT
+   ===================================================== */
 
-    function installPortrait(
-        container,
-        portraitURL
+function installPortrait(
+    container,
+    portraitURL
+) {
+
+    console.log(
+        "RETRIBUTION // INSTALL PORTRAIT DEBUG",
+        {
+            container: container,
+            portraitURL: portraitURL
+        }
+    );
+
+
+    if (
+        !container ||
+        !portraitURL
     ) {
 
-
-        if (
-            !container ||
-            !portraitURL
-        ) {
-
-            return;
-        }
+        return;
+    }
 
 
-
-        const image =
-            new Image();
-
+    const image =
+        new Image();
 
 
         /*
