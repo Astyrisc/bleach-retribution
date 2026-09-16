@@ -328,18 +328,12 @@ pointer-events:none;
     background:#b00020;
 }
 /* =========================================================
-   RETRIBUTION // GLOBAL DESKTOP FRAME
-   WIDTH CALIBRATION v1.1
+   RETRIBUTION // GLOBAL CONTENT FRAME
    ========================================================= */
 
-@media (min-width:1101px){
-
-    html body #wrap{
-        box-sizing:border-box !important;
-        width:84% !important;
-        max-width:1680px !important;
-        margin-left:auto !important;
-        margin-right:auto !important;
-    }
-
+#outer-wrapper {
+    width: 84%;
+    max-width: 1680px;
+    margin-left: auto;
+    margin-right: auto;
 }
