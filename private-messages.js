@@ -123,21 +123,13 @@ document.addEventListener("DOMContentLoaded", function () {
                --------------------------------------------- */
 
             const response =
-                await fetch(
-                    profileURL,
-                    {
-                        credentials: "same-origin"
-                    }
-                );
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Profile request failed: " +
-                    response.status
-                );
-            }
+    await fetch(
+        profileURL,
+        {
+            credentials: "same-origin",
+            cache: "no-store"
+        }
+    );
 
 
 
