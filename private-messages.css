@@ -2556,3 +2556,399 @@ form[action*="folder=savebox"][name="privmsg_list"]
     font-weight:700;
     letter-spacing:1px;
 }
+/* =========================================================
+   PRIVATE TRANSMISSION NETWORK
+   TRANSMISSION CONTROL // v1.0
+   ========================================================= */
+
+form[name="privmsg_list"] .br-transmission-control{
+    --br-control-bg:#0b0b0b;
+    --br-control-panel:#111;
+    --br-control-panel-alt:#151515;
+    --br-control-border:#303030;
+    --br-control-paper:#f2f2f2;
+    --br-control-smoke:#777;
+    --br-control-crimson:#b00020;
+    --br-control-orange:#e06a16;
+
+    position:relative;
+
+    margin:18px 0 12px;
+
+    background:var(--br-control-bg);
+
+    border:1px solid var(--br-control-border);
+    border-left:2px solid var(--br-control-crimson);
+
+    overflow:hidden;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+form[name="privmsg_list"] .br-transmission-control-head{
+    min-height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 16px;
+
+    background:#080808;
+    border-bottom:1px solid var(--br-control-border);
+}
+
+
+form[name="privmsg_list"] .br-transmission-control-title{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    color:var(--br-control-paper);
+
+    font-family:"Oswald",sans-serif;
+    font-size:12px;
+    font-weight:600;
+
+    letter-spacing:.7px;
+    text-transform:uppercase;
+}
+
+
+form[name="privmsg_list"] .br-transmission-control-mark{
+    color:var(--br-control-crimson);
+}
+
+
+form[name="privmsg_list"] .br-transmission-control-status{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    color:var(--br-control-smoke);
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+
+form[name="privmsg_list"] .br-transmission-control-signal{
+    width:4px;
+    height:4px;
+
+    display:block;
+
+    background:var(--br-control-orange);
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+form[name="privmsg_list"] .br-transmission-control-body{
+    display:grid;
+
+    grid-template-columns:
+        minmax(190px,.8fr)
+        minmax(420px,2fr)
+        110px;
+
+    align-items:stretch;
+
+    background:var(--br-control-panel);
+}
+
+
+/* ---------------------------------------------------------
+   CONTROL CELLS
+   --------------------------------------------------------- */
+
+form[name="privmsg_list"] .br-transmission-selection,
+form[name="privmsg_list"] .br-transmission-operations,
+form[name="privmsg_list"] .br-transmission-compose{
+    min-height:72px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding:12px 16px;
+}
+
+
+form[name="privmsg_list"] .br-transmission-selection,
+form[name="privmsg_list"] .br-transmission-operations{
+    border-right:1px solid var(--br-control-border);
+}
+
+
+form[name="privmsg_list"] .br-transmission-operations{
+    background:var(--br-control-panel-alt);
+}
+
+
+/* ---------------------------------------------------------
+   TECHNICAL LABELS
+   --------------------------------------------------------- */
+
+form[name="privmsg_list"] .br-transmission-control-label{
+    display:block;
+
+    margin-bottom:8px;
+
+    color:var(--br-control-smoke);
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+form[name="privmsg_list"] .br-transmission-selection-links{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+
+    gap:7px;
+}
+
+
+form[name="privmsg_list"] .br-transmission-selection-links a{
+    color:var(--br-control-paper);
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:8px;
+    font-weight:700;
+
+    letter-spacing:.7px;
+    text-transform:uppercase;
+
+    transition:
+        color .15s ease,
+        border-color .15s ease;
+}
+
+
+form[name="privmsg_list"] .br-transmission-selection-links a:hover{
+    color:var(--br-control-crimson);
+}
+
+
+form[name="privmsg_list"] .br-transmission-divider{
+    color:var(--br-control-crimson);
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:8px;
+}
+
+
+/* =========================================================
+   RECORD OPERATIONS
+   ========================================================= */
+
+form[name="privmsg_list"] .br-transmission-operation-buttons{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+
+    gap:6px;
+}
+
+
+form[name="privmsg_list"]
+.br-transmission-operation-buttons input.button1,
+form[name="privmsg_list"]
+.br-transmission-operation-buttons input.button2{
+    min-height:29px;
+
+    margin:0 !important;
+    padding:6px 10px !important;
+
+    background:#0c0c0c !important;
+
+    border:1px solid #333 !important;
+
+    color:#d8d8d8 !important;
+
+    font-family:"JetBrains Mono",monospace !important;
+    font-size:7px !important;
+    font-weight:700 !important;
+
+    letter-spacing:.65px;
+    text-transform:uppercase;
+
+    box-shadow:none !important;
+
+    cursor:pointer;
+
+    transition:
+        background .15s ease,
+        border-color .15s ease,
+        color .15s ease;
+}
+
+
+form[name="privmsg_list"]
+.br-transmission-operation-buttons input.button1:hover,
+form[name="privmsg_list"]
+.br-transmission-operation-buttons input.button2:hover{
+    background:#151515 !important;
+
+    border-color:#555 !important;
+
+    color:#fff !important;
+}
+
+
+/* destructive operations */
+
+form[name="privmsg_list"]
+.br-transmission-operation-buttons input[name="delete"],
+form[name="privmsg_list"]
+.br-transmission-operation-buttons input[name="deleteall"]{
+    border-left:2px solid var(--br-control-crimson) !important;
+}
+
+
+/* =========================================================
+   COMPOSE NODE
+   ========================================================= */
+
+form[name="privmsg_list"] .br-transmission-compose{
+    align-items:center;
+    text-align:center;
+
+    background:#090909;
+}
+
+
+form[name="privmsg_list"]
+.br-transmission-compose .br-transmission-control-label{
+    margin-bottom:6px;
+}
+
+
+/*
+   Existing Retribution .button-round / COMPOSE // NEW
+   styling remains responsible for the actual compose control.
+*/
+
+form[name="privmsg_list"]
+.br-transmission-compose .button-round{
+    margin:0 !important;
+}
+
+
+/* =========================================================
+   FOOTER TELEMETRY
+   ========================================================= */
+
+form[name="privmsg_list"] .br-transmission-control-foot{
+    min-height:24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 16px;
+
+    background:#080808;
+
+    border-top:1px solid #222;
+}
+
+
+form[name="privmsg_list"] .br-transmission-control-foot span{
+    color:#555;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:6px;
+    font-weight:700;
+
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+
+form[name="privmsg_list"]
+.br-transmission-control-foot span:last-child{
+    color:#666;
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+form[name="privmsg_list"] .br-transmission-pagination{
+    margin:6px 0 0 !important;
+
+    text-align:right;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width:900px){
+
+    form[name="privmsg_list"] .br-transmission-control-body{
+        grid-template-columns:1fr 1fr;
+    }
+
+    form[name="privmsg_list"] .br-transmission-operations{
+        border-right:0;
+    }
+
+    form[name="privmsg_list"] .br-transmission-compose{
+        grid-column:1 / -1;
+
+        min-height:54px;
+
+        border-top:1px solid var(--br-control-border);
+    }
+}
+
+
+@media (max-width:600px){
+
+    form[name="privmsg_list"] .br-transmission-control-head,
+    form[name="privmsg_list"] .br-transmission-control-foot{
+        gap:10px;
+
+        flex-wrap:wrap;
+
+        padding-top:8px;
+        padding-bottom:8px;
+    }
+
+    form[name="privmsg_list"] .br-transmission-control-body{
+        display:block;
+    }
+
+    form[name="privmsg_list"] .br-transmission-selection,
+    form[name="privmsg_list"] .br-transmission-operations{
+        border-right:0;
+        border-bottom:1px solid var(--br-control-border);
+    }
+
+    form[name="privmsg_list"] .br-transmission-compose{
+        min-height:58px;
+    }
+}
