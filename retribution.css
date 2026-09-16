@@ -13,3 +13,197 @@ font:700 9px monospace;
 letter-spacing:1px;
 pointer-events:none;
 }
+/* =========================================================
+   POST VIEW // CHARACTER PRESENTATION v2.0
+   PASS 1 — CANONICAL CHARACTER PORTRAIT
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   PROFILE RAIL
+   Establish enough width for the canonical 250 × 400 artwork
+   --------------------------------------------------------- */
+
+.br-post .br-post-profile{
+    width:290px !important;
+    box-sizing:border-box;
+
+    background:#0d0d0d;
+    border-left:1px solid #303030;
+}
+
+
+/* ---------------------------------------------------------
+   PROFILE INTERNAL FRAME
+   --------------------------------------------------------- */
+
+.br-post .br-post-profile > dl{
+    width:100%;
+    margin:0;
+    padding:18px 20px 20px;
+    box-sizing:border-box;
+}
+
+
+/* ---------------------------------------------------------
+   CANONICAL CHARACTER PORTRAIT
+   RETRIBUTION STANDARD // 250 × 400
+   --------------------------------------------------------- */
+
+.br-post .postprofile-avatar{
+    width:250px !important;
+    height:400px !important;
+
+    margin:0 auto 16px !important;
+    padding:0 !important;
+
+    position:relative;
+    overflow:hidden;
+
+    background:#080808;
+
+    border:1px solid #303030;
+    border-left:2px solid #b00020;
+
+    border-radius:0 !important;
+    box-sizing:border-box;
+}
+
+
+/* registration detail */
+
+.br-post .postprofile-avatar::after{
+    content:"";
+
+    position:absolute;
+    right:7px;
+    bottom:7px;
+
+    width:14px;
+    height:14px;
+
+    border-right:1px solid #b00020;
+    border-bottom:1px solid #b00020;
+
+    pointer-events:none;
+}
+
+
+/* ---------------------------------------------------------
+   AVATAR IMAGE
+   Preserve the entire uploaded 250 × 400 composition
+   --------------------------------------------------------- */
+
+.br-post .postprofile-avatar img{
+    display:block !important;
+
+    width:250px !important;
+    height:400px !important;
+    max-width:none !important;
+    max-height:none !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    object-fit:contain !important;
+
+    border:0 !important;
+    border-radius:0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   CHARACTER IDENTITY
+   Initial calibration only
+   --------------------------------------------------------- */
+
+.br-post .postprofile-name{
+    margin:0 0 5px !important;
+
+    font-family:"Oswald",sans-serif;
+    font-size:18px;
+    font-weight:600;
+    line-height:1.1;
+
+    letter-spacing:.4px;
+    text-transform:uppercase;
+}
+
+
+.br-post .postprofile-rank{
+    margin:0 0 14px !important;
+    padding:0 0 12px !important;
+
+    border-bottom:1px solid #303030;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:8px;
+    line-height:1.5;
+
+    letter-spacing:.8px;
+    text-transform:uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   PROFILE DATA
+   Keep stock information functional during calibration
+   --------------------------------------------------------- */
+
+.br-post .postprofile-info{
+    margin:0 !important;
+    padding:12px 0 !important;
+
+    border-top:1px solid #181818;
+    border-bottom:1px solid #181818;
+
+    font-size:10px;
+    line-height:1.65;
+}
+
+
+/* ---------------------------------------------------------
+   CONTACT RAIL
+   --------------------------------------------------------- */
+
+.br-post .postprofile-contact{
+    margin:12px 0 0 !important;
+    padding:10px 0 0 !important;
+
+    border-top:1px solid #303030;
+}
+
+
+/* ---------------------------------------------------------
+   MESSAGE + HEADER
+   Reserve space for expanded profile rail
+   --------------------------------------------------------- */
+
+.br-post .br-post-head,
+.br-post .br-post-body{
+    margin-right:290px !important;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE SAFETY
+   Do not force desktop portrait architecture onto mobile
+   --------------------------------------------------------- */
+
+@media (max-width:900px){
+
+    .br-post .br-post-profile{
+        width:100% !important;
+    }
+
+    .br-post .br-post-head,
+    .br-post .br-post-body{
+        margin-right:0 !important;
+    }
+
+    .br-post .postprofile-avatar{
+        width:250px !important;
+        height:400px !important;
+    }
+
+}
