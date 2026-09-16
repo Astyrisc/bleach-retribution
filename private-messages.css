@@ -3023,3 +3023,123 @@ form[name="privmsg_list"]
 
     pointer-events:none;
 }
+/* =========================================================
+   TRANSMISSION INDEX // INBOX
+   INCOMING TRANSMISSIONS
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   INBOX HEADER IDENTITY
+   --------------------------------------------------------- */
+
+form[action*="folder=inbox"][name="privmsg_list"]
+.forabg > .inner > .topiclist:first-of-type
+li.header dt{
+    font-size:0 !important;
+}
+
+form[action*="folder=inbox"][name="privmsg_list"]
+.forabg > .inner > .topiclist:first-of-type
+li.header dt::before{
+    content:"// INCOMING TRANSMISSIONS";
+
+    color:#f2f2f2;
+
+    font-family:"Oswald",sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.7px;
+    text-transform:uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   RECEIVED RECORD STATUS
+   --------------------------------------------------------- */
+
+form[action*="folder=inbox"][name="privmsg_list"]
+.forabg > .inner > .topiclist:first-of-type
+li.header dd.mark{
+    font-size:0 !important;
+}
+
+form[action*="folder=inbox"][name="privmsg_list"]
+.forabg > .inner > .topiclist:first-of-type
+li.header dd.mark::before{
+    content:"RECEIVED RECORDS // ACTIVE";
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   INBOX CAPACITY SIGNAL
+   Preserve Forumotion's dynamic BOX_SIZE_STATUS
+   --------------------------------------------------------- */
+
+form[action*="folder=inbox"][name="privmsg_list"]
+> .panel:first-of-type .left-box{
+    display:flex;
+    align-items:center;
+}
+
+
+/* live-system indicator */
+
+form[action*="folder=inbox"][name="privmsg_list"]
+> .panel:first-of-type .left-box::before{
+    content:"●";
+
+    margin-right:8px;
+
+    color:#e06a16;
+
+    font-size:6px;
+    line-height:1;
+}
+
+
+/* technical state appended to dynamic Forumotion text */
+
+form[action*="folder=inbox"][name="privmsg_list"]
+> .panel:first-of-type .left-box::after{
+    content:"CAPACITY MONITOR // ACTIVE";
+
+    margin-left:12px;
+    padding-left:12px;
+
+    border-left:1px solid #303030;
+
+    color:#555;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:6px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   INCOMING RECORD MARKER
+   --------------------------------------------------------- */
+
+form[action*="folder=inbox"][name="privmsg_list"]
+.topiclist.pmlist li.row .topictitle::before{
+    content:"←";
+
+    margin-right:5px;
+
+    color:#b00020;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:8px;
+    font-weight:700;
+}
