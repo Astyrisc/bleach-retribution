@@ -840,3 +840,634 @@
         display:none;
     }
 }
+/* =========================================================
+   TRANSMISSION INDEX // INBOX
+   PASS 1
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   INBOX SCOPE
+   --------------------------------------------------------- */
+
+form[name="privmsgs_list"]{
+    --br-pm-void:#080808;
+    --br-pm-ink:#111;
+    --br-pm-obsidian:#181818;
+    --br-pm-ash:#242424;
+    --br-pm-paper:#f2f2f2;
+    --br-pm-smoke:#777;
+    --br-pm-crimson:#b00020;
+    --br-pm-blood:#780014;
+    --br-pm-orange:#e06a16;
+    --br-pm-border:#303030;
+    --br-pm-border-light:#444;
+}
+
+
+/* =========================================================
+   CAPACITY / FILTER TELEMETRY
+   ========================================================= */
+
+form[name="privmsgs_list"] > .panel{
+    position:relative;
+
+    margin:18px 0 14px !important;
+    padding:0 !important;
+
+    background:#0d0d0d !important;
+
+    border:1px solid #242424 !important;
+    border-left:2px solid #b00020 !important;
+
+    box-shadow:none !important;
+}
+
+form[name="privmsgs_list"] > .panel > .inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+
+    min-height:58px;
+
+    padding:11px 14px !important;
+}
+
+form[name="privmsgs_list"] > .panel .left-box,
+form[name="privmsgs_list"] > .panel .right-box{
+    float:none !important;
+
+    width:auto !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:8px;
+    font-weight:600;
+    letter-spacing:.7px;
+    line-height:1.5;
+    text-transform:uppercase;
+}
+
+
+/* Capacity identity */
+
+form[name="privmsgs_list"] > .panel .left-box{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    padding-left:16px !important;
+
+    color:#f2f2f2;
+}
+
+form[name="privmsgs_list"] > .panel .left-box::before{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:50%;
+
+    width:6px;
+    height:6px;
+
+    background:#e06a16;
+
+    transform:translateY(-50%);
+}
+
+
+/* Filter controls */
+
+form[name="privmsgs_list"] > .panel .right-box{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    white-space:nowrap;
+}
+
+form[name="privmsgs_list"] > .panel select{
+    height:30px;
+
+    padding:0 28px 0 9px;
+
+    background:#111 !important;
+    border:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:8px;
+
+    box-shadow:none !important;
+}
+
+form[name="privmsgs_list"] > .panel input.button2{
+    min-width:42px;
+    height:30px;
+
+    padding:0 10px !important;
+
+    background:#111 !important;
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:.7px;
+    text-transform:uppercase;
+
+    box-shadow:none !important;
+}
+
+
+/* =========================================================
+   INCOMING TRANSMISSION TABLE
+   ========================================================= */
+
+form[name="privmsgs_list"] > .forabg{
+    margin:0 !important;
+    padding:0 !important;
+
+    background:#0b0b0b !important;
+
+    border:1px solid #242424 !important;
+    border-radius:0 !important;
+
+    box-shadow:none !important;
+}
+
+form[name="privmsgs_list"] > .forabg > .inner{
+    padding:0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   TABLE HEADER
+   Kill the stock white Subject / Select rail
+   --------------------------------------------------------- */
+
+form[name="privmsgs_list"] > .forabg ul.topiclist:first-of-type{
+    margin:0 !important;
+
+    background:#0d0d0d !important;
+
+    border-bottom:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+}
+
+form[name="privmsgs_list"] > .forabg li.header{
+    min-height:43px;
+
+    padding:0 !important;
+
+    background:transparent !important;
+
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+}
+
+form[name="privmsgs_list"] > .forabg li.header dl{
+    display:grid !important;
+    grid-template-columns:56px minmax(0,1fr) 80px;
+    align-items:center;
+
+    min-height:43px;
+
+    margin:0 !important;
+}
+
+form[name="privmsgs_list"] > .forabg li.header dt{
+    grid-column:2;
+
+    width:auto !important;
+
+    margin:0 !important;
+    padding:0 14px !important;
+
+    color:#f2f2f2 !important;
+}
+
+form[name="privmsgs_list"] > .forabg li.header dt::before{
+    content:"// ";
+
+    color:#b00020;
+}
+
+form[name="privmsgs_list"] > .forabg li.header dd{
+    width:auto !important;
+
+    margin:0 !important;
+    padding:0 14px !important;
+
+    color:#777 !important;
+    text-align:right;
+}
+
+
+/* =========================================================
+   TRANSMISSION RECORDS
+   ========================================================= */
+
+form[name="privmsgs_list"] ul.pmlist{
+    margin:0 !important;
+    padding:0 !important;
+
+    background:#080808 !important;
+
+    counter-reset:br-transmission;
+}
+
+form[name="privmsgs_list"] ul.pmlist > li.row{
+    position:relative;
+
+    min-height:74px;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    background:#111 !important;
+
+    border:0 !important;
+    border-bottom:1px solid #242424 !important;
+
+    counter-increment:br-transmission;
+
+    transition:none;
+}
+
+form[name="privmsgs_list"] ul.pmlist > li.row:nth-child(even){
+    background:#0e0e0e !important;
+}
+
+form[name="privmsgs_list"] ul.pmlist > li.row:last-child{
+    border-bottom:0 !important;
+}
+
+
+/* Subtle active registration line */
+
+form[name="privmsgs_list"] ul.pmlist > li.row::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:0;
+
+    width:28px;
+    height:1px;
+
+    background:#780014;
+
+    pointer-events:none;
+}
+
+
+/* ---------------------------------------------------------
+   ROW GRID
+   RECORD / STATUS / TRANSMISSION / SELECT
+   --------------------------------------------------------- */
+
+form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon{
+    position:relative;
+
+    display:grid !important;
+    grid-template-columns:42px 36px minmax(0,1fr) 80px;
+    align-items:center;
+
+    min-height:74px;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    background:none !important;
+}
+
+
+/* Record number */
+
+form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon::before{
+    content:counter(br-transmission, decimal-leading-zero);
+
+    grid-column:1;
+
+    justify-self:center;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+
+/* Existing Forumotion status icon */
+
+form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dd.icon{
+    grid-column:2;
+
+    position:relative !important;
+
+    width:24px !important;
+    height:24px !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    justify-self:center;
+
+    background:none !important;
+
+    border:1px solid #444 !important;
+    border-radius:50% !important;
+}
+
+
+/* Main transmission information */
+
+form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dt{
+    grid-column:3;
+
+    width:auto !important;
+    min-width:0;
+
+    margin:0 !important;
+    padding:10px 16px !important;
+
+    border:0 !important;
+}
+
+
+/* Subject */
+
+form[name="privmsgs_list"] ul.pmlist a.topictitle{
+    display:inline-block;
+
+    margin:0 0 6px !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif;
+    font-size:15px !important;
+    font-weight:600;
+    letter-spacing:.5px;
+    line-height:1.1;
+    text-transform:uppercase;
+
+    text-decoration:none !important;
+}
+
+form[name="privmsgs_list"] ul.pmlist a.topictitle::before{
+    color:#b00020;
+}
+
+
+/* Sender / date metadata */
+
+form[name="privmsgs_list"] ul.pmlist dt > span{
+    display:block;
+
+    margin:0 !important;
+
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-style:normal !important;
+    font-weight:500;
+    letter-spacing:.5px;
+    line-height:1.5;
+    text-transform:uppercase;
+}
+
+form[name="privmsgs_list"] ul.pmlist dt > span em{
+    color:#777 !important;
+    font-style:normal !important;
+}
+
+form[name="privmsgs_list"] ul.pmlist dt > span a{
+    color:#e06a16 !important;
+
+    font-style:normal !important;
+    font-weight:700;
+
+    text-decoration:none !important;
+}
+
+
+/* Selection cell */
+
+form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dd.mark{
+    grid-column:4;
+
+    width:auto !important;
+
+    margin:0 !important;
+    padding:0 14px !important;
+
+    justify-self:end;
+
+    border:0 !important;
+}
+
+
+/* Checkbox */
+
+form[name="privmsgs_list"] ul.pmlist dd.mark input[type="checkbox"]{
+    width:12px;
+    height:12px;
+
+    margin:0 !important;
+
+    accent-color:#b00020;
+
+    cursor:pointer;
+}
+
+
+/* ---------------------------------------------------------
+   RECORD INTERACTION
+   --------------------------------------------------------- */
+
+form[name="privmsgs_list"] ul.pmlist > li.row:hover{
+    background:#151515 !important;
+}
+
+form[name="privmsgs_list"] ul.pmlist > li.row:hover::after{
+    width:52px;
+    background:#b00020;
+}
+
+form[name="privmsgs_list"] ul.pmlist > li.row:hover a.topictitle{
+    color:#fff !important;
+}
+
+
+/* =========================================================
+   MARK ALL / UNMARK ALL
+   ========================================================= */
+
+form[name="privmsgs_list"] .mark-buttons,
+form[name="privmsgs_list"] .right-box a{
+    font-family:"JetBrains Mono",monospace;
+}
+
+
+/* =========================================================
+   BULK TRANSMISSION CONTROLS
+   ========================================================= */
+
+form[name="privmsgs_list"] fieldset.submit-buttons{
+    position:relative;
+
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px;
+
+    margin:14px 0 0 !important;
+    padding:42px 12px 12px !important;
+
+    background:#0d0d0d !important;
+
+    border:1px solid #242424 !important;
+    border-left:2px solid #b00020 !important;
+
+    text-align:left !important;
+}
+
+form[name="privmsgs_list"] fieldset.submit-buttons::before{
+    content:"// TRANSMISSION CONTROL";
+
+    position:absolute;
+
+    top:13px;
+    left:13px;
+
+    color:#f2f2f2;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+}
+
+form[name="privmsgs_list"] fieldset.submit-buttons::after{
+    content:"READY";
+
+    position:absolute;
+
+    top:13px;
+    right:13px;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1.3px;
+}
+
+form[name="privmsgs_list"] fieldset.submit-buttons input{
+    min-height:32px;
+
+    margin:0 !important;
+    padding:0 12px !important;
+
+    background:#111 !important;
+
+    border:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px !important;
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+
+    box-shadow:none !important;
+}
+
+form[name="privmsgs_list"] fieldset.submit-buttons input:hover{
+    background:#181818 !important;
+    border-color:#444 !important;
+}
+
+
+/* Delete operations */
+
+form[name="privmsgs_list"] fieldset.submit-buttons input[name*="delete"]{
+    border-left:2px solid #780014 !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width:760px){
+
+    form[name="privmsgs_list"] > .panel > .inner{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:10px;
+    }
+
+    form[name="privmsgs_list"] > .panel .right-box{
+        width:100% !important;
+        white-space:normal;
+    }
+
+    form[name="privmsgs_list"] > .forabg li.header dl{
+        grid-template-columns:42px minmax(0,1fr) 48px;
+    }
+
+    form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon{
+        grid-template-columns:30px 30px minmax(0,1fr) 42px;
+    }
+
+    form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon::before{
+        font-size:7px;
+    }
+
+    form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dt{
+        padding-left:10px !important;
+        padding-right:10px !important;
+    }
+
+    form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dd.mark{
+        padding-right:10px !important;
+    }
+
+    form[name="privmsgs_list"] fieldset.submit-buttons{
+        align-items:stretch;
+        flex-direction:column;
+    }
+
+    form[name="privmsgs_list"] fieldset.submit-buttons input{
+        width:100%;
+    }
+}
