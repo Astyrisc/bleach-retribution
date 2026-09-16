@@ -208,6 +208,126 @@ pointer-events:none;
 
 }
 /* =========================================================
+   POST VIEW // CHARACTER PRESENTATION v2.0
+   PASS 2A — CHARACTER RECORD
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   CHARACTER RECORD FRAME
+   --------------------------------------------------------- */
+
+.br-post .postprofile-info{
+    position:relative;
+
+    margin:16px 0 0 !important;
+    padding:34px 0 14px !important;
+
+    border-top:1px solid #303030 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:#f2f2f2;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:8px !important;
+    line-height:2 !important;
+
+    letter-spacing:.25px;
+}
+
+
+/* ---------------------------------------------------------
+   RECORD HEADER
+   --------------------------------------------------------- */
+
+.br-post .postprofile-info::before{
+    content:"// CHARACTER RECORD";
+
+    position:absolute;
+    top:10px;
+    left:0;
+
+    color:#f2f2f2;
+
+    font-family:"Oswald",sans-serif;
+    font-size:10px;
+    font-weight:600;
+
+    letter-spacing:.7px;
+    text-transform:uppercase;
+}
+
+
+/* crimson registration line */
+
+.br-post .postprofile-info::after{
+    content:"";
+
+    position:absolute;
+    top:15px;
+    right:0;
+
+    width:30px;
+    height:1px;
+
+    background:#b00020;
+}
+
+
+/* ---------------------------------------------------------
+   FIELD LABELS
+   --------------------------------------------------------- */
+
+.br-post .postprofile-info .label{
+    display:inline-block;
+
+    min-width:94px;
+
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px !important;
+    font-weight:700;
+
+    letter-spacing:.7px;
+    text-transform:uppercase;
+}
+
+
+/* Forumotion injects inline label colors */
+
+.br-post .postprofile-info .label span{
+    color:inherit !important;
+
+    font:inherit !important;
+
+    letter-spacing:inherit !important;
+    text-transform:inherit !important;
+}
+
+
+/* ---------------------------------------------------------
+   FIELD SEPARATORS
+   Remove the old Forumotion colon appearance
+   --------------------------------------------------------- */
+
+.br-post .postprofile-info .label{
+    font-size:0 !important;
+}
+
+.br-post .postprofile-info .label span{
+    font-size:7px !important;
+}
+
+
+/* ---------------------------------------------------------
+   RECORD SIGNAL
+   --------------------------------------------------------- */
+
+.br-post .postprofile-info::selection{
+    background:#b00020;
+}
+/* =========================================================
    RETRIBUTION // GLOBAL DESKTOP FRAME
    WIDTH CALIBRATION v1.0
    ========================================================= */
