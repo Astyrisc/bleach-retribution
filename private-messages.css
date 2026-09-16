@@ -749,3 +749,63 @@
     background:#e06a16;
     pointer-events:none;
 }
+/* =========================================================
+   PM COMPOSE CONTROL // NEW TRANSMISSION
+   ========================================================= */
+
+.pm-actions .button-round{
+    position:relative;
+
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+
+    width:38px !important;
+    height:38px !important;
+
+    background:#0d0d0d !important;
+
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    box-shadow:none !important;
+
+    font-size:17px !important;
+    line-height:1 !important;
+
+    transition:none;
+}
+
+
+/* Crimson registration mark */
+
+.pm-actions .button-round::after{
+    content:"";
+
+    position:absolute;
+
+    right:4px;
+    bottom:4px;
+
+    width:7px;
+    height:7px;
+
+    border-right:1px solid #b00020;
+    border-bottom:1px solid #b00020;
+
+    pointer-events:none;
+}
+
+
+/* Restrained active-state signal */
+
+.pm-actions .button-round:hover{
+    background:#111 !important;
+    border-color:#444 !important;
+    border-left-color:#b00020 !important;
+
+    color:#fff !important;
+}
