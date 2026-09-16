@@ -207,3 +207,19 @@ pointer-events:none;
     }
 
 }
+/* =========================================================
+   RETRIBUTION // GLOBAL DESKTOP FRAME
+   WIDTH CALIBRATION v1.0
+   ========================================================= */
+
+@media (min-width:1101px){
+
+    html body #wrap{
+        box-sizing:border-box !important;
+        width:calc(100% - 80px) !important;
+        max-width:1440px !important;
+        margin-left:auto !important;
+        margin-right:auto !important;
+    }
+
+}
