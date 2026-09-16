@@ -1471,3 +1471,590 @@ form[name="privmsg_list"] fieldset.submit-buttons input[name*="delete"]{
         width:100%;
     }
 }
+/* =========================================================
+   TRANSMISSION COMPOSER // PASS 1
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   PM COMPOSER SCOPE
+   --------------------------------------------------------- */
+
+form[name="post"]:has(.br-pm-compose-marker){
+    --br-compose-void:#080808;
+    --br-compose-ink:#111111;
+    --br-compose-obsidian:#181818;
+    --br-compose-ash:#242424;
+    --br-compose-paper:#f2f2f2;
+    --br-compose-smoke:#777777;
+    --br-compose-crimson:#b00020;
+    --br-compose-blood:#780014;
+    --br-compose-orange:#e06a16;
+    --br-compose-border:#303030;
+    --br-compose-border-light:#444444;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
+
+form[name="post"]:has(.br-pm-compose-marker) > h1.page-title{
+    position:relative;
+
+    margin:0 0 14px !important;
+    padding:14px 16px 13px 28px !important;
+
+    background:#0d0d0d;
+
+    border:1px solid #242424;
+    border-left:2px solid #b00020;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Oswald",sans-serif;
+    font-size:22px !important;
+    font-weight:600;
+    letter-spacing:.8px;
+    line-height:1;
+    text-transform:uppercase;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) > h1.page-title::before{
+    content:"//";
+
+    position:absolute;
+    left:11px;
+    top:50%;
+
+    color:#b00020;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:9px;
+
+    transform:translateY(-50%);
+}
+
+form[name="post"]:has(.br-pm-compose-marker) > h1.page-title::after{
+    content:"OUTBOUND // DRAFT";
+
+    position:absolute;
+    right:14px;
+    top:50%;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1.2px;
+
+    transform:translateY(-50%);
+}
+
+
+/* =========================================================
+   COMPOSITION TERMINAL
+   ========================================================= */
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox{
+    margin:0 !important;
+    padding:0 !important;
+
+    background:#0d0d0d !important;
+
+    border:1px solid #242424 !important;
+    border-left:2px solid #b00020 !important;
+    border-radius:0 !important;
+
+    box-shadow:none !important;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox > .inner{
+    padding:0 !important;
+}
+
+
+/* Stock internal title becomes subsystem header */
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox .h3{
+    position:relative;
+
+    margin:0 !important;
+    padding:13px 15px !important;
+
+    background:#111 !important;
+
+    border:0 !important;
+    border-bottom:1px solid #303030 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:8px !important;
+    font-weight:700;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox .h3::before{
+    content:"// ";
+    color:#b00020;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox .h3::after{
+    content:"CHANNEL // SECURE";
+
+    position:absolute;
+    right:15px;
+
+    color:#777;
+}
+
+
+/* =========================================================
+   RECIPIENT / SUBJECT CONFIGURATION
+   ========================================================= */
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox fieldset.fields1{
+    margin:0 !important;
+    padding:14px !important;
+
+    background:#0d0d0d !important;
+
+    border:0 !important;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox fieldset.fields1 > dl{
+    display:grid;
+    grid-template-columns:120px minmax(0,1fr);
+    align-items:center;
+
+    min-height:39px;
+
+    margin:0 !important;
+    padding:6px 0 !important;
+
+    border-bottom:1px solid #242424;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox fieldset.fields1 > dl:last-of-type{
+    margin-bottom:14px !important;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox fieldset.fields1 > dl > dt{
+    width:auto !important;
+
+    margin:0 !important;
+    padding:0 12px 0 0 !important;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox fieldset.fields1 > dl > dt label{
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px !important;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox fieldset.fields1 > dl > dd{
+    width:auto !important;
+
+    margin:0 !important;
+    padding:0 !important;
+}
+
+
+/* Inputs */
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox input.inputbox,
+form[name="post"]:has(.br-pm-compose-marker) #postingbox select{
+    min-height:32px;
+
+    background:#111 !important;
+
+    border:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"Inter",sans-serif;
+    font-size:10px !important;
+
+    box-shadow:none !important;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox input.inputbox:focus,
+form[name="post"]:has(.br-pm-compose-marker) #postingbox select:focus{
+    border-color:#444 !important;
+    border-left-color:#b00020 !important;
+
+    outline:none !important;
+}
+
+
+/* Username field */
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox input[name="username[]"]{
+    width:min(360px,70%) !important;
+}
+
+
+/* Subject gets greater width */
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox input[name="subject"]{
+    width:min(720px,100%) !important;
+}
+
+
+/* Utility buttons */
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox .button2{
+    min-height:32px;
+
+    padding:0 11px !important;
+
+    background:#111 !important;
+
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px !important;
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+
+    box-shadow:none !important;
+}
+
+
+/* =========================================================
+   MESSAGE COMPOSITION AREA
+   ========================================================= */
+
+form[name="post"]:has(.br-pm-compose-marker) #message-box{
+    position:relative;
+
+    margin-top:14px !important;
+    padding-top:31px;
+
+    background:#080808;
+    border-top:1px solid #303030;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #message-box::before{
+    content:"// MESSAGE COMPOSITION";
+
+    position:absolute;
+    top:10px;
+    left:0;
+
+    color:#f2f2f2;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1.2px;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #message-box::after{
+    content:"TERMINAL // READY";
+
+    position:absolute;
+    top:10px;
+    right:0;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1.2px;
+}
+
+
+/* SCEditor chassis */
+
+form[name="post"]:has(.br-pm-compose-marker) .sceditor-container{
+    background:#080808 !important;
+
+    border:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    box-shadow:none !important;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) .sceditor-toolbar{
+    padding:8px !important;
+
+    background:#111 !important;
+
+    border:0 !important;
+    border-bottom:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    box-shadow:none !important;
+}
+
+
+/* Preserve the document-like writing surface */
+
+form[name="post"]:has(.br-pm-compose-marker) .sceditor-container iframe,
+form[name="post"]:has(.br-pm-compose-marker) .sceditor-container textarea{
+    background:#f2f2f2 !important;
+
+    color:#111 !important;
+
+    border:0 !important;
+    border-radius:0 !important;
+
+    box-shadow:none !important;
+}
+
+
+/* =========================================================
+   EMOTICON / STATUS RAIL
+   ========================================================= */
+
+form[name="post"]:has(.br-pm-compose-marker) #smiley-box{
+    position:relative;
+
+    margin-top:14px !important;
+    padding:31px 10px 10px !important;
+
+    background:#0b0b0b !important;
+
+    border:1px solid #242424 !important;
+    border-left:1px solid #303030 !important;
+
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px !important;
+    line-height:1.7;
+    text-transform:uppercase;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #smiley-box::before{
+    content:"EMOTICON INDEX";
+
+    position:absolute;
+    top:9px;
+    left:10px;
+
+    color:#f2f2f2;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #smiley-box::after{
+    content:"●";
+
+    position:absolute;
+    top:8px;
+    right:10px;
+
+    color:#e06a16;
+
+    font-size:7px;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #smiley-box a{
+    color:#b00020 !important;
+}
+
+
+/* =========================================================
+   TRANSMISSION CONTROL
+   ========================================================= */
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox + .panel.row2{
+    margin:14px 0 0 !important;
+    padding:0 !important;
+
+    background:#0d0d0d !important;
+
+    border:1px solid #242424 !important;
+    border-left:2px solid #b00020 !important;
+
+    box-shadow:none !important;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox + .panel.row2 > .inner{
+    padding:0 !important;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox + .panel.row2 fieldset.submit-buttons{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:8px;
+
+    min-height:68px;
+
+    margin:0 !important;
+    padding:30px 12px 10px !important;
+
+    text-align:right !important;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox + .panel.row2 fieldset.submit-buttons::before{
+    content:"// TRANSMISSION CONTROL";
+
+    position:absolute;
+    top:10px;
+    left:12px;
+
+    color:#f2f2f2;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1.2px;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) #postingbox + .panel.row2 fieldset.submit-buttons::after{
+    content:"SIGNAL // READY";
+
+    position:absolute;
+    top:10px;
+    right:12px;
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1.2px;
+}
+
+
+/* Preview */
+
+form[name="post"]:has(.br-pm-compose-marker) input[name="preview"]{
+    min-height:34px;
+
+    padding:0 15px !important;
+
+    background:#111 !important;
+
+    border:1px solid #303030 !important;
+    border-radius:0 !important;
+
+    color:#f2f2f2 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px !important;
+    font-weight:700;
+    letter-spacing:.7px;
+    text-transform:uppercase;
+
+    box-shadow:none !important;
+}
+
+
+/* Send */
+
+form[name="post"]:has(.br-pm-compose-marker) input[name="post"]{
+    min-height:34px;
+
+    padding:0 17px !important;
+
+    background:#111 !important;
+
+    border:1px solid #303030 !important;
+    border-left:2px solid #b00020 !important;
+    border-radius:0 !important;
+
+    color:#fff !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px !important;
+    font-weight:700;
+    letter-spacing:.7px;
+    text-transform:uppercase;
+
+    box-shadow:none !important;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) input[name="post"]:hover,
+form[name="post"]:has(.br-pm-compose-marker) input[name="preview"]:hover{
+    background:#181818 !important;
+    border-color:#444 !important;
+}
+
+form[name="post"]:has(.br-pm-compose-marker) input[name="post"]:hover{
+    border-left-color:#b00020 !important;
+}
+
+
+/* =========================================================
+   OPTIONS
+   Preserve Forumotion functionality, integrate visually
+   ========================================================= */
+
+form[name="post"]:has(.br-pm-compose-marker) > .h3.forum-hideable{
+    margin:14px 0 0 !important;
+    padding:11px 13px !important;
+
+    background:#0b0b0b !important;
+
+    border:1px solid #242424 !important;
+    border-left:2px solid #780014 !important;
+
+    color:#777 !important;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px !important;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width:760px){
+
+    form[name="post"]:has(.br-pm-compose-marker) > h1.page-title{
+        padding-right:16px !important;
+    }
+
+    form[name="post"]:has(.br-pm-compose-marker) > h1.page-title::after{
+        display:none;
+    }
+
+    form[name="post"]:has(.br-pm-compose-marker) #postingbox fieldset.fields1 > dl{
+        grid-template-columns:1fr;
+        gap:6px;
+    }
+
+    form[name="post"]:has(.br-pm-compose-marker) #postingbox input[name="username[]"],
+    form[name="post"]:has(.br-pm-compose-marker) #postingbox input[name="subject"]{
+        width:100% !important;
+    }
+
+    form[name="post"]:has(.br-pm-compose-marker) #postingbox + .panel.row2 fieldset.submit-buttons{
+        align-items:stretch;
+        flex-direction:column;
+
+        padding-top:38px !important;
+    }
+
+    form[name="post"]:has(.br-pm-compose-marker) #postingbox + .panel.row2 fieldset.submit-buttons input{
+        width:100%;
+    }
+}
