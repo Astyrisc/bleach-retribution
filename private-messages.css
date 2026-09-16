@@ -809,3 +809,34 @@
 
     color:#fff !important;
 }
+/* Compose command label */
+
+.pm-actions{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:10px;
+}
+
+.pm-actions::before{
+    content:"COMPOSE // NEW";
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:600;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+
+    white-space:nowrap;
+}
+
+
+/* Compact display */
+
+@media (max-width:760px){
+    .pm-actions::before{
+        display:none;
+    }
+}
