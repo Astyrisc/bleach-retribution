@@ -3,7 +3,7 @@
    PRIVATE TRANSMISSION NETWORK
 
    TRANSMISSION PORTRAIT RESOLVER
-   VERSION 1.3
+   VERSION 1.3.1
 
    PURPOSE:
    - Resolve participants in a private-message conversation.
@@ -19,6 +19,20 @@
    - Public profile contains "Transmission Portrait".
    - Label is rendered inside a DT.
    - Associated value is rendered in the following DD.
+   - Public profile fields may contain both:
+       .field_uneditable
+       .field_editable
+   - Forumotion may represent an unavailable public value
+     with a "-" placeholder.
+
+   CACHE DEFENSE:
+   - Browser fetch cache is explicitly bypassed.
+   - Profile requests receive a unique cache-busting query.
+   - The stable profile URL remains the internal cache key.
+
+   FALLBACK POLICY:
+   - Never remove the Forumotion avatar before the custom
+     Transmission Portrait has successfully loaded.
    ========================================================= */
 
 
@@ -30,7 +44,9 @@ document.addEventListener("DOMContentLoaded", function () {
        ===================================================== */
 
     const transmissionReader =
-        document.querySelector(".br-pm-message");
+        document.querySelector(
+            ".br-pm-message"
+        );
 
 
     if (!transmissionReader) {
@@ -43,7 +59,19 @@ document.addEventListener("DOMContentLoaded", function () {
        02 // SYSTEM STATE
        ===================================================== */
 
-    const portraitCache = new Map();
+    /*
+     * This cache exists only for the current PM page load.
+     *
+     * It prevents the same participant profile from being
+     * fetched repeatedly when that member appears several
+     * times in Transmission History.
+     *
+     * This is intentionally separate from browser/network
+     * caching.
+     */
+
+    const portraitCache =
+        new Map();
 
 
 
@@ -61,51 +89,105 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    function isValidImageURL(value) {
-
-    if (!value) {
-        return false;
-    }
-
-
-    const cleanedValue =
-        value.trim();
-
-
     /*
-     * Transmission Portraits must be explicit
-     * absolute HTTP(S) URLs.
+     * Transmission Portraits must be explicit absolute
+     * HTTP(S) URLs.
      *
-     * This intentionally rejects Forumotion
-     * placeholders such as "-" and prevents
-     * relative paths from being interpreted
+     * IMPORTANT:
+     *
+     * Do NOT supply window.location.origin as a base to
+     * new URL().
+     *
+     * Doing so causes relative strings such as Forumotion's
+     * "-" placeholder to become syntactically valid URLs
      * against the forum origin.
      */
 
-    if (
-        !/^https?:\/\//i.test(cleanedValue)
-    ) {
+    function isValidImageURL(value) {
 
-        return false;
+        if (!value) {
+            return false;
+        }
+
+
+        const cleanedValue =
+            value.trim();
+
+
+        /*
+         * Reject:
+         *
+         * -
+         * avatar.png
+         * /images/avatar.png
+         *
+         * Accept only explicit:
+         *
+         * http://...
+         * https://...
+         */
+
+        if (
+            !/^https?:\/\//i.test(
+                cleanedValue
+            )
+        ) {
+
+            return false;
+        }
+
+
+        try {
+
+            const url =
+                new URL(
+                    cleanedValue
+                );
+
+
+            return (
+                url.protocol === "http:" ||
+                url.protocol === "https:"
+            );
+
+        } catch (error) {
+
+            return false;
+        }
     }
 
 
-    try {
 
-        const url =
-            new URL(cleanedValue);
+    /*
+     * Build a unique network URL without changing the
+     * stable profile URL used elsewhere by the resolver.
+     *
+     * Example:
+     *
+     * /u1
+     *
+     * becomes:
+     *
+     * /u1?_br=123456789
+     */
+
+    function buildCacheBustedProfileURL(
+        profileURL
+    ) {
+
+        const separator =
+            profileURL.includes("?")
+                ? "&"
+                : "?";
 
 
         return (
-            url.protocol === "http:" ||
-            url.protocol === "https:"
+            profileURL +
+            separator +
+            "_br=" +
+            Date.now()
         );
-
-    } catch (error) {
-
-        return false;
     }
-}
 
 
 
@@ -113,7 +195,9 @@ document.addEventListener("DOMContentLoaded", function () {
        04 // FETCH TRANSMISSION PORTRAIT
        ===================================================== */
 
-    async function getTransmissionPortrait(profileURL) {
+    async function getTransmissionPortrait(
+        profileURL
+    ) {
 
 
         if (!profileURL) {
@@ -121,12 +205,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+
         /*
          * If this member has already been resolved during
-         * this page load, use the cached result.
+         * this page load, use our own trusted in-memory
+         * result.
          */
 
-        if (portraitCache.has(profileURL)) {
+        if (
+            portraitCache.has(
+                profileURL
+            )
+        ) {
 
             return portraitCache.get(
                 profileURL
@@ -134,21 +224,45 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+
         try {
 
 
             /* ---------------------------------------------
                FETCH MEMBER PROFILE
+
+               IMPORTANT:
+
+               cache: "no-store" requests a fresh response.
+
+               The unique _br query additionally prevents
+               stale cached profile HTML from being reused
+               under the original /u# request URL.
                --------------------------------------------- */
 
+            const cacheBustedProfileURL =
+                buildCacheBustedProfileURL(
+                    profileURL
+                );
+
+
             const response =
-    await fetch(
-        profileURL,
-        {
-            credentials: "same-origin",
-            cache: "no-store"
-        }
-    );
+                await fetch(
+                    cacheBustedProfileURL,
+                    {
+                        credentials: "same-origin",
+                        cache: "no-store"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Profile request failed: " +
+                    response.status
+                );
+            }
 
 
 
@@ -161,10 +275,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             const profileDocument =
-                new DOMParser().parseFromString(
-                    html,
-                    "text/html"
-                );
+                new DOMParser()
+                    .parseFromString(
+                        html,
+                        "text/html"
+                    );
 
 
 
@@ -173,15 +288,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                IMPORTANT:
 
-               We intentionally DO NOT depend on Forumotion
-               field IDs such as field_id13.
+               Do not depend on Forumotion field IDs such
+               as field_id13.
 
-               Our diagnostics proved that Forumotion uses
-               different markup between editable and public
-               profile contexts.
+               Forumotion can use different field markup
+               between profile contexts.
 
-               Instead we locate the actual visible label:
-               "Transmission Portrait"
+               Locate the field by its actual label:
+               "Transmission Portrait".
                --------------------------------------------- */
 
             const portraitLabel =
@@ -189,16 +303,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     profileDocument.querySelectorAll(
                         "span"
                     )
-                ).find(function (element) {
+                ).find(
+                    function (element) {
 
-                    return (
-                        normalizeName(
-                            element.textContent
-                        ) ===
-                        "transmission portrait"
-                    );
-                });
-
+                        return (
+                            normalizeName(
+                                element.textContent
+                            ) ===
+                            "transmission portrait"
+                        );
+                    }
+                );
 
 
             if (!portraitLabel) {
@@ -216,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function () {
             /* ---------------------------------------------
                LOCATE ASSOCIATED VALUE
 
-               Verified structure:
+               Verified Forumotion structure:
 
                <dt>
                    <span>
@@ -230,7 +345,9 @@ document.addEventListener("DOMContentLoaded", function () {
                --------------------------------------------- */
 
             const labelDT =
-                portraitLabel.closest("dt");
+                portraitLabel.closest(
+                    "dt"
+                );
 
 
             if (!labelDT) {
@@ -251,7 +368,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (
                 !valueDD ||
-                valueDD.tagName.toLowerCase() !== "dd"
+                valueDD.tagName.toLowerCase() !==
+                    "dd"
             ) {
 
                 portraitCache.set(
@@ -266,57 +384,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
             /* ---------------------------------------------
                READ PUBLIC FIELD VALUE
+
+               Forumotion normally exposes the saved value
+               through .field_uneditable.
+
+               It may instead contain "-" when that
+               representation is unavailable/stale.
                --------------------------------------------- */
 
             const publicValue =
-    valueDD.querySelector(
-        ".field_uneditable"
-    );
+                valueDD.querySelector(
+                    ".field_uneditable"
+                );
 
 
-console.log(
-    "RETRIBUTION // PROFILE FIELD DEBUG",
-    {
-        profileURL: profileURL,
-
-        label: portraitLabel
-            ? portraitLabel.textContent.trim()
-            : null,
-
-        dt: labelDT
-            ? labelDT.outerHTML
-            : null,
-
-        dd: valueDD
-            ? valueDD.outerHTML
-            : null,
-
-        publicValue: publicValue
-            ? publicValue.textContent.trim()
-            : null
-    }
-);
+            let portraitURL =
+                publicValue
+                    ? publicValue.textContent.trim()
+                    : "";
 
 
-let portraitURL =
-    publicValue
-        ? publicValue.textContent.trim()
-        : "";
 
             /* ---------------------------------------------
-               FALLBACK TO EDITABLE INPUT
+               FALLBACK TO EDITABLE FIELD VALUE
 
-               Forumotion may also provide a hidden editable
-               representation of the same field.
+               Verified public profile markup may also
+               contain:
 
-               We use it only when the public value is not a
-               usable URL.
+               .field_editable
+                   input[type="text"]
+
+               If the public representation is unusable,
+               inspect that hidden editable representation.
                --------------------------------------------- */
 
-            if (!isValidImageURL(portraitURL)) {
-
+            if (
+                !isValidImageURL(
+                    portraitURL
+                )
+            ) {
 
                 const editableInput =
+                    valueDD.querySelector(
+                        ".field_editable input[type='text']"
+                    ) ||
                     valueDD.querySelector(
                         "input[type='text']"
                     );
@@ -337,10 +448,14 @@ let portraitURL =
 
 
             /* ---------------------------------------------
-               VALIDATE RESULT
+               VALIDATE FINAL RESULT
                --------------------------------------------- */
 
-            if (!isValidImageURL(portraitURL)) {
+            if (
+                !isValidImageURL(
+                    portraitURL
+                )
+            ) {
 
                 portraitCache.set(
                     profileURL,
@@ -354,6 +469,9 @@ let portraitURL =
 
             /* ---------------------------------------------
                CACHE SUCCESS
+
+               Store against the stable /u# URL rather than
+               the temporary cache-busted network URL.
                --------------------------------------------- */
 
             portraitCache.set(
@@ -389,34 +507,28 @@ let portraitURL =
 
 
     /* =====================================================
-   05 // INSTALL TRANSMISSION PORTRAIT
-   ===================================================== */
+       05 // INSTALL TRANSMISSION PORTRAIT
+       ===================================================== */
 
-function installPortrait(
-    container,
-    portraitURL
-) {
-
-    console.log(
-        "RETRIBUTION // INSTALL PORTRAIT DEBUG",
-        {
-            container: container,
-            portraitURL: portraitURL
-        }
-    );
-
-
-    if (
-        !container ||
-        !portraitURL
+    function installPortrait(
+        container,
+        portraitURL
     ) {
 
-        return;
-    }
+
+        if (
+            !container ||
+            !portraitURL
+        ) {
+
+            return;
+        }
 
 
-    const image =
-        new Image();
+
+        const image =
+            new Image();
+
 
 
         /*
@@ -429,29 +541,31 @@ function installPortrait(
          * This guarantees graceful fallback.
          */
 
-        image.onload = function () {
+        image.onload =
+            function () {
 
 
-            container.innerHTML = "";
+                container.innerHTML =
+                    "";
 
 
-            image.alt =
-                "Transmission Portrait";
+                image.alt =
+                    "Transmission Portrait";
 
 
-            image.className =
-                "br-transmission-portrait";
+                image.className =
+                    "br-transmission-portrait";
 
 
-            container.appendChild(
-                image
-            );
+                container.appendChild(
+                    image
+                );
 
 
-            container.classList.add(
-                "br-pm-custom-portrait"
-            );
-        };
+                container.classList.add(
+                    "br-pm-custom-portrait"
+                );
+            };
 
 
 
@@ -460,17 +574,19 @@ function installPortrait(
          *
          * Do nothing.
          *
-         * Existing avatar or black fallback remains.
+         * Existing Forumotion avatar or black fallback
+         * remains intact.
          */
 
-        image.onerror = function () {
+        image.onerror =
+            function () {
 
 
-            console.warn(
-                "RETRIBUTION // Transmission Portrait image failed:",
-                portraitURL
-            );
-        };
+                console.warn(
+                    "RETRIBUTION // Transmission Portrait image failed:",
+                    portraitURL
+                );
+            };
 
 
 
@@ -531,7 +647,8 @@ function installPortrait(
         );
 
 
-    let selfName = "";
+    let selfName =
+        "";
 
 
 
@@ -603,7 +720,7 @@ function installPortrait(
          *
          * Therefore we NEVER use the first /u# link.
          *
-         * We match the link's visible username instead.
+         * Match the link's visible username instead.
          */
 
         const match =
@@ -621,9 +738,10 @@ function installPortrait(
             );
 
 
-
         return match
-            ? match.getAttribute("href")
+            ? match.getAttribute(
+                "href"
+            )
             : null;
     }
 
@@ -711,7 +829,6 @@ function installPortrait(
             );
 
 
-
         installPortrait(
             portraitContainer,
             portraitURL
@@ -752,7 +869,6 @@ function installPortrait(
                 );
 
 
-
             if (
                 !nameElement ||
                 !portraitContainer
@@ -767,7 +883,6 @@ function installPortrait(
                 normalizeName(
                     nameElement.textContent
                 );
-
 
 
             const profileURL =
@@ -797,9 +912,10 @@ function installPortrait(
 
 
             /*
-             * Member has no custom Transmission Portrait?
+             * Member has no dedicated Transmission Portrait?
              *
-             * Preserve normal avatar / black fallback.
+             * Preserve normal Forumotion avatar / black
+             * fallback.
              */
 
             if (!portraitURL) {
