@@ -850,7 +850,7 @@
    INBOX SCOPE
    --------------------------------------------------------- */
 
-form[name="privmsgs_list"]{
+form[name="privmsg_list"]
     --br-pm-void:#080808;
     --br-pm-ink:#111;
     --br-pm-obsidian:#181818;
@@ -869,7 +869,7 @@ form[name="privmsgs_list"]{
    CAPACITY / FILTER TELEMETRY
    ========================================================= */
 
-form[name="privmsgs_list"] > .panel{
+form[name="privmsg_list"] > .panel{
     position:relative;
 
     margin:18px 0 14px !important;
@@ -883,7 +883,7 @@ form[name="privmsgs_list"] > .panel{
     box-shadow:none !important;
 }
 
-form[name="privmsgs_list"] > .panel > .inner{
+form[name="privmsg_list"] > .panel > .inner{
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -894,8 +894,8 @@ form[name="privmsgs_list"] > .panel > .inner{
     padding:11px 14px !important;
 }
 
-form[name="privmsgs_list"] > .panel .left-box,
-form[name="privmsgs_list"] > .panel .right-box{
+form[name="privmsg_list"] > .panel .left-box,
+form[name="privmsg_list"] > .panel .right-box{
     float:none !important;
 
     width:auto !important;
@@ -916,7 +916,7 @@ form[name="privmsgs_list"] > .panel .right-box{
 
 /* Capacity identity */
 
-form[name="privmsgs_list"] > .panel .left-box{
+form[name="privmsg_list"] > .panel .left-box{
     position:relative;
 
     display:flex;
@@ -927,7 +927,7 @@ form[name="privmsgs_list"] > .panel .left-box{
     color:#f2f2f2;
 }
 
-form[name="privmsgs_list"] > .panel .left-box::before{
+form[name="privmsg_list"] > .panel .left-box::before{
     content:"";
 
     position:absolute;
@@ -946,7 +946,7 @@ form[name="privmsgs_list"] > .panel .left-box::before{
 
 /* Filter controls */
 
-form[name="privmsgs_list"] > .panel .right-box{
+form[name="privmsg_list"] > .panel .right-box{
     display:flex;
     align-items:center;
     gap:8px;
@@ -954,7 +954,7 @@ form[name="privmsgs_list"] > .panel .right-box{
     white-space:nowrap;
 }
 
-form[name="privmsgs_list"] > .panel select{
+form[name="privmsg_list"] > .panel select{
     height:30px;
 
     padding:0 28px 0 9px;
@@ -971,7 +971,7 @@ form[name="privmsgs_list"] > .panel select{
     box-shadow:none !important;
 }
 
-form[name="privmsgs_list"] > .panel input.button2{
+form[name="privmsg_list"] > .panel input.button2{
     min-width:42px;
     height:30px;
 
@@ -998,7 +998,7 @@ form[name="privmsgs_list"] > .panel input.button2{
    INCOMING TRANSMISSION TABLE
    ========================================================= */
 
-form[name="privmsgs_list"] > .forabg{
+form[name="privmsg_list"] > .forabg{
     margin:0 !important;
     padding:0 !important;
 
@@ -1010,7 +1010,7 @@ form[name="privmsgs_list"] > .forabg{
     box-shadow:none !important;
 }
 
-form[name="privmsgs_list"] > .forabg > .inner{
+form[name="privmsg_list"] > .forabg > .inner{
     padding:0 !important;
 }
 
@@ -1020,7 +1020,7 @@ form[name="privmsgs_list"] > .forabg > .inner{
    Kill the stock white Subject / Select rail
    --------------------------------------------------------- */
 
-form[name="privmsgs_list"] > .forabg ul.topiclist:first-of-type{
+form[name="privmsg_list"] > .forabg ul.topiclist:first-of-type{
     margin:0 !important;
 
     background:#0d0d0d !important;
@@ -1029,7 +1029,7 @@ form[name="privmsgs_list"] > .forabg ul.topiclist:first-of-type{
     border-left:2px solid #b00020 !important;
 }
 
-form[name="privmsgs_list"] > .forabg li.header{
+form[name="privmsg_list"] > .forabg li.header{
     min-height:43px;
 
     padding:0 !important;
@@ -1045,7 +1045,7 @@ form[name="privmsgs_list"] > .forabg li.header{
     text-transform:uppercase;
 }
 
-form[name="privmsgs_list"] > .forabg li.header dl{
+form[name="privmsg_list"] > .forabg li.header dl{
     display:grid !important;
     grid-template-columns:56px minmax(0,1fr) 80px;
     align-items:center;
@@ -1055,7 +1055,7 @@ form[name="privmsgs_list"] > .forabg li.header dl{
     margin:0 !important;
 }
 
-form[name="privmsgs_list"] > .forabg li.header dt{
+form[name="privmsg_list"] > .forabg li.header dt{
     grid-column:2;
 
     width:auto !important;
@@ -1066,13 +1066,13 @@ form[name="privmsgs_list"] > .forabg li.header dt{
     color:#f2f2f2 !important;
 }
 
-form[name="privmsgs_list"] > .forabg li.header dt::before{
+form[name="privmsg_list"] > .forabg li.header dt::before{
     content:"// ";
 
     color:#b00020;
 }
 
-form[name="privmsgs_list"] > .forabg li.header dd{
+form[name="privmsg_list"] > .forabg li.header dd{
     width:auto !important;
 
     margin:0 !important;
@@ -1087,7 +1087,7 @@ form[name="privmsgs_list"] > .forabg li.header dd{
    TRANSMISSION RECORDS
    ========================================================= */
 
-form[name="privmsgs_list"] ul.pmlist{
+form[name="privmsg_list"] ul.pmlist{
     margin:0 !important;
     padding:0 !important;
 
@@ -1096,7 +1096,7 @@ form[name="privmsgs_list"] ul.pmlist{
     counter-reset:br-transmission;
 }
 
-form[name="privmsgs_list"] ul.pmlist > li.row{
+form[name="privmsg_list"] ul.pmlist > li.row{
     position:relative;
 
     min-height:74px;
@@ -1114,7 +1114,7 @@ form[name="privmsgs_list"] ul.pmlist > li.row{
     transition:none;
 }
 
-form[name="privmsgs_list"] ul.pmlist > li.row:nth-child(even){
+form[name="privmsg_list"] ul.pmlist > li.row:nth-child(even){
     background:#0e0e0e !important;
 }
 
@@ -1125,7 +1125,7 @@ form[name="privmsgs_list"] ul.pmlist > li.row:last-child{
 
 /* Subtle active registration line */
 
-form[name="privmsgs_list"] ul.pmlist > li.row::after{
+form[name="privmsg_list"] ul.pmlist > li.row::after{
     content:"";
 
     position:absolute;
@@ -1147,7 +1147,7 @@ form[name="privmsgs_list"] ul.pmlist > li.row::after{
    RECORD / STATUS / TRANSMISSION / SELECT
    --------------------------------------------------------- */
 
-form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon{
+form[name="privmsg_list"] ul.pmlist > li.row > dl.icon{
     position:relative;
 
     display:grid !important;
@@ -1165,7 +1165,7 @@ form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon{
 
 /* Record number */
 
-form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon::before{
+form[name="privmsg_list"] ul.pmlist > li.row > dl.icon::before{
     content:counter(br-transmission, decimal-leading-zero);
 
     grid-column:1;
@@ -1183,7 +1183,7 @@ form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon::before{
 
 /* Existing Forumotion status icon */
 
-form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dd.icon{
+form[name="privmsg_list"] ul.pmlist > li.row > dl.icon > dd.icon{
     grid-column:2;
 
     position:relative !important;
@@ -1205,7 +1205,7 @@ form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dd.icon{
 
 /* Main transmission information */
 
-form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dt{
+form[name="privmsg_list"] ul.pmlist > li.row > dl.icon > dt{
     grid-column:3;
 
     width:auto !important;
@@ -1220,7 +1220,7 @@ form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dt{
 
 /* Subject */
 
-form[name="privmsgs_list"] ul.pmlist a.topictitle{
+form[name="privmsg_list"] ul.pmlist a.topictitle{
     display:inline-block;
 
     margin:0 0 6px !important;
@@ -1237,14 +1237,14 @@ form[name="privmsgs_list"] ul.pmlist a.topictitle{
     text-decoration:none !important;
 }
 
-form[name="privmsgs_list"] ul.pmlist a.topictitle::before{
+form[name="privmsg_list"] ul.pmlist a.topictitle::before{
     color:#b00020;
 }
 
 
 /* Sender / date metadata */
 
-form[name="privmsgs_list"] ul.pmlist dt > span{
+form[name="privmsg_list"] ul.pmlist dt > span{
     display:block;
 
     margin:0 !important;
@@ -1260,12 +1260,12 @@ form[name="privmsgs_list"] ul.pmlist dt > span{
     text-transform:uppercase;
 }
 
-form[name="privmsgs_list"] ul.pmlist dt > span em{
+form[name="privmsg_list"] ul.pmlist dt > span em{
     color:#777 !important;
     font-style:normal !important;
 }
 
-form[name="privmsgs_list"] ul.pmlist dt > span a{
+form[name="privmsg_list"] ul.pmlist dt > span a{
     color:#e06a16 !important;
 
     font-style:normal !important;
@@ -1277,7 +1277,7 @@ form[name="privmsgs_list"] ul.pmlist dt > span a{
 
 /* Selection cell */
 
-form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dd.mark{
+form[name="privmsg_list"] ul.pmlist > li.row > dl.icon > dd.mark{
     grid-column:4;
 
     width:auto !important;
@@ -1293,7 +1293,7 @@ form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dd.mark{
 
 /* Checkbox */
 
-form[name="privmsgs_list"] ul.pmlist dd.mark input[type="checkbox"]{
+form[name="privmsg_list"] ul.pmlist dd.mark input[type="checkbox"]{
     width:12px;
     height:12px;
 
@@ -1309,16 +1309,16 @@ form[name="privmsgs_list"] ul.pmlist dd.mark input[type="checkbox"]{
    RECORD INTERACTION
    --------------------------------------------------------- */
 
-form[name="privmsgs_list"] ul.pmlist > li.row:hover{
+form[name="privmsg_list"] ul.pmlist > li.row:hover{
     background:#151515 !important;
 }
 
-form[name="privmsgs_list"] ul.pmlist > li.row:hover::after{
+form[name="privmsg_list"] ul.pmlist > li.row:hover::after{
     width:52px;
     background:#b00020;
 }
 
-form[name="privmsgs_list"] ul.pmlist > li.row:hover a.topictitle{
+form[name="privmsg_list"] ul.pmlist > li.row:hover a.topictitle{
     color:#fff !important;
 }
 
@@ -1327,8 +1327,8 @@ form[name="privmsgs_list"] ul.pmlist > li.row:hover a.topictitle{
    MARK ALL / UNMARK ALL
    ========================================================= */
 
-form[name="privmsgs_list"] .mark-buttons,
-form[name="privmsgs_list"] .right-box a{
+form[name="privmsg_list"] .mark-buttons,
+form[name="privmsg_list"] .right-box a{
     font-family:"JetBrains Mono",monospace;
 }
 
@@ -1337,7 +1337,7 @@ form[name="privmsgs_list"] .right-box a{
    BULK TRANSMISSION CONTROLS
    ========================================================= */
 
-form[name="privmsgs_list"] fieldset.submit-buttons{
+form[name="privmsg_list"] fieldset.submit-buttons{
     position:relative;
 
     display:flex;
@@ -1356,7 +1356,7 @@ form[name="privmsgs_list"] fieldset.submit-buttons{
     text-align:left !important;
 }
 
-form[name="privmsgs_list"] fieldset.submit-buttons::before{
+form[name="privmsg_list"] fieldset.submit-buttons::before{
     content:"// TRANSMISSION CONTROL";
 
     position:absolute;
@@ -1373,7 +1373,7 @@ form[name="privmsgs_list"] fieldset.submit-buttons::before{
     text-transform:uppercase;
 }
 
-form[name="privmsgs_list"] fieldset.submit-buttons::after{
+form[name="privmsg_list"] fieldset.submit-buttons::after{
     content:"READY";
 
     position:absolute;
@@ -1389,7 +1389,7 @@ form[name="privmsgs_list"] fieldset.submit-buttons::after{
     letter-spacing:1.3px;
 }
 
-form[name="privmsgs_list"] fieldset.submit-buttons input{
+form[name="privmsg_list"] fieldset.submit-buttons input{
     min-height:32px;
 
     margin:0 !important;
@@ -1411,7 +1411,7 @@ form[name="privmsgs_list"] fieldset.submit-buttons input{
     box-shadow:none !important;
 }
 
-form[name="privmsgs_list"] fieldset.submit-buttons input:hover{
+form[name="privmsg_list"] fieldset.submit-buttons input:hover{
     background:#181818 !important;
     border-color:#444 !important;
 }
@@ -1419,7 +1419,7 @@ form[name="privmsgs_list"] fieldset.submit-buttons input:hover{
 
 /* Delete operations */
 
-form[name="privmsgs_list"] fieldset.submit-buttons input[name*="delete"]{
+form[name="privmsg_list"] fieldset.submit-buttons input[name*="delete"]{
     border-left:2px solid #780014 !important;
 }
 
@@ -1430,44 +1430,44 @@ form[name="privmsgs_list"] fieldset.submit-buttons input[name*="delete"]{
 
 @media (max-width:760px){
 
-    form[name="privmsgs_list"] > .panel > .inner{
+    form[name="privmsg_list"] > .panel > .inner{
         align-items:flex-start;
         flex-direction:column;
         gap:10px;
     }
 
-    form[name="privmsgs_list"] > .panel .right-box{
+    form[name="privmsg_list"] > .panel .right-box{
         width:100% !important;
         white-space:normal;
     }
 
-    form[name="privmsgs_list"] > .forabg li.header dl{
+    form[name="privmsg_list"] > .forabg li.header dl{
         grid-template-columns:42px minmax(0,1fr) 48px;
     }
 
-    form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon{
+    form[name="privmsg_list"] ul.pmlist > li.row > dl.icon{
         grid-template-columns:30px 30px minmax(0,1fr) 42px;
     }
 
-    form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon::before{
+    form[name="privmsg_list"] ul.pmlist > li.row > dl.icon::before{
         font-size:7px;
     }
 
-    form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dt{
+    form[name="privmsg_list"] ul.pmlist > li.row > dl.icon > dt{
         padding-left:10px !important;
         padding-right:10px !important;
     }
 
-    form[name="privmsgs_list"] ul.pmlist > li.row > dl.icon > dd.mark{
+    form[name="privmsg_list"] ul.pmlist > li.row > dl.icon > dd.mark{
         padding-right:10px !important;
     }
 
-    form[name="privmsgs_list"] fieldset.submit-buttons{
+    form[name="privmsg_list"] fieldset.submit-buttons{
         align-items:stretch;
         flex-direction:column;
     }
 
-    form[name="privmsgs_list"] fieldset.submit-buttons input{
+    form[name="privmsg_list"] fieldset.submit-buttons input{
         width:100%;
     }
 }
