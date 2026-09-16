@@ -2394,3 +2394,165 @@ form[action*="folder=outbox"][name="privmsg_list"]
     font-weight:700;
     letter-spacing:1px;
 }
+/* =========================================================
+   TRANSMISSION INDEX // SAVEBOX
+   ARCHIVED TRANSMISSIONS
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   SAVEBOX HEADER IDENTITY
+   --------------------------------------------------------- */
+
+form[action*="folder=savebox"][name="privmsg_list"]
+.forabg > .inner > .topiclist:first-of-type
+li.header dt{
+    font-size:0 !important;
+}
+
+form[action*="folder=savebox"][name="privmsg_list"]
+.forabg > .inner > .topiclist:first-of-type
+li.header dt::before{
+    content:"// ARCHIVED TRANSMISSIONS";
+
+    color:#f2f2f2;
+
+    font-family:"Oswald",sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.7px;
+    text-transform:uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   SAVEBOX ARCHIVE STATUS
+   --------------------------------------------------------- */
+
+form[action*="folder=savebox"][name="privmsg_list"]
+.forabg > .inner > .topiclist:first-of-type
+li.header dd.mark{
+    font-size:0 !important;
+}
+
+form[action*="folder=savebox"][name="privmsg_list"]
+.forabg > .inner > .topiclist:first-of-type
+li.header dd.mark::before{
+    content:"PRESERVED RECORDS // SECURE";
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   SAVEBOX CAPACITY SIGNAL
+   --------------------------------------------------------- */
+
+form[action*="folder=savebox"][name="privmsg_list"]
+> .panel:first-of-type .left-box::before{
+    content:"●";
+
+    margin-right:8px;
+
+    color:#e06a16;
+
+    font-size:6px;
+    vertical-align:1px;
+}
+
+
+/* ---------------------------------------------------------
+   ARCHIVED RECORD MARKER
+   Applies when preserved messages exist
+   --------------------------------------------------------- */
+
+form[action*="folder=savebox"][name="privmsg_list"]
+.topiclist.pmlist li.row .topictitle::before{
+    content:"◆";
+
+    margin-right:5px;
+
+    color:#b00020;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:6px;
+    font-weight:700;
+    vertical-align:1px;
+}
+
+
+/* ---------------------------------------------------------
+   EMPTY ARCHIVE STATE
+   --------------------------------------------------------- */
+
+form[action*="folder=savebox"][name="privmsg_list"]
+.topiclist.pmlist li.row dt:has(> strong){
+    position:relative;
+
+    min-height:54px;
+
+    display:flex;
+    align-items:center;
+
+    padding-left:60px !important;
+}
+
+
+/* zero-record index */
+
+form[action*="folder=savebox"][name="privmsg_list"]
+.topiclist.pmlist li.row dt:has(> strong)::before{
+    content:"00";
+
+    position:absolute;
+    left:10px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+
+/* replace stock empty-folder presentation */
+
+form[action*="folder=savebox"][name="privmsg_list"]
+.topiclist.pmlist li.row dt > strong{
+    font-size:0 !important;
+}
+
+form[action*="folder=savebox"][name="privmsg_list"]
+.topiclist.pmlist li.row dt > strong::before{
+    content:"NO TRANSMISSIONS PRESERVED";
+
+    color:#f2f2f2;
+
+    font-family:"Oswald",sans-serif;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+}
+
+form[action*="folder=savebox"][name="privmsg_list"]
+.topiclist.pmlist li.row dt > strong::after{
+    content:"  //  ARCHIVE EMPTY";
+
+    color:#777;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:7px;
+    font-weight:700;
+    letter-spacing:1px;
+}
