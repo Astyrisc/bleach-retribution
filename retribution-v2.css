@@ -1,18 +1,35 @@
 /* =========================================================
    BLEACH // RETRIBUTION
-   MASTER STYLESHEET v2.0 // CONSOLIDATED DEVELOPMENT BUILD
+   MASTER STYLESHEET v2.0
+   FULL ARCHITECTURAL REWRITE // RELEASE CANDIDATE 02
 
-   Architecture:
-   - retribution.css  : global shell, forum index, topics, posts, utilities, footer
-   - profile.css      : member profiles + UCP
-   - private-messages.css : PM network
+   OWNERSHIP
+   retribution.css
+     Global shell, homepage, forum/topic views, posts,
+     posting utilities and footer.
 
-   This file was rebuilt from the live GitHub stylesheet on 2026-09-17.
-   The cascade is intentionally preserved while restoring readable source.
+   profile.css
+     Member profiles and User Control Panel.
+
+   private-messages.css
+     Private Transmission Network.
+
+   MAINTENANCE PRINCIPLES
+   1. One named architectural section per system.
+   2. Preserve Forumotion functionality before decoration.
+   3. Explain unusual platform workarounds, not obvious CSS.
+   4. Crimson builds the interface.
+   5. Orange indicates live telemetry.
+   6. Character artwork is presentation, not metadata.
+   ========================================================= */
+
+/* =========================================================
+   00 // DESIGN SYSTEM
+
+   Foundation tokens, typography, generic controls and global element treatment.
    ========================================================= */
 
 :root {
-
     --br-void: #080808;
     --br-ink: #111;
     --br-panel: #181818;
@@ -25,222 +42,164 @@
     --br-red: #b00020;
     --br-blood: #780014;
     --br-pink: #d0005b;
-
+    --br-orange: #e06a16;
+    --br-orange-soft: #f28a2a;
+    --br-content: #e8e8e8;
+    --br-post-rail: 290px;
+    --br-post-gutter: 30px;
+    --br-post-offset: 320px;
 }
 
 html,body {
-
     background: var(--br-void);
-
 }
 
 body {
-
     color: #e8e8e8;
     font-family: "Inter",Arial,sans-serif;
     background-color: var(--br-void);
     background-image: radial-gradient(circle at 20% 10%,rgba(255,255,255,.018),transparent 24%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.012),transparent 30%);
-
 }
 
 #wrap {
-
     background: var(--br-ink);
     color: #e8e8e8;
-
 }
 
 a {
-
     color: var(--br-pink);
     text-decoration: none;
-
 }
 
 a:visited {
-
     color: #a00046;
-
 }
 
 a:hover {
-
     color: #ff1744;
     text-decoration: none;
-
 }
 
 a:active {
-
     color: var(--br-red);
-
 }
 
 h1,h2,h3,h4,h5,h6 {
-
     font-family: "Oswald",Arial,sans-serif;
     color: var(--br-paper);
-
 }
 
 ::selection {
-
     background: var(--br-red);
     color: var(--br-white);
-
 }
 
 .panel,.module {
-
     background: var(--br-panel);
     border-color: var(--br-border);
     box-shadow: none;
-
-}
-
-.post {
-
-    background: var(--br-panel);
-    border: 1px solid var(--br-border);
-    box-shadow: none;
-
-}
-
-.postbody {
-
-    color: #e8e8e8;
-
-}
-
-.postprofile {
-
-    background: var(--br-ink);
-    border-color: var(--br-border);
-
 }
 
 blockquote {
-
     background: var(--br-ink);
     border-left: 3px solid var(--br-red);
     color: #cfcfcf;
-
 }
 
 .codebox {
-
     background: var(--br-panel);
     border: 1px solid var(--br-border);
-
 }
 
 .codebox code {
-
     font-family: "JetBrains Mono",monospace;
-
 }
 
 .button,.button1,.button2,input[type="submit"],input[type="button"] {
-
     background: var(--br-panel);
     border: 1px solid var(--br-border2);
     border-radius: 0;
     color: var(--br-paper);
     transition: .15s;
-
 }
 
 .button:hover,.button1:hover,.button2:hover,input[type="submit"]:hover,input[type="button"]:hover {
-
     background: var(--br-red);
     border-color: var(--br-red);
     color: var(--br-white);
-
 }
 
 input,textarea,select {
-
     background: var(--br-paper);
     color: var(--br-ink);
     border: 1px solid #3a3a3a;
     border-radius: 0;
-
 }
 
 .sceditor-container {
-
     background: var(--br-panel) !important;
     border-color: var(--br-border) !important;
-
 }
 
 .sceditor-toolbar {
-
     background: var(--br-panel) !important;
-
 }
 
 .sceditor-container textarea {
-
     background: var(--br-paper) !important;
     color: var(--br-ink) !important;
-
 }
 
 table {
-
     border-color: var(--br-border);
-
 }
 
 thead,th {
-
     background: var(--br-ink);
     color: var(--br-paper);
-
 }
 
 td {
-
     border-color: var(--br-border);
-
 }
 
 hr {
-
     height: 1px;
     border: 0;
     background: linear-gradient(90deg,var(--br-red),var(--br-border),transparent);
-
 }
 
 ::-webkit-scrollbar {
-
     width: 10px;
-
 }
 
 ::-webkit-scrollbar-track {
-
     background: var(--br-void);
-
 }
 
 ::-webkit-scrollbar-thumb {
-
     background: #3a3a3a;
     border: 2px solid var(--br-void);
-
 }
 
 ::-webkit-scrollbar-thumb:hover {
-
     background: var(--br-red);
+}
 
+/* =========================================================
+   01 // GLOBAL FRAME
+
+   Site geometry, masthead and primary navigation. The 84% outer wrapper is canonical.
+   ========================================================= */
+
+#outer-wrapper {
+    width: 84%;
+    max-width: 1680px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .br-masthead {
-
     position: relative;
     width: auto !important;
     max-width: 1050px !important;
@@ -250,11 +209,9 @@ hr {
     background: radial-gradient(circle at 75% 30%,rgba(255,255,255,.035),transparent 30%),linear-gradient(112deg,var(--br-void) 0%,var(--br-void) 68%,var(--br-ink) 68%,var(--br-ink) 100%);
     border-top: 1px solid var(--br-ash);
     border-bottom: 2px solid var(--br-red);
-
 }
 
 .br-masthead-bgtext {
-
     position: absolute;
     right: -10px;
     bottom: -35px;
@@ -266,11 +223,9 @@ hr {
     color: rgba(255,255,255,.035);
     pointer-events: none;
     user-select: none;
-
 }
 
 .br-masthead-accent {
-
     position: absolute;
     left: 0;
     top: 39px;
@@ -279,54 +234,44 @@ hr {
     background: var(--br-red);
     box-shadow: 8px 18px 0 rgba(208,0,91,.22);
     transform: skewY(-11deg);
-
 }
 
 .br-masthead-content {
-
     position: absolute;
     left: 46px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 2;
-
 }
 
 .br-masthead-series {
-
     margin-bottom: 4px;
     font-family: "Inter",Arial,sans-serif;
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 7px;
     color: var(--br-red);
-
 }
 
 .br-masthead-title {
-
     font-family: "Oswald",Arial,sans-serif;
     font-size: clamp(44px,5.5vw,76px);
     font-weight: 700;
     line-height: .9;
     letter-spacing: -2px;
     color: var(--br-paper);
-
 }
 
 .br-masthead-subtitle {
-
     margin-top: 14px;
     font-family: "Inter",Arial,sans-serif;
     font-size: 9px;
     font-weight: 500;
     letter-spacing: 3.5px;
     color: var(--br-smoke);
-
 }
 
 .br-masthead-code {
-
     position: absolute;
     right: 28px;
     top: 22px;
@@ -334,71 +279,55 @@ hr {
     font-size: 8px;
     letter-spacing: 2px;
     color: var(--br-smoke);
-
 }
 
 .br-masthead-lines {
-
     position: absolute;
     right: 28px;
     bottom: 29px;
     width: 125px;
     height: 28px;
-
 }
 
 .br-masthead-lines span {
-
     position: absolute;
     right: 0;
     display: block;
     height: 1px;
     background: var(--br-red);
-
 }
 
 .br-masthead-lines span:nth-child(1) {
-
     top: 0;
     width: 125px;
-
 }
 
 .br-masthead-lines span:nth-child(2) {
-
     top: 9px;
     width: 86px;
     background: var(--br-border2);
-
 }
 
 .br-masthead-lines span:nth-child(3) {
-
     top: 18px;
     width: 48px;
     background: var(--br-border);
-
 }
 
 .br-masthead:after {
-
     content: "";
     position: absolute;
     inset: 0;
     background-image: linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
     background-size: 24px 24px;
     pointer-events: none;
-
 }
 
 .headerbar {
-
     display: none !important;
-
 }
 
 .br-nav {
-
     position: relative;
     width: auto !important;
     max-width: 1050px !important;
@@ -408,11 +337,9 @@ hr {
     border-right: 1px solid var(--br-panel);
     border-bottom: 1px solid var(--br-border);
     z-index: 5;
-
 }
 
 .br-nav-meta {
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -423,57 +350,45 @@ hr {
     font-family: "JetBrains Mono",monospace;
     text-transform: uppercase;
     color: var(--br-smoke);
-
 }
 
 .br-nav-brand {
-
     font-size: 7.5px !important;
     letter-spacing: 2.4px !important;
     color: var(--br-red);
-
 }
 
 .br-nav-system {
-
     font-size: 7px !important;
     letter-spacing: 2.1px !important;
     color: #555;
-
 }
 
 .br-nav-links {
-
     position: relative;
     min-height: 52px !important;
     background: linear-gradient(90deg,#0b0b0b 0%,var(--br-ink) 65%,#0b0b0b 100%);
     border-bottom: 2px solid var(--br-red) !important;
-
 }
 
 .br-nav-menu {
-
     display: flex;
     align-items: center;
     min-height: 52px !important;
     margin: 0;
     padding: 0 12px !important;
     list-style: none;
-
 }
 
 .br-nav-menu>li {
-
     display: flex;
     align-items: center;
     margin: 0;
     padding: 0;
     list-style: none;
-
 }
 
 .br-nav-menu a {
-
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -487,18 +402,14 @@ hr {
     text-transform: uppercase;
     color: #d6d6d6 !important;
     transition: .15s;
-
 }
 
 .br-nav-menu a:hover {
-
     background: linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.01)) !important;
     color: var(--br-white) !important;
-
 }
 
 .br-nav-menu a:after {
-
     content: "";
     position: absolute;
     left: 50%;
@@ -508,23 +419,17 @@ hr {
     background: var(--br-red) !important;
     transform: translateX(-50%);
     transition: width .15s ease;
-
 }
 
 .br-nav-menu a:hover:after {
-
     width: calc(100% - 20px) !important;
-
 }
 
 .br-nav-menu a[href*="profile"],.br-nav-menu a[href*="privmsg"] {
-
     color: var(--br-paper) !important;
-
 }
 
 .br-nav-menu a[href*="privmsg"]:before {
-
     content: "";
     position: absolute;
     top: 14px;
@@ -534,19 +439,15 @@ hr {
     border-radius: 50%;
     background: var(--br-pink);
     opacity: .75;
-
 }
 
 .br-nav-menu img {
-
     margin-right: 4px;
     opacity: .75;
     filter: grayscale(1);
-
 }
 
 .br-nav-links:after {
-
     content: "";
     position: absolute;
     right: 20px !important;
@@ -557,11 +458,15 @@ hr {
     box-shadow: -13px 5px 0 var(--br-red) !important;
     transform: translateY(-50%);
     pointer-events: none;
-
 }
 
-.module {
+/* =========================================================
+   02 // SHARED MODULES
 
+   Forumotion modules and sidebar components. Broad selectors here are intentionally isolated from the chatbox.
+   ========================================================= */
+
+.module {
     position: relative;
     background: var(--br-ink) !important;
     border: 1px solid #2a2a2a !important;
@@ -569,11 +474,9 @@ hr {
     border-radius: 0 !important;
     box-shadow: none !important;
     overflow: hidden;
-
 }
 
 .module .h3,.module h3 {
-
     position: relative;
     margin: 0 !important;
     padding: 12px 14px 11px 34px !important;
@@ -586,11 +489,9 @@ hr {
     letter-spacing: 1.3px !important;
     text-transform: uppercase !important;
     color: var(--br-paper) !important;
-
 }
 
 .module .h3:before,.module h3:before {
-
     content: "//";
     position: absolute;
     left: 12px;
@@ -601,11 +502,9 @@ hr {
     font-weight: 700;
     letter-spacing: -1px;
     color: var(--br-red);
-
 }
 
 .module .h3:after,.module h3:after {
-
     content: "";
     position: absolute;
     left: 34px;
@@ -613,68 +512,50 @@ hr {
     width: 44px;
     height: 1px;
     background: var(--br-pink);
-
 }
 
 .module .inner {
-
     background: var(--br-panel) !important;
     padding: 13px 14px !important;
     color: #bdbdbd !important;
     font-family: "Inter",Arial,sans-serif;
     font-size: 11px;
     line-height: 1.5;
-
 }
 
 .module a {
-
     color: var(--br-pink) !important;
-
 }
 
 .module a:hover {
-
     color: #ff1744 !important;
-
 }
 
 .module strong,.module b {
-
     color: var(--br-paper);
-
 }
 
 .module em,.module i {
-
     color: #cfcfcf;
-
 }
 
 .module ul {
-
     margin: 0;
     padding: 0;
     list-style: none;
-
 }
 
 .module li {
-
     position: relative;
     padding: 8px 0 8px 11px;
     border-bottom: 1px solid var(--br-ash);
-
 }
 
 .module li:last-child {
-
     border-bottom: 0;
-
 }
 
 .module li:before {
-
     content: "";
     position: absolute;
     left: 0;
@@ -682,39 +563,35 @@ hr {
     width: 3px;
     height: 3px;
     background: var(--br-red);
-
 }
 
 .module li a {
-
     font-family: "Oswald",Arial,sans-serif;
     font-size: 12px;
     letter-spacing: .25px;
-
 }
 
 .module small,.module .gensmall {
-
     color: var(--br-smoke) !important;
     font-family: "JetBrains Mono",monospace;
     font-size: 9px !important;
-
 }
 
 .module:hover {
-
     border-left-color: var(--br-pink) !important;
-
 }
 
 #left .module,#right .module {
-
     margin-bottom: 14px !important;
-
 }
 
-#chatbox_top {
+/* =========================================================
+   03 // CHATBOX
 
+   Native Forumotion chatbox restyled as a Retribution terminal.
+   ========================================================= */
+
+#chatbox_top {
     position: relative;
     background: var(--br-ink) !important;
     border: 1px solid var(--br-ash) !important;
@@ -722,11 +599,9 @@ hr {
     border-radius: 0 !important;
     box-shadow: none !important;
     overflow: hidden;
-
 }
 
 #chatbox_header {
-
     position: relative;
     height: 48px !important;
     padding: 0 18px !important;
@@ -736,11 +611,9 @@ hr {
     border-radius: 0 !important;
     color: var(--br-paper) !important;
     box-shadow: none !important;
-
 }
 
 #chatbox_header:before {
-
     content: "";
     position: absolute;
     left: 0;
@@ -748,11 +621,9 @@ hr {
     width: 3px;
     height: 100%;
     background: var(--br-pink);
-
 }
 
 #chatbox_header:after {
-
     content: "";
     position: absolute;
     right: 18px;
@@ -762,87 +633,67 @@ hr {
     background: #3a3a3a;
     box-shadow: -14px 5px 0 var(--br-red);
     pointer-events: none;
-
 }
 
 #chatbox_header .chatbox-title,#chatbox_header .chatbox-title a,#chatbox_header strong {
-
     color: var(--br-paper) !important;
     font-family: "Oswald",Arial,sans-serif !important;
     font-size: 12px !important;
     font-weight: 600 !important;
     letter-spacing: 1.2px !important;
     text-transform: uppercase !important;
-
 }
 
 #chatbox_header .chatbox-title:before {
-
     content: "//";
     margin-right: 9px;
     color: var(--br-red);
     font-family: "JetBrains Mono",monospace;
     font-size: 8px;
     letter-spacing: -1px;
-
 }
 
 #chatbox_header a {
-
     color: var(--br-pink) !important;
     font-family: "Oswald",Arial,sans-serif;
     font-size: 10px;
     letter-spacing: .7px;
     text-transform: uppercase;
-
 }
 
 #chatbox_header a:hover {
-
     color: var(--br-white) !important;
-
 }
 
 #chatbox {
-
     background: #0b0b0b !important;
     color: #d6d6d6 !important;
-
 }
 
 #chatbox_members,#chatbox_messages {
-
     background: var(--br-ink) !important;
     color: #bdbdbd !important;
-
 }
 
 #chatbox_members {
-
     border-right: 1px solid var(--br-ash) !important;
-
 }
 
 #chatbox_footer {
-
     background: var(--br-ink) !important;
     border-top: 1px solid var(--br-border) !important;
     color: #bdbdbd !important;
-
 }
 
 #chatbox_footer input[type="text"],#chatbox_footer textarea {
-
     background: var(--br-panel) !important;
     border: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
     color: var(--br-paper) !important;
     box-shadow: none !important;
-
 }
 
 #chatbox_footer input[type="submit"],#chatbox_footer button {
-
     background: var(--br-red) !important;
     border: 0 !important;
     border-radius: 0 !important;
@@ -852,17 +703,19 @@ hr {
     letter-spacing: 1px;
     text-transform: uppercase;
     box-shadow: none !important;
-
 }
 
 #chatbox_footer input[type="submit"]:hover,#chatbox_footer button:hover {
-
     background: var(--br-pink) !important;
-
 }
 
-#fa_ticker_block {
+/* =========================================================
+   04 // SRDI SYSTEM NOTICE
 
+   Maintenance ticker / world-balance monitor. Static message presentation is intentional.
+   ========================================================= */
+
+#fa_ticker_block {
     position: relative !important;
     width: 100% !important;
     margin: 18px 0 !important;
@@ -870,11 +723,9 @@ hr {
     background: transparent !important;
     border: 0 !important;
     overflow: visible !important;
-
 }
 
 #fa_ticker_block>.module,#fa_ticker_block>.module>.inner {
-
     position: relative !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -882,11 +733,9 @@ hr {
     border: 0 !important;
     box-shadow: none !important;
     overflow: visible !important;
-
 }
 
 #fa_ticker_container {
-
     position: relative !important;
     box-sizing: border-box !important;
     width: 100% !important;
@@ -903,11 +752,9 @@ hr {
     border-radius: 0 !important;
     color: var(--br-ink) !important;
     box-shadow: inset 0 1px 0 rgba(255,255,255,.9),0 0 0 1px rgba(0,0,0,.12) !important;
-
 }
 
 #fa_ticker_container:before {
-
     content: "警" !important;
     position: absolute !important;
     left: 13px !important;
@@ -924,11 +771,9 @@ hr {
     font-size: 22px !important;
     font-weight: 700 !important;
     z-index: 10 !important;
-
 }
 
 #fa_ticker_container:after {
-
     content: "SYSTEM NOTICE //" !important;
     position: absolute !important;
     left: 62px !important;
@@ -941,11 +786,9 @@ hr {
     white-space: nowrap !important;
     z-index: 10 !important;
     pointer-events: none !important;
-
 }
 
 #fa_ticker {
-
     position: relative !important;
     display: flex !important;
     align-items: center !important;
@@ -964,18 +807,14 @@ hr {
     background: transparent !important;
     font-size: 0 !important;
     color: transparent !important;
-
 }
 
 #fa_ticker>* {
-
     visibility: hidden !important;
     font-size: 0 !important;
-
 }
 
 #fa_ticker:before {
-
     content: "Seireitei network access is temporarily restricted while system maintenance is underway. Please return later or contact Shuei Setsuna for further information." !important;
     display: block !important;
     visibility: visible !important;
@@ -987,11 +826,9 @@ hr {
     letter-spacing: 0 !important;
     white-space: nowrap !important;
     opacity: 1 !important;
-
 }
 
 #fa_ticker_block>.module>.inner:after {
-
     content: "SRDI // WORLD BALANCE MONITOR";
     position: absolute;
     right: 18px;
@@ -1003,11 +840,9 @@ hr {
     letter-spacing: 1.7px;
     z-index: 20;
     pointer-events: none;
-
 }
 
 #fa_ticker_block>.module>.inner:before {
-
     content: "";
     position: absolute;
     z-index: 20;
@@ -1018,200 +853,146 @@ hr {
     background: linear-gradient( 90deg,var(--br-red) 0%,var(--br-red) 4%,transparent 4%,transparent 8%,var(--br-red) 8%,var(--br-red) 41%,transparent 41%,transparent 46%,var(--br-red) 46%,var(--br-red) 69%,transparent 69%,transparent 75%,var(--br-red) 75%,var(--br-red) 100% );
     opacity: .9;
     pointer-events: none;
-
 }
 
 @media (max-width:1100px) {
-
     .br-masthead,.br-nav {
-
         max-width: calc(100% - 30px) !important;
-
     }
-
 }
 
 @media (max-width:900px) {
-
     .forabg .header:after {
-
         display: none;
-
     }
 
     .forabg .forumtitle {
-
         font-size: 15px;
-
     }
 
     .forabg .row {
-
         min-height: 68px;
-
     }
 
     .br-masthead {
-
         min-height: 165px;
         margin-bottom: 18px !important;
-
     }
 
     .br-masthead-content {
-
         left: 28px;
-
     }
 
     .br-masthead-title {
-
         font-size: clamp(36px,10vw,58px);
-
     }
 
     .br-masthead-series {
-
         letter-spacing: 5px;
-
     }
 
     .br-masthead-bgtext {
-
         font-size: 70px;
         bottom: -12px;
-
     }
 
     .br-masthead-code,.br-masthead-lines {
-
         display: none;
-
     }
 
     .br-nav {
-
         margin-top: -18px !important;
         margin-bottom: 18px !important;
-
     }
 
     .br-nav-links {
-
         overflow-x: auto;
         overflow-y: hidden;
         white-space: nowrap;
-
     }
 
     .br-nav-menu {
-
         width: max-content;
         padding: 0 8px !important;
-
     }
 
     .br-nav-menu a {
-
         padding: 0 11px !important;
         font-size: 10px !important;
-
     }
 
     .br-nav-links:after {
-
         display: none;
-
     }
 
     .module .h3,.module h3 {
-
         padding-left: 30px !important;
-
     }
 
     .module .h3:before,.module h3:before {
-
         left: 10px;
-
     }
 
     .module .h3:after,.module h3:after {
-
         left: 30px;
-
     }
 
     #chatbox_header {
-
         height: 44px !important;
         padding: 0 14px !important;
-
     }
 
     #chatbox_header:after {
-
         display: none;
-
     }
 
     #fa_ticker_container {
-
         height: 76px !important;
         min-height: 76px !important;
         padding: 20px 14px 10px 58px !important;
-
     }
 
     #fa_ticker_container:before {
-
         left: 12px !important;
         width: 34px !important;
         height: 34px !important;
         font-size: 18px !important;
-
     }
 
     #fa_ticker_container:after {
-
         left: 57px !important;
         top: 7px !important;
-
     }
 
     #fa_ticker {
-
         height: 76px !important;
         min-height: 76px !important;
         padding: 20px 12px 10px 58px !important;
         white-space: normal !important;
-
     }
 
     #fa_ticker:before {
-
         font-size: 11px !important;
         line-height: 15px !important;
         white-space: normal !important;
-
     }
 
     #fa_ticker_block>.module>.inner:after {
-
         display: none;
-
     }
 
     #fa_ticker_block>.module>.inner:before {
-
         left: 62px;
-
     }
-
 }
 
-#main-content .br-category {
+/* =========================================================
+   05 // FORUM INDEX
 
+   Category headers and forum-record rows.
+   ========================================================= */
+
+#main-content .br-category {
     margin: 0 0 20px !important;
     background: var(--br-ink) !important;
     border: 1px solid #2a2a2a !important;
@@ -1219,18 +1000,14 @@ hr {
     border-radius: 0 !important;
     box-shadow: none !important;
     overflow: hidden !important;
-
 }
 
 #main-content .br-category-bar {
-
     margin: 0 !important;
     background: #f2f2f0 !important;
-
 }
 
 #main-content .br-category-bar .header {
-
     position: relative !important;
     box-sizing: border-box !important;
     min-height: 58px !important;
@@ -1239,47 +1016,37 @@ hr {
     border: 0 !important;
     border-bottom: 2px solid var(--br-red) !important;
     overflow: hidden !important;
-
 }
 
 #main-content .br-category-bar .header dl.icon {
-
     min-height: 58px !important;
     background: none !important;
-
 }
 
 #main-content .br-category-bar .dterm {
-
     box-sizing: border-box !important;
     display: flex !important;
     align-items: center !important;
     min-height: 58px !important;
     padding: 0 18px !important;
     background: none !important;
-
 }
 
 .br-category-identity {
-
     display: flex;
     align-items: center;
     gap: 12px;
-
 }
 
 .br-category-mark {
-
     font-family: "JetBrains Mono",monospace;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: -1px;
     color: var(--br-red);
-
 }
 
 .br-category-title,.br-category-title h2,.br-category-title a {
-
     margin: 0 !important;
     padding: 0 !important;
     background: none !important;
@@ -1292,32 +1059,26 @@ hr {
     color: var(--br-ink) !important;
     opacity: 1 !important;
     visibility: visible !important;
-
 }
 
 .br-category-bar dd.topics,.br-category-bar dd.posts,.br-category-bar dd.lastpost {
-
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     background: none !important;
     border-left: 1px solid rgba(0,0,0,.08) !important;
     color: #555 !important;
-
 }
 
 .br-column-label {
-
     font-family: "JetBrains Mono",monospace;
     font-size: 7px;
     font-weight: 700;
     letter-spacing: 1.25px;
     color: #666;
-
 }
 
 .br-category-system {
-
     position: absolute;
     right: 18px;
     top: 7px;
@@ -1327,11 +1088,9 @@ hr {
     letter-spacing: 1.7px;
     color: #999;
     pointer-events: none;
-
 }
 
 .br-category-bar .header:after {
-
     content: "" !important;
     position: absolute !important;
     left: 18px !important;
@@ -1340,30 +1099,22 @@ hr {
     height: 2px !important;
     background: var(--br-pink) !important;
     z-index: 5 !important;
-
 }
 
 .br-category-bar .btn-collapse {
-
     z-index: 10 !important;
-
 }
 
 .br-category-bar .btn-collapse i {
-
     color: var(--br-ink) !important;
-
 }
 
 #main-content .br-category .topiclist.forums {
-
     counter-reset: br-forum-record;
     background: var(--br-ink) !important;
-
 }
 
 #main-content .br-category .topiclist.forums li.row {
-
     position: relative;
     counter-increment: br-forum-record;
     min-height: 86px !important;
@@ -1371,23 +1122,17 @@ hr {
     border: 0 !important;
     border-bottom: 1px solid var(--br-border) !important;
     transition: background .18s ease;
-
 }
 
 #main-content .br-category .topiclist.forums li.row:last-child {
-
     border-bottom: 0 !important;
-
 }
 
 #main-content .br-category .topiclist.forums li.row:hover {
-
     background: linear-gradient(90deg,var(--br-panel) 0%,#1d1d1d 72%,var(--br-panel) 100%) !important;
-
 }
 
 #main-content .br-category .topiclist.forums li.row:before {
-
     content: "";
     position: absolute;
     left: 0;
@@ -1396,17 +1141,13 @@ hr {
     height: 100%;
     background: transparent;
     transition: background .18s ease;
-
 }
 
 #main-content .br-category .topiclist.forums li.row:hover:before {
-
     background: var(--br-pink);
-
 }
 
 #main-content .br-category .topiclist.forums li.row:after {
-
     content: "";
     position: absolute;
     left: 64px;
@@ -1415,26 +1156,20 @@ hr {
     height: 1px;
     background: linear-gradient(90deg,var(--br-red),transparent);
     opacity: .35;
-
 }
 
 #main-content .br-category .topiclist.forums li.row dl.icon {
-
     background-image: none !important;
-
 }
 
 #main-content .br-category .topiclist.forums li.row dl.icon>dd.dterm {
-
     position: relative !important;
     box-sizing: border-box !important;
     padding-left: 64px !important;
     background-image: none !important;
-
 }
 
 #main-content .br-category .topiclist.forums li.row dl.icon>dd.dterm:before {
-
     content: counter(br-forum-record,decimal-leading-zero);
     position: absolute;
     left: 17px;
@@ -1447,17 +1182,13 @@ hr {
     letter-spacing: -1px;
     color: var(--br-border2);
     transition: color .18s ease;
-
 }
 
 #main-content .br-category .topiclist.forums li.row:hover dl.icon>dd.dterm:before {
-
     color: var(--br-red);
-
 }
 
 #main-content .br-category .topiclist.forums li.row dl.icon>dd.dterm:after {
-
     content: "";
     position: absolute;
     left: 48px;
@@ -1465,19 +1196,15 @@ hr {
     width: 1px;
     height: 60%;
     background: var(--br-border);
-
 }
 
 #main-content .br-category .topiclist.forums h3.hierarchy {
-
     margin: 0 0 5px !important;
     padding: 0 !important;
     line-height: 1 !important;
-
 }
 
 #main-content .br-category .topiclist.forums .forumtitle {
-
     display: block !important;
     width: fit-content;
     margin: 0 !important;
@@ -1489,68 +1216,54 @@ hr {
     letter-spacing: .5px !important;
     text-transform: uppercase !important;
     color: var(--br-paper) !important;
-
 }
 
 #main-content .br-category .topiclist.forums .forumtitle:hover {
-
     color: var(--br-pink) !important;
-
 }
 
 #main-content .br-category .topiclist.forums dd.dterm {
-
     font-family: "Inter",Arial,sans-serif !important;
     font-size: 11px !important;
     line-height: 1.5 !important;
     color: #afafaf !important;
-
 }
 
 #main-content .br-category .topiclist.forums dd.topics,#main-content .br-category .topiclist.forums dd.posts {
-
     font-family: "JetBrains Mono",monospace !important;
     font-size: 11px !important;
     font-weight: 500 !important;
     color: #d0d0d0 !important;
     border-left: 1px solid var(--br-ash) !important;
-
 }
 
 #main-content .br-category .topiclist.forums dd.topics:after {
-
     content: "TOPICS";
     display: block;
     margin-top: 3px;
     font-size: 6px;
     letter-spacing: 1px;
     color: #666;
-
 }
 
 #main-content .br-category .topiclist.forums dd.posts:after {
-
     content: "POSTS";
     display: block;
     margin-top: 3px;
     font-size: 6px;
     letter-spacing: 1px;
     color: #666;
-
 }
 
 #main-content .br-category .topiclist.forums dd.lastpost {
-
     padding-left: 18px !important;
     border-left: 1px solid var(--br-border) !important;
     font-family: "Inter",Arial,sans-serif !important;
     font-size: 10px !important;
     color: #888 !important;
-
 }
 
 #main-content .br-category .topiclist.forums dd.lastpost:before {
-
     content: "LAST RECORD";
     display: block;
     margin-bottom: 5px;
@@ -1558,71 +1271,55 @@ hr {
     font-size: 6px;
     letter-spacing: 1.2px;
     color: #555;
-
 }
 
 #main-content .br-category .topiclist.forums dd.lastpost a {
-
     color: var(--br-pink) !important;
     font-weight: 500;
-
 }
 
 #main-content .br-category .topiclist.forums dd.lastpost a:hover {
-
     color: #ff1744 !important;
-
 }
 
 @media (max-width:900px) {
-
     .br-category-system {
-
         display: none;
-
     }
 
     .br-category-bar dd.topics,.br-category-bar dd.posts {
-
         display: none !important;
-
     }
 
     .br-category-title,.br-category-title h2,.br-category-title a {
-
         font-size: 16px !important;
-
     }
 
     #main-content .br-category .topiclist.forums li.row dl.icon>dd.dterm {
-
         padding-left: 52px !important;
-
     }
 
     #main-content .br-category .topiclist.forums li.row dl.icon>dd.dterm:before {
-
         left: 13px;
         font-size: 18px;
-
     }
 
     #main-content .br-category .topiclist.forums li.row dl.icon>dd.dterm:after {
-
         left: 40px;
-
     }
 
     #main-content .br-category .topiclist.forums li.row:after {
-
         left: 52px;
-
     }
-
 }
 
-.br-topic-section {
+/* =========================================================
+   06 // TOPIC INDEX
 
+   Topic-list records, priority declarations and last-post telemetry.
+   ========================================================= */
+
+.br-topic-section {
     margin: 0 0 18px !important;
     background: var(--br-ink) !important;
     border: 1px solid #2a2a2a !important;
@@ -1630,11 +1327,9 @@ hr {
     border-radius: 0 !important;
     overflow: hidden !important;
     box-shadow: none !important;
-
 }
 
 .br-topic-header .header {
-
     position: relative !important;
     min-height: 54px !important;
     padding: 0 !important;
@@ -1642,18 +1337,14 @@ hr {
     border: 0 !important;
     border-bottom: 2px solid var(--br-red) !important;
     color: var(--br-ink) !important;
-
 }
 
 .br-topic-header .header dl.icon {
-
     min-height: 54px !important;
     background: none !important;
-
 }
 
 .br-topic-header .header dt,.br-topic-header .header dd.dterm {
-
     display: flex !important;
     align-items: center !important;
     min-height: 54px !important;
@@ -1664,11 +1355,9 @@ hr {
     letter-spacing: 1.3px !important;
     text-transform: uppercase !important;
     color: var(--br-ink) !important;
-
 }
 
 .br-topic-header .header dt:before,.br-topic-header .header dd.dterm:before {
-
     content: "//";
     margin-right: 10px;
     font-family: "JetBrains Mono",monospace;
@@ -1676,11 +1365,9 @@ hr {
     font-weight: 700;
     letter-spacing: -1px;
     color: var(--br-red);
-
 }
 
 .br-topic-header .header dd.posts,.br-topic-header .header dd.views,.br-topic-header .header dd.lastpost {
-
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1691,11 +1378,9 @@ hr {
     font-size: 8px !important;
     letter-spacing: 1px !important;
     text-transform: uppercase !important;
-
 }
 
 .br-topic-section-priority .header:after {
-
     content: "PRIORITY ARCHIVE";
     position: absolute;
     right: 18px;
@@ -1706,34 +1391,26 @@ hr {
     letter-spacing: 1.6px;
     color: #999;
     pointer-events: none;
-
 }
 
 .br-topic-row {
-
     position: relative;
     counter-increment: br-topic-record;
     min-height: 74px !important;
     background: linear-gradient(90deg,#141414 0%,var(--br-panel) 70%,#141414 100%) !important;
     border-bottom: 1px solid var(--br-border) !important;
     transition: background .18s ease;
-
 }
 
 .bg_none {
-
     counter-reset: br-topic-record;
-
 }
 
 .br-topic-row:hover {
-
     background: linear-gradient(90deg,var(--br-panel) 0%,#1d1d1d 72%,var(--br-panel) 100%) !important;
-
 }
 
 .br-topic-row:before {
-
     content: "";
     position: absolute;
     left: 0;
@@ -1742,31 +1419,23 @@ hr {
     height: 100%;
     background: transparent;
     transition: background .18s ease;
-
 }
 
 .br-topic-row:hover:before {
-
     background: var(--br-pink);
-
 }
 
 .br-topic-row dl.icon {
-
     background-image: none !important;
-
 }
 
 .br-topic-main {
-
     position: relative !important;
     box-sizing: border-box !important;
     padding-left: 64px !important;
-
 }
 
 .br-topic-main:before {
-
     content: counter(br-topic-record,decimal-leading-zero);
     position: absolute;
     left: 17px;
@@ -1778,17 +1447,13 @@ hr {
     line-height: 1;
     color: var(--br-border2);
     transition: color .18s ease;
-
 }
 
 .br-topic-row:hover .br-topic-main:before {
-
     color: var(--br-red);
-
 }
 
 .br-topic-main:after {
-
     content: "";
     position: absolute;
     left: 48px;
@@ -1796,95 +1461,73 @@ hr {
     width: 1px;
     height: 60%;
     background: var(--br-border);
-
 }
 
 .br-topic-title-wrap {
-
     display: block !important;
-
 }
 
 .br-topic-title-wrap .topictitle {
-
     font-family: "Oswald",Arial,sans-serif !important;
     font-size: 15px !important;
     font-weight: 600 !important;
     letter-spacing: .4px !important;
     color: var(--br-paper) !important;
-
 }
 
 .br-topic-title-wrap .topictitle:hover {
-
     color: var(--br-pink) !important;
-
 }
 
 .br-topic-title-wrap .topic-title {
-
     display: inline !important;
     margin: 0 !important;
-
 }
 
 .br-topic-main .topic-author {
-
     display: block !important;
     margin-top: 4px !important;
     font-family: "Inter",Arial,sans-serif !important;
     font-size: 10px !important;
     color: #888 !important;
-
 }
 
 .br-topic-title-wrap {
-
     font-family: "JetBrains Mono",monospace;
     font-size: 8px;
     letter-spacing: .8px;
     color: var(--br-smoke);
-
 }
 
 .br-topic-section-priority .br-topic-title-wrap {
-
     color: var(--br-red);
-
 }
 
 .br-topic-stat {
-
     font-family: "JetBrains Mono",monospace !important;
     font-size: 11px !important;
     font-weight: 500 !important;
     color: #d0d0d0 !important;
     border-left: 1px solid var(--br-ash) !important;
-
 }
 
 .br-topic-stat dfn {
-
     display: block !important;
     margin-top: 3px;
     font-size: 6px !important;
     letter-spacing: 1px;
     color: #666 !important;
-
 }
 
 .br-topic-last {
-
     padding-left: 18px !important;
     border-left: 1px solid var(--br-border) !important;
     font-family: "Inter",Arial,sans-serif !important;
     font-size: 10px !important;
     color: #888 !important;
-
 }
 
 .br-topic-last:before {
-
     content: "LAST RECORD";
     display: block;
     margin-bottom: 4px;
@@ -1892,52 +1535,42 @@ hr {
     font-size: 6px;
     letter-spacing: 1.2px;
     color: #555;
-
 }
 
 .br-topic-last a {
-
     color: var(--br-pink) !important;
-
 }
 
 .br-topic-last a:hover {
-
     color: #ff1744 !important;
-
 }
 
 @media (max-width:900px) {
-
     .br-topic-header .header dd.posts,.br-topic-header .header dd.views {
-
         display: none !important;
-
     }
 
     .br-topic-main {
-
         padding-left: 52px !important;
-
     }
 
     .br-topic-main:before {
-
         left: 13px;
         font-size: 18px;
-
     }
 
     .br-topic-main:after {
-
         left: 40px;
-
     }
-
 }
 
-.br-forum-dossier {
+/* =========================================================
+   07 // FORUM DOSSIER
 
+   Forum-view identity header, search controls and brief.
+   ========================================================= */
+
+.br-forum-dossier {
     position: relative;
     box-sizing: border-box;
     display: flex !important;
@@ -1951,11 +1584,9 @@ hr {
     border-left: 3px solid var(--br-red);
     border-bottom: 1px solid var(--br-border);
     overflow: hidden;
-
 }
 
 .br-forum-dossier:after {
-
     content: "";
     position: absolute;
     left: 22px;
@@ -1963,18 +1594,14 @@ hr {
     width: 110px;
     height: 2px;
     background: var(--br-pink);
-
 }
 
 .br-forum-dossier-main {
-
     position: relative;
     z-index: 2;
-
 }
 
 .br-forum-kicker {
-
     margin-bottom: 8px;
     font-family: "JetBrains Mono",monospace;
     font-size: 7px;
@@ -1982,110 +1609,84 @@ hr {
     letter-spacing: 1.8px;
     color: var(--br-smoke);
     text-transform: uppercase;
-
 }
 
 .br-forum-kicker-mark {
-
     margin-right: 8px;
     color: var(--br-red);
-
 }
 
 .br-forum-title {
-
     margin: 0 !important;
     line-height: .95 !important;
-
 }
 
 .br-forum-title a {
-
     font-family: "Oswald",Arial,sans-serif !important;
     font-size: 42px !important;
     font-weight: 700 !important;
     letter-spacing: -1px !important;
     text-transform: uppercase !important;
     color: var(--br-paper) !important;
-
 }
 
 .br-forum-title a:hover {
-
     color: var(--br-white) !important;
-
 }
 
 .br-forum-path {
-
     margin-top: 9px !important;
     font-family: "JetBrains Mono",monospace !important;
     font-size: 8px !important;
     letter-spacing: .5px !important;
     color: #666 !important;
-
 }
 
 .br-forum-path a {
-
     color: #888 !important;
-
 }
 
 .br-forum-path a:hover {
-
     color: var(--br-pink) !important;
-
 }
 
 .br-forum-controls {
-
     position: relative;
     z-index: 2;
     display: flex !important;
     align-items: center;
     gap: 10px;
     padding-bottom: 2px;
-
 }
 
 .br-forum-search form {
-
     display: flex;
     align-items: center;
-
 }
 
 .br-forum-search input {
-
     height: 34px !important;
     box-sizing: border-box;
     background: var(--br-ink) !important;
     border: 1px solid var(--br-border) !important;
     color: #cfcfcf !important;
-
 }
 
 .br-forum-search button {
-
     height: 34px !important;
     min-width: 34px;
     background: var(--br-panel) !important;
     border: 1px solid var(--br-border) !important;
     border-left: 0 !important;
     color: var(--br-smoke) !important;
-
 }
 
 .br-forum-search button:hover {
-
     color: var(--br-white) !important;
     background: var(--br-red) !important;
-
 }
 
 .br-forum-action {
-
     min-height: 34px !important;
     display: inline-flex !important;
     align-items: center;
@@ -2098,18 +1699,14 @@ hr {
     letter-spacing: .8px !important;
     text-transform: uppercase !important;
     color: var(--br-white) !important;
-
 }
 
 .br-forum-action:hover {
-
     background: var(--br-pink) !important;
     border-color: var(--br-pink) !important;
-
 }
 
 .br-forum-system {
-
     position: absolute;
     right: 18px;
     top: 12px;
@@ -2118,11 +1715,9 @@ hr {
     font-weight: 700;
     letter-spacing: 1.7px;
     color: #555;
-
 }
 
 .br-forum-brief {
-
     margin: 0 0 18px !important;
     padding: 0 !important;
     background: #151515 !important;
@@ -2130,89 +1725,71 @@ hr {
     border-left: 3px solid var(--br-red) !important;
     border-radius: 0 !important;
     box-shadow: none !important;
-
 }
 
 .br-forum-brief .page-desc-content {
-
     display: flex;
     align-items: center;
     gap: 18px;
     padding: 14px 16px !important;
     background: transparent !important;
-
 }
 
 .br-forum-brief-label {
-
     flex: 0 0 auto;
     font-family: "JetBrains Mono",monospace;
     font-size: 7px;
     font-weight: 700;
     letter-spacing: 1.4px;
     color: var(--br-red);
-
 }
 
 .br-forum-brief-text {
-
     font-family: "Inter",Arial,sans-serif;
     font-size: 11px;
     line-height: 1.5;
     color: #d0d0d0;
-
 }
 
 .br-forum-brief + .topic-actions {
-
     margin-top: 0 !important;
-
 }
 
 @media (max-width:900px) {
-
     .br-forum-dossier {
-
         display: block !important;
         padding: 18px 16px 16px !important;
-
     }
 
     .br-forum-title a {
-
         font-size: 30px !important;
-
     }
 
     .br-forum-controls {
-
         margin-top: 16px;
         flex-wrap: wrap;
-
     }
 
     .br-forum-system {
-
         display: none;
-
     }
 
     .br-forum-brief .page-desc-content {
-
         display: block;
-
     }
 
     .br-forum-brief-label {
-
         margin-bottom: 6px;
-
     }
-
 }
 
-.br-topic-dossier {
+/* =========================================================
+   08 // TOPIC DOSSIER
 
+   Topic-view identity header and controls. Post rendering is owned by the dedicated Topic Post System below.
+   ========================================================= */
+
+.br-topic-dossier {
     position: relative;
     box-sizing: border-box;
     display: flex !important;
@@ -2226,11 +1803,9 @@ hr {
     border-left: 3px solid var(--br-red);
     border-bottom: 1px solid var(--br-border);
     overflow: hidden;
-
 }
 
 .br-topic-dossier:after {
-
     content: "";
     position: absolute;
     left: 22px;
@@ -2238,11 +1813,9 @@ hr {
     width: 110px;
     height: 2px;
     background: var(--br-pink);
-
 }
 
 .br-topic-kicker {
-
     margin-bottom: 8px;
     font-family: "JetBrains Mono",monospace;
     font-size: 7px;
@@ -2250,95 +1823,73 @@ hr {
     letter-spacing: 1.8px;
     text-transform: uppercase;
     color: var(--br-smoke);
-
 }
 
 .br-topic-kicker span {
-
     margin-right: 8px;
     color: var(--br-red);
-
 }
 
 .br-topic-page-title {
-
     margin: 0 !important;
     line-height: .95 !important;
-
 }
 
 .br-topic-page-title a {
-
     font-family: "Oswald",Arial,sans-serif !important;
     font-size: 40px !important;
     font-weight: 700 !important;
     letter-spacing: -1px !important;
     text-transform: uppercase !important;
     color: var(--br-paper) !important;
-
 }
 
 .br-topic-page-title a:hover {
-
     color: var(--br-white) !important;
-
 }
 
 .br-topic-page-title #push-bell {
-
     margin-left: 8px !important;
     font-size: 13px !important;
     color: var(--br-red) !important;
     vertical-align: middle !important;
-
 }
 
 .br-topic-path {
-
     margin-top: 9px !important;
     font-family: "JetBrains Mono",monospace !important;
     font-size: 8px !important;
     letter-spacing: .5px !important;
     color: #666 !important;
-
 }
 
 .br-topic-path a {
-
     color: #888 !important;
-
 }
 
 .br-topic-path a:hover {
-
     color: var(--br-pink) !important;
-
 }
 
 .br-topic-controls {
-
     position: relative;
     z-index: 2;
     display: flex !important;
     align-items: center;
     gap: 10px;
     padding-bottom: 2px;
-
 }
 
 .br-topic-controls .button1 {
-
     border-radius: 0 !important;
     font-family: "Oswald",Arial,sans-serif !important;
     font-size: 10px !important;
     font-weight: 600 !important;
     letter-spacing: .8px !important;
     text-transform: uppercase !important;
-
 }
 
 .br-topic-system {
-
     position: absolute;
     right: 18px;
     top: 12px;
@@ -2347,11 +1898,25 @@ hr {
     font-weight: 700;
     letter-spacing: 1.7px;
     color: #555;
-
 }
 
-.br-post {
+/* =========================================================
+   05 // TOPIC POST SYSTEM
+   RETRIBUTION MASTER CSS v2.0
 
+   Desktop architecture
+   - Character dossier: 290px
+   - Intentional gutter: 30px
+   - Content offset: 320px
+   - Canonical portrait: 250 × 400 maximum presentation
+
+   Forumotion positions the profile rail independently from
+   the post body. The permanent content offset prevents long
+   posts from wrapping underneath the character dossier.
+   ========================================================= */
+
+/* 05.01 // POST SHELL */
+.br-post {
     position: relative !important;
     margin-bottom: 22px !important;
     background: #151515 !important;
@@ -2360,304 +1925,281 @@ hr {
     border-radius: 0 !important;
     box-shadow: none !important;
     overflow: hidden !important;
-
 }
 
-.br-post-head {
-
+/* 05.02 // POST HEADER */
+.br-post .br-post-head {
     position: relative !important;
     min-height: 58px !important;
+    margin-right: var(--br-post-rail) !important;
     padding: 12px 18px !important;
     background: linear-gradient(90deg,var(--br-ink) 0%,#171717 72%,var(--br-ink) 100%) !important;
     border-bottom: 1px solid var(--br-border) !important;
-
 }
-
-.br-post-head .topic-title {
-
-    margin: 0 0 5px !important;
-
-}
-
+.br-post-head .topic-title { margin: 0 0 5px !important; }
 .br-post-head .topic-title a {
-
-    font-family: "Oswald",Arial,sans-serif !important;
-    font-size: 17px !important;
-    font-weight: 600 !important;
+    font: 600 17px "Oswald",Arial,sans-serif !important;
     letter-spacing: .4px !important;
     text-transform: uppercase !important;
     color: var(--br-paper) !important;
-
 }
-
-.br-post-head .topic-title a:hover {
-
-    color: var(--br-pink) !important;
-
-}
-
+.br-post-head .topic-title a:hover { color: var(--br-pink) !important; }
 .br-post-head .topic-date {
-
-    font-family: "JetBrains Mono",monospace !important;
-    font-size: 8px !important;
+    font: 8px "JetBrains Mono",monospace !important;
     letter-spacing: .7px !important;
     color: var(--br-smoke) !important;
-
 }
-
 .br-post-head .post-menu {
-
     background: var(--br-panel) !important;
     border: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
     color: var(--br-red) !important;
-
 }
-
 .br-post-head .profile-icons {
-
     background: var(--br-ink) !important;
     border: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
     box-shadow: none !important;
-
 }
+.br-post-head .profile-icons a,
+.br-post-head .profile-icons span { color: var(--br-red) !important; }
+.br-post-head .profile-icons a:hover,
+.br-post-head .profile-icons span:hover { color: var(--br-white) !important; }
 
-.br-post-head .profile-icons a,.br-post-head .profile-icons span {
-
-    color: var(--br-red) !important;
-
-}
-
-.br-post-head .profile-icons a:hover,.br-post-head .profile-icons span:hover {
-
-    color: var(--br-white) !important;
-
-}
-
-.br-post-profile {
-
-    background: #101010 !important;
+/* 05.03 // CHARACTER DOSSIER */
+.br-post .br-post-profile {
+    width: var(--br-post-rail) !important;
+    box-sizing: border-box;
+    background: #0d0d0d !important;
     border-left: 1px solid var(--br-border) !important;
     color: #aaa !important;
-
+}
+.br-post .br-post-profile > dl {
+    width: 100%;
+    margin: 0;
+    padding: 18px 20px 20px;
+    box-sizing: border-box;
 }
 
-.br-post-profile dl {
-
-    padding: 16px !important;
-
+/* 05.04 // CANONICAL CHARACTER PORTRAIT
+   Full character artwork. Never crop or circularize it. */
+.br-post .br-post-profile .postprofile-avatar {
+    position: relative;
+    width: 250px !important;
+    max-width: 100%;
+    margin: 0 auto 14px !important;
+    padding: 0 !important;
+    overflow: hidden;
+    background: var(--br-void);
+    border: 1px solid var(--br-border);
+    border-left: 2px solid var(--br-red);
+    border-radius: 0 !important;
+    box-sizing: border-box;
+}
+.br-post .br-post-profile .postprofile-avatar > a {
+    display: block;
+    width: 100%;
+    line-height: 0;
+}
+.br-post .br-post-profile .postprofile-avatar img {
+    display: block !important;
+    width: 250px !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: contain !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-sizing: border-box;
+}
+.br-post .br-post-profile .postprofile-avatar::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 26px; height: 1px;
+    background: var(--br-red);
+    z-index: 2;
+    pointer-events: none;
+}
+.br-post .br-post-profile .postprofile-avatar::after {
+    content: "";
+    position: absolute;
+    right: 7px; bottom: 7px;
+    width: 10px; height: 10px;
+    border-right: 1px solid var(--br-border2);
+    border-bottom: 1px solid var(--br-border2);
+    z-index: 2;
+    pointer-events: none;
 }
 
-.br-post-profile .postprofile-avatar {
-
-    margin-bottom: 10px !important;
-
+/* 05.05 // CHARACTER IDENTITY */
+.br-post .br-post-profile .postprofile-name {
+    position: relative;
+    margin: 0;
+    padding: 0 0 11px;
+    text-align: center;
+    border-bottom: 1px solid var(--br-ash);
+}
+.br-post .br-post-profile .postprofile-name a {
+    font: 600 13px "Oswald",sans-serif;
+    letter-spacing: .7px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.br-post .br-post-profile .postprofile-rank {
+    margin: 5px 0 0;
+    color: var(--br-red);
+    font: 700 7px/1.4 "JetBrains Mono",monospace;
+    letter-spacing: 1.2px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
-.br-post-profile .postprofile-avatar img {
-
-    border: 2px solid var(--br-paper) !important;
-    border-radius: 50% !important;
-    padding: 2px !important;
-    background: var(--br-ink) !important;
-
+/* 05.06 // CHARACTER RECORD */
+.br-post .br-post-profile .postprofile-info {
+    position: relative;
+    display: block;
+    margin: 15px 0 0;
+    padding: 18px 0 14px;
+    color: var(--br-smoke);
+    font: 500 8px/2 "JetBrains Mono",monospace;
+    letter-spacing: .45px;
+    border-top: 1px solid var(--br-ash);
+    border-bottom: 1px solid var(--br-ash);
+    box-sizing: border-box;
+}
+.br-post .br-post-profile .postprofile-info::before {
+    content: "// CHARACTER RECORD";
+    display: block;
+    margin: 0 0 9px;
+    padding: 0 28px 7px 0;
+    color: var(--br-paper);
+    font: 600 10px/1 "Oswald",sans-serif;
+    letter-spacing: .7px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--br-border);
+}
+.br-post .br-post-profile .postprofile-info::after {
+    content: "";
+    position: absolute;
+    top: 22px; right: 0;
+    width: 24px; height: 1px;
+    background: var(--br-red);
+}
+.br-post .br-post-profile .postprofile-info .label {
+    display: inline-block;
+    min-width: 92px;
+    margin-right: 8px;
+    color: var(--br-smoke);
+    font: 700 7px "JetBrains Mono",monospace;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+}
+.br-post .br-post-profile .postprofile-info .label span { color: inherit !important; }
+.br-post .br-post-profile .postprofile-info .label::before {
+    content: "·";
+    margin-right: 5px;
+    color: var(--br-orange);
+    font-size: 9px;
 }
 
-.br-post-profile .postprofile-name {
-
-    margin-top: 6px !important;
-    font-family: "Oswald",Arial,sans-serif !important;
-    font-size: 15px !important;
-    font-weight: 600 !important;
-    letter-spacing: .4px !important;
-    text-transform: uppercase !important;
-
+/* 05.07 // CONTACT CHANNELS */
+.br-post .br-post-profile .postprofile-contact {
+    margin: 12px 0 0 !important;
+    padding: 10px 0 0 !important;
+    border-top: 1px solid var(--br-border) !important;
 }
 
-.br-post-profile .postprofile-name a {
-
-    color: var(--br-paper) !important;
-
-}
-
-.br-post-profile .postprofile-name a:hover {
-
-    color: var(--br-pink) !important;
-
-}
-
-.br-post-profile .postprofile-rank {
-
-    margin-top: 3px !important;
-    padding-bottom: 12px !important;
-    border-bottom: 1px solid var(--br-border) !important;
-    font-family: "JetBrains Mono",monospace !important;
-    font-size: 8px !important;
-    letter-spacing: .8px !important;
-    text-transform: uppercase !important;
-    color: var(--br-red) !important;
-
-}
-
-.br-post-profile .postprofile-info {
-
-    margin-top: 12px !important;
-    font-family: "Inter",Arial,sans-serif !important;
-    font-size: 10px !important;
-    line-height: 1.55 !important;
-    color: #999 !important;
-
-}
-
-.br-post-profile .postprofile-contact {
-
-    margin-top: 12px !important;
-    padding-top: 10px !important;
-    border-top: 1px solid var(--br-ash) !important;
-
-}
-
-.br-post-body {
-
+/* 05.08 // MESSAGE LANE
+   Reserve 290px dossier + 30px breathing room. */
+.br-post .br-post-body {
+    margin-right: 0 !important;
+    margin-left: var(--br-post-offset) !important;
     background: var(--br-panel) !important;
     color: #dedede !important;
-
 }
-
-.br-post-content {
-
+.br-post .br-post-content {
     box-sizing: border-box;
     padding: 24px 28px 32px !important;
-    font-family: "Inter",Arial,sans-serif !important;
-    font-size: 13px !important;
-    line-height: 1.7 !important;
+    font: 13px/1.7 "Inter",Arial,sans-serif !important;
     color: #dedede !important;
-
 }
-
-.br-post-content p {
-
-    margin-bottom: 1em;
-
-}
-
-.br-post-content strong,.br-post-content b {
-
-    color: var(--br-paper);
-
-}
-
-.br-post-content a {
-
-    color: var(--br-pink) !important;
-
-}
-
-.br-post-content a:hover {
-
-    color: #ff1744 !important;
-
-}
-
-.br-post-content hr {
-
+.br-post .br-post-content p { margin-bottom: 1em; }
+.br-post .br-post-content strong,
+.br-post .br-post-content b { color: var(--br-paper); }
+.br-post .br-post-content a { color: var(--br-pink) !important; }
+.br-post .br-post-content a:hover { color: #ff1744 !important; }
+.br-post .br-post-content hr {
     height: 1px !important;
     border: 0 !important;
     background: linear-gradient(90deg,var(--br-red),var(--br-border),transparent) !important;
-
 }
 
+/* 05.09 // SIGNATURE + REACTIONS */
 .br-post .signature_div {
-
     margin: 24px 28px 0 !important;
     padding: 20px 0 !important;
     border-top: 1px solid var(--br-border) !important;
     color: #888 !important;
-
 }
-
 .br-post .fa_like_div {
-
     padding: 12px 18px !important;
     background: var(--br-ink) !important;
     border-top: 1px solid var(--br-ash) !important;
-
 }
-
 .br-post .rep-button {
-
     background: var(--br-panel) !important;
     border: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
     color: #aaa !important;
-
 }
-
 .br-post .rep-button:hover {
-
     border-color: var(--br-red) !important;
     color: var(--br-white) !important;
-
 }
 
-@media (max-width:900px) {
+/* 05.10 // RESPONSIVE POST ARCHITECTURE */
+@media (max-width: 900px) {
+    .br-topic-dossier { display: block !important; padding: 18px 16px 16px !important; }
+    .br-topic-page-title a { font-size: 28px !important; }
+    .br-topic-controls { margin-top: 16px; flex-wrap: wrap; }
+    .br-topic-system { display: none; }
 
-    .br-topic-dossier {
-
-        display: block !important;
-        padding: 18px 16px 16px !important;
-
-    }
-
-    .br-topic-page-title a {
-
-        font-size: 28px !important;
-
-    }
-
-    .br-topic-controls {
-
-        margin-top: 16px;
-        flex-wrap: wrap;
-
-    }
-
-    .br-topic-system {
-
-        display: none;
-
-    }
-
-    .br-post-profile {
-
+    .br-post .br-post-profile {
+        width: 100% !important;
         border-left: 0 !important;
         border-bottom: 1px solid var(--br-border) !important;
-
     }
-
-    .br-post-content {
-
+    .br-post .br-post-head,
+    .br-post .br-post-body {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+    .br-post .br-post-content {
         padding: 20px !important;
         font-size: 12px !important;
-
     }
-
 }
 
-.br-quick-reply {
+/* =========================================================
+   09 // QUICK REPLY
 
+   Response Terminal. Native editor functionality is preserved.
+   ========================================================= */
+
+.br-quick-reply {
     margin: 24px 0 !important;
     background: #101010;
     border: 1px solid #2a2a2a;
     border-left: 3px solid var(--br-red);
     border-radius: 0;
     overflow: hidden;
-
 }
 
 .br-quick-reply-head {
-
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -2666,74 +2208,58 @@ hr {
     padding: 0 16px;
     background: linear-gradient(90deg,var(--br-ink) 0%,#171717 70%,var(--br-ink) 100%);
     border-bottom: 1px solid var(--br-border);
-
 }
 
 .br-quick-reply-mark {
-
     margin-right: 8px;
     font-family: "JetBrains Mono",monospace;
     font-size: 8px;
     font-weight: 700;
     color: var(--br-red);
-
 }
 
 .br-quick-reply-label {
-
     font-family: "Oswald",Arial,sans-serif;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1.3px;
     text-transform: uppercase;
     color: var(--br-paper);
-
 }
 
 .br-quick-reply-status {
-
     font-family: "JetBrains Mono",monospace;
     font-size: 6px;
     font-weight: 700;
     letter-spacing: 1.5px;
     color: #555;
-
 }
 
 .br-quick-reply>.h3 {
-
     display: none !important;
-
 }
 
 .br-quick-reply>.h3 + br {
-
     display: none !important;
-
 }
 
 .br-quick-reply #quick_reply {
-
     box-sizing: border-box;
     margin: 0 !important;
     padding: 18px !important;
     background: var(--br-ink) !important;
-
 }
 
 .br-quick-reply .sceditor-container {
-
     box-sizing: border-box !important;
     width: 100% !important;
     background: var(--br-ink) !important;
     border: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
     box-shadow: none !important;
-
 }
 
 .br-quick-reply .sceditor-toolbar {
-
     box-sizing: border-box !important;
     padding: 8px 10px !important;
     background: #151515 !important;
@@ -2741,47 +2267,37 @@ hr {
     border-bottom: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
     box-shadow: none !important;
-
 }
 
 .br-quick-reply .sceditor-group {
-
     margin: 0 5px 0 0 !important;
     padding: 0 !important;
     background: transparent !important;
     border: 0 !important;
     border-radius: 0 !important;
     box-shadow: none !important;
-
 }
 
 .br-quick-reply .sceditor-button {
-
     margin: 0 1px !important;
     background: transparent !important;
     border: 1px solid transparent !important;
     border-radius: 0 !important;
     opacity: .7;
     transition: opacity .15s ease,background .15s ease,border-color .15s ease;
-
 }
 
 .br-quick-reply .sceditor-button:hover {
-
     background: var(--br-ash) !important;
     border-color: var(--br-border) !important;
     opacity: 1;
-
 }
 
 .br-quick-reply .sceditor-editor {
-
     background: #f2f2f0 !important;
-
 }
 
 .br-quick-reply .sceditor-container iframe,.br-quick-reply .sceditor-container textarea {
-
     box-sizing: border-box !important;
     width: 100% !important;
     min-height: 230px !important;
@@ -2795,24 +2311,18 @@ hr {
     color: var(--br-ink) !important;
     outline: 0 !important;
     box-shadow: none !important;
-
 }
 
 .br-quick-reply .sceditor-container textarea {
-
     font-family: "JetBrains Mono",monospace !important;
     font-size: 12px !important;
-
 }
 
 .br-quick-reply #quick_reply>div[style*="text-align:center"] {
-
     margin: 16px 0 2px !important;
-
 }
 
 .br-quick-reply input[type="submit"],.br-quick-reply input[type="button"] {
-
     min-width: 76px;
     padding: 9px 16px !important;
     background: var(--br-panel) !important;
@@ -2825,48 +2335,40 @@ hr {
     text-transform: uppercase !important;
     color: var(--br-paper) !important;
     transition: .15s ease;
-
 }
 
 .br-quick-reply input[type="submit"]:hover,.br-quick-reply input[type="button"]:hover {
-
     background: var(--br-red) !important;
     border-color: var(--br-red) !important;
     color: var(--br-white) !important;
-
 }
 
 @media (max-width:900px) {
-
     .br-quick-reply-head {
-
         padding: 0 12px;
-
     }
 
     .br-quick-reply-status {
-
         display: none;
-
     }
 
     .br-quick-reply #quick_reply {
-
         padding: 12px !important;
-
     }
 
     .br-quick-reply .sceditor-container iframe,.br-quick-reply .sceditor-container textarea {
-
         min-height: 190px !important;
         padding: 16px !important;
-
     }
-
 }
 
-.br-archive-control fieldset.jumpbox,.br-archive-control fieldset.quickmod {
+/* =========================================================
+   10 // TOPIC UTILITIES
 
+   Archive Control, moderation jump controls and Access Parameters.
+   ========================================================= */
+
+.br-archive-control fieldset.jumpbox,.br-archive-control fieldset.quickmod {
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -2876,11 +2378,9 @@ hr {
     padding: 0 !important;
     background: transparent !important;
     border: 0 !important;
-
 }
 
 .br-archive-control fieldset.jumpbox label,.br-archive-control fieldset.quickmod label {
-
     display: inline-block;
     width: 125px;
     margin: 0 !important;
@@ -2892,11 +2392,9 @@ hr {
     text-align: right;
     text-transform: uppercase;
     color: var(--br-smoke) !important;
-
 }
 
 .br-archive-control fieldset.jumpbox select,.br-archive-control fieldset.quickmod select {
-
     box-sizing: border-box;
     width: 300px !important;
     min-width: 300px !important;
@@ -2909,11 +2407,9 @@ hr {
     font-size: 11px !important;
     color: #d5d5d5 !important;
     outline: 0 !important;
-
 }
 
 .br-archive-control fieldset.jumpbox .button2,.br-archive-control fieldset.quickmod .button2 {
-
     box-sizing: border-box;
     width: 46px !important;
     min-width: 46px !important;
@@ -2929,58 +2425,42 @@ hr {
     text-transform: uppercase;
     color: var(--br-paper) !important;
     transition: .15s ease;
-
 }
 
 .br-archive-control fieldset.jumpbox .button2:hover,.br-archive-control fieldset.quickmod .button2:hover {
-
     background: var(--br-red) !important;
     border-color: var(--br-red) !important;
     color: var(--br-white) !important;
-
 }
 
 .br-archive-control fieldset.jumpbox select:focus,.br-archive-control fieldset.quickmod select:focus {
-
     border-color: var(--br-blood) !important;
-
 }
 
 @media (max-width:800px) {
-
     .br-archive-control fieldset.jumpbox,.br-archive-control fieldset.quickmod {
-
         flex-wrap: wrap;
-
     }
 
     .br-archive-control fieldset.jumpbox label,.br-archive-control fieldset.quickmod label {
-
         width: 105px;
-
     }
 
     .br-archive-control fieldset.jumpbox select,.br-archive-control fieldset.quickmod select {
-
         width: 210px !important;
         min-width: 210px !important;
-
     }
-
 }
 
 .br-archive-control {
-
     box-sizing: border-box;
     width: 100%;
     margin: 10px 0 8px;
     padding: 0;
     background: transparent;
-
 }
 
 .br-archive-control-head {
-
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -2992,43 +2472,35 @@ hr {
     background: var(--br-ink);
     border: 1px solid var(--br-ash);
     border-bottom: 1px solid var(--br-border);
-
 }
 
 .br-archive-control-mark,.br-topic-permissions-mark {
-
     margin-right: 7px;
     font-family: "JetBrains Mono",monospace;
     font-size: 7px;
     font-weight: 700;
     color: var(--br-red);
-
 }
 
 .br-archive-control-title,.br-topic-permissions-title {
-
     font-family: "Oswald",Arial,sans-serif;
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 1.2px;
     text-transform: uppercase;
     color: var(--br-paper);
-
 }
 
 .br-archive-control-status {
-
     font-family: "JetBrains Mono",monospace;
     font-size: 6px;
     font-weight: 700;
     letter-spacing: 1.1px;
     text-transform: uppercase;
     color: #555;
-
 }
 
 .br-archive-control-body {
-
     box-sizing: border-box;
     margin-left: auto;
     width: 580px;
@@ -3037,37 +2509,29 @@ hr {
     border-left: 1px solid var(--br-ash);
     border-right: 1px solid var(--br-ash);
     border-bottom: 1px solid var(--br-ash);
-
 }
 
 .br-archive-control fieldset.jumpbox,.br-archive-control fieldset.quickmod {
-
     margin: 7px 0 !important;
-
 }
 
 .br-topic-admin {
-
     box-sizing: border-box;
     margin: 10px 0 0 !important;
     padding-top: 9px;
     border-top: 1px solid var(--br-ash);
     text-align: right;
-
 }
 
 .br-topic-permissions {
-
     box-sizing: border-box;
     margin: 14px 0 26px;
     background: var(--br-ink);
     border: 1px solid var(--br-ash);
     border-left: 3px solid var(--br-red);
-
 }
 
 .br-topic-permissions-head {
-
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -3075,63 +2539,283 @@ hr {
     padding: 0 14px;
     background: #151515;
     border-bottom: 1px solid var(--br-border);
-
 }
 
 .br-topic-permissions-body {
-
     box-sizing: border-box;
     padding: 14px 16px 16px;
     font-family: "Inter",Arial,sans-serif;
     font-size: 11px;
     line-height: 1.65;
     color: #d0d0d0;
-
 }
 
 .br-topic-permissions-source {
-
     display: none;
-
 }
 
 .br-topic-permissions-body a {
-
     color: var(--br-pink);
     text-decoration: none;
-
 }
 
 .br-topic-permissions-body a:hover {
-
     color: var(--br-white);
-
 }
 
 @media (max-width:800px) {
-
     .br-archive-control-head,.br-archive-control-body {
-
         width: 100%;
-
     }
 
     .br-archive-control-status {
-
         display: none;
-
     }
 
     .br-topic-permissions {
-
         margin-bottom: 18px;
-
     }
-
 }
 
-html body .br-footer-signal {
+/* =========================================================
+   11 // LOWER HOMEPAGE
 
+   Spiritual Presence Network and Archive Status. Recently Shared Images remains intentionally suppressed.
+   ========================================================= */
+
+.br-presence {
+    position: relative;
+    margin: 16px 0 18px;
+    background: var(--br-ink);
+    border: 1px solid var(--br-border);
+    border-left: 3px solid var(--br-red);
+    color: #aaa;
+    overflow: hidden;
+}
+
+.br-presence-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 16px;
+    background: #0b0b0b;
+    border-bottom: 1px solid var(--br-border);
+}
+
+.br-presence-mark {
+    color: var(--br-red);
+    margin-right: 8px;
+}
+
+.br-presence-title {
+    font: 600 13px "Oswald",sans-serif;
+    letter-spacing: 1.2px;
+    color: var(--br-paper);
+}
+
+.br-presence-status,.br-presence-label,.br-presence-map {
+    font: 700 7px "JetBrains Mono",monospace;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.br-presence-status {
+    color: var(--br-red);
+}
+
+.br-presence-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr 1fr;
+}
+
+.br-presence-grid section {
+    min-height: 105px;
+    padding: 16px 18px;
+    border-right: 1px solid var(--br-ash);
+}
+
+.br-presence-grid section:last-child {
+    border-right: 0;
+}
+
+.br-presence-label {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--br-smoke);
+}
+
+.br-presence-label:first-letter {
+    color: var(--br-red);
+}
+
+.br-presence-data {
+    font: 10px/1.65 "Inter",sans-serif;
+    color: #aaa;
+}
+
+.br-presence-data a {
+    font-weight: 600;
+}
+
+.br-presence-groups {
+    padding: 11px 18px;
+    background: #141414;
+    border-top: 1px solid var(--br-border);
+    font: 9px "JetBrains Mono",monospace;
+    color: #777;
+}
+
+.br-presence-groups .br-presence-label {
+    display: inline;
+    margin: 0 14px 0 0;
+    color: var(--br-red);
+}
+
+.br-presence-map {
+    position: absolute;
+    right: 16px;
+    bottom: 11px;
+    color: var(--br-smoke) !important;
+}
+
+.br-presence-map:hover {
+    color: var(--br-paper) !important;
+}
+
+@media (max-width:800px) {
+    .br-presence-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .br-presence-grid section {
+        min-height: 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--br-ash);
+    }
+
+    .br-presence-status,.br-presence-map {
+        display: none;
+    }
+}
+
+.br-presence-head {
+    padding: 15px 20px;
+}
+
+.br-presence-title {
+    font-size: 16px;
+    letter-spacing: 1.4px;
+}
+
+.br-presence-status {
+    font-size: 8px;
+}
+
+.br-presence-grid section {
+    min-height: 130px;
+    padding: 21px 22px;
+}
+
+.br-presence-label {
+    margin-bottom: 13px;
+    font-size: 8px;
+    letter-spacing: 1.35px;
+}
+
+.br-presence-data {
+    font-size: 12px;
+    line-height: 1.75;
+}
+
+.br-presence-groups {
+    padding: 14px 22px;
+    font-size: 10px;
+}
+
+.br-presence-map {
+    right: 20px;
+    bottom: 14px;
+    font-size: 8px;
+}
+
+.forabg.hidden {
+    display: none !important;
+}
+
+.br-record-status {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin: 12px 0 20px;
+    padding: 11px 16px;
+    background: var(--br-ink);
+    border: 1px solid var(--br-border);
+    border-left: 3px solid var(--br-red);
+}
+
+.br-record-status-label,.br-record-status-code {
+    font: 700 8px "JetBrains Mono",monospace;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--br-smoke);
+}
+
+.br-record-status-label span:first-child {
+    margin-right: 7px;
+    color: var(--br-red);
+}
+
+.br-record-status-items {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    flex: 1;
+}
+
+.br-record-status-items>div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font: 10px "Inter",sans-serif;
+    color: #aaa;
+}
+
+.br-record-status-items img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+.br-record-status-code {
+    margin-left: auto;
+    color: #555;
+}
+
+@media (max-width:800px) {
+    .br-record-status {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .br-record-status-items {
+        flex-wrap: wrap;
+        gap: 14px 22px;
+    }
+
+    .br-record-status-code {
+        display: none;
+    }
+}
+
+/* =========================================================
+   12 // FOOTER SYSTEM
+
+   Soul Society Archive end-card, records, terminal and administrative exit.
+   ========================================================= */
+
+html body .br-footer-signal {
     width: calc(100% - 240px) !important;
     max-width: 1400px !important;
     min-height: 34px !important;
@@ -3150,53 +2834,41 @@ html body .br-footer-signal {
     letter-spacing: .14em !important;
     text-transform: uppercase !important;
     color: #777 !important;
-
 }
 
 html body .br-footer-signal>span {
-
     display: inline-block !important;
     width: auto !important;
     margin: 0 !important;
     padding: 0 !important;
     float: none !important;
-
 }
 
 html body .br-footer-signal-mark {
-
     color: #b00020 !important;
     font-size: 13px !important;
     font-weight: 700 !important;
-
 }
 
 html body .br-footer-signal-text {
-
     color: #f2f2f2 !important;
-
 }
 
 html body .br-footer-signal-status {
-
     margin-left: auto !important;
     color: #b00020 !important;
-
 }
 
 html body .br-footer-statistics {
-
     display: block !important;
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
     background: #f2f2f2 !important;
     color: #111 !important;
-
 }
 
 html body .br-footer-statistics>.wrap {
-
     width: calc(100% - 240px) !important;
     max-width: 1400px !important;
     min-height: 118px !important;
@@ -3207,11 +2879,9 @@ html body .br-footer-statistics>.wrap {
     grid-template-columns: minmax(270px,1.25fr) minmax(0,3fr) !important;
     background: #f2f2f2 !important;
     color: #111 !important;
-
 }
 
 html body .br-footer-identity {
-
     width: auto !important;
     min-width: 0 !important;
     margin: 0 !important;
@@ -3225,11 +2895,9 @@ html body .br-footer-identity {
     background: #f2f2f2 !important;
     border-right: 1px solid rgba(0,0,0,.14) !important;
     color: #111 !important;
-
 }
 
 html body .br-footer-identity:before {
-
     content: "" !important;
     position: absolute !important;
     left: 0 !important;
@@ -3237,22 +2905,18 @@ html body .br-footer-identity:before {
     bottom: 23px !important;
     width: 3px !important;
     background: #b00020 !important;
-
 }
 
 html body .br-footer-identity>span {
-
     display: block !important;
     width: auto !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     padding: 0 !important;
     float: none !important;
-
 }
 
 html body .br-footer-series {
-
     margin: 0 0 4px !important;
     font-family: "JetBrains Mono",monospace !important;
     font-size: 9px !important;
@@ -3261,11 +2925,9 @@ html body .br-footer-series {
     letter-spacing: .18em !important;
     text-transform: uppercase !important;
     color: #b00020 !important;
-
 }
 
 html body .br-footer-name {
-
     margin: 0 !important;
     font-family: "Oswald",sans-serif !important;
     font-size: 30px !important;
@@ -3274,11 +2936,9 @@ html body .br-footer-name {
     letter-spacing: .05em !important;
     text-transform: uppercase !important;
     color: #111 !important;
-
 }
 
 html body .br-footer-subtitle {
-
     margin: 8px 0 0 !important;
     font-family: "JetBrains Mono",monospace !important;
     font-size: 8px !important;
@@ -3287,11 +2947,9 @@ html body .br-footer-subtitle {
     letter-spacing: .15em !important;
     text-transform: uppercase !important;
     color: #666 !important;
-
 }
 
 html body .br-footer-stat-grid {
-
     width: 100% !important;
     min-width: 0 !important;
     margin: 0 !important;
@@ -3299,11 +2957,9 @@ html body .br-footer-stat-grid {
     display: grid !important;
     grid-template-columns: repeat(3,minmax(0,1fr)) !important;
     background: #f2f2f2 !important;
-
 }
 
 html body .br-footer-stat-grid .statistics-item {
-
     width: auto !important;
     min-width: 0 !important;
     margin: 0 !important;
@@ -3322,17 +2978,13 @@ html body .br-footer-stat-grid .statistics-item {
     font-weight: 400 !important;
     line-height: 1.45 !important;
     color: #111 !important;
-
 }
 
 html body .br-footer-stat-grid .statistics-item:last-child {
-
     border-right: 0 !important;
-
 }
 
 html body .br-footer-stat-code {
-
     display: block !important;
     width: auto !important;
     margin: 0 0 8px !important;
@@ -3345,43 +2997,35 @@ html body .br-footer-stat-code {
     letter-spacing: .14em !important;
     text-transform: uppercase !important;
     color: #b00020 !important;
-
 }
 
 html body .br-footer-stat-grid .statistics-item strong {
-
     display: inline !important;
     font-family: "Oswald",sans-serif !important;
     font-size: 27px !important;
     font-weight: 500 !important;
     line-height: 1 !important;
     color: #111 !important;
-
 }
 
 html body #page-footer.br-footer-shell {
-
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
     background: #111 !important;
     border: 0 !important;
-
 }
 
 html body #page-footer.br-footer-shell>.wrap {
-
     width: calc(100% - 240px) !important;
     max-width: 1400px !important;
     margin: 0 auto !important;
     padding: 0 !important;
     box-sizing: border-box !important;
     background: #111 !important;
-
 }
 
 html body .br-footer-utility-label {
-
     width: 100% !important;
     min-height: 29px !important;
     margin: 0 !important;
@@ -3400,35 +3044,27 @@ html body .br-footer-utility-label {
     letter-spacing: .13em !important;
     text-transform: uppercase !important;
     color: #555 !important;
-
 }
 
 html body .br-footer-utility-label>span {
-
     display: inline-block !important;
     width: auto !important;
     margin: 0 !important;
     padding: 0 !important;
     float: none !important;
     white-space: nowrap !important;
-
 }
 
 html body .br-footer-utility-label>span:first-child {
-
     color: #b00020 !important;
-
 }
 
 html body .br-footer-utility-label>span:last-child {
-
     margin-left: auto !important;
     color: #555 !important;
-
 }
 
 html body #page-footer .footerbar-system,html body #page-footer .footerbar-user {
-
     width: 100% !important;
     min-height: 39px !important;
     margin: 0 !important;
@@ -3444,65 +3080,47 @@ html body #page-footer .footerbar-system,html body #page-footer .footerbar-user 
     letter-spacing: .07em !important;
     text-transform: uppercase !important;
     color: #777 !important;
-
 }
 
 html body #page-footer .footerbar-system:after,html body #page-footer .footerbar-user:after {
-
     content: "" !important;
     display: block !important;
     clear: both !important;
-
 }
 
 html body #page-footer .footer-home {
-
     float: left !important;
-
 }
 
 html body #page-footer .rightside {
-
     float: right !important;
-
 }
 
 html body #page-footer .footerbar-system a,html body #page-footer .footerbar-user a {
-
     color: #888 !important;
     text-decoration: none !important;
     transition: color .18s ease !important;
-
 }
 
 html body #page-footer .footerbar-system a:hover,html body #page-footer .footerbar-user a:hover {
-
     color: #f2f2f2 !important;
-
 }
 
 html body #page-footer .footer-home i,html body #page-footer .footerbar-user i {
-
     margin-right: 6px !important;
     color: #b00020 !important;
-
 }
 
 html body .br-footer-clock {
-
     color: #777 !important;
-
 }
 
 html body .br-footer-meta-label {
-
     margin-right: 8px !important;
     color: #555 !important;
-
 }
 
 html body .br-footer-end {
-
     width: calc(100% - 240px) !important;
     max-width: 1400px !important;
     min-height: 50px !important;
@@ -3515,11 +3133,9 @@ html body .br-footer-end {
     gap: 24px !important;
     background: #080808 !important;
     border-bottom: 1px solid #303030 !important;
-
 }
 
 html body .br-footer-end-copy {
-
     display: flex !important;
     align-items: center !important;
     gap: 9px !important;
@@ -3531,34 +3147,26 @@ html body .br-footer-end-copy {
     letter-spacing: .13em !important;
     text-transform: uppercase !important;
     color: #666 !important;
-
 }
 
 html body .br-footer-end-copy>span {
-
     display: inline-block !important;
     width: auto !important;
     margin: 0 !important;
     padding: 0 !important;
     float: none !important;
-
 }
 
 html body .br-footer-end-mark {
-
     color: #b00020 !important;
     font-size: 12px !important;
-
 }
 
 html body .br-footer-end-id {
-
     color: #444 !important;
-
 }
 
 html body .br-footer-admin {
-
     margin-left: auto !important;
     font-family: "JetBrains Mono",monospace !important;
     font-size: 8px !important;
@@ -3566,472 +3174,123 @@ html body .br-footer-admin {
     letter-spacing: .08em !important;
     text-transform: uppercase !important;
     white-space: nowrap !important;
-
 }
 
 html body .br-footer-admin a {
-
     color: #777 !important;
     text-decoration: none !important;
     transition: color .18s ease !important;
-
 }
 
 html body .br-footer-admin a:hover {
-
     color: #f2f2f2 !important;
-
 }
 
 @media (max-width:1100px) {
-
     html body .br-footer-signal,html body .br-footer-statistics>.wrap,html body #page-footer.br-footer-shell>.wrap,html body .br-footer-end {
-
         width: calc(100% - 40px) !important;
-
     }
 
     html body .br-footer-statistics>.wrap {
-
         grid-template-columns: minmax(230px,1fr) minmax(0,2.6fr) !important;
-
     }
 
     html body .br-footer-identity {
-
         padding-left: 22px !important;
         padding-right: 22px !important;
-
     }
-
 }
 
 @media (max-width:800px) {
-
     html body .br-footer-signal,html body .br-footer-statistics>.wrap,html body #page-footer.br-footer-shell>.wrap,html body .br-footer-end {
-
         width: 100% !important;
         max-width: none !important;
-
     }
 
     html body .br-footer-signal {
-
         padding-left: 14px !important;
         padding-right: 14px !important;
-
     }
 
     html body .br-footer-signal-status {
-
         display: none !important;
-
     }
 
     html body .br-footer-statistics>.wrap {
-
         display: block !important;
         min-height: 0 !important;
-
     }
 
     html body .br-footer-identity {
-
         width: 100% !important;
         padding: 20px !important;
         border-right: 0 !important;
         border-bottom: 1px solid rgba(0,0,0,.14) !important;
-
     }
 
     html body .br-footer-identity:before {
-
         top: 18px !important;
         bottom: 18px !important;
-
     }
 
     html body .br-footer-stat-grid {
-
         grid-template-columns: 1fr !important;
-
     }
 
     html body .br-footer-stat-grid .statistics-item {
-
         padding: 15px 20px !important;
         border-right: 0 !important;
         border-bottom: 1px solid rgba(0,0,0,.12) !important;
-
     }
 
     html body .br-footer-stat-grid .statistics-item:last-child {
-
         border-bottom: 0 !important;
-
     }
 
     html body .br-footer-utility-label {
-
         padding-left: 14px !important;
         padding-right: 14px !important;
-
     }
 
     html body .br-footer-utility-label>span:last-child {
-
         display: none !important;
-
     }
 
     html body #page-footer .footerbar-system,html body #page-footer .footerbar-user {
-
         padding-left: 14px !important;
         padding-right: 14px !important;
-
     }
 
     html body #page-footer .footerbar-user li {
-
         float: none !important;
         display: block !important;
         margin: 4px 0 !important;
-
     }
 
     html body .br-footer-end {
-
         padding: 12px 14px !important;
         flex-direction: column !important;
         align-items: flex-start !important;
         gap: 6px !important;
-
     }
 
     html body .br-footer-end-id,html body .br-footer-meta-label {
-
         display: none !important;
-
     }
 
     html body .br-footer-admin {
-
         margin-left: 0 !important;
-
     }
-
 }
 
-.br-presence {
-
-    position: relative;
-    margin: 16px 0 18px;
-    background: var(--br-ink);
-    border: 1px solid var(--br-border);
-    border-left: 3px solid var(--br-red);
-    color: #aaa;
-    overflow: hidden;
-
-}
-
-.br-presence-head {
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 11px 16px;
-    background: #0b0b0b;
-    border-bottom: 1px solid var(--br-border);
-
-}
-
-.br-presence-mark {
-
-    color: var(--br-red);
-    margin-right: 8px;
-
-}
-
-.br-presence-title {
-
-    font: 600 13px "Oswald",sans-serif;
-    letter-spacing: 1.2px;
-    color: var(--br-paper);
-
-}
-
-.br-presence-status,.br-presence-label,.br-presence-map {
-
-    font: 700 7px "JetBrains Mono",monospace;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-
-}
-
-.br-presence-status {
-
-    color: var(--br-red);
-
-}
-
-.br-presence-grid {
-
-    display: grid;
-    grid-template-columns: 1fr 1.35fr 1fr;
-
-}
-
-.br-presence-grid section {
-
-    min-height: 105px;
-    padding: 16px 18px;
-    border-right: 1px solid var(--br-ash);
-
-}
-
-.br-presence-grid section:last-child {
-
-    border-right: 0;
-
-}
-
-.br-presence-label {
-
-    display: block;
-    margin-bottom: 9px;
-    color: var(--br-smoke);
-
-}
-
-.br-presence-label:first-letter {
-
-    color: var(--br-red);
-
-}
-
-.br-presence-data {
-
-    font: 10px/1.65 "Inter",sans-serif;
-    color: #aaa;
-
-}
-
-.br-presence-data a {
-
-    font-weight: 600;
-
-}
-
-.br-presence-groups {
-
-    padding: 11px 18px;
-    background: #141414;
-    border-top: 1px solid var(--br-border);
-    font: 9px "JetBrains Mono",monospace;
-    color: #777;
-
-}
-
-.br-presence-groups .br-presence-label {
-
-    display: inline;
-    margin: 0 14px 0 0;
-    color: var(--br-red);
-
-}
-
-.br-presence-map {
-
-    position: absolute;
-    right: 16px;
-    bottom: 11px;
-    color: var(--br-smoke) !important;
-
-}
-
-.br-presence-map:hover {
-
-    color: var(--br-paper) !important;
-
-}
-
-@media (max-width:800px) {
-
-    .br-presence-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-    .br-presence-grid section {
-
-        min-height: 0;
-        border-right: 0;
-        border-bottom: 1px solid var(--br-ash);
-
-    }
-
-    .br-presence-status,.br-presence-map {
-
-        display: none;
-
-    }
-
-}
-
-.br-presence-head {
-
-    padding: 15px 20px;
-
-}
-
-.br-presence-title {
-
-    font-size: 16px;
-    letter-spacing: 1.4px;
-
-}
-
-.br-presence-status {
-
-    font-size: 8px;
-
-}
-
-.br-presence-grid section {
-
-    min-height: 130px;
-    padding: 21px 22px;
-
-}
-
-.br-presence-label {
-
-    margin-bottom: 13px;
-    font-size: 8px;
-    letter-spacing: 1.35px;
-
-}
-
-.br-presence-data {
-
-    font-size: 12px;
-    line-height: 1.75;
-
-}
-
-.br-presence-groups {
-
-    padding: 14px 22px;
-    font-size: 10px;
-
-}
-
-.br-presence-map {
-
-    right: 20px;
-    bottom: 14px;
-    font-size: 8px;
-
-}
-
-.forabg.hidden {
-
-    display: none !important;
-
-}
-
-.br-record-status {
-
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    margin: 12px 0 20px;
-    padding: 11px 16px;
-    background: var(--br-ink);
-    border: 1px solid var(--br-border);
-    border-left: 3px solid var(--br-red);
-
-}
-
-.br-record-status-label,.br-record-status-code {
-
-    font: 700 8px "JetBrains Mono",monospace;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    white-space: nowrap;
-    color: var(--br-smoke);
-
-}
-
-.br-record-status-label span:first-child {
-
-    margin-right: 7px;
-    color: var(--br-red);
-
-}
-
-.br-record-status-items {
-
-    display: flex;
-    align-items: center;
-    gap: 26px;
-    flex: 1;
-
-}
-
-.br-record-status-items>div {
-
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font: 10px "Inter",sans-serif;
-    color: #aaa;
-
-}
-
-.br-record-status-items img {
-
-    width: 25px;
-    height: 25px;
-    object-fit: contain;
-
-}
-
-.br-record-status-code {
-
-    margin-left: auto;
-    color: #555;
-
-}
-
-@media (max-width:800px) {
-
-    .br-record-status {
-
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 12px;
-
-    }
-
-    .br-record-status-items {
-
-        flex-wrap: wrap;
-        gap: 14px 22px;
-
-    }
-
-    .br-record-status-code {
-
-        display: none;
-
-    }
-
-}
+/* =========================================================
+   13 // PROFILE COMPATIBILITY BRIDGE
+
+   These rules remain here because they are present in the proven live cascade.
+   Profile/UCP ownership belongs to profile.css; migrate only after a dedicated regression check.
+   ========================================================= */
 
 .br-character-stage {
-
     box-sizing: border-box;
     width: 100%;
     margin: 0 0 18px;
@@ -4039,11 +3298,9 @@ html body .br-footer-admin a:hover {
     background: var(--br-ink);
     border: 1px solid var(--br-border);
     border-left: 3px solid var(--br-red);
-
 }
 
 .br-character-stage-head {
-
     display: flex;
     align-items: center;
     gap: 7px;
@@ -4054,30 +3311,22 @@ html body .br-footer-admin a:hover {
     font: 700 7px/1 "JetBrains Mono",monospace;
     letter-spacing: 1.2px;
     text-transform: uppercase;
-
 }
 
 .br-character-stage-mark {
-
     color: var(--br-red);
-
 }
 
 .br-character-stage-label {
-
     color: var(--br-paper);
-
 }
 
 .br-character-stage-status {
-
     margin-left: auto;
     color: var(--br-red);
-
 }
 
 .br-character-portrait {
-
     box-sizing: border-box;
     width: 250px;
     height: 400px;
@@ -4085,11 +3334,9 @@ html body .br-footer-admin a:hover {
     overflow: hidden;
     background: var(--br-void);
     border: 1px solid #282828;
-
 }
 
 .br-character-portrait img {
-
     display: block !important;
     width: 250px !important;
     height: 400px !important;
@@ -4102,47 +3349,37 @@ html body .br-footer-admin a:hover {
     border-radius: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
-
 }
 
 .br-character-identity {
-
     position: relative;
     padding: 16px 18px 18px;
     background: linear-gradient( 180deg,var(--br-ink) 0%,var(--br-void) 100% );
-
 }
 
 .br-character-series {
-
     display: block;
     margin-bottom: 7px;
     font: 700 7px/1 "JetBrains Mono",monospace;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--br-red);
-
 }
 
 .br-character-name {
-
     font: 700 25px/.95 "Oswald",Arial,sans-serif;
     letter-spacing: .4px;
     text-transform: uppercase;
     color: var(--br-paper);
     overflow-wrap: anywhere;
-
 }
 
 .br-character-name a {
-
     color: inherit !important;
     text-decoration: none !important;
-
 }
 
 .br-character-rank {
-
     margin-top: 10px;
     padding-top: 9px;
     border-top: 1px solid var(--br-border);
@@ -4150,17 +3387,13 @@ html body .br-footer-admin a:hover {
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--br-smoke);
-
 }
 
 .br-character-follow {
-
     margin-top: 14px;
-
 }
 
 .br-character-follow .button1,.br-character-follow button {
-
     box-sizing: border-box;
     width: 100%;
     min-height: 32px;
@@ -4172,18 +3405,14 @@ html body .br-footer-admin a:hover {
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--br-paper) !important;
-
 }
 
 .br-character-follow .button1:hover,.br-character-follow button:hover {
-
     border-color: var(--br-red) !important;
     background: var(--br-ink) !important;
-
 }
 
 #profile-advanced-right #profile-advanced-add {
-
     box-sizing: border-box;
     margin: 0 0 10px;
     padding: 9px 12px;
@@ -4193,53 +3422,39 @@ html body .br-footer-admin a:hover {
     font: 700 8px "JetBrains Mono",monospace;
     letter-spacing: .8px;
     text-transform: uppercase;
-
 }
 
 #profile-advanced-right .module {
-
     box-sizing: border-box;
     border-radius: 0;
-
 }
 
 @media (max-width:900px) {
-
     .br-character-stage {
-
         max-width: 290px;
         margin: 0 auto 18px;
-
     }
 
     .br-character-portrait {
-
         width: 250px;
         height: 400px;
-
     }
 
     .br-character-portrait img {
-
         width: 250px !important;
         height: 400px !important;
-
     }
-
 }
 
 #profile-tab-field-profil {
-
     display: grid;
     grid-template-columns: repeat(2,minmax(0,1fr));
     gap: 1px;
     padding: 1px;
     background: var(--br-border);
-
 }
 
 #profile-tab-field-profil>dl {
-
     display: grid;
     grid-template-columns: 125px 1fr;
     align-items: center;
@@ -4247,11 +3462,9 @@ html body .br-footer-admin a:hover {
     margin: 0 !important;
     background: var(--br-ink);
     border: 0 !important;
-
 }
 
 #profile-tab-field-profil>dl>dt {
-
     align-self: stretch;
     display: flex;
     align-items: center;
@@ -4263,11 +3476,9 @@ html body .br-footer-admin a:hover {
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--br-smoke) !important;
-
 }
 
 #profile-tab-field-profil>dl>dd {
-
     display: flex;
     align-items: center;
     min-width: 0;
@@ -4275,41 +3486,35 @@ html body .br-footer-admin a:hover {
     padding: 11px 15px !important;
     font: 500 11px/1.5 "Inter",sans-serif !important;
     color: var(--br-paper) !important;
-
 }
 
 #profile-tab-field-profil>.separator {
-
     display: none !important;
-
 }
 
 #profile-tab-field-profil>dl:nth-of-type(odd) {
-
     border-left: 2px solid var(--br-red) !important;
-
 }
 
 #profile-advanced-details .middleline {
-
     margin: 0 !important;
     padding: 0 !important;
     border: 0 !important;
-
 }
 
 @media (max-width:1050px) {
-
     #profile-tab-field-profil {
-
         grid-template-columns: 1fr;
-
     }
-
 }
 
-body::after {
+/* =========================================================
+   99 // DEVELOPMENT
 
+   Temporary external-stylesheet verification marker. Remove only after v2 promotion is stable.
+   ========================================================= */
+
+body::after {
     content: "EXTERNAL CSS ACTIVE";
     position: fixed;
     right: 14px;
@@ -4322,541 +3527,4 @@ body::after {
     font: 700 9px monospace;
     letter-spacing: 1px;
     pointer-events: none;
-
-}
-
-/* =========================================================
-   POST VIEW // CHARACTER PRESENTATION v2.0
-   PASS 1 — CANONICAL CHARACTER PORTRAIT
-   ========================================================= */
-
-/* ---------------------------------------------------------
-   PROFILE RAIL
-   Establish enough width for the canonical 250 × 400 artwork
-   --------------------------------------------------------- */
-
-.br-post .br-post-profile {
-
-    width: 290px !important;
-    box-sizing: border-box;
-    background: #0d0d0d;
-    border-left: 1px solid #303030;
-
-}
-
-/* ---------------------------------------------------------
-   PROFILE INTERNAL FRAME
-   --------------------------------------------------------- */
-
-.br-post .br-post-profile > dl {
-
-    width: 100%;
-    margin: 0;
-    padding: 18px 20px 20px;
-    box-sizing: border-box;
-
-}
-
-/* ---------------------------------------------------------
-   CANONICAL CHARACTER PORTRAIT
-   RETRIBUTION STANDARD // 250 × 400
-   --------------------------------------------------------- */
-
-.br-post .postprofile-avatar {
-
-    width: 250px !important;
-    height: 400px !important;
-    margin: 0 auto 16px !important;
-    padding: 0 !important;
-    position: relative;
-    overflow: hidden;
-    background: #080808;
-    border: 1px solid #303030;
-    border-left: 2px solid #b00020;
-    border-radius: 0 !important;
-    box-sizing: border-box;
-
-}
-
-/* registration detail */
-
-.br-post .postprofile-avatar::after {
-
-    content: "";
-    position: absolute;
-    right: 7px;
-    bottom: 7px;
-    width: 14px;
-    height: 14px;
-    border-right: 1px solid #b00020;
-    border-bottom: 1px solid #b00020;
-    pointer-events: none;
-
-}
-
-/* ---------------------------------------------------------
-   AVATAR IMAGE
-   Preserve the entire uploaded 250 × 400 composition
-   --------------------------------------------------------- */
-
-.br-post .postprofile-avatar img {
-
-    display: block !important;
-    width: 250px !important;
-    height: 400px !important;
-    max-width: none !important;
-    max-height: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    object-fit: contain !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-
-}
-
-/* ---------------------------------------------------------
-   CHARACTER IDENTITY
-   Initial calibration only
-   --------------------------------------------------------- */
-
-.br-post .postprofile-name {
-
-    margin: 0 0 5px !important;
-    font-family: "Oswald",sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: .4px;
-    text-transform: uppercase;
-
-}
-
-.br-post .postprofile-rank {
-
-    margin: 0 0 14px !important;
-    padding: 0 0 12px !important;
-    border-bottom: 1px solid #303030;
-    font-family: "JetBrains Mono",monospace;
-    font-size: 8px;
-    line-height: 1.5;
-    letter-spacing: .8px;
-    text-transform: uppercase;
-
-}
-
-/* ---------------------------------------------------------
-   PROFILE DATA
-   Keep stock information functional during calibration
-   --------------------------------------------------------- */
-
-.br-post .postprofile-info {
-
-    margin: 0 !important;
-    padding: 12px 0 !important;
-    border-top: 1px solid #181818;
-    border-bottom: 1px solid #181818;
-    font-size: 10px;
-    line-height: 1.65;
-
-}
-
-/* ---------------------------------------------------------
-   CONTACT RAIL
-   --------------------------------------------------------- */
-
-.br-post .postprofile-contact {
-
-    margin: 12px 0 0 !important;
-    padding: 10px 0 0 !important;
-    border-top: 1px solid #303030;
-
-}
-
-/* ---------------------------------------------------------
-   MESSAGE + HEADER
-   Reserve space for expanded profile rail
-   --------------------------------------------------------- */
-
-.br-post .br-post-head,
-.br-post .br-post-body {
-
-    margin-right: 290px !important;
-
-}
-
-/* ---------------------------------------------------------
-   RESPONSIVE SAFETY
-   Do not force desktop portrait architecture onto mobile
-   --------------------------------------------------------- */
-
-@media (max-width:900px) {
-
-    .br-post .br-post-profile {
-
-        width: 100% !important;
-
-    }
-
-    .br-post .br-post-head,
-    .br-post .br-post-body {
-
-        margin-right: 0 !important;
-
-    }
-
-    .br-post .postprofile-avatar {
-
-        width: 250px !important;
-        height: 400px !important;
-
-    }
-
-}
-
-/* =========================================================
-   POST VIEW // CHARACTER PRESENTATION v2.0
-   PASS 2A — CHARACTER RECORD
-   ========================================================= */
-
-/* ---------------------------------------------------------
-   CHARACTER RECORD FRAME
-   --------------------------------------------------------- */
-
-.br-post .postprofile-info {
-
-    position: relative;
-    margin: 16px 0 0 !important;
-    padding: 34px 0 14px !important;
-    border-top: 1px solid #303030 !important;
-    border-bottom: 1px solid #303030 !important;
-    color: #f2f2f2;
-    font-family: "JetBrains Mono",monospace;
-    font-size: 8px !important;
-    line-height: 2 !important;
-    letter-spacing: .25px;
-
-}
-
-/* ---------------------------------------------------------
-   RECORD HEADER
-   --------------------------------------------------------- */
-
-.br-post .postprofile-info::before {
-
-    content: "// CHARACTER RECORD";
-    position: absolute;
-    top: 10px;
-    left: 0;
-    color: #f2f2f2;
-    font-family: "Oswald",sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: .7px;
-    text-transform: uppercase;
-
-}
-
-/* crimson registration line */
-
-.br-post .postprofile-info::after {
-
-    content: "";
-    position: absolute;
-    top: 15px;
-    right: 0;
-    width: 30px;
-    height: 1px;
-    background: #b00020;
-
-}
-
-/* ---------------------------------------------------------
-   FIELD LABELS
-   --------------------------------------------------------- */
-
-.br-post .postprofile-info .label {
-
-    display: inline-block;
-    min-width: 94px;
-    color: #777 !important;
-    font-family: "JetBrains Mono",monospace;
-    font-size: 7px !important;
-    font-weight: 700;
-    letter-spacing: .7px;
-    text-transform: uppercase;
-
-}
-
-/* Forumotion injects inline label colors */
-
-.br-post .postprofile-info .label span {
-
-    color: inherit !important;
-    font: inherit !important;
-    letter-spacing: inherit !important;
-    text-transform: inherit !important;
-
-}
-
-/* ---------------------------------------------------------
-   FIELD SEPARATORS
-   Remove the old Forumotion colon appearance
-   --------------------------------------------------------- */
-
-.br-post .postprofile-info .label {
-
-    font-size: 0 !important;
-
-}
-
-.br-post .postprofile-info .label span {
-
-    font-size: 7px !important;
-
-}
-
-/* ---------------------------------------------------------
-   RECORD SIGNAL
-   --------------------------------------------------------- */
-
-.br-post .postprofile-info::selection {
-
-    background: #b00020;
-
-}
-
-/* =========================================================
-   RETRIBUTION // GLOBAL CONTENT FRAME
-   ========================================================= */
-
-#outer-wrapper {
-
-    width: 84%;
-    max-width: 1680px;
-    margin-left: auto;
-    margin-right: auto;
-
-}
-
-/* =========================================================
-   RETRIBUTION // POST CHARACTER PORTRAIT STANDARD
-   VERSION 1.0
-
-   Canonical topic-post portrait:
-   250 × 400 maximum presentation.
-
-   Character artwork is preserved in full.
-   No cropping.
-   No circular treatment.
-   ========================================================= */
-
-/* ---------------------------------------------------------
-   PORTRAIT FRAME
-   --------------------------------------------------------- */
-
-.br-post .br-post-profile .postprofile-avatar {
-
-    position: relative;
-    width: 250px;
-    max-width: 100%;
-    margin: 0 auto 14px;
-    overflow: hidden;
-    background: #080808;
-    border: 1px solid #303030;
-    border-left: 2px solid #b00020;
-    box-sizing: border-box;
-
-}
-
-/* ---------------------------------------------------------
-   CHARACTER ARTWORK
-   --------------------------------------------------------- */
-
-.br-post .br-post-profile .postprofile-avatar > a {
-
-    display: block;
-    width: 100%;
-    line-height: 0;
-
-}
-
-.br-post .br-post-profile .postprofile-avatar img {
-
-    display: block;
-    width: 250px;
-    max-width: 100%;
-    height: auto;
-    margin: 0;
-    border: 0;
-    border-radius: 0;
-    object-fit: contain;
-    box-sizing: border-box;
-
-}
-
-/* ---------------------------------------------------------
-   REGISTRATION MARK
-   --------------------------------------------------------- */
-
-.br-post .br-post-profile .postprofile-avatar::before {
-
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 26px;
-    height: 1px;
-    background: #b00020;
-    z-index: 2;
-    pointer-events: none;
-
-}
-
-.br-post .br-post-profile .postprofile-avatar::after {
-
-    content: "";
-    position: absolute;
-    right: 7px;
-    bottom: 7px;
-    width: 10px;
-    height: 10px;
-    border-right: 1px solid #444444;
-    border-bottom: 1px solid #444444;
-    z-index: 2;
-    pointer-events: none;
-
-}
-
-/* =========================================================
-   RETRIBUTION // POST CHARACTER RECORD
-   VERSION 1.0
-   ========================================================= */
-
-/* ---------------------------------------------------------
-   CHARACTER IDENTITY
-   --------------------------------------------------------- */
-
-.br-post .br-post-profile .postprofile-name {
-
-    position: relative;
-    margin: 0;
-    padding: 0 0 11px;
-    text-align: center;
-    border-bottom: 1px solid #242424;
-
-}
-
-.br-post .br-post-profile .postprofile-name a {
-
-    font-family: "Oswald", sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: .7px;
-    text-transform: uppercase;
-    text-decoration: none;
-
-}
-
-.br-post .br-post-profile .postprofile-rank {
-
-    margin: 5px 0 0;
-    color: #b00020;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 7px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    line-height: 1.4;
-    text-align: center;
-    text-transform: uppercase;
-
-}
-
-/* ---------------------------------------------------------
-   CHARACTER RECORD
-   --------------------------------------------------------- */
-
-.br-post .br-post-profile .postprofile-info {
-
-    position: relative;
-    display: block;
-    margin: 15px 0 0;
-    padding: 18px 0 14px;
-    color: #777777;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 8px;
-    font-weight: 500;
-    letter-spacing: .45px;
-    line-height: 2;
-    border-top: 1px solid #242424;
-    border-bottom: 1px solid #242424;
-    box-sizing: border-box;
-
-}
-
-/* // CHARACTER RECORD */
-
-.br-post .br-post-profile .postprofile-info::before {
-
-    content: "// CHARACTER RECORD";
-    display: block;
-    margin: 0 0 9px;
-    padding: 0 28px 7px 0;
-    color: #f2f2f2;
-    font-family: "Oswald", sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: .7px;
-    line-height: 1;
-    text-transform: uppercase;
-    border-bottom: 1px solid #303030;
-
-}
-
-/* Crimson registration line */
-
-.br-post .br-post-profile .postprofile-info::after {
-
-    content: "";
-    position: absolute;
-    top: 22px;
-    right: 0;
-    width: 24px;
-    height: 1px;
-    background: #b00020;
-
-}
-
-/* ---------------------------------------------------------
-   RECORD LABELS
-   --------------------------------------------------------- */
-
-.br-post .br-post-profile .postprofile-info .label {
-
-    display: inline-block;
-    min-width: 92px;
-    margin-right: 8px;
-    color: #777777;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 7px;
-    font-weight: 700;
-    letter-spacing: .8px;
-    text-transform: uppercase;
-
-}
-
-.br-post .br-post-profile .postprofile-info .label span {
-
-    color: inherit !important;
-
-}
-
-/* Tiny live-record marker */
-
-.br-post .br-post-profile .postprofile-info .label::before {
-
-    content: "·";
-    margin-right: 5px;
-    color: #e06a16;
-    font-size: 9px;
-
 }
