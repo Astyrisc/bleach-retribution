@@ -337,3 +337,111 @@ pointer-events:none;
     margin-left: auto;
     margin-right: auto;
 }
+/* =========================================================
+   RETRIBUTION // POST CHARACTER PORTRAIT STANDARD
+   VERSION 1.0
+
+   Canonical topic-post portrait:
+   250 × 400 maximum presentation.
+
+   Character artwork is preserved in full.
+   No cropping.
+   No circular treatment.
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   PORTRAIT FRAME
+   --------------------------------------------------------- */
+
+.br-post .br-post-profile .postprofile-avatar {
+    position: relative;
+
+    width: 250px;
+    max-width: 100%;
+
+    margin: 0 auto 14px;
+
+    overflow: hidden;
+
+    background: #080808;
+
+    border: 1px solid #303030;
+    border-left: 2px solid #b00020;
+
+    box-sizing: border-box;
+}
+
+
+/* ---------------------------------------------------------
+   CHARACTER ARTWORK
+   --------------------------------------------------------- */
+
+.br-post .br-post-profile .postprofile-avatar > a {
+    display: block;
+
+    width: 100%;
+
+    line-height: 0;
+}
+
+
+.br-post .br-post-profile .postprofile-avatar img {
+    display: block;
+
+    width: 250px;
+    max-width: 100%;
+    height: auto;
+
+    margin: 0;
+
+    border: 0;
+    border-radius: 0;
+
+    object-fit: contain;
+
+    box-sizing: border-box;
+}
+
+
+/* ---------------------------------------------------------
+   REGISTRATION MARK
+   --------------------------------------------------------- */
+
+.br-post .br-post-profile .postprofile-avatar::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 26px;
+    height: 1px;
+
+    background: #b00020;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+.br-post .br-post-profile .postprofile-avatar::after {
+    content: "";
+
+    position: absolute;
+
+    right: 7px;
+    bottom: 7px;
+
+    width: 10px;
+    height: 10px;
+
+    border-right: 1px solid #444444;
+    border-bottom: 1px solid #444444;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
