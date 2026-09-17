@@ -445,3 +445,163 @@ pointer-events:none;
 
     pointer-events: none;
 }
+/* =========================================================
+   RETRIBUTION // POST CHARACTER RECORD
+   VERSION 1.0
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   CHARACTER IDENTITY
+   --------------------------------------------------------- */
+
+.br-post .br-post-profile .postprofile-name {
+    position: relative;
+
+    margin: 0;
+    padding: 0 0 11px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #242424;
+}
+
+
+.br-post .br-post-profile .postprofile-name a {
+    font-family: "Oswald", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: .7px;
+    text-transform: uppercase;
+
+    text-decoration: none;
+}
+
+
+.br-post .br-post-profile .postprofile-rank {
+    margin: 5px 0 0;
+
+    color: #b00020;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7px;
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+    line-height: 1.4;
+
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   CHARACTER RECORD
+   --------------------------------------------------------- */
+
+.br-post .br-post-profile .postprofile-info {
+    position: relative;
+
+    display: block;
+
+    margin: 15px 0 0;
+    padding: 18px 0 14px;
+
+    color: #777777;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px;
+    font-weight: 500;
+
+    letter-spacing: .45px;
+    line-height: 2;
+
+    border-top: 1px solid #242424;
+    border-bottom: 1px solid #242424;
+
+    box-sizing: border-box;
+}
+
+
+/* // CHARACTER RECORD */
+
+.br-post .br-post-profile .postprofile-info::before {
+    content: "// CHARACTER RECORD";
+
+    display: block;
+
+    margin: 0 0 9px;
+    padding: 0 28px 7px 0;
+
+    color: #f2f2f2;
+
+    font-family: "Oswald", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: .7px;
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid #303030;
+}
+
+
+/* Crimson registration line */
+
+.br-post .br-post-profile .postprofile-info::after {
+    content: "";
+
+    position: absolute;
+
+    top: 22px;
+    right: 0;
+
+    width: 24px;
+    height: 1px;
+
+    background: #b00020;
+}
+
+
+/* ---------------------------------------------------------
+   RECORD LABELS
+   --------------------------------------------------------- */
+
+.br-post .br-post-profile .postprofile-info .label {
+    display: inline-block;
+
+    min-width: 92px;
+
+    margin-right: 8px;
+
+    color: #777777;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7px;
+    font-weight: 700;
+
+    letter-spacing: .8px;
+
+    text-transform: uppercase;
+}
+
+
+.br-post .br-post-profile .postprofile-info .label span {
+    color: inherit !important;
+}
+
+
+/* Tiny live-record marker */
+
+.br-post .br-post-profile .postprofile-info .label::before {
+    content: "·";
+
+    margin-right: 5px;
+
+    color: #e06a16;
+
+    font-size: 9px;
+}
