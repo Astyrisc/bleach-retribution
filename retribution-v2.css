@@ -3884,6 +3884,12 @@ body::after {
     font-size: 7px;
 }
 
+/* EMAIL // REMOVE NATIVE ICON */
+
+.br-post .postprofile-contact
+.profile-icon[href*="mode=email"] img {
+    display: none !important;
+}
 
 /* Active channel response */
 
