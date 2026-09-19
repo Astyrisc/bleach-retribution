@@ -3812,3 +3812,93 @@ body::after {
     background: var(--br-orange);
     border-radius: 50%;
 }
+/* =========================================================
+   POST CONTACT CHANNELS // CONTROL PASS
+   ========================================================= */
+
+/* Channel controls */
+
+.br-post .postprofile-contact .profile-icon {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    min-width: 0;
+    height: 22px;
+
+    margin: 0 !important;
+    padding: 0 7px !important;
+
+    background: #111111 !important;
+
+    border: 1px solid #303030 !important;
+    border-radius: 0 !important;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0 !important;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .7px;
+    text-decoration: none !important;
+
+    color: #777777 !important;
+
+    transition:
+        color .15s ease,
+        border-color .15s ease,
+        background-color .15s ease;
+}
+
+
+/* Remove native Forumotion icon artwork */
+
+.br-post .postprofile-contact .profile-icon img {
+    display: none !important;
+}
+
+
+/* PROFILE */
+
+.br-post .postprofile-contact .profile-icon:nth-of-type(1)::before {
+    content: "PROFILE";
+
+    font-size: 7px;
+}
+
+
+/* PRIVATE MESSAGE */
+
+.br-post .postprofile-contact .profile-icon:nth-of-type(2)::before {
+    content: "MESSAGE";
+
+    font-size: 7px;
+}
+
+
+/* EMAIL */
+
+.br-post .postprofile-contact .profile-icon:nth-of-type(3)::before {
+    content: "EMAIL";
+
+    font-size: 7px;
+}
+
+
+/* Active channel response */
+
+.br-post .postprofile-contact .profile-icon:hover,
+.br-post .postprofile-contact .profile-icon:focus-visible {
+    color: #f2f2f2 !important;
+    background: #181818 !important;
+    border-color: #b00020 !important;
+}
+
+
+/* Keyboard focus */
+
+.br-post .postprofile-contact .profile-icon:focus-visible {
+    outline: 1px solid #b00020;
+    outline-offset: 2px;
+}
