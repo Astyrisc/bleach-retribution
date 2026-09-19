@@ -3762,3 +3762,53 @@ body::after {
 .quick-nav-topics {
     margin: 4px 0 !important;
 }
+/* =========================================================
+   POST CONTACT CHANNELS // DEVELOPMENT PASS
+   ========================================================= */
+
+.br-post .postprofile-contact {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin: 12px 0 0 !important;
+    padding: 24px 0 0 !important;
+
+    border-top: 1px solid #242424;
+}
+
+/* CONTACT // CHANNELS */
+
+.br-post .postprofile-contact::before {
+    content: "CONTACT // CHANNELS";
+
+    position: absolute;
+    top: 7px;
+    left: 0;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1px;
+
+    color: var(--br-smoke);
+}
+
+/* LIVE CHANNEL INDICATOR */
+
+.br-post .postprofile-contact::after {
+    content: "";
+
+    position: absolute;
+    top: 8px;
+    right: 0;
+
+    width: 4px;
+    height: 4px;
+
+    background: var(--br-orange);
+    border-radius: 50%;
+}
