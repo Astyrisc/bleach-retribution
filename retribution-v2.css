@@ -3549,3 +3549,25 @@ body::after {
     letter-spacing: 1px;
     pointer-events: none;
 }
+/* LOGOUT CONTROL
+   Forumotion generates "Log out [ Username ]".
+   Retribution presents this as a simple navigation action. */
+
+.br-nav #logout {
+    font-size: 0 !important;
+}
+
+.br-nav #logout img {
+    display: none !important;
+}
+
+.br-nav #logout::after {
+    content: "LOG OUT";
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+
+    color: inherit;
+}
