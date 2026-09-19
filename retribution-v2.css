@@ -785,128 +785,291 @@ hr {
 
 /* =========================================================
    03 // CHATBOX
-
-   Native Forumotion chatbox restyled as a Retribution terminal.
+   COMMUNICATION TERMINAL // LOCAL NETWORK
    ========================================================= */
 
-#chatbox_top {
-    position: relative;
-    background: var(--br-ink) !important;
-    border: 1px solid var(--br-ash) !important;
-    border-left: 3px solid var(--br-red) !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    overflow: hidden;
+
+/* ---------------------------------------------------------
+   03.01 // TERMINAL SHELL
+   --------------------------------------------------------- */
+
+#chatbox_header,
+#chatbox {
+    box-sizing: border-box;
 }
 
 #chatbox_header {
     position: relative;
-    height: 48px !important;
-    padding: 0 18px !important;
-    background: linear-gradient(90deg,#0b0b0b 0%,var(--br-ink) 65%,#151515 100%) !important;
+
+    min-height: 38px !important;
+    margin: 0 !important;
+    padding: 0 16px 0 18px !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #0b0b0b !important;
+
     border: 0 !important;
-    border-bottom: 1px solid var(--br-border) !important;
+    border-left: 2px solid var(--br-red) !important;
+    border-top: 1px solid #303030 !important;
+    border-bottom: 1px solid #303030 !important;
+
     border-radius: 0 !important;
-    color: var(--br-paper) !important;
     box-shadow: none !important;
+
+    overflow: hidden;
 }
 
-#chatbox_header:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--br-pink);
+
+/* ---------------------------------------------------------
+   03.02 // TERMINAL REGISTRATION MARK
+   --------------------------------------------------------- */
+
+#chatbox_header::before {
+    content: "//";
+
+    position: relative;
+    display: inline-block;
+    flex: 0 0 auto;
+
+    margin-right: 9px;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0;
+
+    color: var(--br-red);
+
+    opacity: 1;
 }
 
-#chatbox_header:after {
-    content: "";
-    position: absolute;
-    right: 18px;
-    bottom: 11px;
-    width: 46px;
-    height: 1px;
-    background: #3a3a3a;
-    box-shadow: -14px 5px 0 var(--br-red);
-    pointer-events: none;
+
+/* ---------------------------------------------------------
+   03.03 // TERMINAL TITLE
+   --------------------------------------------------------- */
+
+#chatbox_header .chatbox-title {
+    position: relative;
+
+    flex: 1 1 auto;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex;
+    align-items: center;
+
+    min-width: 0;
+
+    background: transparent !important;
+    border: 0 !important;
 }
 
-#chatbox_header .chatbox-title,#chatbox_header .chatbox-title a,#chatbox_header strong {
-    color: var(--br-paper) !important;
-    font-family: "Oswald",Arial,sans-serif !important;
+#chatbox_header .chat-title {
+    display: inline-flex !important;
+    align-items: center;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-family: "Oswald", Arial, sans-serif !important;
     font-size: 12px !important;
     font-weight: 600 !important;
-    letter-spacing: 1.2px !important;
-    text-transform: uppercase !important;
-}
-
-#chatbox_header .chatbox-title:before {
-    content: "//";
-    margin-right: 9px;
-    color: var(--br-red);
-    font-family: "JetBrains Mono",monospace;
-    font-size: 8px;
-    letter-spacing: -1px;
-}
-
-#chatbox_header a {
-    color: var(--br-pink) !important;
-    font-family: "Oswald",Arial,sans-serif;
-    font-size: 10px;
-    letter-spacing: .7px;
+    line-height: 1 !important;
+    letter-spacing: 1.4px !important;
     text-transform: uppercase;
-}
 
-#chatbox_header a:hover {
-    color: var(--br-white) !important;
-}
+    color: #f2f2f2 !important;
 
-#chatbox {
-    background: #0b0b0b !important;
-    color: #d6d6d6 !important;
-}
-
-#chatbox_members,#chatbox_messages {
-    background: var(--br-ink) !important;
-    color: #bdbdbd !important;
-}
-
-#chatbox_members {
-    border-right: 1px solid var(--br-ash) !important;
-}
-
-#chatbox_footer {
-    background: var(--br-ink) !important;
-    border-top: 1px solid var(--br-border) !important;
-    color: #bdbdbd !important;
-}
-
-#chatbox_footer input[type="text"],#chatbox_footer textarea {
-    background: var(--br-panel) !important;
-    border: 1px solid var(--br-border) !important;
-    border-radius: 0 !important;
-    color: var(--br-paper) !important;
-    box-shadow: none !important;
-}
-
-#chatbox_footer input[type="submit"],#chatbox_footer button {
-    background: var(--br-red) !important;
+    background: transparent !important;
     border: 0 !important;
-    border-radius: 0 !important;
-    color: var(--br-white) !important;
-    font-family: "Oswald",Arial,sans-serif;
-    font-size: 10px;
+
+    text-decoration: none !important;
+}
+
+
+/* Hide the stock speech-bubble icon.
+   The // registration mark now identifies the subsystem. */
+
+#chatbox_header .chat-title > i {
+    display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   03.04 // CONNECTED USER TELEMETRY
+   --------------------------------------------------------- */
+
+#chatbox_header #nb-users-connected {
+    display: inline-block;
+
+    margin-left: 10px;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px;
+    font-weight: 600;
+    line-height: 1;
     letter-spacing: 1px;
     text-transform: uppercase;
+
+    color: #777;
+}
+
+
+/* Forumotion channel title support */
+
+#chatbox_header .title_channel_selected {
+    margin-left: 10px;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    color: #777 !important;
+}
+
+
+/* ---------------------------------------------------------
+   03.05 // TERMINAL CONTROLS
+   --------------------------------------------------------- */
+
+#chatbox_header .chatbox-options {
+    position: relative !important;
+
+    flex: 0 0 auto;
+
+    margin: 0 0 0 auto !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+
+    background: transparent !important;
+    border: 0 !important;
+
+    list-style: none !important;
+}
+
+#chatbox_header .chatbox-options li {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+}
+
+#chatbox_header .chatbox-options a {
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 8px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+
+    color: #9a9a9a !important;
+
+    background: transparent !important;
+    border: 0 !important;
+
+    text-decoration: none !important;
+
+    transition:
+        color .15s ease,
+        opacity .15s ease;
+}
+
+#chatbox_header .chatbox-options a:hover {
+    color: #f2f2f2 !important;
+}
+
+
+/* ---------------------------------------------------------
+   03.06 // LOCAL NETWORK STATUS
+   --------------------------------------------------------- */
+
+/*
+   The final control receives a small live-system indicator.
+   Orange is intentionally restricted to telemetry.
+*/
+
+#chatbox_header .chatbox-options::before {
+    content: "";
+
+    display: block;
+
+    width: 5px;
+    height: 5px;
+
+    margin-right: -5px;
+
+    background: var(--br-orange);
+    border-radius: 50%;
+
+    opacity: .9;
+}
+
+
+/* ---------------------------------------------------------
+   03.07 // CHAT BODY
+   --------------------------------------------------------- */
+
+#chatbox {
+    background: #151515 !important;
+
+    border-left: 2px solid var(--br-red) !important;
+    border-right: 1px solid #242424 !important;
+    border-bottom: 1px solid #242424 !important;
+
+    border-radius: 0 !important;
     box-shadow: none !important;
 }
 
-#chatbox_footer input[type="submit"]:hover,#chatbox_footer button:hover {
-    background: var(--br-pink) !important;
+
+/* ---------------------------------------------------------
+   03.08 // CHATBOX FOOTER
+   --------------------------------------------------------- */
+
+#chatbox_footer {
+    background: #101010 !important;
+
+    border: 0 !important;
+    border-left: 2px solid var(--br-red) !important;
+    border-top: 1px solid #242424 !important;
+    border-bottom: 1px solid #242424 !important;
+
+    border-radius: 0 !important;
+    box-shadow: none !important;
 }
 
+
+/* ---------------------------------------------------------
+   03.09 // RESPONSIVE SAFETY
+   --------------------------------------------------------- */
+
+@media (max-width: 760px) {
+
+    #chatbox_header {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    #chatbox_header .chat-title {
+        font-size: 11px !important;
+        letter-spacing: 1px !important;
+    }
+
+    #chatbox_header .chatbox-options {
+        gap: 8px;
+    }
+
+}
 /* =========================================================
    04 // SRDI SYSTEM NOTICE
 
