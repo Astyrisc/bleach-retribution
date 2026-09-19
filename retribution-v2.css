@@ -3571,3 +3571,34 @@ body::after {
 
     color: inherit;
 }
+/* LOGOUT NAVIGATION ALIGNMENT
+   Keep Forumotion's logout control inside the primary nav flow. */
+
+.br-nav .br-nav-menu > li:has(#logout) {
+    display: flex !important;
+    align-items: stretch !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    width: auto !important;
+    height: auto !important;
+}
+
+.br-nav #logout {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: auto !important;
+    height: 100% !important;
+    min-height: 48px;
+
+    margin: 0 !important;
+    padding: 0 14px !important;
+
+    white-space: nowrap !important;
+    line-height: 1 !important;
+
+    box-sizing: border-box;
+}
