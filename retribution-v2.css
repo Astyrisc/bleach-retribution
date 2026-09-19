@@ -189,8 +189,14 @@ hr {
 /* =========================================================
    01 // GLOBAL FRAME
 
-   Site geometry, masthead and primary navigation. The 84% outer wrapper is canonical.
+   Site geometry, masthead and primary navigation.
+   The 84% outer wrapper is canonical.
    ========================================================= */
+
+
+/* ---------------------------------------------------------
+   01.01 // GLOBAL STRUCTURE
+   --------------------------------------------------------- */
 
 #outer-wrapper {
     width: 84%;
@@ -199,6 +205,11 @@ hr {
     margin-right: auto;
 }
 
+
+/* ---------------------------------------------------------
+   01.02 // RETRIBUTION MASTHEAD
+   --------------------------------------------------------- */
+
 .br-masthead {
     position: relative;
     width: auto !important;
@@ -206,7 +217,21 @@ hr {
     min-height: 220px;
     margin: 0 auto 28px !important;
     overflow: hidden;
-    background: radial-gradient(circle at 75% 30%,rgba(255,255,255,.035),transparent 30%),linear-gradient(112deg,var(--br-void) 0%,var(--br-void) 68%,var(--br-ink) 68%,var(--br-ink) 100%);
+
+    background:
+        radial-gradient(
+            circle at 75% 30%,
+            rgba(255,255,255,.035),
+            transparent 30%
+        ),
+        linear-gradient(
+            112deg,
+            var(--br-void) 0%,
+            var(--br-void) 68%,
+            var(--br-ink) 68%,
+            var(--br-ink) 100%
+        );
+
     border-top: 1px solid var(--br-ash);
     border-bottom: 2px solid var(--br-red);
 }
@@ -215,12 +240,15 @@ hr {
     position: absolute;
     right: -10px;
     bottom: -35px;
-    font-family: "Oswald",Arial,sans-serif;
-    font-size: clamp(72px,9vw,145px);
+
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: clamp(72px, 9vw, 145px);
     font-weight: 700;
     line-height: 1;
     letter-spacing: -5px;
+
     color: rgba(255,255,255,.035);
+
     pointer-events: none;
     user-select: none;
 }
@@ -229,10 +257,13 @@ hr {
     position: absolute;
     left: 0;
     top: 39px;
+
     width: 5px;
     height: 135px;
+
     background: var(--br-red);
     box-shadow: 8px 18px 0 rgba(208,0,91,.22);
+
     transform: skewY(-11deg);
 }
 
@@ -240,34 +271,40 @@ hr {
     position: absolute;
     left: 46px;
     top: 50%;
+
     transform: translateY(-50%);
     z-index: 2;
 }
 
 .br-masthead-series {
     margin-bottom: 4px;
-    font-family: "Inter",Arial,sans-serif;
+
+    font-family: "Inter", Arial, sans-serif;
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 7px;
+
     color: var(--br-red);
 }
 
 .br-masthead-title {
-    font-family: "Oswald",Arial,sans-serif;
-    font-size: clamp(44px,5.5vw,76px);
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: clamp(44px, 5.5vw, 76px);
     font-weight: 700;
     line-height: .9;
     letter-spacing: -2px;
+
     color: var(--br-paper);
 }
 
 .br-masthead-subtitle {
     margin-top: 14px;
-    font-family: "Inter",Arial,sans-serif;
+
+    font-family: "Inter", Arial, sans-serif;
     font-size: 9px;
     font-weight: 500;
     letter-spacing: 3.5px;
+
     color: var(--br-smoke);
 }
 
@@ -275,9 +312,11 @@ hr {
     position: absolute;
     right: 28px;
     top: 22px;
-    font-family: "JetBrains Mono",monospace;
+
+    font-family: "JetBrains Mono", monospace;
     font-size: 8px;
     letter-spacing: 2px;
+
     color: var(--br-smoke);
 }
 
@@ -285,6 +324,7 @@ hr {
     position: absolute;
     right: 28px;
     bottom: 29px;
+
     width: 125px;
     height: 28px;
 }
@@ -292,8 +332,10 @@ hr {
 .br-masthead-lines span {
     position: absolute;
     right: 0;
+
     display: block;
     height: 1px;
+
     background: var(--br-red);
 }
 
@@ -305,37 +347,67 @@ hr {
 .br-masthead-lines span:nth-child(2) {
     top: 9px;
     width: 86px;
+
     background: var(--br-border2);
 }
 
 .br-masthead-lines span:nth-child(3) {
     top: 18px;
     width: 48px;
+
     background: var(--br-border);
 }
 
-.br-masthead:after {
+.br-masthead::after {
     content: "";
+
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.012) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.012) 1px,
+            transparent 1px
+        );
+
     background-size: 24px 24px;
+
     pointer-events: none;
 }
+
+
+/* ---------------------------------------------------------
+   01.03 // NATIVE HEADER SUPPRESSION
+   --------------------------------------------------------- */
 
 .headerbar {
     display: none !important;
 }
 
+
+/* ---------------------------------------------------------
+   01.04 // PRIMARY NAVIGATION SHELL
+   --------------------------------------------------------- */
+
 .br-nav {
     position: relative;
+
     width: auto !important;
     max-width: 1050px !important;
+
     margin: -28px auto 28px !important;
+
     background: #0b0b0b;
+
     border-left: 1px solid var(--br-panel);
     border-right: 1px solid var(--br-panel);
     border-bottom: 1px solid var(--br-border);
+
     z-index: 5;
 }
 
@@ -343,128 +415,186 @@ hr {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     min-height: 28px !important;
     padding: 0 20px !important;
+
     background: var(--br-ink);
     border-bottom: 1px solid var(--br-ash);
-    font-family: "JetBrains Mono",monospace;
+
+    font-family: "JetBrains Mono", monospace;
     text-transform: uppercase;
+
     color: var(--br-smoke);
 }
 
 .br-nav-brand {
     font-size: 7.5px !important;
     letter-spacing: 2.4px !important;
+
     color: var(--br-red);
 }
 
 .br-nav-system {
     font-size: 7px !important;
     letter-spacing: 2.1px !important;
+
     color: #555;
 }
 
 .br-nav-links {
     position: relative;
+
     min-height: 52px !important;
-    background: linear-gradient(90deg,#0b0b0b 0%,var(--br-ink) 65%,#0b0b0b 100%);
+
+    background:
+        linear-gradient(
+            90deg,
+            #0b0b0b 0%,
+            var(--br-ink) 65%,
+            #0b0b0b 100%
+        );
+
     border-bottom: 2px solid var(--br-red) !important;
 }
+
+
+/* ---------------------------------------------------------
+   01.05 // PRIMARY NAVIGATION MENU
+   --------------------------------------------------------- */
 
 .br-nav-menu {
     display: flex;
     align-items: center;
+
     min-height: 52px !important;
+
     margin: 0;
     padding: 0 12px !important;
+
     list-style: none;
 }
 
-.br-nav-menu>li {
+.br-nav-menu > li {
     display: flex;
     align-items: center;
+
     margin: 0;
     padding: 0;
+
     list-style: none;
 }
 
 .br-nav-menu a {
     position: relative;
+
     display: inline-flex;
     align-items: center;
+
     min-height: 52px !important;
+
     padding: 0 14px !important;
     margin-right: 1px;
-    font-family: "Oswald",Arial,sans-serif;
+
+    font-family: "Oswald", Arial, sans-serif;
     font-size: 11.5px !important;
     font-weight: 600 !important;
     letter-spacing: .9px !important;
     text-transform: uppercase;
+
     color: #d6d6d6 !important;
+
     transition: .15s;
 }
 
 .br-nav-menu a:hover {
-    background: linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.01)) !important;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.025),
+            rgba(255,255,255,.01)
+        ) !important;
+
     color: var(--br-white) !important;
 }
 
-.br-nav-menu a:after {
+
+/* Standard crimson navigation underline.
+   Keep ::after reserved for this behavior. */
+
+.br-nav-menu a::after {
     content: "";
+
     position: absolute;
     left: 50%;
     bottom: 0;
+
     width: 0;
     height: 2px !important;
+
     background: var(--br-red) !important;
+
     transform: translateX(-50%);
     transition: width .15s ease;
 }
 
-.br-nav-menu a:hover:after {
+.br-nav-menu a:hover::after {
     width: calc(100% - 20px) !important;
 }
 
-.br-nav-menu a[href*="profile"],.br-nav-menu a[href*="privmsg"] {
+
+/* ---------------------------------------------------------
+   01.06 // ACCOUNT & MESSAGE STATES
+   --------------------------------------------------------- */
+
+.br-nav-menu a[href*="profile"],
+.br-nav-menu a[href*="privmsg"] {
     color: var(--br-paper) !important;
 }
 
-.br-nav-menu a[href*="privmsg"]:before {
+.br-nav-menu a[href*="privmsg"]::before {
     content: "";
+
     position: absolute;
     top: 14px;
     right: 7px;
+
     width: 4px;
     height: 4px;
+
     border-radius: 50%;
+
     background: var(--br-pink);
+
     opacity: .75;
 }
 
+
+/* ---------------------------------------------------------
+   01.07 // NAVIGATION MEDIA
+   --------------------------------------------------------- */
+
 .br-nav-menu img {
     margin-right: 4px;
+
     opacity: .75;
     filter: grayscale(1);
 }
 
-.br-nav-links:after {
-    content: "";
-    position: absolute;
-    right: 20px !important;
-    top: 50%;
-    width: 44px !important;
-    height: 1px;
-    background: #353535 !important;
-    box-shadow: -13px 5px 0 var(--br-red) !important;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
-/* LOGOUT CONTROL
-   Forumotion generates "Log out [ Username ]".
-   Retribution presents the action simply as "LOG OUT".
+
+/* ---------------------------------------------------------
+   01.08 // LOGOUT CONTROL
+
+   Forumotion generates:
+   "Log out [ Username ]"
+
+   Retribution presents:
+   "LOG OUT"
 
    ::before owns the visible label.
-   ::after remains reserved for the navigation underline. */
+   ::after remains reserved for the standard navigation
+   underline defined above.
+   --------------------------------------------------------- */
 
 .br-nav #logout {
     font-size: 0 !important;
@@ -500,6 +630,33 @@ hr {
 
     opacity: 1 !important;
     transform: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   01.09 // NAVIGATION TERMINATION
+
+   Decorative signal line at the far-right edge of the
+   primary navigation. It visually closes the navigation
+   rail after LOG OUT.
+   --------------------------------------------------------- */
+
+.br-nav-links::after {
+    content: "";
+
+    position: absolute;
+    right: 10px !important;
+    top: 50%;
+
+    width: 24px !important;
+    height: 1px;
+
+    background: #353535 !important;
+    box-shadow: -8px 5px 0 var(--br-red) !important;
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
 }
 /* =========================================================
    02 // SHARED MODULES
