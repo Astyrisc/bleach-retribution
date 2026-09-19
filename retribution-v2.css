@@ -3876,10 +3876,10 @@ body::after {
     font-size: 7px;
 }
 
-
 /* EMAIL */
 
-.br-post .postprofile-contact .profile-icon[href*="mode=email"]::before {
+.br-post .postprofile-contact
+.profile-icon[title="Send e-mail"]::before {
     content: "EMAIL";
     font-size: 7px;
 }
@@ -3888,7 +3888,7 @@ body::after {
 /* EMAIL // REMOVE NATIVE ICON */
 
 .br-post .postprofile-contact
-.profile-icon[href*="mode=email"] img {
+.profile-icon[title="Send e-mail"] img {
     display: none !important;
 }
 
