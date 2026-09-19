@@ -3755,3 +3755,10 @@ body::after {
     letter-spacing: 1px;
     pointer-events: none;
 }
+/* ---------------------------------------------------------
+   10.xx // TOPIC QUICK NAVIGATION
+   --------------------------------------------------------- */
+
+.quick-nav-topics {
+    margin: 4px 0 !important;
+}
