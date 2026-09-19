@@ -785,36 +785,33 @@ hr {
 
 /* =========================================================
    03 // CHATBOX
+
    COMMUNICATION TERMINAL // LOCAL NETWORK
+
+   Forumotion renders the native Chatbox inside its own
+   embedded document. Retribution therefore owns only the
+   outer integration layer.
+
+   Internal Chatbox presentation remains native by design.
    ========================================================= */
 
 
 /* ---------------------------------------------------------
-   03.01 // TERMINAL SHELL
+   03.01 // TERMINAL MOUNT
    --------------------------------------------------------- */
 
-#chatbox_header,
-#chatbox {
-    box-sizing: border-box;
-}
-
-#chatbox_header {
+#chatbox_bottom {
     position: relative;
 
-    min-height: 38px !important;
-    margin: 0 !important;
-    padding: 0 16px 0 18px !important;
+    box-sizing: border-box;
 
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
+    margin: 10px 0 18px !important;
+    padding: 0 !important;
 
-    background: #0b0b0b !important;
+    background: var(--br-ink);
 
-    border: 0 !important;
-    border-left: 2px solid var(--br-red) !important;
-    border-top: 1px solid #303030 !important;
-    border-bottom: 1px solid #303030 !important;
+    border: 1px solid var(--br-border);
+    border-left: 2px solid var(--br-red);
 
     border-radius: 0 !important;
     box-shadow: none !important;
@@ -824,249 +821,106 @@ hr {
 
 
 /* ---------------------------------------------------------
-   03.02 // TERMINAL REGISTRATION MARK
+   03.02 // EMBEDDED NETWORK
    --------------------------------------------------------- */
 
-#chatbox_header::before {
-    content: "//";
-
-    position: relative;
-    display: inline-block;
-    flex: 0 0 auto;
-
-    margin-right: 9px;
-
-    font-family: "JetBrains Mono", monospace;
-    font-size: 9px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: 0;
-
-    color: var(--br-red);
-
-    opacity: 1;
-}
-
-
-/* ---------------------------------------------------------
-   03.03 // TERMINAL TITLE
-   --------------------------------------------------------- */
-
-#chatbox_header .chatbox-title {
-    position: relative;
-
-    flex: 1 1 auto;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    display: flex;
-    align-items: center;
-
-    min-width: 0;
-
-    background: transparent !important;
-    border: 0 !important;
-}
-
-#chatbox_header .chat-title {
-    display: inline-flex !important;
-    align-items: center;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    font-family: "Oswald", Arial, sans-serif !important;
-    font-size: 12px !important;
-    font-weight: 600 !important;
-    line-height: 1 !important;
-    letter-spacing: 1.4px !important;
-    text-transform: uppercase;
-
-    color: #f2f2f2 !important;
-
-    background: transparent !important;
-    border: 0 !important;
-
-    text-decoration: none !important;
-}
-
-
-/* Hide the stock speech-bubble icon.
-   The // registration mark now identifies the subsystem. */
-
-#chatbox_header .chat-title > i {
-    display: none !important;
-}
-
-
-/* ---------------------------------------------------------
-   03.04 // CONNECTED USER TELEMETRY
-   --------------------------------------------------------- */
-
-#chatbox_header #nb-users-connected {
-    display: inline-block;
-
-    margin-left: 10px;
-
-    font-family: "JetBrains Mono", monospace;
-    font-size: 8px;
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-
-    color: #777;
-}
-
-
-/* Forumotion channel title support */
-
-#chatbox_header .title_channel_selected {
-    margin-left: 10px;
-
-    font-family: "JetBrains Mono", monospace;
-    font-size: 8px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-
-    color: #777 !important;
-}
-
-
-/* ---------------------------------------------------------
-   03.05 // TERMINAL CONTROLS
-   --------------------------------------------------------- */
-
-#chatbox_header .chatbox-options {
-    position: relative !important;
-
-    flex: 0 0 auto;
-
-    margin: 0 0 0 auto !important;
-    padding: 0 !important;
-
-    display: flex !important;
-    align-items: center;
-    gap: 12px;
-
-    background: transparent !important;
-    border: 0 !important;
-
-    list-style: none !important;
-}
-
-#chatbox_header .chatbox-options li {
-    margin: 0 !important;
-    padding: 0 !important;
-
-    background: transparent !important;
-    border: 0 !important;
-}
-
-#chatbox_header .chatbox-options a {
-    font-family: "JetBrains Mono", monospace !important;
-    font-size: 8px !important;
-    font-weight: 600 !important;
-    line-height: 1 !important;
-    letter-spacing: 1px !important;
-    text-transform: uppercase;
-
-    color: #9a9a9a !important;
-
-    background: transparent !important;
-    border: 0 !important;
-
-    text-decoration: none !important;
-
-    transition:
-        color .15s ease,
-        opacity .15s ease;
-}
-
-#chatbox_header .chatbox-options a:hover {
-    color: #f2f2f2 !important;
-}
-
-
-/* ---------------------------------------------------------
-   03.06 // LOCAL NETWORK STATUS
-   --------------------------------------------------------- */
-
-/*
-   The final control receives a small live-system indicator.
-   Orange is intentionally restricted to telemetry.
-*/
-
-#chatbox_header .chatbox-options::before {
-    content: "";
-
+#chatbox_bottom #frame_chatbox {
     display: block;
 
-    width: 5px;
-    height: 5px;
+    width: 100% !important;
+    max-width: 100% !important;
 
-    margin-right: -5px;
+    margin: 0 !important;
+    padding: 0 !important;
 
-    background: var(--br-orange);
-    border-radius: 50%;
-
-    opacity: .9;
-}
-
-
-/* ---------------------------------------------------------
-   03.07 // CHAT BODY
-   --------------------------------------------------------- */
-
-#chatbox {
-    background: #151515 !important;
-
-    border-left: 2px solid var(--br-red) !important;
-    border-right: 1px solid #242424 !important;
-    border-bottom: 1px solid #242424 !important;
-
-    border-radius: 0 !important;
-    box-shadow: none !important;
-}
-
-
-/* ---------------------------------------------------------
-   03.08 // CHATBOX FOOTER
-   --------------------------------------------------------- */
-
-#chatbox_footer {
-    background: #101010 !important;
+    background: var(--br-panel);
 
     border: 0 !important;
-    border-left: 2px solid var(--br-red) !important;
-    border-top: 1px solid #242424 !important;
-    border-bottom: 1px solid #242424 !important;
-
     border-radius: 0 !important;
+
     box-shadow: none !important;
 }
 
 
 /* ---------------------------------------------------------
-   03.09 // RESPONSIVE SAFETY
+   03.03 // TERMINAL REGISTRATION
+
+   These marks belong to the parent document and identify
+   the embedded application without modifying its internals.
+   --------------------------------------------------------- */
+
+#chatbox_bottom::before {
+    content: "COMMUNICATION TERMINAL";
+
+    position: absolute;
+    left: 18px;
+    top: 0;
+
+    z-index: 2;
+
+    padding: 0 8px;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1.5px;
+
+    color: var(--br-smoke);
+    background: var(--br-ink);
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
+}
+
+
+/* Crimson system registration */
+
+#chatbox_bottom::after {
+    content: "//";
+
+    position: absolute;
+    right: 14px;
+    top: 0;
+
+    z-index: 2;
+
+    padding: 0 6px;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 1;
+
+    color: var(--br-red);
+    background: var(--br-ink);
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   03.04 // RESPONSIVE SAFETY
    --------------------------------------------------------- */
 
 @media (max-width: 760px) {
 
-    #chatbox_header {
-        padding-left: 12px !important;
-        padding-right: 12px !important;
+    #chatbox_bottom {
+        margin-bottom: 14px !important;
     }
 
-    #chatbox_header .chat-title {
-        font-size: 11px !important;
-        letter-spacing: 1px !important;
+    #chatbox_bottom::before {
+        left: 12px;
+
+        font-size: 6px;
+        letter-spacing: 1.1px;
     }
 
-    #chatbox_header .chatbox-options {
-        gap: 8px;
+    #chatbox_bottom::after {
+        right: 10px;
     }
 
 }
@@ -1296,15 +1150,6 @@ hr {
 
     .module .h3:after,.module h3:after {
         left: 30px;
-    }
-
-    #chatbox_header {
-        height: 44px !important;
-        padding: 0 14px !important;
-    }
-
-    #chatbox_header:after {
-        display: none;
     }
 
     #fa_ticker_container {
