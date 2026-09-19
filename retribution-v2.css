@@ -3879,9 +3879,8 @@ body::after {
 
 /* EMAIL */
 
-.br-post .postprofile-contact .profile-icon:nth-of-type(3)::before {
+.br-post .postprofile-contact .profile-icon[href*="mode=email"]::before {
     content: "EMAIL";
-
     font-size: 7px;
 }
 
