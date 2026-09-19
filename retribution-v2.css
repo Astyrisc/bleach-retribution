@@ -459,7 +459,48 @@ hr {
     transform: translateY(-50%);
     pointer-events: none;
 }
+/* LOGOUT CONTROL
+   Forumotion generates "Log out [ Username ]".
+   Retribution presents the action simply as "LOG OUT".
 
+   ::before owns the visible label.
+   ::after remains reserved for the navigation underline. */
+
+.br-nav #logout {
+    font-size: 0 !important;
+    white-space: nowrap !important;
+}
+
+.br-nav #logout img {
+    display: none !important;
+}
+
+.br-nav #logout::before {
+    content: "LOG OUT";
+
+    position: static;
+
+    display: inline;
+
+    width: auto;
+    height: auto;
+
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 11.5px !important;
+    font-weight: 600 !important;
+    line-height: 1;
+    letter-spacing: .9px !important;
+    text-transform: uppercase;
+
+    color: #d6d6d6 !important;
+
+    background: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    opacity: 1 !important;
+    transform: none !important;
+}
 /* =========================================================
    02 // SHARED MODULES
 
@@ -3548,57 +3589,4 @@ body::after {
     font: 700 9px monospace;
     letter-spacing: 1px;
     pointer-events: none;
-}
-/* LOGOUT CONTROL
-   Forumotion generates "Log out [ Username ]".
-   Retribution presents this as a simple navigation action. */
-
-.br-nav #logout {
-    font-size: 0 !important;
-}
-
-.br-nav #logout img {
-    display: none !important;
-}
-
-.br-nav #logout::after {
-    content: "LOG OUT";
-
-    font-family: "JetBrains Mono", monospace;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-
-    color: inherit;
-}
-/* LOGOUT NAVIGATION ALIGNMENT
-   Keep Forumotion's logout control inside the primary nav flow. */
-
-.br-nav .br-nav-menu > li:has(#logout) {
-    display: flex !important;
-    align-items: stretch !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    width: auto !important;
-    height: auto !important;
-}
-
-.br-nav #logout {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    width: auto !important;
-    height: 100% !important;
-    min-height: 48px;
-
-    margin: 0 !important;
-    padding: 0 14px !important;
-
-    white-space: nowrap !important;
-    line-height: 1 !important;
-
-    box-sizing: border-box;
 }
