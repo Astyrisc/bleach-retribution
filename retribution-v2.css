@@ -854,7 +854,7 @@ hr {
 
     position: absolute;
     left: 18px;
-    top: 0;
+    top: 8px;
 
     z-index: 2;
 
@@ -869,7 +869,7 @@ hr {
     color: var(--br-smoke);
     background: var(--br-ink);
 
-    transform: translateY(-50%);
+    transform: none;
 
     pointer-events: none;
 }
@@ -882,7 +882,7 @@ hr {
 
     position: absolute;
     right: 14px;
-    top: 0;
+    top: 8px;
 
     z-index: 2;
 
@@ -896,7 +896,7 @@ hr {
     color: var(--br-red);
     background: var(--br-ink);
 
-    transform: translateY(-50%);
+    transform: none;
 
     pointer-events: none;
 }
