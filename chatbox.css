@@ -1,1 +1,354 @@
+/* =========================================================
+   BLEACH // RETRIBUTION
+   COMMUNICATION TERMINAL
 
+   Native Forumotion Chatbox Interface
+   ========================================================= */
+
+
+/* =========================================================
+   00 // DESIGN SYSTEM
+   ========================================================= */
+
+:root {
+    --br-void: #080808;
+    --br-ink: #111111;
+    --br-obsidian: #181818;
+    --br-ash: #242424;
+
+    --br-paper: #f2f2f2;
+    --br-white: #ffffff;
+    --br-smoke: #777777;
+
+    --br-red: #b00020;
+    --br-blood: #780014;
+
+    --br-orange: #e06a16;
+
+    --br-border: #303030;
+}
+
+
+/* =========================================================
+   01 // TERMINAL DOCUMENT
+   ========================================================= */
+
+html,
+body.chatbox {
+    background: var(--br-void) !important;
+}
+
+body.chatbox {
+    margin: 0 !important;
+    color: #d6d6d6 !important;
+}
+
+
+/* =========================================================
+   02 // TERMINAL HEADER
+   ========================================================= */
+
+#chatbox_header {
+    position: relative !important;
+
+    height: 40px !important;
+    min-height: 40px !important;
+
+    padding: 0 16px 0 18px !important;
+
+    background: var(--br-ink) !important;
+    background-image: none !important;
+
+    border: 0 !important;
+    border-left: 2px solid var(--br-red) !important;
+    border-bottom: 1px solid var(--br-border) !important;
+
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    line-height: 40px !important;
+}
+
+
+/* Crimson registration mark */
+
+#chatbox_header::before {
+    content: "//";
+
+    position: absolute;
+
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0;
+
+    color: var(--br-red);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   03 // TERMINAL IDENTITY
+   ========================================================= */
+
+#chatbox_header .chatbox-title {
+    height: 40px !important;
+
+    margin: 0 !important;
+    padding: 0 0 0 18px !important;
+
+    line-height: 40px !important;
+
+    background: transparent !important;
+    border: 0 !important;
+}
+
+#chatbox_header .chat-title {
+    display: inline-block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-family: "Oswald", Arial, sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    line-height: 40px !important;
+
+    letter-spacing: 1.4px !important;
+    text-transform: uppercase;
+
+    color: var(--br-paper) !important;
+
+    background: transparent !important;
+    border: 0 !important;
+
+    text-decoration: none !important;
+    text-shadow: none !important;
+}
+
+
+/* Remove Forumotion speech-bubble icon */
+
+#chatbox_header .chat-title > i {
+    display: none !important;
+}
+
+
+/* Connected-user counter / channel telemetry */
+
+#chatbox_header #nb-users-connected,
+#chatbox_header .title_channel_selected {
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 8px !important;
+    font-weight: 600 !important;
+
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+
+    color: var(--br-smoke) !important;
+}
+
+
+/* =========================================================
+   04 // TERMINAL CONTROLS
+   ========================================================= */
+
+#chatbox_header .chatbox-options {
+    position: absolute !important;
+
+    top: 0 !important;
+    right: 16px !important;
+
+    height: 40px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    list-style: none !important;
+
+    background: transparent !important;
+    border: 0 !important;
+}
+
+#chatbox_header .chatbox-options li {
+    margin: 0 0 0 12px !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+}
+
+#chatbox_header .chatbox-options a {
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 8px !important;
+    font-weight: 600 !important;
+    line-height: 40px !important;
+
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+
+    color: #9a9a9a !important;
+
+    background: transparent !important;
+    border: 0 !important;
+
+    text-decoration: none !important;
+    text-shadow: none !important;
+}
+
+#chatbox_header .chatbox-options a:hover {
+    color: var(--br-paper) !important;
+}
+
+
+/* Local-network telemetry indicator */
+
+#chatbox_header .chatbox-options::before {
+    content: "";
+
+    width: 5px;
+    height: 5px;
+
+    margin-right: 2px;
+
+    background: var(--br-orange);
+
+    border-radius: 50%;
+
+    opacity: .9;
+}
+
+
+/* =========================================================
+   05 // MEMBER NETWORK
+   ========================================================= */
+
+#chatbox_members {
+    background: #101010 !important;
+
+    border: 0 !important;
+    border-right: 1px solid var(--br-border) !important;
+
+    color: #bdbdbd !important;
+}
+
+#chatbox_members .member-title,
+#chatbox_members .member-title-online,
+#chatbox_members .member-title-away {
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 8px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   06 // MESSAGE STREAM
+   ========================================================= */
+
+#chatbox {
+    background: var(--br-obsidian) !important;
+
+    color: #d0d0d0 !important;
+
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+#chatbox .chatbox_row_1,
+#chatbox .chatbox_row_2 {
+    background: transparent !important;
+}
+
+#chatbox .date-and-time {
+    color: #686868 !important;
+}
+
+
+/* =========================================================
+   07 // TERMINAL FOOTER
+   ========================================================= */
+
+#chatbox_footer {
+    background: #101010 !important;
+
+    border: 0 !important;
+    border-top: 1px solid var(--br-border) !important;
+
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   08 // INPUT SYSTEM
+   ========================================================= */
+
+#chatbox_footer input,
+#chatbox_footer textarea,
+#chatbox_footer select {
+    color: #d8d8d8 !important;
+
+    background: var(--br-obsidian) !important;
+
+    border: 1px solid var(--br-border) !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+}
+
+#chatbox_footer input:focus,
+#chatbox_footer textarea:focus,
+#chatbox_footer select:focus {
+    border-color: var(--br-red) !important;
+    outline: none !important;
+}
+
+
+/* =========================================================
+   09 // TERMINAL LINKS
+   ========================================================= */
+
+body.chatbox a {
+    text-shadow: none !important;
+}
+
+#chatbox a:hover,
+#chatbox_members a:hover,
+#chatbox_footer a:hover {
+    text-decoration: none !important;
+}
+
+
+/* =========================================================
+   10 // RESPONSIVE SAFETY
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    #chatbox_header {
+        padding-right: 10px !important;
+    }
+
+    #chatbox_header .chatbox-options {
+        right: 10px !important;
+    }
+
+    #chatbox_header .chat-title {
+        font-size: 10px !important;
+        letter-spacing: 1px !important;
+    }
+
+}
