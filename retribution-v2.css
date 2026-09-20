@@ -4187,3 +4187,37 @@ body::after {
     border: 0 !important;
     border-radius: 0 !important;
 }
+/* =========================================================
+   POST REPUTATION // RESULT REFINEMENT
+   ========================================================= */
+
+/* Preserve Forumotion's dynamic result in the DOM/title,
+   but remove its verbose sentence from the visual interface. */
+
+.br-post .vote .vote-bar-desc {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+
+/* Give the completed reputation signal more presence. */
+
+.br-post .vote .vote-bar .vote-bars {
+    width: 64px !important;
+    height: 2px !important;
+}
+
+
+/* Magenta remains exclusive to positive reputation telemetry. */
+
+.br-post .vote .vote-bar .vote-bar-plus {
+    height: 2px !important;
+    background: var(--br-magenta, #d0005b) !important;
+}
