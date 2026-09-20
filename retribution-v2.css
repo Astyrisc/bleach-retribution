@@ -4221,3 +4221,343 @@ body::after {
     height: 2px !important;
     background: var(--br-magenta, #d0005b) !important;
 }
+/* =========================================================
+   POST FEEDBACK // CONTROL PASS
+
+   Lightweight reader response system.
+
+   Crimson // interface / negative response
+   Orange  // live subsystem
+   Magenta // recorded positive response
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   FEEDBACK CONTAINER
+   --------------------------------------------------------- */
+
+.br-post .fa_like_div {
+    position: relative;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+
+    margin: 0 !important;
+    padding: 27px 12px 10px !important;
+
+    background: #0d0d0d !important;
+    border-top: 1px solid #242424 !important;
+}
+
+
+/* RESPONSE // FEEDBACK */
+
+.br-post .fa_like_div::before {
+    content: "RESPONSE // FEEDBACK";
+
+    position: absolute;
+    top: 9px;
+    left: 12px;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1px;
+
+    color: var(--br-smoke);
+
+    pointer-events: none;
+}
+
+
+/* Live subsystem indicator */
+
+.br-post .fa_like_div::after {
+    content: "";
+
+    position: absolute;
+    top: 10px;
+    right: 12px;
+
+    width: 3px;
+    height: 3px;
+
+    background: var(--br-orange);
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   FEEDBACK CONTROLS
+   ========================================================= */
+
+.br-post .fa_like_div .rep-button {
+    position: relative;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+
+    box-sizing: border-box;
+
+    min-width: 74px;
+    height: 24px;
+
+    margin: 0 !important;
+    padding: 0 8px !important;
+
+    background: #111111 !important;
+    border: 1px solid #303030 !important;
+    border-radius: 0 !important;
+
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 7px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    letter-spacing: .7px !important;
+
+    color: #777777 !important;
+
+    box-shadow: none !important;
+    text-transform: uppercase;
+    text-decoration: none !important;
+
+    cursor: pointer;
+
+    transition:
+        color .15s ease,
+        background-color .15s ease,
+        border-color .15s ease;
+}
+
+
+/* Remove stock Forumotion thumbs */
+
+.br-post .fa_like_div .rep-button > i {
+    display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   LIKE CONTROL
+   --------------------------------------------------------- */
+
+.br-post .fa_like_div .rep-button.fa_like::before {
+    content: "+";
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+
+    color: #777777;
+}
+
+
+/* ---------------------------------------------------------
+   DISLIKE CONTROL
+   --------------------------------------------------------- */
+
+.br-post .fa_like_div .rep-button.fa_dislike::before {
+    content: "−";
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+
+    color: #777777;
+}
+
+
+/* =========================================================
+   REACTION COUNTER
+   ========================================================= */
+
+.br-post .fa_like_div .rep-button .rep-nb {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 13px;
+    height: 13px;
+
+    margin-left: auto !important;
+    padding: 0 3px !important;
+
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 6px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+
+    color: #8b8b8b !important;
+
+    background: #181818 !important;
+    border-left: 1px solid #303030 !important;
+}
+
+
+/* Forumotion may leave an empty counter node.
+   Do not create visual weight when no count exists. */
+
+.br-post .fa_like_div .rep-button .rep-nb:empty {
+    display: none !important;
+}
+
+
+/* =========================================================
+   STANDARD INTERACTION STATES
+   ========================================================= */
+
+.br-post .fa_like_div .rep-button:hover,
+.br-post .fa_like_div .rep-button:focus-visible {
+    color: #f2f2f2 !important;
+    background: #181818 !important;
+}
+
+
+/* Positive interaction */
+
+.br-post .fa_like_div .rep-button.fa_like:hover,
+.br-post .fa_like_div .rep-button.fa_like:focus-visible {
+    border-color: var(--br-magenta, #d0005b) !important;
+}
+
+.br-post .fa_like_div .rep-button.fa_like:hover::before,
+.br-post .fa_like_div .rep-button.fa_like:focus-visible::before {
+    color: var(--br-magenta, #d0005b);
+}
+
+
+/* Negative interaction */
+
+.br-post .fa_like_div .rep-button.fa_dislike:hover,
+.br-post .fa_like_div .rep-button.fa_dislike:focus-visible {
+    border-color: var(--br-red, #b00020) !important;
+}
+
+.br-post .fa_like_div .rep-button.fa_dislike:hover::before,
+.br-post .fa_like_div .rep-button.fa_dislike:focus-visible::before {
+    color: var(--br-red, #b00020);
+}
+
+
+/* Keyboard accessibility */
+
+.br-post .fa_like_div .rep-button:focus-visible {
+    outline-offset: 2px;
+}
+
+.br-post .fa_like_div .rep-button.fa_like:focus-visible {
+    outline: 1px solid var(--br-magenta, #d0005b);
+}
+
+.br-post .fa_like_div .rep-button.fa_dislike:focus-visible {
+    outline: 1px solid var(--br-red, #b00020);
+}
+
+
+/* =========================================================
+   RECORDED LIKE STATE
+   Forumotion adds .fa_liked after interaction.
+   ========================================================= */
+
+.br-post .fa_like_div .rep-button.fa_like.fa_liked {
+    color: #f2f2f2 !important;
+
+    background: #141414 !important;
+    border-color: var(--br-magenta, #d0005b) !important;
+
+    box-shadow:
+        inset 2px 0 0 var(--br-magenta, #d0005b) !important;
+}
+
+.br-post .fa_like_div .rep-button.fa_like.fa_liked::before {
+    color: var(--br-magenta, #d0005b) !important;
+}
+
+.br-post .fa_like_div .rep-button.fa_like.fa_liked .rep-nb {
+    color: var(--br-magenta, #d0005b) !important;
+}
+
+
+/* =========================================================
+   RECORDED DISLIKE STATE
+
+   Covers Forumotion's corresponding state if/when applied.
+   ========================================================= */
+
+.br-post .fa_like_div .rep-button.fa_dislike.fa_disliked {
+    color: #f2f2f2 !important;
+
+    background: #141414 !important;
+    border-color: var(--br-red, #b00020) !important;
+
+    box-shadow:
+        inset 2px 0 0 var(--br-red, #b00020) !important;
+}
+
+.br-post .fa_like_div .rep-button.fa_dislike.fa_disliked::before {
+    color: var(--br-red, #b00020) !important;
+}
+
+.br-post .fa_like_div .rep-button.fa_dislike.fa_disliked .rep-nb {
+    color: var(--br-red, #b00020) !important;
+}
+
+
+/* =========================================================
+   RESPONSE RECORD
+   Example:
+   Shuei Setsuna likes this post
+   ========================================================= */
+
+.br-post .fa_like_div .fa_like_list {
+    flex-basis: 100%;
+
+    box-sizing: border-box;
+
+    margin: 1px 0 0 !important;
+    padding: 7px 0 0 !important;
+
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 6.5px !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+    letter-spacing: .45px !important;
+
+    color: #666666 !important;
+
+    background: transparent !important;
+    border-top: 1px solid #1d1d1d !important;
+}
+
+
+/* Member identity inside response record */
+
+.br-post .fa_like_div .fa_like_list a {
+    color: var(--br-magenta, #d0005b) !important;
+
+    font-weight: 700 !important;
+    text-decoration: none !important;
+}
+
+.br-post .fa_like_div .fa_like_list a:hover,
+.br-post .fa_like_div .fa_like_list a:focus-visible {
+    color: #f2f2f2 !important;
+    text-decoration: none !important;
+}
+
+
+/* Do not create an empty activity rail. */
+
+.br-post .fa_like_div .fa_like_list:empty {
+    display: none !important;
+}
