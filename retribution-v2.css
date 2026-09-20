@@ -3908,3 +3908,282 @@ body::after {
     outline: 1px solid #b00020;
     outline-offset: 2px;
 }
+/* =========================================================
+   POST REPUTATION // CONTROL PASS
+
+   Crimson // interface structure
+   Orange  // live telemetry
+   Magenta // transmitted influence / reputation
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   REPUTATION CONTAINER
+   --------------------------------------------------------- */
+
+.br-post .vote {
+    position: relative;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+
+    min-height: 22px;
+    margin: 5px 0 0 !important;
+    padding: 0 0 0 92px !important;
+
+    font-family: "JetBrains Mono", monospace;
+    line-height: 1;
+
+    background: transparent !important;
+    border: 0 !important;
+}
+
+/* Technical label */
+
+.br-post .vote::before {
+    content: "REPUTATION //";
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1px;
+
+    color: var(--br-smoke);
+
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Live telemetry indicator */
+
+.br-post .vote::after {
+    content: "";
+
+    position: absolute;
+    right: -9px;
+    top: 50%;
+
+    width: 3px;
+    height: 3px;
+
+    background: var(--br-orange);
+    border-radius: 50%;
+
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   UNVOTED STATE // POSITIVE + NEGATIVE CONTROLS
+   ========================================================= */
+
+.br-post .vote > a.ion-plus-circled,
+.br-post .vote > a.ion-minus-circled {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    width: 24px;
+    height: 22px;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: #111111 !important;
+    border: 1px solid #303030 !important;
+    border-radius: 0 !important;
+
+    font-size: 0 !important;
+    line-height: 1 !important;
+
+    color: #777777 !important;
+
+    text-decoration: none !important;
+
+    transition:
+        color .15s ease,
+        border-color .15s ease,
+        background-color .15s ease;
+}
+
+
+/* Replace Forumotion Ionicons with restrained controls */
+
+.br-post .vote > a.ion-plus-circled::before {
+    content: "+";
+
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+
+    color: inherit !important;
+}
+
+.br-post .vote > a.ion-minus-circled::before {
+    content: "−";
+
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+
+    color: inherit !important;
+}
+
+
+/* Positive reputation */
+
+.br-post .vote > a.ion-plus-circled:hover,
+.br-post .vote > a.ion-plus-circled:focus-visible {
+    color: #f2f2f2 !important;
+    background: #181818 !important;
+    border-color: var(--br-magenta, #d0005b) !important;
+}
+
+
+/* Negative reputation */
+
+.br-post .vote > a.ion-minus-circled:hover,
+.br-post .vote > a.ion-minus-circled:focus-visible {
+    color: #f2f2f2 !important;
+    background: #181818 !important;
+    border-color: var(--br-red, #b00020) !important;
+}
+
+
+/* Keyboard focus */
+
+.br-post .vote > a.ion-plus-circled:focus-visible {
+    outline: 1px solid var(--br-magenta, #d0005b);
+    outline-offset: 2px;
+}
+
+.br-post .vote > a.ion-minus-circled:focus-visible {
+    outline: 1px solid var(--br-red, #b00020);
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   EMPTY REPUTATION BAR
+   Forumotion creates this before a vote exists.
+   Keep the element functional but visually silent.
+   ========================================================= */
+
+.br-post .vote .vote-bar-empty {
+    display: none !important;
+}
+
+
+/* =========================================================
+   VOTED STATE // REPUTATION TELEMETRY
+   ========================================================= */
+
+.br-post .vote .vote-bar {
+    position: relative;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+
+    width: auto !important;
+    height: 22px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    overflow: visible !important;
+}
+
+
+/* Dynamic Forumotion reputation readout */
+
+.br-post .vote .vote-bar-desc {
+    position: static !important;
+
+    display: block !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 7px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    letter-spacing: .6px !important;
+
+    color: #8b8b8b !important;
+
+    background: transparent !important;
+    border: 0 !important;
+
+    white-space: nowrap;
+}
+
+
+/* Reputation telemetry track */
+
+.br-post .vote .vote-bars {
+    position: relative !important;
+
+    display: block !important;
+
+    width: 50px !important;
+    height: 2px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: #242424 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    overflow: hidden !important;
+}
+
+
+/* Positive reputation signal // MAGENTA */
+
+.br-post .vote .vote-bar-plus {
+    display: block !important;
+
+    height: 2px !important;
+    min-height: 2px !important;
+
+    background: var(--br-magenta, #d0005b) !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+
+/* Negative portion remains structural crimson */
+
+.br-post .vote .vote-bar-minus {
+    display: block !important;
+
+    height: 2px !important;
+    min-height: 2px !important;
+
+    background: var(--br-red, #b00020) !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
