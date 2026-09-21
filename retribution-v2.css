@@ -2194,58 +2194,37 @@ hr {
 }
 
 /* 05.04 // CANONICAL CHARACTER PORTRAIT
-   RETRIBUTION STANDARD // 250 × 400
-
-   Topic portraits use one fixed presentation standard.
-   The uploaded artwork is displayed at exactly 250 × 400.
-   No crop. No circle. */
+   Full character artwork. Never crop or circularize it. */
 .br-post .br-post-profile .postprofile-avatar {
     position: relative;
-
     width: 250px !important;
-    height: 400px !important;
-    max-width: none !important;
-
+    max-width: 100%;
     margin: 0 auto 14px !important;
     padding: 0 !important;
-
     overflow: hidden;
-
     background: var(--br-void);
-
     border: 1px solid var(--br-border);
     border-left: 2px solid var(--br-red);
     border-radius: 0 !important;
-
     box-sizing: border-box;
 }
-
 .br-post .br-post-profile .postprofile-avatar > a {
     display: block;
-
-    width: 250px !important;
-    height: 400px !important;
-
+    width: 100%;
     line-height: 0;
 }
-
 .br-post .br-post-profile .postprofile-avatar img {
     display: block !important;
-
     width: 250px !important;
-    height: 400px !important;
-    max-width: none !important;
+    max-width: 100% !important;
+    height: auto !important;
     max-height: none !important;
-
     margin: 0 !important;
     padding: 0 !important;
-
-    object-fit: fill !important;
-
+    object-fit: contain !important;
     border: 0 !important;
     border-radius: 0 !important;
     background: transparent !important;
-
     box-sizing: border-box;
 }
 .br-post .br-post-profile .postprofile-avatar::before {
