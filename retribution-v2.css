@@ -5446,3 +5446,61 @@ body::after {
 
     pointer-events: none;
 }
+/* =========================================================
+   CHARACTER PORTRAIT SYSTEM
+   FORUM INDEX // LAST RECORD
+
+   Shuei Setsuna
+   Native avatar identifier:
+   6X5GvA.png
+
+   Character Portrait:
+   Ie5X4L8.png
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   SHUEI // CHARACTER PORTRAIT SOURCE
+
+   Identify the record through Forumotion's native avatar
+   source. No JavaScript or DOM modification required.
+   --------------------------------------------------------- */
+
+.forabg.br-category
+.lastpost-avatar:has(img[src*="6X5GvA.png"]) {
+    background:
+        #080808
+        url("https://2img.net/i.imgur.com/Ie5X4L8.png")
+        center center / cover no-repeat !important;
+}
+
+
+/* Preserve Forumotion's native image in the DOM while
+   exposing the Character Portrait underneath. */
+
+.forabg.br-category
+.lastpost-avatar:has(img[src*="6X5GvA.png"]) img {
+    opacity: 0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   CHARACTER PORTRAIT REGISTRATION MARK
+   --------------------------------------------------------- */
+
+.forabg.br-category
+.lastpost-avatar:has(img[src*="6X5GvA.png"])::after {
+    content: "";
+
+    position: absolute;
+    top: 4px;
+    right: 4px;
+
+    width: 6px;
+    height: 6px;
+
+    border-top: 1px solid var(--br-orange);
+    border-right: 1px solid var(--br-orange);
+
+    pointer-events: none;
+}
