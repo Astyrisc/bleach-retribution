@@ -5327,3 +5327,11 @@ body::after {
         max-height: 360px !important;
     }
 }
+/* =========================================================
+   RETRIBUTION // RECENTLY SHARED IMAGES
+   Native Forumotion gallery module intentionally suppressed.
+   ========================================================= */
+
+.forabg.hidden {
+    display: none !important;
+}
