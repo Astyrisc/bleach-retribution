@@ -1,10 +1,11 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 05
+   RECOVERY MASTER // RELEASE CANDIDATE 05.2
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
+   - Topic portrait restored from September 17–19 approved post lineage: fixed 250 × 400 frame with object-fit: contain.
    - Later verified desktop systems consolidated forward.
    - Portal mutation experiments intentionally excluded.
    - profile.css and private-messages.css remain separate owners.
@@ -2200,15 +2201,16 @@ hr {
 }
 
 /* 05.04 // CANONICAL CHARACTER PORTRAIT
-   Canonical topic portrait: exact 250 × 400 presentation.
-   The complete source image is fitted to the dossier frame; never crop or circularize it. */
+   RETRIBUTION STANDARD // 250 × 400
+
+   Recovered from the September 17–19 approved post lineage.
+   Keep the fixed dossier presentation while preserving the complete
+   uploaded composition. No crop. No circle. */
 .br-post .br-post-profile .postprofile-avatar {
     position: relative;
     width: 250px !important;
     height: 400px !important;
-    max-width: none !important;
-    max-height: none !important;
-    margin: 0 auto 14px !important;
+    margin: 0 auto 16px !important;
     padding: 0 !important;
     overflow: hidden;
     background: var(--br-void);
@@ -2217,14 +2219,14 @@ hr {
     border-radius: 0 !important;
     box-sizing: border-box;
 }
+
 .br-post .br-post-profile .postprofile-avatar > a {
     display: block !important;
     width: 250px !important;
     height: 400px !important;
-    max-width: none !important;
-    max-height: none !important;
     line-height: 0;
 }
+
 .br-post .br-post-profile .postprofile-avatar img {
     display: block !important;
     width: 250px !important;
@@ -2233,29 +2235,35 @@ hr {
     max-height: none !important;
     margin: 0 !important;
     padding: 0 !important;
-    object-fit: fill !important;
+    object-fit: contain !important;
     object-position: center center !important;
     border: 0 !important;
     border-radius: 0 !important;
     background: transparent !important;
     box-sizing: border-box;
 }
+
 .br-post .br-post-profile .postprofile-avatar::before {
     content: "";
     position: absolute;
-    top: 0; left: 0;
-    width: 26px; height: 1px;
+    top: 0;
+    left: 0;
+    width: 26px;
+    height: 1px;
     background: var(--br-red);
     z-index: 2;
     pointer-events: none;
 }
+
 .br-post .br-post-profile .postprofile-avatar::after {
     content: "";
     position: absolute;
-    right: 7px; bottom: 7px;
-    width: 10px; height: 10px;
-    border-right: 1px solid var(--br-border2);
-    border-bottom: 1px solid var(--br-border2);
+    right: 7px;
+    bottom: 7px;
+    width: 14px;
+    height: 14px;
+    border-right: 1px solid var(--br-red);
+    border-bottom: 1px solid var(--br-red);
     z-index: 2;
     pointer-events: none;
 }
