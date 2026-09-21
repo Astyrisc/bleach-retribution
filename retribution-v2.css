@@ -2905,19 +2905,17 @@ hr {
    Spiritual Presence Network and Archive Status. Recently Shared Images remains intentionally suppressed.
    ========================================================= */
 
-/* ---------------------------------------------------------
-   11.00 // RECENTLY SHARED IMAGES
+/* =========================================================
+   RETRIBUTION // RECENTLY SHARED IMAGES
+   Native Forumotion gallery module intentionally suppressed.
 
-   Forumotion renders the gallery as a normal .forabg rather
-   than reliably applying .hidden. Identify the gallery by its
-   native image-list child instead of hiding generic categories.
-   --------------------------------------------------------- */
+   Forumotion renders this module as a standard .forabg.
+   .container-imgs-list uniquely identifies the gallery.
+   ========================================================= */
 
-#main-content .forabg:has(> .is-container-imgs-list),
-#main-content .forabg:has(.is-container-imgs-list) {
+#main-content > .forabg:has(.container-imgs-list) {
     display: none !important;
 }
-
 
 .br-presence {
     position: relative;
