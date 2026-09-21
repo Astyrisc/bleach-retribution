@@ -1,7 +1,7 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 06
+   RECOVERY MASTER // RELEASE CANDIDATE 07
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -9,7 +9,10 @@
    - Post-header positioning correction prevents the header layer from occluding the upper portrait.
    - Character dossier/content rail added as canonical post architecture.
    - Later verified desktop systems consolidated forward.
+   - Portal CSS-only recovery consolidated as canonical section 16.
    - Portal mutation experiments intentionally excluded.
+   - Recently Shared Images suppression corrected against the live DOM.
+   - Forum Index Character Portrait mapping consolidated into section 05.
    - profile.css and private-messages.css remain separate owners.
 
    OWNERSHIP
@@ -1534,6 +1537,70 @@ hr {
     }
 }
 
+/* ---------------------------------------------------------
+   05.90 // LAST RECORD CHARACTER PORTRAITS
+
+   150x150 Character Portraits are system identity images.
+   Forumotion's native avatar remains the fallback source.
+   CSS changes presentation only; no DOM mutation JavaScript.
+   --------------------------------------------------------- */
+
+#main-content .br-category .lastpost-avatar {
+    position: relative;
+    display: block !important;
+    flex: 0 0 46px;
+    box-sizing: border-box;
+    width: 46px !important;
+    height: 46px !important;
+    margin: 0 10px 0 0 !important;
+    padding: 0 !important;
+    background: var(--br-void) !important;
+    border: 1px solid var(--br-border) !important;
+    border-left: 2px solid var(--br-red) !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+}
+
+#main-content .br-category .lastpost-avatar img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Shuei Setsuna // dedicated 150x150 Character Portrait.
+   Native avatar filename is used only as the CSS-only identity hook. */
+#main-content .br-category .lastpost-avatar:has(img[src*="6X5GvA.png"]) {
+    background:
+        var(--br-void)
+        url("https://2img.net/i.imgur.com/Ie5X4L8.png")
+        center center / cover no-repeat !important;
+}
+
+#main-content .br-category .lastpost-avatar:has(img[src*="6X5GvA.png"]) img {
+    opacity: 0 !important;
+}
+
+#main-content .br-category .lastpost-avatar::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid var(--br-orange);
+    border-right: 1px solid var(--br-orange);
+    pointer-events: none;
+}
+
 /* =========================================================
    06 // TOPIC INDEX
 
@@ -2838,6 +2905,20 @@ hr {
    Spiritual Presence Network and Archive Status. Recently Shared Images remains intentionally suppressed.
    ========================================================= */
 
+/* ---------------------------------------------------------
+   11.00 // RECENTLY SHARED IMAGES
+
+   Forumotion renders the gallery as a normal .forabg rather
+   than reliably applying .hidden. Identify the gallery by its
+   native image-list child instead of hiding generic categories.
+   --------------------------------------------------------- */
+
+#main-content .forabg:has(> .is-container-imgs-list),
+#main-content .forabg:has(.is-container-imgs-list) {
+    display: none !important;
+}
+
+
 .br-presence {
     position: relative;
     margin: 16px 0 18px;
@@ -2993,9 +3074,6 @@ hr {
     font-size: 8px;
 }
 
-.forabg.hidden {
-    display: none !important;
-}
 
 .br-record-status {
     display: flex;
@@ -3763,26 +3841,6 @@ html body .br-footer-admin a:hover {
     }
 }
 
-/* =========================================================
-   99 // DEVELOPMENT
-
-   Temporary external-stylesheet verification marker. Remove only after v2 promotion is stable.
-   ========================================================= */
-
-body::after {
-    content: "EXTERNAL CSS ACTIVE";
-    position: fixed;
-    right: 14px;
-    bottom: 14px;
-    z-index: 99999;
-    padding: 6px 9px;
-    background: #080808;
-    border-left: 2px solid #b00020;
-    color: #f2f2f2;
-    font: 700 9px monospace;
-    letter-spacing: 1px;
-    pointer-events: none;
-}
 /* ---------------------------------------------------------
    10.xx // TOPIC QUICK NAVIGATION
    --------------------------------------------------------- */
@@ -4590,39 +4648,7 @@ body::after {
     display: none !important;
 }
 /* =========================================================
-   BLEACH // RETRIBUTION
-   PORTAL RECOVERY PATCH // HISTORICAL RC03 LINEAGE
-
-   Extracted as one complete CSS-only Portal system.
-
-   Includes:
-   - Portal frame / shared module language
-   - Operator Record
-   - 150x150 operator portrait
-   - Latest Transmissions / static archive feed
-   - Communication Terminal integration
-   - Network Status / registered users / newest user
-   - Posts + topics telemetry
-   - Activity Index / Top Posters
-   - Live Presence
-   - Portal scrollbars
-   - Responsive safety
-
-   Historical safety decisions retained:
-   - NO portal DOM mutation JavaScript
-   - NO portal-transmissions.js
-   - NO marquee ownership/reactivation
-   - NO chatbox.css injection
-
-   NOTE:
-   A separate historical Portal-specific poll selector block was
-   not present in the verified RC03 Portal section. Poll modules
-   therefore inherit the recovered shared .portal .module language
-   rather than receiving invented selectors.
-   ========================================================= */
-
-/* =========================================================
-   14 // NETWORK PORTAL
+   16 // NETWORK PORTAL
 
    COMMUNITY OPERATIONS // LIVE ACCESS
 
@@ -4638,7 +4664,7 @@ body::after {
    ========================================================= */
 
 /* ---------------------------------------------------------
-   14.01 // PORTAL FRAME
+   16.01 // PORTAL FRAME
    --------------------------------------------------------- */
 
 .portal {
@@ -4671,7 +4697,7 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   14.02 // PORTAL MODULE LANGUAGE
+   16.02 // PORTAL MODULE LANGUAGE
    --------------------------------------------------------- */
 
 .portal .module {
@@ -4738,7 +4764,7 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   14.03 // OPERATOR RECORD
+   16.03 // OPERATOR RECORD
    --------------------------------------------------------- */
 
 .portal > .column:first-child > .module:first-child {
@@ -4913,7 +4939,7 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   14.04 // LATEST TRANSMISSIONS
+   16.04 // LATEST TRANSMISSIONS
 
    Scrolling is intentionally disabled in Forumotion.
    The feed is a static archive list; no marquee ownership.
@@ -5036,7 +5062,7 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   14.05 // COMMUNICATION TERMINAL
+   16.05 // COMMUNICATION TERMINAL
    --------------------------------------------------------- */
 
 .portal .portal-mid #chatbox_bottom {
@@ -5049,7 +5075,7 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   14.06 // NETWORK STATUS
+   16.06 // NETWORK STATUS
    --------------------------------------------------------- */
 
 .portal > .column:last-of-type > .module:first-child {
@@ -5170,7 +5196,7 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   14.07 // ACTIVITY INDEX / TOP POSTERS
+   16.07 // ACTIVITY INDEX / TOP POSTERS
    --------------------------------------------------------- */
 
 .portal .mod-top {
@@ -5250,7 +5276,7 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   14.08 // LIVE PRESENCE
+   16.08 // LIVE PRESENCE
    --------------------------------------------------------- */
 
 .portal .module .h3 + strong {
@@ -5289,7 +5315,7 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   14.09 // PORTAL SCROLLBARS
+   16.09 // PORTAL SCROLLBARS
    --------------------------------------------------------- */
 
 .portal #comments_scroll_div::-webkit-scrollbar {
@@ -5310,7 +5336,7 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   14.10 // PORTAL RESPONSIVE SAFETY
+   16.10 // PORTAL RESPONSIVE SAFETY
 
    Desktop remains the primary Retribution experience.
    Field Terminal is a separate future mobile project.
@@ -5327,180 +5353,24 @@ body::after {
         max-height: 360px !important;
     }
 }
+
 /* =========================================================
-   RETRIBUTION // RECENTLY SHARED IMAGES
-   Native Forumotion gallery module intentionally suppressed.
+   99 // DEVELOPMENT
+
+   Temporary external-stylesheet verification marker. Remove only after v2 promotion is stable.
    ========================================================= */
 
-.forabg.hidden {
-    display: none !important;
-}
-/* =========================================================
-   FORUM INDEX // LAST RECORD CHARACTER PORTRAIT
-   Dedicated 150x150 character portrait presentation
-
-   Forumotion retains ownership of:
-   - profile link
-   - last-post data
-   - native avatar markup
-
-   CSS owns presentation only.
-   ========================================================= */
-
-
-/* ---------------------------------------------------------
-   01 // PORTRAIT FRAME
-   --------------------------------------------------------- */
-
-.forabg.br-category .lastpost-avatar {
-    position: relative;
-
-    display: block !important;
-    flex: 0 0 46px;
-
-    box-sizing: border-box;
-
-    width: 46px !important;
-    height: 46px !important;
-
-    margin: 0 10px 0 0 !important;
-    padding: 0 !important;
-
-    background: #080808 !important;
-
-    border: 1px solid var(--br-border) !important;
-    border-left: 2px solid var(--br-red) !important;
-    border-radius: 0 !important;
-
-    overflow: hidden !important;
-}
-
-
-/* ---------------------------------------------------------
-   02 // NATIVE AVATAR
-   Default behavior for members without a dedicated portrait.
-   --------------------------------------------------------- */
-
-.forabg.br-category .lastpost-avatar img {
-    display: block !important;
-
-    width: 100% !important;
-    height: 100% !important;
-
-    max-width: none !important;
-    max-height: none !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    object-fit: cover !important;
-    object-position: center center !important;
-
-    border: 0 !important;
-    border-radius: 0 !important;
-
-    box-shadow: none !important;
-}
-
-
-/* ---------------------------------------------------------
-   03 // SHUEI SETSUNA
-   Replace the visual avatar with the dedicated
-   150x150 character portrait used by Operator Record.
-   --------------------------------------------------------- */
-
-.forabg.br-category
-.lastpost-avatar:has(a[href*="/u1"]) {
-    background:
-        #080808
-        url("https://2img.net/i.imgur.com/Ie5X4L8.png")
-        center / cover no-repeat !important;
-}
-
-
-/* Preserve Forumotion's native image and link in the DOM,
-   but allow the dedicated portrait underneath to display. */
-
-.forabg.br-category
-.lastpost-avatar:has(a[href*="/u1"]) img {
-    opacity: 0 !important;
-}
-
-
-/* ---------------------------------------------------------
-   04 // LIVE RECORD REGISTRATION
-   --------------------------------------------------------- */
-
-.forabg.br-category .lastpost-avatar::after {
-    content: "";
-
-    position: absolute;
-    top: 4px;
-    right: 4px;
-
-    width: 6px;
-    height: 6px;
-
-    border-top: 1px solid var(--br-orange);
-    border-right: 1px solid var(--br-orange);
-
-    pointer-events: none;
-}
-/* =========================================================
-   CHARACTER PORTRAIT SYSTEM
-   FORUM INDEX // LAST RECORD
-
-   Shuei Setsuna
-   Native avatar identifier:
-   6X5GvA.png
-
-   Character Portrait:
-   Ie5X4L8.png
-   ========================================================= */
-
-
-/* ---------------------------------------------------------
-   SHUEI // CHARACTER PORTRAIT SOURCE
-
-   Identify the record through Forumotion's native avatar
-   source. No JavaScript or DOM modification required.
-   --------------------------------------------------------- */
-
-.forabg.br-category
-.lastpost-avatar:has(img[src*="6X5GvA.png"]) {
-    background:
-        #080808
-        url("https://2img.net/i.imgur.com/Ie5X4L8.png")
-        center center / cover no-repeat !important;
-}
-
-
-/* Preserve Forumotion's native image in the DOM while
-   exposing the Character Portrait underneath. */
-
-.forabg.br-category
-.lastpost-avatar:has(img[src*="6X5GvA.png"]) img {
-    opacity: 0 !important;
-}
-
-
-/* ---------------------------------------------------------
-   CHARACTER PORTRAIT REGISTRATION MARK
-   --------------------------------------------------------- */
-
-.forabg.br-category
-.lastpost-avatar:has(img[src*="6X5GvA.png"])::after {
-    content: "";
-
-    position: absolute;
-    top: 4px;
-    right: 4px;
-
-    width: 6px;
-    height: 6px;
-
-    border-top: 1px solid var(--br-orange);
-    border-right: 1px solid var(--br-orange);
-
+body::after {
+    content: "EXTERNAL CSS ACTIVE";
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    z-index: 99999;
+    padding: 6px 9px;
+    background: #080808;
+    border-left: 2px solid #b00020;
+    color: #f2f2f2;
+    font: 700 9px monospace;
+    letter-spacing: 1px;
     pointer-events: none;
 }
