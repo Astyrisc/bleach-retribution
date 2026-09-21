@@ -1,11 +1,13 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 05.2
+   RECOVERY MASTER // RELEASE CANDIDATE 06
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
-   - Topic portrait restored from September 17–19 approved post lineage: fixed 250 × 400 frame with object-fit: contain.
+   - Topic portrait preserved from the recovered September 17–19 post lineage.
+   - Post-header positioning correction prevents the header layer from occluding the upper portrait.
+   - Character dossier/content rail added as canonical post architecture.
    - Later verified desktop systems consolidated forward.
    - Portal mutation experiments intentionally excluded.
    - profile.css and private-messages.css remain separate owners.
@@ -2147,8 +2149,11 @@ hr {
 }
 
 /* 05.02 // POST HEADER */
+/* 05.02 // POST HEADER
+   Do not force a positioning context here.
+   DevTools verification showed position:relative caused the header layer
+   to occlude the upper portion of the character portrait. */
 .br-post .br-post-head {
-    position: relative !important;
     min-height: 58px !important;
     margin-right: var(--br-post-rail) !important;
     padding: 12px 18px !important;
@@ -2186,12 +2191,29 @@ hr {
 .br-post-head .profile-icons span:hover { color: var(--br-white) !important; }
 
 /* 05.03 // CHARACTER DOSSIER */
+/* 05.03 // CHARACTER DOSSIER
+   The dossier owns its positioning context; the post header does not.
+   A neutral rail separates character presentation from post content,
+   while the short crimson segment acts as a registration signal. */
 .br-post .br-post-profile {
+    position: relative;
     width: var(--br-post-rail) !important;
     box-sizing: border-box;
     background: #0d0d0d !important;
     border-left: 1px solid var(--br-border) !important;
+    border-right: 1px solid var(--br-border) !important;
     color: #aaa !important;
+}
+
+.br-post .br-post-profile::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -1px;
+    width: 1px;
+    height: 72px;
+    background: var(--br-red);
+    pointer-events: none;
 }
 .br-post .br-post-profile > dl {
     width: 100%;
