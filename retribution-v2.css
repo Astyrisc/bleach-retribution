@@ -5757,3 +5757,128 @@ body::after {
 
     background: var(--br-red);
 }
+/* =========================================================
+   PORTAL PASS 03 // RECENT SIGNALS REFINEMENT
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   GLOW EXORCISM
+   --------------------------------------------------------- */
+
+.portal #comments_scroll_div,
+.portal #comments_scroll_div .marquee,
+.portal #comments_scroll_div .mod-recent-row {
+    background: transparent !important;
+
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+}
+
+
+/* The viewport itself retains the dark terminal surface. */
+
+.portal #comments_scroll_div {
+    background: #0d0d0d !important;
+}
+
+
+/* ---------------------------------------------------------
+   RECENT RECORD
+   --------------------------------------------------------- */
+
+.portal #comments_scroll_div .mod-recent-row {
+    position: relative;
+
+    margin: 0 !important;
+    padding: 9px 0 10px !important;
+
+    border: 0 !important;
+    border-bottom: 1px solid #1d1d1d !important;
+}
+
+
+/* Topic */
+
+.portal #comments_scroll_div .mod-recent-title {
+    display: block !important;
+
+    margin: 0 0 4px !important;
+
+    font-family: "Oswald", Arial, sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+    letter-spacing: .3px !important;
+
+    color: var(--br-magenta, #d0005b) !important;
+
+    text-decoration: none !important;
+}
+
+
+/* Metadata rail */
+
+.portal #comments_scroll_div .mod-recent-info {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3px 6px;
+
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 6.5px !important;
+    font-weight: 500 !important;
+    line-height: 1.35 !important;
+    letter-spacing: .25px !important;
+
+    color: #777777 !important;
+}
+
+
+/* Timestamp */
+
+.portal #comments_scroll_div .mod-recent-time {
+    color: #777777 !important;
+}
+
+
+/* Author */
+
+.portal #comments_scroll_div .mod-recent-author {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 3px;
+
+    color: #555555 !important;
+}
+
+
+.portal #comments_scroll_div .mod-recent-author i {
+    margin: 0 !important;
+
+    font-size: 7px !important;
+
+    color: var(--br-orange) !important;
+}
+
+
+.portal #comments_scroll_div .mod-recent-author a {
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 6.5px !important;
+    font-weight: 700 !important;
+
+    color: #b5b5b5 !important;
+
+    text-decoration: none !important;
+}
+
+
+.portal #comments_scroll_div .mod-recent-title:hover,
+.portal #comments_scroll_div .mod-recent-title:focus-visible,
+.portal #comments_scroll_div .mod-recent-author a:hover,
+.portal #comments_scroll_div .mod-recent-author a:focus-visible {
+    color: #f2f2f2 !important;
+}
