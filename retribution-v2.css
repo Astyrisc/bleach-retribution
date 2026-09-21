@@ -5077,3 +5077,259 @@ body::after {
         aspect-ratio: 1 / 1;
     }
 }
+/* =========================================================
+   NETWORK PORTAL // PASS 02
+   NETWORK STATUS
+
+   Converts Forumotion Statistics into a compact network
+   telemetry module while preserving all dynamic values.
+
+   Crimson // interface structure
+   Orange  // live system state
+   Magenta // member / human record
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   NETWORK STATUS // MODULE IDENTITY
+   --------------------------------------------------------- */
+
+/*
+   Statistics is currently the first module in the final
+   Portal column.
+
+   Scope remains inside .portal so normal forum widgets
+   elsewhere are unaffected.
+*/
+
+.portal > .column:last-of-type > .module:first-child {
+    position: relative;
+
+    padding-bottom: 10px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #141414 0,
+            #111111 100%
+        ) !important;
+}
+
+
+/* Replace the stock Statistics header visually. */
+
+.portal > .column:last-of-type > .module:first-child > .h3 {
+    position: relative;
+
+    padding: 11px 12px 10px !important;
+
+    font-size: 0 !important;
+}
+
+
+/* Remove stock graph icon. */
+
+.portal > .column:last-of-type > .module:first-child > .h3 > i {
+    display: none !important;
+}
+
+
+/* NETWORK STATUS */
+
+.portal > .column:last-of-type > .module:first-child > .h3::before {
+    content: "// NETWORK STATUS";
+
+    position: static;
+
+    display: inline;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1px;
+
+    color: #d6d6d6;
+}
+
+
+/* Replace shared header registration line with live indicator. */
+
+.portal > .column:last-of-type > .module:first-child > .h3::after {
+    content: "";
+
+    position: absolute;
+
+    right: 12px;
+    top: 50%;
+    bottom: auto;
+
+    width: 4px;
+    height: 4px;
+
+    background: var(--br-orange, #e06a16);
+
+    border-radius: 50%;
+
+    transform: translateY(-50%);
+}
+
+
+/* ---------------------------------------------------------
+   TELEMETRY RECORDS
+   --------------------------------------------------------- */
+
+.portal .mod-stats-users,
+.portal .mod-stats-user,
+.portal .mod-stats-posts,
+.portal .mod-stats-topics {
+    position: relative;
+
+    display: block !important;
+
+    box-sizing: border-box;
+
+    margin: 0 12px !important;
+    padding: 10px 0 !important;
+
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 6.5px !important;
+    font-weight: 500 !important;
+    line-height: 1.55 !important;
+    letter-spacing: .35px !important;
+
+    text-align: left !important;
+
+    color: #777777 !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+    border-bottom: 1px solid #1d1d1d !important;
+}
+
+
+/* First record gets slightly more breathing room. */
+
+.portal .mod-stats-users {
+    padding-top: 12px !important;
+}
+
+
+/* Last record closes the telemetry stack cleanly. */
+
+.portal .mod-stats-topics {
+    border-bottom: 0 !important;
+    padding-bottom: 8px !important;
+}
+
+
+/* ---------------------------------------------------------
+   DYNAMIC VALUES
+   --------------------------------------------------------- */
+
+.portal .mod-stats-users strong,
+.portal .mod-stats-posts strong,
+.portal .mod-stats-topics strong {
+    display: inline-block;
+
+    margin: 0 2px;
+
+    font-family: "Oswald", Arial, sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    letter-spacing: .25px !important;
+
+    color: #f2f2f2 !important;
+
+    vertical-align: -1px;
+}
+
+
+/*
+   The newest member represents a human record entering the
+   system, so this is one of the rare places where Retribution
+   Magenta carries semantic meaning.
+*/
+
+.portal .mod-stats-user strong,
+.portal .mod-stats-user strong a,
+.portal .mod-stats-user a {
+    font-family: "Oswald", Arial, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: .35px !important;
+
+    color: var(--br-magenta, #d0005b) !important;
+
+    text-decoration: none !important;
+}
+
+
+.portal .mod-stats-user a:hover,
+.portal .mod-stats-user a:focus-visible {
+    color: #f2f2f2 !important;
+}
+
+
+/* ---------------------------------------------------------
+   RECORD REGISTRATION MARKS
+   --------------------------------------------------------- */
+
+.portal .mod-stats-users::before,
+.portal .mod-stats-user::before,
+.portal .mod-stats-posts::before,
+.portal .mod-stats-topics::before {
+    content: "";
+
+    display: inline-block;
+
+    width: 3px;
+    height: 3px;
+
+    margin-right: 7px;
+    vertical-align: 2px;
+
+    background: #444444;
+}
+
+
+/* Registered records are live system data. */
+
+.portal .mod-stats-users::before {
+    background: var(--br-orange, #e06a16);
+}
+
+
+/* Latest registration is a human influence event. */
+
+.portal .mod-stats-user::before {
+    background: var(--br-magenta, #d0005b);
+}
+
+
+/* ---------------------------------------------------------
+   NETWORK FOOTER SIGNAL
+   --------------------------------------------------------- */
+
+.portal > .column:last-of-type > .module:first-child::after {
+    content: "ARCHIVE TELEMETRY // LIVE";
+
+    display: block;
+
+    box-sizing: border-box;
+
+    margin: 3px 12px 0;
+    padding: 8px 0 0;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 5.5px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .8px;
+
+    color: #555555;
+
+    border-top: 1px solid #242424;
+}
