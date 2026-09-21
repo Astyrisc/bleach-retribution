@@ -4589,3 +4589,741 @@ body::after {
 .br-post .fa_like_div .fa_like_list:empty {
     display: none !important;
 }
+/* =========================================================
+   BLEACH // RETRIBUTION
+   PORTAL RECOVERY PATCH // HISTORICAL RC03 LINEAGE
+
+   Extracted as one complete CSS-only Portal system.
+
+   Includes:
+   - Portal frame / shared module language
+   - Operator Record
+   - 150x150 operator portrait
+   - Latest Transmissions / static archive feed
+   - Communication Terminal integration
+   - Network Status / registered users / newest user
+   - Posts + topics telemetry
+   - Activity Index / Top Posters
+   - Live Presence
+   - Portal scrollbars
+   - Responsive safety
+
+   Historical safety decisions retained:
+   - NO portal DOM mutation JavaScript
+   - NO portal-transmissions.js
+   - NO marquee ownership/reactivation
+   - NO chatbox.css injection
+
+   NOTE:
+   A separate historical Portal-specific poll selector block was
+   not present in the verified RC03 Portal section. Poll modules
+   therefore inherit the recovered shared .portal .module language
+   rather than receiving invented selectors.
+   ========================================================= */
+
+/* =========================================================
+   14 // NETWORK PORTAL
+
+   COMMUNITY OPERATIONS // LIVE ACCESS
+
+   Portal philosophy:
+   - preserve Forumotion's native module/data behavior
+   - keep the three-column desktop composition
+   - present live community data as an archive/network dashboard
+   - scrolling Latest Topics is intentionally disabled in Admin
+
+   Crimson // interface structure
+   Orange  // live telemetry
+   Magenta // human influence / active records
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   14.01 // PORTAL FRAME
+   --------------------------------------------------------- */
+
+.portal {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.portal::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.portal > .column,
+.portal > .portal-mid {
+    box-sizing: border-box;
+}
+
+.portal .column > .module,
+.portal .portal-mid > .module {
+    margin-bottom: 14px !important;
+}
+
+.portal > .column > .module + .module,
+.portal > .portal-mid > .module + .module {
+    margin-top: 14px !important;
+}
+
+/* ---------------------------------------------------------
+   14.02 // PORTAL MODULE LANGUAGE
+   --------------------------------------------------------- */
+
+.portal .module {
+    position: relative;
+    box-sizing: border-box;
+    max-width: 100%;
+    background: var(--br-ink) !important;
+    border: 1px solid #2a2a2a !important;
+    border-left: 2px solid var(--br-red) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    color: var(--br-content);
+    overflow: hidden;
+}
+
+.portal .module > .h3 {
+    position: relative;
+    box-sizing: border-box;
+    min-height: 32px;
+    margin: 0 !important;
+    padding: 11px 12px 10px !important;
+    background: linear-gradient(90deg,#121212,#151515) !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--br-ash) !important;
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 7px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+    color: #d6d6d6 !important;
+}
+
+.portal .module > .h3 > i {
+    margin-right: 5px !important;
+    font-size: 8px !important;
+    color: var(--br-red) !important;
+}
+
+.portal .module > .h3::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    bottom: -1px;
+    width: 28px;
+    height: 1px;
+    background: var(--br-pink);
+}
+
+.portal .module a {
+    text-decoration: none !important;
+}
+
+.portal .module > .center {
+    box-sizing: border-box;
+    margin: 10px 12px 12px !important;
+    padding: 9px 0 0 !important;
+    border-top: 1px solid var(--br-ash) !important;
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 7px !important;
+    line-height: 1.45 !important;
+    letter-spacing: .45px !important;
+    color: var(--br-smoke) !important;
+}
+
+/* ---------------------------------------------------------
+   14.03 // OPERATOR RECORD
+   --------------------------------------------------------- */
+
+.portal > .column:first-child > .module:first-child {
+    padding-bottom: 0 !important;
+    background: linear-gradient(180deg,#141414 0,var(--br-ink) 100%) !important;
+}
+
+.portal > .column:first-child > .module:first-child > .h3 {
+    font-family: "Oswald",Arial,sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: .8px !important;
+}
+
+.portal > .column:first-child > .module:first-child > .h3 > i {
+    display: none !important;
+}
+
+.portal > .column:first-child > .module:first-child > .h3::before {
+    content: "//";
+    display: inline-block;
+    margin-right: 7px;
+    font-family: "JetBrains Mono",monospace;
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--br-red);
+}
+
+.portal > .column:first-child > .module:first-child > .h3 span {
+    color: var(--br-paper) !important;
+}
+
+.portal > .column:first-child .mod-login-avatar {
+    position: relative;
+    box-sizing: border-box;
+    width: 150px !important;
+    height: 150px !important;
+    margin: 16px auto 12px !important;
+    padding: 0 !important;
+    background: #0d0d0d url("https://2img.net/i.imgur.com/Ie5X4L8.png") center/cover no-repeat !important;
+    border: 1px solid var(--br-border) !important;
+    border-left: 2px solid var(--br-red) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden;
+}
+
+.portal > .column:first-child .mod-login-avatar img {
+    width: 150px !important;
+    height: 150px !important;
+    opacity: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    pointer-events: none;
+}
+
+.portal > .column:first-child .mod-login-avatar::before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 11px;
+    height: 11px;
+    border-top: 1px solid var(--br-orange);
+    border-right: 1px solid var(--br-orange);
+    pointer-events: none;
+}
+
+.portal > .column:first-child .mod-login-avatar::after {
+    content: "OPERATOR // ACTIVE";
+    position: absolute;
+    left: 8px;
+    bottom: 7px;
+    padding: 3px 5px;
+    background: rgba(8,8,8,.82);
+    border-left: 1px solid var(--br-orange);
+    font-family: "JetBrains Mono",monospace;
+    font-size: 5.5px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .8px;
+    color: #b8b8b8;
+    pointer-events: none;
+}
+
+.portal > .column:first-child dl.mod-login {
+    display: grid !important;
+    grid-template-columns: 1fr auto;
+    box-sizing: border-box;
+    width: auto !important;
+    margin: 0 12px 13px !important;
+    padding: 8px 0 0 !important;
+    border-top: 1px solid var(--br-ash);
+}
+
+.portal > .column:first-child dl.mod-login dt,
+.portal > .column:first-child dl.mod-login dd {
+    display: block !important;
+    margin: 0 !important;
+    padding: 5px 0 !important;
+    border-bottom: 1px solid #1d1d1d;
+    font-family: "JetBrains Mono",monospace !important;
+    line-height: 1.2 !important;
+}
+
+.portal > .column:first-child dl.mod-login dt {
+    font-size: 6.5px !important;
+    font-weight: 600 !important;
+    letter-spacing: .6px !important;
+    text-transform: uppercase;
+    color: var(--br-smoke) !important;
+}
+
+.portal > .column:first-child dl.mod-login dd {
+    padding-left: 8px !important;
+    font-size: 7px !important;
+    font-weight: 700 !important;
+    letter-spacing: .4px !important;
+    text-align: right !important;
+    color: #d6d6d6 !important;
+}
+
+.portal > .column:first-child dl.mod-login dd::after {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    margin-left: 6px;
+    vertical-align: 1px;
+    background: var(--br-orange);
+    border-radius: 50%;
+}
+
+.portal > .column:first-child .module-footer {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 !important;
+    padding: 10px 12px !important;
+    background: #0d0d0d !important;
+    border: 0 !important;
+    border-top: 1px solid var(--br-ash) !important;
+    border-radius: 0 !important;
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 0 !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    letter-spacing: .8px !important;
+    text-transform: uppercase;
+    color: #8b8b8b !important;
+    transition: color .15s ease,background-color .15s ease;
+}
+
+.portal > .column:first-child .module-footer::before {
+    content: "OPEN PROFILE";
+    font-size: 6.5px;
+    color: inherit;
+}
+
+.portal > .column:first-child .module-footer::after {
+    content: "→";
+    font-size: 8px;
+    color: var(--br-red);
+}
+
+.portal > .column:first-child .module-footer:hover,
+.portal > .column:first-child .module-footer:focus-visible {
+    background: #141414 !important;
+    color: var(--br-paper) !important;
+}
+
+/* ---------------------------------------------------------
+   14.04 // LATEST TRANSMISSIONS
+
+   Scrolling is intentionally disabled in Forumotion.
+   The feed is a static archive list; no marquee ownership.
+   --------------------------------------------------------- */
+
+.portal #comments_scroll_div {
+    position: relative !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+    max-height: 430px !important;
+    margin: 0 !important;
+    padding: 4px 12px 6px !important;
+    background: #0d0d0d !important;
+    background-image: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+.portal #comments_scroll_div .marquee,
+.portal #comments_scroll_div .js-marquee-wrapper,
+.portal #comments_scroll_div .js-marquee {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+}
+
+.portal #comments_scroll_div .mod-recent-row {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 10px 0 11px 10px !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 1px solid #1d1d1d !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+}
+
+.portal #comments_scroll_div .mod-recent-row:last-child {
+    border-bottom: 0 !important;
+}
+
+.portal #comments_scroll_div .mod-recent-row::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 3px;
+    height: 3px;
+    background: var(--br-orange);
+    border-radius: 50%;
+}
+
+.portal #comments_scroll_div .mod-recent-title {
+    display: block !important;
+    margin: 0 0 4px !important;
+    font-family: "Oswald",Arial,sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+    letter-spacing: .3px !important;
+    color: var(--br-pink) !important;
+}
+
+.portal #comments_scroll_div .mod-recent-info {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3px 6px;
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 6.5px !important;
+    font-weight: 500 !important;
+    line-height: 1.35 !important;
+    letter-spacing: .25px !important;
+    color: var(--br-smoke) !important;
+}
+
+.portal #comments_scroll_div .mod-recent-time {
+    color: var(--br-smoke) !important;
+}
+
+.portal #comments_scroll_div .mod-recent-author {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 3px;
+    color: #555 !important;
+}
+
+.portal #comments_scroll_div .mod-recent-author i {
+    margin: 0 !important;
+    font-size: 7px !important;
+    color: var(--br-orange) !important;
+}
+
+.portal #comments_scroll_div .mod-recent-author a {
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 6.5px !important;
+    font-weight: 700 !important;
+    color: #b5b5b5 !important;
+}
+
+.portal #comments_scroll_div .mod-recent-title:hover,
+.portal #comments_scroll_div .mod-recent-author a:hover,
+.portal #comments_scroll_div .mod-recent-title:focus-visible,
+.portal #comments_scroll_div .mod-recent-author a:focus-visible {
+    color: var(--br-paper) !important;
+}
+
+/* ---------------------------------------------------------
+   14.05 // COMMUNICATION TERMINAL
+   --------------------------------------------------------- */
+
+.portal .portal-mid #chatbox_bottom {
+    margin: 0 0 14px !important;
+    border-left-width: 2px !important;
+}
+
+.portal .portal-mid #chatbox_bottom::before {
+    content: "COMMUNICATION TERMINAL // LOCAL NETWORK";
+}
+
+/* ---------------------------------------------------------
+   14.06 // NETWORK STATUS
+   --------------------------------------------------------- */
+
+.portal > .column:last-of-type > .module:first-child {
+    padding-bottom: 10px !important;
+    background: linear-gradient(180deg,#141414 0,var(--br-ink) 100%) !important;
+}
+
+.portal > .column:last-of-type > .module:first-child > .h3 {
+    font-size: 0 !important;
+}
+
+.portal > .column:last-of-type > .module:first-child > .h3 > i {
+    display: none !important;
+}
+
+.portal > .column:last-of-type > .module:first-child > .h3::before {
+    content: "// NETWORK STATUS";
+    font-family: "JetBrains Mono",monospace;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1px;
+    color: #d6d6d6;
+}
+
+.portal > .column:last-of-type > .module:first-child > .h3::after {
+    left: auto;
+    right: 12px;
+    top: 50%;
+    bottom: auto;
+    width: 4px;
+    height: 4px;
+    background: var(--br-orange);
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.portal .mod-stats-users,
+.portal .mod-stats-user,
+.portal .mod-stats-posts,
+.portal .mod-stats-topics {
+    position: relative;
+    display: block !important;
+    box-sizing: border-box;
+    margin: 0 12px !important;
+    padding: 10px 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 1px solid #1d1d1d !important;
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 6.5px !important;
+    font-weight: 500 !important;
+    line-height: 1.55 !important;
+    letter-spacing: .35px !important;
+    text-align: left !important;
+    color: var(--br-smoke) !important;
+}
+
+.portal .mod-stats-topics {
+    border-bottom: 0 !important;
+}
+
+.portal .mod-stats-users strong,
+.portal .mod-stats-posts strong,
+.portal .mod-stats-topics strong {
+    display: inline-block;
+    margin: 0 2px;
+    font-family: "Oswald",Arial,sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    color: var(--br-paper) !important;
+}
+
+.portal .mod-stats-user strong,
+.portal .mod-stats-user strong a,
+.portal .mod-stats-user a {
+    font-family: "Oswald",Arial,sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--br-pink) !important;
+}
+
+.portal .mod-stats-users::before,
+.portal .mod-stats-user::before,
+.portal .mod-stats-posts::before,
+.portal .mod-stats-topics::before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    margin-right: 7px;
+    vertical-align: 2px;
+    background: var(--br-border2);
+}
+
+.portal .mod-stats-users::before {
+    background: var(--br-orange);
+}
+
+.portal .mod-stats-user::before {
+    background: var(--br-pink);
+}
+
+.portal > .column:last-of-type > .module:first-child::after {
+    content: "ARCHIVE TELEMETRY // LIVE";
+    display: block;
+    box-sizing: border-box;
+    margin: 3px 12px 0;
+    padding: 8px 0 0;
+    border-top: 1px solid var(--br-ash);
+    font-family: "JetBrains Mono",monospace;
+    font-size: 5.5px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .8px;
+    color: #555;
+}
+
+/* ---------------------------------------------------------
+   14.07 // ACTIVITY INDEX / TOP POSTERS
+   --------------------------------------------------------- */
+
+.portal .mod-top {
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 4px 12px 6px !important;
+    background: transparent !important;
+}
+
+.portal .mod-top-row {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 7px 0 8px !important;
+    background: transparent !important;
+    border-bottom: 1px solid #1d1d1d !important;
+}
+
+.portal .mod-top-row:last-child {
+    border-bottom: 0 !important;
+}
+
+.portal .mod-top-name {
+    margin: 0 0 5px !important;
+    padding: 0 !important;
+    font-family: "Oswald",Arial,sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    letter-spacing: .35px !important;
+    text-align: left !important;
+    color: #d6d6d6 !important;
+}
+
+.portal .mod-top-name a {
+    color: #d6d6d6 !important;
+}
+
+.portal .mod-top-name a:hover,
+.portal .mod-top-name a:focus-visible {
+    color: var(--br-pink) !important;
+}
+
+.portal .mod-top-bar {
+    position: relative;
+    display: block !important;
+    box-sizing: border-box;
+    width: 100% !important;
+    height: 14px !important;
+    margin: 0 !important;
+    padding: 0 5px !important;
+    background-color: var(--br-panel) !important;
+    background-image: linear-gradient(90deg,rgba(208,0,91,.42),rgba(208,0,91,.16)) !important;
+    border: 1px solid var(--br-border) !important;
+    border-left: 2px solid var(--br-pink) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 6px !important;
+    font-weight: 600 !important;
+    line-height: 12px !important;
+    letter-spacing: .35px !important;
+    text-align: right !important;
+    color: #8b8b8b !important;
+    overflow: hidden !important;
+}
+
+.portal .mod-top-row::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 11px;
+    width: 2px;
+    height: 2px;
+    background: var(--br-orange);
+    border-radius: 50%;
+}
+
+/* ---------------------------------------------------------
+   14.08 // LIVE PRESENCE
+   --------------------------------------------------------- */
+
+.portal .module .h3 + strong {
+    color: var(--br-paper) !important;
+}
+
+.portal .module > a[href^="/u"],
+.portal .module > a[href*="/u"] {
+    font-family: "Oswald",Arial,sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
+    letter-spacing: .3px !important;
+    color: var(--br-pink) !important;
+}
+
+.portal .module > a[href^="/u"]:hover,
+.portal .module > a[href*="/u"]:hover,
+.portal .module > a[href^="/u"]:focus-visible,
+.portal .module > a[href*="/u"]:focus-visible {
+    color: var(--br-paper) !important;
+}
+
+.portal .module > .module-footer:not(:first-child) {
+    position: relative;
+    box-sizing: border-box;
+    margin: 10px 12px 12px !important;
+    padding: 8px 0 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-top: 1px solid var(--br-ash) !important;
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 6px !important;
+    line-height: 1 !important;
+    letter-spacing: .8px !important;
+    color: #555 !important;
+}
+
+/* ---------------------------------------------------------
+   14.09 // PORTAL SCROLLBARS
+   --------------------------------------------------------- */
+
+.portal #comments_scroll_div::-webkit-scrollbar {
+    width: 6px;
+}
+
+.portal #comments_scroll_div::-webkit-scrollbar-track {
+    background: #0d0d0d;
+}
+
+.portal #comments_scroll_div::-webkit-scrollbar-thumb {
+    background: var(--br-border);
+    border: 1px solid #0d0d0d;
+}
+
+.portal #comments_scroll_div::-webkit-scrollbar-thumb:hover {
+    background: var(--br-red);
+}
+
+/* ---------------------------------------------------------
+   14.10 // PORTAL RESPONSIVE SAFETY
+
+   Desktop remains the primary Retribution experience.
+   Field Terminal is a separate future mobile project.
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+    .portal > .column:first-child .mod-login-avatar {
+        max-width: calc(100% - 24px);
+        height: auto !important;
+        aspect-ratio: 1 / 1;
+    }
+
+    .portal #comments_scroll_div {
+        max-height: 360px !important;
+    }
+}
