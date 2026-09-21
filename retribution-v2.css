@@ -5335,3 +5335,114 @@ body::after {
 .forabg.hidden {
     display: none !important;
 }
+/* =========================================================
+   FORUM INDEX // LAST RECORD CHARACTER PORTRAIT
+   Dedicated 150x150 character portrait presentation
+
+   Forumotion retains ownership of:
+   - profile link
+   - last-post data
+   - native avatar markup
+
+   CSS owns presentation only.
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   01 // PORTRAIT FRAME
+   --------------------------------------------------------- */
+
+.forabg.br-category .lastpost-avatar {
+    position: relative;
+
+    display: block !important;
+    flex: 0 0 46px;
+
+    box-sizing: border-box;
+
+    width: 46px !important;
+    height: 46px !important;
+
+    margin: 0 10px 0 0 !important;
+    padding: 0 !important;
+
+    background: #080808 !important;
+
+    border: 1px solid var(--br-border) !important;
+    border-left: 2px solid var(--br-red) !important;
+    border-radius: 0 !important;
+
+    overflow: hidden !important;
+}
+
+
+/* ---------------------------------------------------------
+   02 // NATIVE AVATAR
+   Default behavior for members without a dedicated portrait.
+   --------------------------------------------------------- */
+
+.forabg.br-category .lastpost-avatar img {
+    display: block !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    object-fit: cover !important;
+    object-position: center center !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   03 // SHUEI SETSUNA
+   Replace the visual avatar with the dedicated
+   150x150 character portrait used by Operator Record.
+   --------------------------------------------------------- */
+
+.forabg.br-category
+.lastpost-avatar:has(a[href*="/u1"]) {
+    background:
+        #080808
+        url("https://2img.net/i.imgur.com/Ie5X4L8.png")
+        center / cover no-repeat !important;
+}
+
+
+/* Preserve Forumotion's native image and link in the DOM,
+   but allow the dedicated portrait underneath to display. */
+
+.forabg.br-category
+.lastpost-avatar:has(a[href*="/u1"]) img {
+    opacity: 0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   04 // LIVE RECORD REGISTRATION
+   --------------------------------------------------------- */
+
+.forabg.br-category .lastpost-avatar::after {
+    content: "";
+
+    position: absolute;
+    top: 4px;
+    right: 4px;
+
+    width: 6px;
+    height: 6px;
+
+    border-top: 1px solid var(--br-orange);
+    border-right: 1px solid var(--br-orange);
+
+    pointer-events: none;
+}
