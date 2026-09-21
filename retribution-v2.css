@@ -4561,3 +4561,519 @@ body::after {
 .br-post .fa_like_div .fa_like_list:empty {
     display: none !important;
 }
+/* =========================================================
+   14 // NETWORK PORTAL
+
+   COMMUNITY OPERATIONS // LIVE ACCESS
+
+   Portal configuration:
+   Left   // 220px
+   Middle // 58%
+   Right  // 20%
+
+   Crimson // interface structure
+   Orange  // live telemetry
+   Magenta // human influence / active records
+   ========================================================= */
+
+
+/* =========================================================
+   14.01 // PORTAL FRAME
+   ========================================================= */
+
+.portal {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.portal::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+/* Normalize vertical module rhythm without fighting
+   Forumotion's native column calculations. */
+
+.portal .column > .module,
+.portal .portal-mid > .module {
+    margin-bottom: 14px !important;
+}
+
+
+/* =========================================================
+   14.02 // SHARED MODULE SYSTEM
+   ========================================================= */
+
+.portal .module {
+    position: relative;
+    box-sizing: border-box;
+
+    background: #111111 !important;
+
+    border: 1px solid #2a2a2a !important;
+    border-left: 2px solid var(--br-red, #b00020) !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    color: var(--br-content, #e8e8e8);
+
+    overflow: hidden;
+}
+
+
+/* Module header */
+
+.portal .module > .h3 {
+    position: relative;
+
+    box-sizing: border-box;
+
+    margin: 0 !important;
+    padding: 11px 12px 9px !important;
+
+    min-height: 32px;
+
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 7px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    letter-spacing: 1px !important;
+
+    text-transform: uppercase;
+
+    color: #d6d6d6 !important;
+
+    background: #141414 !important;
+
+    border: 0 !important;
+    border-bottom: 1px solid #242424 !important;
+}
+
+
+/* Existing Forumotion header icons become restrained
+   system registration marks. */
+
+.portal .module > .h3 > i {
+    margin-right: 5px !important;
+
+    font-size: 8px !important;
+
+    color: var(--br-red, #b00020) !important;
+}
+
+
+/* Tiny interface registration line */
+
+.portal .module > .h3::after {
+    content: "";
+
+    position: absolute;
+    right: 11px;
+    bottom: -1px;
+
+    width: 18px;
+    height: 1px;
+
+    background: var(--br-red, #b00020);
+}
+
+
+/* =========================================================
+   14.03 // OPERATOR RECORD
+   ========================================================= */
+
+/*
+   The Login widget is the first module in the left Portal
+   column. This scope deliberately avoids affecting other
+   Forumotion modules elsewhere on the site.
+*/
+
+.portal > .column:first-child > .module:first-child {
+    padding-bottom: 0 !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #141414 0,
+            #111111 100%
+        ) !important;
+}
+
+
+/* ---------------------------------------------------------
+   OPERATOR IDENTITY
+   --------------------------------------------------------- */
+
+.portal > .column:first-child > .module:first-child > .h3 {
+    padding: 11px 12px 10px !important;
+
+    font-family: "Oswald", Arial, sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: .8px !important;
+
+    text-align: left !important;
+}
+
+
+/* Replace the stock person icon with Retribution notation. */
+
+.portal > .column:first-child > .module:first-child > .h3 > i {
+    display: none !important;
+}
+
+.portal > .column:first-child > .module:first-child > .h3::before {
+    content: "//";
+
+    display: inline-block;
+
+    margin-right: 7px;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px;
+    font-weight: 700;
+
+    color: var(--br-red, #b00020);
+}
+
+
+/* Logged-in username */
+
+.portal > .column:first-child > .module:first-child > .h3 span {
+    color: #f2f2f2 !important;
+}
+
+
+/* ---------------------------------------------------------
+   TRANSMISSION / OPERATOR PORTRAIT
+
+   Uses the dedicated 150x150 Shuei portrait for the current
+   Portal prototype. The original Forumotion avatar remains
+   in the DOM but is visually replaced here.
+
+   No JavaScript.
+   No profile-field resolver.
+   --------------------------------------------------------- */
+
+.portal > .column:first-child .mod-login-avatar {
+    position: relative;
+
+    box-sizing: border-box;
+
+    width: 150px !important;
+    height: 150px !important;
+
+    margin: 16px auto 12px !important;
+    padding: 0 !important;
+
+    background:
+        #0d0d0d
+        url("https://2img.net/i.imgur.com/Ie5X4L8.png")
+        center / cover
+        no-repeat !important;
+
+    border: 1px solid #303030 !important;
+    border-left: 2px solid var(--br-red, #b00020) !important;
+
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    overflow: hidden;
+}
+
+
+/* Hide the normal circular Forumotion avatar.
+   The source avatar remains untouched elsewhere. */
+
+.portal > .column:first-child .mod-login-avatar img {
+    opacity: 0 !important;
+
+    width: 150px !important;
+    height: 150px !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    pointer-events: none;
+}
+
+
+/* Registration corner */
+
+.portal > .column:first-child .mod-login-avatar::before {
+    content: "";
+
+    position: absolute;
+    top: 7px;
+    right: 7px;
+
+    width: 11px;
+    height: 11px;
+
+    border-top: 1px solid var(--br-orange, #e06a16);
+    border-right: 1px solid var(--br-orange, #e06a16);
+
+    pointer-events: none;
+}
+
+
+/* Portrait telemetry */
+
+.portal > .column:first-child .mod-login-avatar::after {
+    content: "OPERATOR // ACTIVE";
+
+    position: absolute;
+    left: 8px;
+    bottom: 7px;
+
+    padding: 3px 5px;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 5.5px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .8px;
+
+    color: #b8b8b8;
+
+    background: rgba(8, 8, 8, .82);
+
+    border-left: 1px solid var(--br-orange, #e06a16);
+
+    pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   OPERATOR TELEMETRY
+   --------------------------------------------------------- */
+
+.portal > .column:first-child dl.mod-login {
+    display: grid !important;
+
+    grid-template-columns: 1fr auto;
+
+    gap: 0;
+
+    box-sizing: border-box;
+
+    width: auto !important;
+
+    margin: 0 12px 13px !important;
+    padding: 8px 0 0 !important;
+
+    border-top: 1px solid #242424;
+}
+
+
+/* Labels */
+
+.portal > .column:first-child dl.mod-login dt {
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 5px 0 !important;
+
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 6.5px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    letter-spacing: .6px !important;
+
+    text-align: left !important;
+    text-transform: uppercase;
+
+    color: #777777 !important;
+
+    border-bottom: 1px solid #1d1d1d;
+}
+
+
+/* Values */
+
+.portal > .column:first-child dl.mod-login dd {
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 5px 0 5px 8px !important;
+
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 7px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    letter-spacing: .4px !important;
+
+    text-align: right !important;
+
+    color: #d6d6d6 !important;
+
+    border-bottom: 1px solid #1d1d1d;
+}
+
+
+/* Tiny telemetry indicator beside values */
+
+.portal > .column:first-child dl.mod-login dd::after {
+    content: "";
+
+    display: inline-block;
+
+    width: 3px;
+    height: 3px;
+
+    margin-left: 6px;
+    vertical-align: 1px;
+
+    background: var(--br-orange, #e06a16);
+
+    border-radius: 50%;
+}
+
+
+/* ---------------------------------------------------------
+   PROFILE ACTION
+   --------------------------------------------------------- */
+
+.portal > .column:first-child .module-footer {
+    display: flex !important;
+
+    align-items: center;
+    justify-content: space-between;
+
+    box-sizing: border-box;
+
+    width: 100%;
+
+    margin: 0 !important;
+    padding: 10px 12px !important;
+
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 6.5px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    letter-spacing: .8px !important;
+
+    text-transform: uppercase;
+    text-decoration: none !important;
+
+    color: #8b8b8b !important;
+
+    background: #0d0d0d !important;
+
+    border: 0 !important;
+    border-top: 1px solid #242424 !important;
+
+    border-radius: 0 !important;
+
+    transition:
+        color .15s ease,
+        background-color .15s ease;
+}
+
+
+/* Rename visually without modifying Forumotion markup. */
+
+.portal > .column:first-child .module-footer {
+    font-size: 0 !important;
+}
+
+.portal > .column:first-child .module-footer::before {
+    content: "OPEN PROFILE";
+
+    font-size: 6.5px;
+
+    color: inherit;
+}
+
+.portal > .column:first-child .module-footer::after {
+    content: "→";
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px;
+
+    color: var(--br-red, #b00020);
+}
+
+
+.portal > .column:first-child .module-footer:hover,
+.portal > .column:first-child .module-footer:focus-visible {
+    color: #f2f2f2 !important;
+
+    background: #141414 !important;
+}
+
+.portal > .column:first-child .module-footer:focus-visible {
+    outline: 1px solid var(--br-red, #b00020);
+    outline-offset: -2px;
+}
+
+
+/* =========================================================
+   14.04 // COLUMN RHYTHM
+   ========================================================= */
+
+.portal > .column:first-child {
+    box-sizing: border-box;
+}
+
+.portal > .column:last-of-type {
+    box-sizing: border-box;
+}
+
+
+/* Keep modules visually separated without oversized gaps. */
+
+.portal > .column > .module + .module {
+    margin-top: 14px !important;
+}
+
+
+/* =========================================================
+   14.05 // PORTAL SAFETY
+   ========================================================= */
+
+/*
+   Keep Portal images from inheriting unwanted circular
+   presentation from older Forumotion module rules.
+*/
+
+.portal .mod-login-avatar,
+.portal .mod-login-avatar img {
+    border-radius: 0 !important;
+}
+
+
+/* Do not allow module content to force the side rails wider
+   than their Portal configuration.
+*/
+
+.portal .module {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   14.06 // DEVELOPMENT MEDIA CHECK
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    /*
+       This is only a defensive fallback for desktop testing.
+       The dedicated Retribution Field Terminal remains a
+       separate future mobile project.
+    */
+
+    .portal > .column:first-child .mod-login-avatar {
+        max-width: calc(100% - 24px);
+        height: auto !important;
+        aspect-ratio: 1 / 1;
+    }
+}
