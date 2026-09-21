@@ -4566,20 +4566,20 @@ body::after {
 
    COMMUNITY OPERATIONS // LIVE ACCESS
 
-   Portal configuration:
-   Left   // 220px
-   Middle // 58%
-   Right  // 20%
+   Portal philosophy:
+   - preserve Forumotion's native module/data behavior
+   - keep the three-column desktop composition
+   - present live community data as an archive/network dashboard
+   - scrolling Latest Topics is intentionally disabled in Admin
 
    Crimson // interface structure
    Orange  // live telemetry
    Magenta // human influence / active records
    ========================================================= */
 
-
-/* =========================================================
+/* ---------------------------------------------------------
    14.01 // PORTAL FRAME
-   ========================================================= */
+   --------------------------------------------------------- */
 
 .portal {
     position: relative;
@@ -4595,134 +4595,103 @@ body::after {
     clear: both;
 }
 
-
-/* Normalize vertical module rhythm without fighting
-   Forumotion's native column calculations. */
+.portal > .column,
+.portal > .portal-mid {
+    box-sizing: border-box;
+}
 
 .portal .column > .module,
 .portal .portal-mid > .module {
     margin-bottom: 14px !important;
 }
 
+.portal > .column > .module + .module,
+.portal > .portal-mid > .module + .module {
+    margin-top: 14px !important;
+}
 
-/* =========================================================
-   14.02 // SHARED MODULE SYSTEM
-   ========================================================= */
+/* ---------------------------------------------------------
+   14.02 // PORTAL MODULE LANGUAGE
+   --------------------------------------------------------- */
 
 .portal .module {
     position: relative;
     box-sizing: border-box;
-
-    background: #111111 !important;
-
+    max-width: 100%;
+    background: var(--br-ink) !important;
     border: 1px solid #2a2a2a !important;
-    border-left: 2px solid var(--br-red, #b00020) !important;
+    border-left: 2px solid var(--br-red) !important;
     border-radius: 0 !important;
-
     box-shadow: none !important;
-
-    color: var(--br-content, #e8e8e8);
-
+    color: var(--br-content);
     overflow: hidden;
 }
 
-
-/* Module header */
-
 .portal .module > .h3 {
     position: relative;
-
     box-sizing: border-box;
-
-    margin: 0 !important;
-    padding: 11px 12px 9px !important;
-
     min-height: 32px;
-
-    font-family: "JetBrains Mono", monospace !important;
+    margin: 0 !important;
+    padding: 11px 12px 10px !important;
+    background: linear-gradient(90deg,#121212,#151515) !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--br-ash) !important;
+    font-family: "JetBrains Mono",monospace !important;
     font-size: 7px !important;
     font-weight: 700 !important;
-    line-height: 1.25 !important;
+    line-height: 1.2 !important;
     letter-spacing: 1px !important;
-
     text-transform: uppercase;
-
     color: #d6d6d6 !important;
-
-    background: #141414 !important;
-
-    border: 0 !important;
-    border-bottom: 1px solid #242424 !important;
 }
-
-
-/* Existing Forumotion header icons become restrained
-   system registration marks. */
 
 .portal .module > .h3 > i {
     margin-right: 5px !important;
-
     font-size: 8px !important;
-
-    color: var(--br-red, #b00020) !important;
+    color: var(--br-red) !important;
 }
-
-
-/* Tiny interface registration line */
 
 .portal .module > .h3::after {
     content: "";
-
     position: absolute;
-    right: 11px;
+    left: 12px;
     bottom: -1px;
-
-    width: 18px;
+    width: 28px;
     height: 1px;
-
-    background: var(--br-red, #b00020);
+    background: var(--br-pink);
 }
 
+.portal .module a {
+    text-decoration: none !important;
+}
 
-/* =========================================================
+.portal .module > .center {
+    box-sizing: border-box;
+    margin: 10px 12px 12px !important;
+    padding: 9px 0 0 !important;
+    border-top: 1px solid var(--br-ash) !important;
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 7px !important;
+    line-height: 1.45 !important;
+    letter-spacing: .45px !important;
+    color: var(--br-smoke) !important;
+}
+
+/* ---------------------------------------------------------
    14.03 // OPERATOR RECORD
-   ========================================================= */
-
-/*
-   The Login widget is the first module in the left Portal
-   column. This scope deliberately avoids affecting other
-   Forumotion modules elsewhere on the site.
-*/
+   --------------------------------------------------------- */
 
 .portal > .column:first-child > .module:first-child {
     padding-bottom: 0 !important;
-
-    background:
-        linear-gradient(
-            180deg,
-            #141414 0,
-            #111111 100%
-        ) !important;
+    background: linear-gradient(180deg,#141414 0,var(--br-ink) 100%) !important;
 }
 
-
-/* ---------------------------------------------------------
-   OPERATOR IDENTITY
-   --------------------------------------------------------- */
-
 .portal > .column:first-child > .module:first-child > .h3 {
-    padding: 11px 12px 10px !important;
-
-    font-family: "Oswald", Arial, sans-serif !important;
+    font-family: "Oswald",Arial,sans-serif !important;
     font-size: 10px !important;
     font-weight: 600 !important;
     letter-spacing: .8px !important;
-
-    text-align: left !important;
 }
-
-
-/* Replace the stock person icon with Retribution notation. */
 
 .portal > .column:first-child > .module:first-child > .h3 > i {
     display: none !important;
@@ -4730,1187 +4699,571 @@ body::after {
 
 .portal > .column:first-child > .module:first-child > .h3::before {
     content: "//";
-
     display: inline-block;
-
     margin-right: 7px;
-
-    font-family: "JetBrains Mono", monospace;
+    font-family: "JetBrains Mono",monospace;
     font-size: 8px;
     font-weight: 700;
-
-    color: var(--br-red, #b00020);
+    color: var(--br-red);
 }
-
-
-/* Logged-in username */
 
 .portal > .column:first-child > .module:first-child > .h3 span {
-    color: #f2f2f2 !important;
+    color: var(--br-paper) !important;
 }
-
-
-/* ---------------------------------------------------------
-   TRANSMISSION / OPERATOR PORTRAIT
-
-   Uses the dedicated 150x150 Shuei portrait for the current
-   Portal prototype. The original Forumotion avatar remains
-   in the DOM but is visually replaced here.
-
-   No JavaScript.
-   No profile-field resolver.
-   --------------------------------------------------------- */
 
 .portal > .column:first-child .mod-login-avatar {
     position: relative;
-
     box-sizing: border-box;
-
     width: 150px !important;
     height: 150px !important;
-
     margin: 16px auto 12px !important;
     padding: 0 !important;
-
-    background:
-        #0d0d0d
-        url("https://2img.net/i.imgur.com/Ie5X4L8.png")
-        center / cover
-        no-repeat !important;
-
-    border: 1px solid #303030 !important;
-    border-left: 2px solid var(--br-red, #b00020) !important;
-
+    background: #0d0d0d url("https://2img.net/i.imgur.com/Ie5X4L8.png") center/cover no-repeat !important;
+    border: 1px solid var(--br-border) !important;
+    border-left: 2px solid var(--br-red) !important;
     border-radius: 0 !important;
-
     box-shadow: none !important;
-
     overflow: hidden;
 }
 
-
-/* Hide the normal circular Forumotion avatar.
-   The source avatar remains untouched elsewhere. */
-
 .portal > .column:first-child .mod-login-avatar img {
-    opacity: 0 !important;
-
     width: 150px !important;
     height: 150px !important;
-
+    opacity: 0 !important;
     border: 0 !important;
     border-radius: 0 !important;
-
     pointer-events: none;
 }
-
-
-/* Registration corner */
 
 .portal > .column:first-child .mod-login-avatar::before {
     content: "";
-
     position: absolute;
     top: 7px;
     right: 7px;
-
     width: 11px;
     height: 11px;
-
-    border-top: 1px solid var(--br-orange, #e06a16);
-    border-right: 1px solid var(--br-orange, #e06a16);
-
+    border-top: 1px solid var(--br-orange);
+    border-right: 1px solid var(--br-orange);
     pointer-events: none;
 }
 
-
-/* Portrait telemetry */
-
 .portal > .column:first-child .mod-login-avatar::after {
     content: "OPERATOR // ACTIVE";
-
     position: absolute;
     left: 8px;
     bottom: 7px;
-
     padding: 3px 5px;
-
-    font-family: "JetBrains Mono", monospace;
+    background: rgba(8,8,8,.82);
+    border-left: 1px solid var(--br-orange);
+    font-family: "JetBrains Mono",monospace;
     font-size: 5.5px;
     font-weight: 700;
     line-height: 1;
     letter-spacing: .8px;
-
     color: #b8b8b8;
-
-    background: rgba(8, 8, 8, .82);
-
-    border-left: 1px solid var(--br-orange, #e06a16);
-
     pointer-events: none;
 }
 
-
-/* ---------------------------------------------------------
-   OPERATOR TELEMETRY
-   --------------------------------------------------------- */
-
 .portal > .column:first-child dl.mod-login {
     display: grid !important;
-
     grid-template-columns: 1fr auto;
-
-    gap: 0;
-
     box-sizing: border-box;
-
     width: auto !important;
-
     margin: 0 12px 13px !important;
     padding: 8px 0 0 !important;
-
-    border-top: 1px solid #242424;
+    border-top: 1px solid var(--br-ash);
 }
 
-
-/* Labels */
-
-.portal > .column:first-child dl.mod-login dt {
-    display: block !important;
-
-    margin: 0 !important;
-    padding: 5px 0 !important;
-
-    font-family: "JetBrains Mono", monospace !important;
-    font-size: 6.5px !important;
-    font-weight: 600 !important;
-    line-height: 1.2 !important;
-    letter-spacing: .6px !important;
-
-    text-align: left !important;
-    text-transform: uppercase;
-
-    color: #777777 !important;
-
-    border-bottom: 1px solid #1d1d1d;
-}
-
-
-/* Values */
-
+.portal > .column:first-child dl.mod-login dt,
 .portal > .column:first-child dl.mod-login dd {
     display: block !important;
-
     margin: 0 !important;
-    padding: 5px 0 5px 8px !important;
-
-    font-family: "JetBrains Mono", monospace !important;
-    font-size: 7px !important;
-    font-weight: 700 !important;
-    line-height: 1.2 !important;
-    letter-spacing: .4px !important;
-
-    text-align: right !important;
-
-    color: #d6d6d6 !important;
-
+    padding: 5px 0 !important;
     border-bottom: 1px solid #1d1d1d;
+    font-family: "JetBrains Mono",monospace !important;
+    line-height: 1.2 !important;
 }
 
+.portal > .column:first-child dl.mod-login dt {
+    font-size: 6.5px !important;
+    font-weight: 600 !important;
+    letter-spacing: .6px !important;
+    text-transform: uppercase;
+    color: var(--br-smoke) !important;
+}
 
-/* Tiny telemetry indicator beside values */
+.portal > .column:first-child dl.mod-login dd {
+    padding-left: 8px !important;
+    font-size: 7px !important;
+    font-weight: 700 !important;
+    letter-spacing: .4px !important;
+    text-align: right !important;
+    color: #d6d6d6 !important;
+}
 
 .portal > .column:first-child dl.mod-login dd::after {
     content: "";
-
     display: inline-block;
-
     width: 3px;
     height: 3px;
-
     margin-left: 6px;
     vertical-align: 1px;
-
-    background: var(--br-orange, #e06a16);
-
+    background: var(--br-orange);
     border-radius: 50%;
 }
 
-
-/* ---------------------------------------------------------
-   PROFILE ACTION
-   --------------------------------------------------------- */
-
 .portal > .column:first-child .module-footer {
     display: flex !important;
-
     align-items: center;
     justify-content: space-between;
-
     box-sizing: border-box;
-
     width: 100%;
-
     margin: 0 !important;
     padding: 10px 12px !important;
-
-    font-family: "JetBrains Mono", monospace !important;
-    font-size: 6.5px !important;
+    background: #0d0d0d !important;
+    border: 0 !important;
+    border-top: 1px solid var(--br-ash) !important;
+    border-radius: 0 !important;
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 0 !important;
     font-weight: 700 !important;
     line-height: 1 !important;
     letter-spacing: .8px !important;
-
     text-transform: uppercase;
-    text-decoration: none !important;
-
     color: #8b8b8b !important;
-
-    background: #0d0d0d !important;
-
-    border: 0 !important;
-    border-top: 1px solid #242424 !important;
-
-    border-radius: 0 !important;
-
-    transition:
-        color .15s ease,
-        background-color .15s ease;
-}
-
-
-/* Rename visually without modifying Forumotion markup. */
-
-.portal > .column:first-child .module-footer {
-    font-size: 0 !important;
+    transition: color .15s ease,background-color .15s ease;
 }
 
 .portal > .column:first-child .module-footer::before {
     content: "OPEN PROFILE";
-
     font-size: 6.5px;
-
     color: inherit;
 }
 
 .portal > .column:first-child .module-footer::after {
     content: "→";
-
-    font-family: "JetBrains Mono", monospace;
     font-size: 8px;
-
-    color: var(--br-red, #b00020);
+    color: var(--br-red);
 }
-
 
 .portal > .column:first-child .module-footer:hover,
 .portal > .column:first-child .module-footer:focus-visible {
-    color: #f2f2f2 !important;
-
     background: #141414 !important;
+    color: var(--br-paper) !important;
 }
-
-.portal > .column:first-child .module-footer:focus-visible {
-    outline: 1px solid var(--br-red, #b00020);
-    outline-offset: -2px;
-}
-
-
-/* =========================================================
-   14.04 // COLUMN RHYTHM
-   ========================================================= */
-
-.portal > .column:first-child {
-    box-sizing: border-box;
-}
-
-.portal > .column:last-of-type {
-    box-sizing: border-box;
-}
-
-
-/* Keep modules visually separated without oversized gaps. */
-
-.portal > .column > .module + .module {
-    margin-top: 14px !important;
-}
-
-
-/* =========================================================
-   14.05 // PORTAL SAFETY
-   ========================================================= */
-
-/*
-   Keep Portal images from inheriting unwanted circular
-   presentation from older Forumotion module rules.
-*/
-
-.portal .mod-login-avatar,
-.portal .mod-login-avatar img {
-    border-radius: 0 !important;
-}
-
-
-/* Do not allow module content to force the side rails wider
-   than their Portal configuration.
-*/
-
-.portal .module {
-    max-width: 100%;
-}
-
-
-/* =========================================================
-   14.06 // DEVELOPMENT MEDIA CHECK
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-    /*
-       This is only a defensive fallback for desktop testing.
-       The dedicated Retribution Field Terminal remains a
-       separate future mobile project.
-    */
-
-    .portal > .column:first-child .mod-login-avatar {
-        max-width: calc(100% - 24px);
-        height: auto !important;
-        aspect-ratio: 1 / 1;
-    }
-}
-/* =========================================================
-   NETWORK PORTAL // PASS 02
-   NETWORK STATUS
-
-   Converts Forumotion Statistics into a compact network
-   telemetry module while preserving all dynamic values.
-
-   Crimson // interface structure
-   Orange  // live system state
-   Magenta // member / human record
-   ========================================================= */
-
 
 /* ---------------------------------------------------------
-   NETWORK STATUS // MODULE IDENTITY
+   14.04 // LATEST TRANSMISSIONS
+
+   Scrolling is intentionally disabled in Forumotion.
+   The feed is a static archive list; no marquee ownership.
    --------------------------------------------------------- */
-
-/*
-   Statistics is currently the first module in the final
-   Portal column.
-
-   Scope remains inside .portal so normal forum widgets
-   elsewhere are unaffected.
-*/
-
-.portal > .column:last-of-type > .module:first-child {
-    position: relative;
-
-    padding-bottom: 10px !important;
-
-    background:
-        linear-gradient(
-            180deg,
-            #141414 0,
-            #111111 100%
-        ) !important;
-}
-
-
-/* Replace the stock Statistics header visually. */
-
-.portal > .column:last-of-type > .module:first-child > .h3 {
-    position: relative;
-
-    padding: 11px 12px 10px !important;
-
-    font-size: 0 !important;
-}
-
-
-/* Remove stock graph icon. */
-
-.portal > .column:last-of-type > .module:first-child > .h3 > i {
-    display: none !important;
-}
-
-
-/* NETWORK STATUS */
-
-.portal > .column:last-of-type > .module:first-child > .h3::before {
-    content: "// NETWORK STATUS";
-
-    position: static;
-
-    display: inline;
-
-    font-family: "JetBrains Mono", monospace;
-    font-size: 7px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: 1px;
-
-    color: #d6d6d6;
-}
-
-
-/* Replace shared header registration line with live indicator. */
-
-.portal > .column:last-of-type > .module:first-child > .h3::after {
-    content: "";
-
-    position: absolute;
-
-    right: 12px;
-    top: 50%;
-    bottom: auto;
-
-    width: 4px;
-    height: 4px;
-
-    background: var(--br-orange, #e06a16);
-
-    border-radius: 50%;
-
-    transform: translateY(-50%);
-}
-
-
-/* ---------------------------------------------------------
-   TELEMETRY RECORDS
-   --------------------------------------------------------- */
-
-.portal .mod-stats-users,
-.portal .mod-stats-user,
-.portal .mod-stats-posts,
-.portal .mod-stats-topics {
-    position: relative;
-
-    display: block !important;
-
-    box-sizing: border-box;
-
-    margin: 0 12px !important;
-    padding: 10px 0 !important;
-
-    font-family: "JetBrains Mono", monospace !important;
-    font-size: 6.5px !important;
-    font-weight: 500 !important;
-    line-height: 1.55 !important;
-    letter-spacing: .35px !important;
-
-    text-align: left !important;
-
-    color: #777777 !important;
-
-    background: transparent !important;
-
-    border: 0 !important;
-    border-bottom: 1px solid #1d1d1d !important;
-}
-
-
-/* First record gets slightly more breathing room. */
-
-.portal .mod-stats-users {
-    padding-top: 12px !important;
-}
-
-
-/* Last record closes the telemetry stack cleanly. */
-
-.portal .mod-stats-topics {
-    border-bottom: 0 !important;
-    padding-bottom: 8px !important;
-}
-
-
-/* ---------------------------------------------------------
-   DYNAMIC VALUES
-   --------------------------------------------------------- */
-
-.portal .mod-stats-users strong,
-.portal .mod-stats-posts strong,
-.portal .mod-stats-topics strong {
-    display: inline-block;
-
-    margin: 0 2px;
-
-    font-family: "Oswald", Arial, sans-serif !important;
-    font-size: 15px !important;
-    font-weight: 600 !important;
-    line-height: 1 !important;
-    letter-spacing: .25px !important;
-
-    color: #f2f2f2 !important;
-
-    vertical-align: -1px;
-}
-
-
-/*
-   The newest member represents a human record entering the
-   system, so this is one of the rare places where Retribution
-   Magenta carries semantic meaning.
-*/
-
-.portal .mod-stats-user strong,
-.portal .mod-stats-user strong a,
-.portal .mod-stats-user a {
-    font-family: "Oswald", Arial, sans-serif !important;
-    font-size: 13px !important;
-    font-weight: 600 !important;
-    letter-spacing: .35px !important;
-
-    color: var(--br-magenta, #d0005b) !important;
-
-    text-decoration: none !important;
-}
-
-
-.portal .mod-stats-user a:hover,
-.portal .mod-stats-user a:focus-visible {
-    color: #f2f2f2 !important;
-}
-
-
-/* ---------------------------------------------------------
-   RECORD REGISTRATION MARKS
-   --------------------------------------------------------- */
-
-.portal .mod-stats-users::before,
-.portal .mod-stats-user::before,
-.portal .mod-stats-posts::before,
-.portal .mod-stats-topics::before {
-    content: "";
-
-    display: inline-block;
-
-    width: 3px;
-    height: 3px;
-
-    margin-right: 7px;
-    vertical-align: 2px;
-
-    background: #444444;
-}
-
-
-/* Registered records are live system data. */
-
-.portal .mod-stats-users::before {
-    background: var(--br-orange, #e06a16);
-}
-
-
-/* Latest registration is a human influence event. */
-
-.portal .mod-stats-user::before {
-    background: var(--br-magenta, #d0005b);
-}
-
-
-/* ---------------------------------------------------------
-   NETWORK FOOTER SIGNAL
-   --------------------------------------------------------- */
-
-.portal > .column:last-of-type > .module:first-child::after {
-    content: "ARCHIVE TELEMETRY // LIVE";
-
-    display: block;
-
-    box-sizing: border-box;
-
-    margin: 3px 12px 0;
-    padding: 8px 0 0;
-
-    font-family: "JetBrains Mono", monospace;
-    font-size: 5.5px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: .8px;
-
-    color: #555555;
-
-    border-top: 1px solid #242424;
-}
-/* =========================================================
-   PORTAL PASS 03 // LIVE DATA SYSTEMS
-
-   Recent Signals
-   Activity Index
-   Live Presence
-
-   Crimson // interface structure
-   Orange  // live telemetry
-   Magenta // identity / transmitted activity
-   ========================================================= */
-
-
-/* =========================================================
-   01 // RECENT SIGNALS
-   ========================================================= */
-
-/* Kill the old luminous viewport treatment */
 
 .portal #comments_scroll_div {
     position: relative !important;
     box-sizing: border-box !important;
-
+    height: auto !important;
+    max-height: 430px !important;
     margin: 0 !important;
-    padding: 0 !important;
-
-    height: 200px !important;
-
+    padding: 4px 12px 6px !important;
     background: #0d0d0d !important;
-
+    background-image: none !important;
     border: 0 !important;
-    border-top: 1px solid #242424 !important;
-    border-bottom: 1px solid #242424 !important;
-
     box-shadow: none !important;
-    overflow: hidden !important;
+    text-shadow: none !important;
+    filter: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
 }
 
+.portal #comments_scroll_div .marquee,
+.portal #comments_scroll_div .js-marquee-wrapper,
+.portal #comments_scroll_div .js-marquee {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+}
 
-/* Remove any inherited glow/filter from the scrolling area */
-
-.portal #comments_scroll_div,
-.portal #comments_scroll_div *,
-.portal #comments_scroll_div::before,
-.portal #comments_scroll_div::after {
+.portal #comments_scroll_div .mod-recent-row {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 10px 0 11px 10px !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 1px solid #1d1d1d !important;
+    box-shadow: none !important;
     text-shadow: none !important;
     filter: none !important;
 }
 
-
-/* Native Forumotion scrolling engine remains untouched */
-
-.portal #comments_scroll_div .marquee {
-    box-sizing: border-box !important;
-
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 4px 10px !important;
-
-    background: transparent !important;
+.portal #comments_scroll_div .mod-recent-row:last-child {
+    border-bottom: 0 !important;
 }
-
-
-/* Individual transmission */
-
-.portal #comments_scroll_div .mod-recent-row {
-    position: relative;
-
-    box-sizing: border-box;
-
-    margin: 0 !important;
-    padding: 9px 0 10px !important;
-
-    background: transparent !important;
-
-    border: 0 !important;
-    border-bottom: 1px solid #1d1d1d !important;
-
-    font-family: "Inter", Arial, sans-serif;
-    font-size: 10px;
-    line-height: 1.45;
-
-    color: #777777;
-}
-
-
-/* Give each record a tiny registration point */
 
 .portal #comments_scroll_div .mod-recent-row::before {
     content: "";
-
-    position: absolute;
-    left: -6px;
-    top: 14px;
-
-    width: 2px;
-    height: 2px;
-
-    background: var(--br-orange);
-    border-radius: 50%;
-}
-
-
-/* Topic/member links */
-
-.portal #comments_scroll_div .mod-recent-row a {
-    text-decoration: none !important;
-
-    transition:
-        color .15s ease,
-        opacity .15s ease;
-}
-
-
-/* Primary topic signal */
-
-.portal #comments_scroll_div .mod-recent-row > a:first-of-type {
-    font-family: "Oswald", Arial, sans-serif !important;
-    font-size: 11px !important;
-    font-weight: 500 !important;
-    line-height: 1.25 !important;
-    letter-spacing: .25px !important;
-
-    color: var(--br-magenta, #d0005b) !important;
-}
-
-
-/* Secondary links */
-
-.portal #comments_scroll_div .mod-recent-row a:not(:first-of-type) {
-    font-family: "JetBrains Mono", monospace !important;
-    font-size: 7px !important;
-    font-weight: 600 !important;
-    letter-spacing: .35px !important;
-
-    color: #b5b5b5 !important;
-}
-
-
-.portal #comments_scroll_div .mod-recent-row a:hover,
-.portal #comments_scroll_div .mod-recent-row a:focus-visible {
-    color: #f2f2f2 !important;
-}
-
-
-/* =========================================================
-   02 // ACTIVITY INDEX
-   TOP POSTERS
-   ========================================================= */
-
-.portal .mod-top {
-    box-sizing: border-box;
-
-    margin: 0 !important;
-    padding: 4px 0 2px !important;
-
-    background: transparent !important;
-}
-
-
-/* One activity record */
-
-.portal .mod-top-row {
-    position: relative;
-
-    box-sizing: border-box;
-
-    margin: 0 !important;
-    padding: 7px 0 8px !important;
-
-    background: transparent !important;
-
-    border-bottom: 1px solid #1d1d1d !important;
-}
-
-
-/* Member identity */
-
-.portal .mod-top-name {
-    margin: 0 0 5px !important;
-    padding: 0 !important;
-
-    font-family: "Oswald", Arial, sans-serif !important;
-    font-size: 10px !important;
-    font-weight: 500 !important;
-    line-height: 1 !important;
-    letter-spacing: .35px !important;
-
-    color: #d6d6d6 !important;
-
-    text-align: left !important;
-}
-
-
-.portal .mod-top-name a {
-    color: #d6d6d6 !important;
-    text-decoration: none !important;
-
-    transition: color .15s ease;
-}
-
-
-.portal .mod-top-name a:hover,
-.portal .mod-top-name a:focus-visible {
-    color: var(--br-magenta, #d0005b) !important;
-}
-
-
-/* Activity track */
-
-.portal .mod-top-bar {
-    position: relative;
-
-    box-sizing: border-box;
-
-    display: block !important;
-
-    width: 100% !important;
-    height: 14px !important;
-
-    margin: 0 !important;
-    padding: 0 5px !important;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(208, 0, 91, .28) 0,
-            rgba(208, 0, 91, .28) var(--br-activity-fill, 0%),
-            #181818 var(--br-activity-fill, 0%),
-            #181818 100%
-        ) !important;
-
-    border: 1px solid #303030 !important;
-    border-left: 2px solid var(--br-magenta, #d0005b) !important;
-    border-radius: 0 !important;
-
-    box-shadow: none !important;
-
-    font-family: "JetBrains Mono", monospace !important;
-    font-size: 6px !important;
-    font-weight: 600 !important;
-    line-height: 12px !important;
-    letter-spacing: .35px !important;
-
-    color: #8b8b8b !important;
-
-    text-align: right !important;
-
-    overflow: hidden !important;
-}
-
-
-/*
-   Forumotion supplies each bar's proportional width itself.
-   Preserve that useful data rather than fabricating values.
-   The following makes the native blue fill read as a
-   restrained magenta telemetry signal.
-*/
-
-.portal .mod-top-row .mod-top-bar {
-    background-color: #181818 !important;
-    background-image:
-        linear-gradient(
-            90deg,
-            rgba(208, 0, 91, .42),
-            rgba(208, 0, 91, .16)
-        ) !important;
-}
-
-
-/* Tiny live endpoint */
-
-.portal .mod-top-row::after {
-    content: "";
-
-    position: absolute;
-    right: 0;
-    top: 11px;
-
-    width: 2px;
-    height: 2px;
-
-    background: var(--br-orange);
-    border-radius: 50%;
-}
-
-
-/* =========================================================
-   03 // LIVE PRESENCE
-   WHO IS ONLINE
-   ========================================================= */
-
-/*
-   Forumotion gives this widget very little semantic markup,
-   so this pass deliberately styles its real structure rather
-   than inventing fictional rows.
-*/
-
-.portal .module .h3 + strong {
-    color: #f2f2f2 !important;
-}
-
-
-/* Member links inside portal modules */
-
-.portal .module > a[href^="/u"],
-.portal .module > a[href*="/u"] {
-    font-family: "Oswald", Arial, sans-serif !important;
-    font-size: 10px !important;
-    font-weight: 500 !important;
-    letter-spacing: .3px !important;
-
-    color: var(--br-magenta, #d0005b) !important;
-
-    text-decoration: none !important;
-}
-
-
-.portal .module > a[href^="/u"]:hover,
-.portal .module > a[href*="/u"]:hover,
-.portal .module > a[href^="/u"]:focus-visible,
-.portal .module > a[href*="/u"]:focus-visible {
-    color: #f2f2f2 !important;
-}
-
-
-/* Centered auxiliary control/readout */
-
-.portal .module > .center {
-    box-sizing: border-box;
-
-    margin: 10px 0 0 !important;
-    padding: 8px 0 0 !important;
-
-    border-top: 1px solid #242424 !important;
-
-    font-family: "JetBrains Mono", monospace !important;
-    font-size: 7px !important;
-    line-height: 1.4 !important;
-    letter-spacing: .5px !important;
-
-    color: #777777 !important;
-}
-
-
-/* Native module footer becomes telemetry termination */
-
-.portal .module > .module-footer {
-    position: relative;
-
-    box-sizing: border-box;
-
-    margin: 10px 0 0 !important;
-    padding: 7px 0 0 !important;
-
-    background: transparent !important;
-    border: 0 !important;
-    border-top: 1px solid #242424 !important;
-
-    font-family: "JetBrains Mono", monospace !important;
-    font-size: 6px !important;
-    line-height: 1 !important;
-    letter-spacing: .8px !important;
-
-    color: #555555 !important;
-}
-
-
-/* =========================================================
-   04 // SECONDARY MODULE HEADERS
-   ========================================================= */
-
-/*
-   Re-label only the known Portal modules through their
-   existing header presentation. No template changes.
-*/
-
-.portal .module > .h3 {
-    position: relative;
-
-    box-sizing: border-box;
-
-    margin: 0 0 8px !important;
-    padding: 0 0 9px !important;
-
-    border-bottom: 1px solid #242424 !important;
-
-    font-family: "JetBrains Mono", monospace !important;
-    font-size: 7px !important;
-    font-weight: 700 !important;
-    line-height: 1 !important;
-    letter-spacing: 1px !important;
-
-    color: #d6d6d6 !important;
-
-    text-transform: uppercase;
-}
-
-
-/* Existing icon becomes the subsystem marker */
-
-.portal .module > .h3 > i {
-    margin-right: 5px !important;
-
-    font-size: 7px !important;
-
-    color: var(--br-red) !important;
-}
-
-
-/* Crimson registration line */
-
-.portal .module > .h3::after {
-    content: "";
-
     position: absolute;
     left: 0;
-    bottom: -1px;
-
-    width: 26px;
-    height: 1px;
-
-    background: var(--br-red);
+    top: 15px;
+    width: 3px;
+    height: 3px;
+    background: var(--br-orange);
+    border-radius: 50%;
 }
-/* =========================================================
-   PORTAL PASS 03 // RECENT SIGNALS REFINEMENT
-   ========================================================= */
-
-
-/* ---------------------------------------------------------
-   GLOW EXORCISM
-   --------------------------------------------------------- */
-
-.portal #comments_scroll_div,
-.portal #comments_scroll_div .marquee,
-.portal #comments_scroll_div .mod-recent-row {
-    background: transparent !important;
-
-    border-radius: 0 !important;
-
-    box-shadow: none !important;
-    text-shadow: none !important;
-    filter: none !important;
-}
-
-
-/* The viewport itself retains the dark terminal surface. */
-
-.portal #comments_scroll_div {
-    background: #0d0d0d !important;
-}
-
-
-/* ---------------------------------------------------------
-   RECENT RECORD
-   --------------------------------------------------------- */
-
-.portal #comments_scroll_div .mod-recent-row {
-    position: relative;
-
-    margin: 0 !important;
-    padding: 9px 0 10px !important;
-
-    border: 0 !important;
-    border-bottom: 1px solid #1d1d1d !important;
-}
-
-
-/* Topic */
 
 .portal #comments_scroll_div .mod-recent-title {
     display: block !important;
-
     margin: 0 0 4px !important;
-
-    font-family: "Oswald", Arial, sans-serif !important;
+    font-family: "Oswald",Arial,sans-serif !important;
     font-size: 11px !important;
     font-weight: 500 !important;
     line-height: 1.25 !important;
     letter-spacing: .3px !important;
-
-    color: var(--br-magenta, #d0005b) !important;
-
-    text-decoration: none !important;
+    color: var(--br-pink) !important;
 }
-
-
-/* Metadata rail */
 
 .portal #comments_scroll_div .mod-recent-info {
     display: flex !important;
     flex-wrap: wrap;
     align-items: center;
     gap: 3px 6px;
-
-    font-family: "JetBrains Mono", monospace !important;
+    font-family: "JetBrains Mono",monospace !important;
     font-size: 6.5px !important;
     font-weight: 500 !important;
     line-height: 1.35 !important;
     letter-spacing: .25px !important;
-
-    color: #777777 !important;
+    color: var(--br-smoke) !important;
 }
-
-
-/* Timestamp */
 
 .portal #comments_scroll_div .mod-recent-time {
-    color: #777777 !important;
+    color: var(--br-smoke) !important;
 }
-
-
-/* Author */
 
 .portal #comments_scroll_div .mod-recent-author {
     display: inline-flex !important;
     align-items: center;
     gap: 3px;
-
-    color: #555555 !important;
+    color: #555 !important;
 }
-
 
 .portal #comments_scroll_div .mod-recent-author i {
     margin: 0 !important;
-
     font-size: 7px !important;
-
     color: var(--br-orange) !important;
 }
 
-
 .portal #comments_scroll_div .mod-recent-author a {
-    font-family: "JetBrains Mono", monospace !important;
+    font-family: "JetBrains Mono",monospace !important;
     font-size: 6.5px !important;
     font-weight: 700 !important;
-
     color: #b5b5b5 !important;
-
-    text-decoration: none !important;
 }
-
 
 .portal #comments_scroll_div .mod-recent-title:hover,
-.portal #comments_scroll_div .mod-recent-title:focus-visible,
 .portal #comments_scroll_div .mod-recent-author a:hover,
+.portal #comments_scroll_div .mod-recent-title:focus-visible,
 .portal #comments_scroll_div .mod-recent-author a:focus-visible {
-    color: #f2f2f2 !important;
-}
-/* =========================================================
-   PORTAL HOLLOW // FINAL CONTAINMENT
-   Generated marquee layers
-   ========================================================= */
-
-.portal #comments_scroll_div .js-marquee-wrapper,
-.portal #comments_scroll_div .js-marquee {
-    background: transparent !important;
-    background-image: none !important;
-
-    border: 0 !important;
-    border-radius: 0 !important;
-
-    box-shadow: none !important;
-    text-shadow: none !important;
-    filter: none !important;
-
-    outline: 0 !important;
+    color: var(--br-paper) !important;
 }
 
-.portal #comments_scroll_div .js-marquee-wrapper::before,
-.portal #comments_scroll_div .js-marquee-wrapper::after,
-.portal #comments_scroll_div .js-marquee::before,
-.portal #comments_scroll_div .js-marquee::after {
-    content: none !important;
+/* ---------------------------------------------------------
+   14.05 // COMMUNICATION TERMINAL
+   --------------------------------------------------------- */
 
+.portal .portal-mid #chatbox_bottom {
+    margin: 0 0 14px !important;
+    border-left-width: 2px !important;
+}
+
+.portal .portal-mid #chatbox_bottom::before {
+    content: "COMMUNICATION TERMINAL // LOCAL NETWORK";
+}
+
+/* ---------------------------------------------------------
+   14.06 // NETWORK STATUS
+   --------------------------------------------------------- */
+
+.portal > .column:last-of-type > .module:first-child {
+    padding-bottom: 10px !important;
+    background: linear-gradient(180deg,#141414 0,var(--br-ink) 100%) !important;
+}
+
+.portal > .column:last-of-type > .module:first-child > .h3 {
+    font-size: 0 !important;
+}
+
+.portal > .column:last-of-type > .module:first-child > .h3 > i {
     display: none !important;
+}
 
-    background: none !important;
+.portal > .column:last-of-type > .module:first-child > .h3::before {
+    content: "// NETWORK STATUS";
+    font-family: "JetBrains Mono",monospace;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1px;
+    color: #d6d6d6;
+}
+
+.portal > .column:last-of-type > .module:first-child > .h3::after {
+    left: auto;
+    right: 12px;
+    top: 50%;
+    bottom: auto;
+    width: 4px;
+    height: 4px;
+    background: var(--br-orange);
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.portal .mod-stats-users,
+.portal .mod-stats-user,
+.portal .mod-stats-posts,
+.portal .mod-stats-topics {
+    position: relative;
+    display: block !important;
+    box-sizing: border-box;
+    margin: 0 12px !important;
+    padding: 10px 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 1px solid #1d1d1d !important;
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 6.5px !important;
+    font-weight: 500 !important;
+    line-height: 1.55 !important;
+    letter-spacing: .35px !important;
+    text-align: left !important;
+    color: var(--br-smoke) !important;
+}
+
+.portal .mod-stats-topics {
+    border-bottom: 0 !important;
+}
+
+.portal .mod-stats-users strong,
+.portal .mod-stats-posts strong,
+.portal .mod-stats-topics strong {
+    display: inline-block;
+    margin: 0 2px;
+    font-family: "Oswald",Arial,sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    color: var(--br-paper) !important;
+}
+
+.portal .mod-stats-user strong,
+.portal .mod-stats-user strong a,
+.portal .mod-stats-user a {
+    font-family: "Oswald",Arial,sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--br-pink) !important;
+}
+
+.portal .mod-stats-users::before,
+.portal .mod-stats-user::before,
+.portal .mod-stats-posts::before,
+.portal .mod-stats-topics::before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    margin-right: 7px;
+    vertical-align: 2px;
+    background: var(--br-border2);
+}
+
+.portal .mod-stats-users::before {
+    background: var(--br-orange);
+}
+
+.portal .mod-stats-user::before {
+    background: var(--br-pink);
+}
+
+.portal > .column:last-of-type > .module:first-child::after {
+    content: "ARCHIVE TELEMETRY // LIVE";
+    display: block;
+    box-sizing: border-box;
+    margin: 3px 12px 0;
+    padding: 8px 0 0;
+    border-top: 1px solid var(--br-ash);
+    font-family: "JetBrains Mono",monospace;
+    font-size: 5.5px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .8px;
+    color: #555;
+}
+
+/* ---------------------------------------------------------
+   14.07 // ACTIVITY INDEX / TOP POSTERS
+   --------------------------------------------------------- */
+
+.portal .mod-top {
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 4px 12px 6px !important;
+    background: transparent !important;
+}
+
+.portal .mod-top-row {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 7px 0 8px !important;
+    background: transparent !important;
+    border-bottom: 1px solid #1d1d1d !important;
+}
+
+.portal .mod-top-row:last-child {
+    border-bottom: 0 !important;
+}
+
+.portal .mod-top-name {
+    margin: 0 0 5px !important;
+    padding: 0 !important;
+    font-family: "Oswald",Arial,sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    letter-spacing: .35px !important;
+    text-align: left !important;
+    color: #d6d6d6 !important;
+}
+
+.portal .mod-top-name a {
+    color: #d6d6d6 !important;
+}
+
+.portal .mod-top-name a:hover,
+.portal .mod-top-name a:focus-visible {
+    color: var(--br-pink) !important;
+}
+
+.portal .mod-top-bar {
+    position: relative;
+    display: block !important;
+    box-sizing: border-box;
+    width: 100% !important;
+    height: 14px !important;
+    margin: 0 !important;
+    padding: 0 5px !important;
+    background-color: var(--br-panel) !important;
+    background-image: linear-gradient(90deg,rgba(208,0,91,.42),rgba(208,0,91,.16)) !important;
+    border: 1px solid var(--br-border) !important;
+    border-left: 2px solid var(--br-pink) !important;
+    border-radius: 0 !important;
     box-shadow: none !important;
-    filter: none !important;
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 6px !important;
+    font-weight: 600 !important;
+    line-height: 12px !important;
+    letter-spacing: .35px !important;
+    text-align: right !important;
+    color: #8b8b8b !important;
+    overflow: hidden !important;
+}
+
+.portal .mod-top-row::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 11px;
+    width: 2px;
+    height: 2px;
+    background: var(--br-orange);
+    border-radius: 50%;
+}
+
+/* ---------------------------------------------------------
+   14.08 // LIVE PRESENCE
+   --------------------------------------------------------- */
+
+.portal .module .h3 + strong {
+    color: var(--br-paper) !important;
+}
+
+.portal .module > a[href^="/u"],
+.portal .module > a[href*="/u"] {
+    font-family: "Oswald",Arial,sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
+    letter-spacing: .3px !important;
+    color: var(--br-pink) !important;
+}
+
+.portal .module > a[href^="/u"]:hover,
+.portal .module > a[href*="/u"]:hover,
+.portal .module > a[href^="/u"]:focus-visible,
+.portal .module > a[href*="/u"]:focus-visible {
+    color: var(--br-paper) !important;
+}
+
+.portal .module > .module-footer:not(:first-child) {
+    position: relative;
+    box-sizing: border-box;
+    margin: 10px 12px 12px !important;
+    padding: 8px 0 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-top: 1px solid var(--br-ash) !important;
+    font-family: "JetBrains Mono",monospace !important;
+    font-size: 6px !important;
+    line-height: 1 !important;
+    letter-spacing: .8px !important;
+    color: #555 !important;
+}
+
+/* ---------------------------------------------------------
+   14.09 // PORTAL SCROLLBARS
+   --------------------------------------------------------- */
+
+.portal #comments_scroll_div::-webkit-scrollbar {
+    width: 6px;
+}
+
+.portal #comments_scroll_div::-webkit-scrollbar-track {
+    background: #0d0d0d;
+}
+
+.portal #comments_scroll_div::-webkit-scrollbar-thumb {
+    background: var(--br-border);
+    border: 1px solid #0d0d0d;
+}
+
+.portal #comments_scroll_div::-webkit-scrollbar-thumb:hover {
+    background: var(--br-red);
+}
+
+/* ---------------------------------------------------------
+   14.10 // PORTAL RESPONSIVE SAFETY
+
+   Desktop remains the primary Retribution experience.
+   Field Terminal is a separate future mobile project.
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+    .portal > .column:first-child .mod-login-avatar {
+        max-width: calc(100% - 24px);
+        height: auto !important;
+        aspect-ratio: 1 / 1;
+    }
+
+    .portal #comments_scroll_div {
+        max-height: 360px !important;
+    }
 }
