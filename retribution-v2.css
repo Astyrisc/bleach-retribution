@@ -5882,3 +5882,35 @@ body::after {
 .portal #comments_scroll_div .mod-recent-author a:focus-visible {
     color: #f2f2f2 !important;
 }
+/* =========================================================
+   PORTAL HOLLOW // FINAL CONTAINMENT
+   Generated marquee layers
+   ========================================================= */
+
+.portal #comments_scroll_div .js-marquee-wrapper,
+.portal #comments_scroll_div .js-marquee {
+    background: transparent !important;
+    background-image: none !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+
+    outline: 0 !important;
+}
+
+.portal #comments_scroll_div .js-marquee-wrapper::before,
+.portal #comments_scroll_div .js-marquee-wrapper::after,
+.portal #comments_scroll_div .js-marquee::before,
+.portal #comments_scroll_div .js-marquee::after {
+    content: none !important;
+
+    display: none !important;
+
+    background: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+}
