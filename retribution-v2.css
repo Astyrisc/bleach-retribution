@@ -5251,7 +5251,9 @@ body::after {
 
 /* ---------------------------------------------------------
    14.09 // LATEST TRANSMISSIONS / FULL-WIDTH ARCHIVE
-   giefmod4 owns this region natively. No DOM relocation.
+   giefmod4 owns this region natively. RC04.1 normalizes
+   Forumotion's title/info sibling pairs into .br-transmission
+   records via the dedicated Portal script.
    --------------------------------------------------------- */
 
 .br-portal-archive {
@@ -5340,8 +5342,6 @@ body::after {
 
 .br-portal-archive #comments_scroll_div {
     position: relative !important;
-    display: grid !important;
-    grid-template-columns: repeat(2,minmax(0,1fr));
     box-sizing: border-box !important;
     height: auto !important;
     max-height: none !important;
@@ -5359,7 +5359,6 @@ body::after {
 .br-portal-archive #comments_scroll_div .marquee,
 .br-portal-archive #comments_scroll_div .js-marquee-wrapper,
 .br-portal-archive #comments_scroll_div .js-marquee {
-    display: contents !important;
     width: auto !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -5375,23 +5374,39 @@ body::after {
 
 .br-portal-archive #comments_scroll_div .mod-recent-row {
     position: relative;
+    display: grid !important;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    counter-reset: br-transmission;
     box-sizing: border-box;
+    width: 100% !important;
     min-width: 0;
     margin: 0 !important;
-    padding: 14px 42px 14px 46px !important;
+    padding: 0 !important;
     background: transparent !important;
     border: 0 !important;
-    border-bottom: 1px solid #1d1d1d !important;
     box-shadow: none !important;
     text-shadow: none !important;
     filter: none !important;
 }
 
-.br-portal-archive #comments_scroll_div .mod-recent-row:nth-child(odd) {
-    border-right: 1px solid #1d1d1d !important;
+.br-portal-archive .br-transmission {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    min-width: 0;
+    min-height: 66px;
+    margin: 0;
+    padding: 13px 42px 12px 46px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #1d1d1d;
 }
 
-.br-portal-archive #comments_scroll_div .mod-recent-row::before {
+.br-portal-archive .br-transmission:nth-child(odd) {
+    border-right: 1px solid #1d1d1d;
+}
+
+.br-portal-archive .br-transmission::before {
     counter-increment: br-transmission;
     content: counter(br-transmission,decimal-leading-zero);
     position: absolute;
@@ -5406,7 +5421,7 @@ body::after {
     color: #555;
 }
 
-.br-portal-archive #comments_scroll_div .mod-recent-row::after {
+.br-portal-archive .br-transmission::after {
     content: "";
     position: absolute;
     right: 15px;
@@ -5417,11 +5432,7 @@ body::after {
     border-radius: 50%;
 }
 
-.br-portal-archive #comments_scroll_div {
-    counter-reset: br-transmission;
-}
-
-.br-portal-archive #comments_scroll_div .mod-recent-title {
+.br-portal-archive .br-transmission .mod-recent-title {
     display: block !important;
     min-width: 0;
     margin: 0 0 6px !important;
@@ -5436,12 +5447,13 @@ body::after {
     color: var(--br-pink) !important;
 }
 
-.br-portal-archive #comments_scroll_div .mod-recent-info {
+.br-portal-archive .br-transmission .mod-recent-info {
     display: flex !important;
     flex-wrap: wrap;
     align-items: center;
     gap: 3px 7px;
     min-width: 0;
+    margin: 0 !important;
     font-family: "JetBrains Mono",monospace !important;
     font-size: 6.5px !important;
     font-weight: 500 !important;
@@ -5450,34 +5462,34 @@ body::after {
     color: var(--br-smoke) !important;
 }
 
-.br-portal-archive #comments_scroll_div .mod-recent-time {
+.br-portal-archive .br-transmission .mod-recent-time {
     color: #777 !important;
 }
 
-.br-portal-archive #comments_scroll_div .mod-recent-author {
+.br-portal-archive .br-transmission .mod-recent-author {
     display: inline-flex !important;
     align-items: center;
     gap: 3px;
     color: #555 !important;
 }
 
-.br-portal-archive #comments_scroll_div .mod-recent-author i {
+.br-portal-archive .br-transmission .mod-recent-author i {
     margin: 0 !important;
     font-size: 7px !important;
     color: var(--br-orange) !important;
 }
 
-.br-portal-archive #comments_scroll_div .mod-recent-author a {
+.br-portal-archive .br-transmission .mod-recent-author a {
     font-family: "JetBrains Mono",monospace !important;
     font-size: 6.5px !important;
     font-weight: 700 !important;
     color: #b5b5b5 !important;
 }
 
-.br-portal-archive #comments_scroll_div .mod-recent-title:hover,
-.br-portal-archive #comments_scroll_div .mod-recent-author a:hover,
-.br-portal-archive #comments_scroll_div .mod-recent-title:focus-visible,
-.br-portal-archive #comments_scroll_div .mod-recent-author a:focus-visible {
+.br-portal-archive .br-transmission .mod-recent-title:hover,
+.br-portal-archive .br-transmission .mod-recent-author a:hover,
+.br-portal-archive .br-transmission .mod-recent-title:focus-visible,
+.br-portal-archive .br-transmission .mod-recent-author a:focus-visible {
     color: var(--br-paper) !important;
 }
 
@@ -5514,11 +5526,11 @@ body::after {
         aspect-ratio: 1 / 1;
     }
 
-    .br-portal-archive #comments_scroll_div {
+    .br-portal-archive #comments_scroll_div .mod-recent-row {
         grid-template-columns: 1fr;
     }
 
-    .br-portal-archive #comments_scroll_div .mod-recent-row:nth-child(odd) {
+    .br-portal-archive .br-transmission:nth-child(odd) {
         border-right: 0 !important;
     }
 }
