@@ -1,7 +1,7 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 07
+   RECOVERY MASTER // RELEASE CANDIDATE 08
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -12,7 +12,9 @@
    - Portal CSS-only recovery consolidated as canonical section 16.
    - Portal mutation experiments intentionally excluded.
    - Recently Shared Images suppression corrected against the live DOM.
-   - Forum Index Character Portrait mapping consolidated into section 05.
+   - Forum Index native Last Record avatar presentation consolidated into section 05.
+   - Per-user Last Record portrait mapping removed; native avatars retained universally.
+   - Section labels and one unresolved design token normalized for release review.
    - profile.css and private-messages.css remain separate owners.
 
    OWNERSHIP
@@ -1538,11 +1540,11 @@ hr {
 }
 
 /* ---------------------------------------------------------
-   05.90 // LAST RECORD CHARACTER PORTRAITS
+   05.90 // LAST RECORD AVATARS
 
-   150x150 Character Portraits are system identity images.
-   Forumotion's native avatar remains the fallback source.
-   CSS changes presentation only; no DOM mutation JavaScript.
+   Forumotion's native member avatar remains the sole image source.
+   CSS owns only the compact frame and presentation.
+   No per-user portrait registry. No DOM mutation JavaScript.
    --------------------------------------------------------- */
 
 #main-content .br-category .lastpost-avatar {
@@ -1576,54 +1578,7 @@ hr {
     box-shadow: none !important;
 }
 
-/* Shuei Setsuna // dedicated 150x150 Character Portrait.
-   Native avatar filename is used only as the CSS-only identity hook. */
-#main-content .br-category .lastpost-avatar:has(img[src*="6X5GvA.png"]) {
-    background:
-        var(--br-void)
-        url("https://2img.net/i.imgur.com/Ie5X4L8.png")
-        center center / cover no-repeat !important;
-}
-
-#main-content .br-category .lastpost-avatar:has(img[src*="6X5GvA.png"]) img {
-    opacity: 0 !important;
-}
-
 #main-content .br-category .lastpost-avatar::after {
-    content: "";
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    width: 6px;
-    height: 6px;
-    border-top: 1px solid var(--br-orange);
-    border-right: 1px solid var(--br-orange);
-    pointer-events: none;
-}
-
-/* ---------------------------------------------------------
-   CHARACTER PORTRAIT // SHUEI SETSUNA
-
-   Forumotion supplies the standard character avatar.
-   Retribution maps that known avatar source to the dedicated
-   150x150 system portrait for compact identity contexts.
-   --------------------------------------------------------- */
-
-.forabg.br-category
-.lastpost-avatar:has(img[src*="6X5GvA.png"]) {
-    background:
-        #080808
-        url("https://2img.net/i.imgur.com/Ie5X4L8.png")
-        center center / cover no-repeat !important;
-}
-
-.forabg.br-category
-.lastpost-avatar:has(img[src*="6X5GvA.png"]) img {
-    opacity: 0 !important;
-}
-
-.forabg.br-category
-.lastpost-avatar:has(img[src*="6X5GvA.png"])::after {
     content: "";
     position: absolute;
     top: 4px;
@@ -2223,7 +2178,7 @@ hr {
 }
 
 /* =========================================================
-   05 // TOPIC POST SYSTEM
+   08.50 // TOPIC POST SYSTEM
    RETRIBUTION MASTER CSS v2.0
 
    Desktop architecture
@@ -2237,7 +2192,7 @@ hr {
    posts from wrapping underneath the character dossier.
    ========================================================= */
 
-/* 05.01 // POST SHELL */
+/* 08.51 // POST SHELL */
 .br-post {
     position: relative !important;
     margin-bottom: 22px !important;
@@ -2249,8 +2204,7 @@ hr {
     overflow: hidden !important;
 }
 
-/* 05.02 // POST HEADER */
-/* 05.02 // POST HEADER
+/* 08.52 // POST HEADER
    Do not force a positioning context here.
    DevTools verification showed position:relative caused the header layer
    to occlude the upper portion of the character portrait. */
@@ -2291,8 +2245,7 @@ hr {
 .br-post-head .profile-icons a:hover,
 .br-post-head .profile-icons span:hover { color: var(--br-white) !important; }
 
-/* 05.03 // CHARACTER DOSSIER */
-/* 05.03 // CHARACTER DOSSIER
+/* 08.53 // CHARACTER DOSSIER
    The dossier owns its positioning context; the post header does not.
    A neutral rail separates character presentation from post content,
    while the short crimson segment acts as a registration signal. */
@@ -2323,7 +2276,7 @@ hr {
     box-sizing: border-box;
 }
 
-/* 05.04 // CANONICAL CHARACTER PORTRAIT
+/* 08.54 // CANONICAL CHARACTER PORTRAIT
    RETRIBUTION STANDARD // 250 × 400
 
    Recovered from the September 17–19 approved post lineage.
@@ -2392,7 +2345,7 @@ hr {
     pointer-events: none;
 }
 
-/* 05.05 // CHARACTER IDENTITY */
+/* 08.55 // CHARACTER IDENTITY */
 .br-post .br-post-profile .postprofile-name {
     position: relative;
     margin: 0;
@@ -2415,7 +2368,7 @@ hr {
     text-transform: uppercase;
 }
 
-/* 05.06 // CHARACTER RECORD */
+/* 08.56 // CHARACTER RECORD */
 .br-post .br-post-profile .postprofile-info {
     position: relative;
     display: block;
@@ -2463,14 +2416,14 @@ hr {
     font-size: 9px;
 }
 
-/* 05.07 // CONTACT CHANNELS */
+/* 08.57 // CONTACT CHANNELS */
 .br-post .br-post-profile .postprofile-contact {
     margin: 12px 0 0 !important;
     padding: 10px 0 0 !important;
     border-top: 1px solid var(--br-border) !important;
 }
 
-/* 05.08 // MESSAGE LANE
+/* 08.58 // MESSAGE LANE
    Reserve 290px dossier + 30px breathing room. */
 .br-post .br-post-body {
     margin-right: 0 !important;
@@ -2495,7 +2448,7 @@ hr {
     background: linear-gradient(90deg,var(--br-red),var(--br-border),transparent) !important;
 }
 
-/* 05.09 // SIGNATURE + REACTIONS */
+/* 08.59 // SIGNATURE + REACTIONS */
 .br-post .signature_div {
     margin: 24px 28px 0 !important;
     padding: 20px 0 !important;
@@ -2518,7 +2471,7 @@ hr {
     color: var(--br-white) !important;
 }
 
-/* 05.10 // RESPONSIVE POST ARCHITECTURE */
+/* 08.60 // RESPONSIVE POST ARCHITECTURE */
 @media (max-width: 900px) {
     .br-topic-dossier { display: block !important; padding: 18px 16px 16px !important; }
     .br-topic-page-title a { font-size: 28px !important; }
@@ -3766,7 +3719,7 @@ html body .br-footer-admin a:hover {
     margin: 0 !important;
     border: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
-    background: var(--br-obsidian) !important;
+    background: var(--br-void) !important;
     font: 700 8px "JetBrains Mono",monospace !important;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -3882,7 +3835,7 @@ html body .br-footer-admin a:hover {
     margin: 4px 0 !important;
 }
 /* =========================================================
-   POST CONTACT CHANNELS // DEVELOPMENT PASS
+   13.90 // POST CONTACT CHANNELS
    ========================================================= */
 
 .br-post .postprofile-contact {
@@ -3931,10 +3884,6 @@ html body .br-footer-admin a:hover {
     background: var(--br-orange);
     border-radius: 50%;
 }
-/* =========================================================
-   POST CONTACT CHANNELS // CONTROL PASS
-   ========================================================= */
-
 /* Channel controls */
 
 .br-post .postprofile-contact .profile-icon {
