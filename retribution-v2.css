@@ -2300,6 +2300,7 @@ hr {
     width: 250px !important;
     height: 400px !important;
     margin: 0 auto 16px !important;
+    transform: translateX(-18px);
     padding: 0 !important;
     overflow: hidden;
     background: var(--br-void);
