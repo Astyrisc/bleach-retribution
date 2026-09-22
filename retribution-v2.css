@@ -1601,6 +1601,40 @@ hr {
     pointer-events: none;
 }
 
+/* ---------------------------------------------------------
+   CHARACTER PORTRAIT // SHUEI SETSUNA
+
+   Forumotion supplies the standard character avatar.
+   Retribution maps that known avatar source to the dedicated
+   150x150 system portrait for compact identity contexts.
+   --------------------------------------------------------- */
+
+.forabg.br-category
+.lastpost-avatar:has(img[src*="6X5GvA.png"]) {
+    background:
+        #080808
+        url("https://2img.net/i.imgur.com/Ie5X4L8.png")
+        center center / cover no-repeat !important;
+}
+
+.forabg.br-category
+.lastpost-avatar:has(img[src*="6X5GvA.png"]) img {
+    opacity: 0 !important;
+}
+
+.forabg.br-category
+.lastpost-avatar:has(img[src*="6X5GvA.png"])::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid var(--br-orange);
+    border-right: 1px solid var(--br-orange);
+    pointer-events: none;
+}
+
 /* =========================================================
    06 // TOPIC INDEX
 
