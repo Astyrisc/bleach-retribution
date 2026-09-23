@@ -1,7 +1,7 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 08
+   RECOVERY MASTER // RELEASE CANDIDATE 09
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -15,6 +15,7 @@
    - Forum Index native Last Record avatar presentation consolidated into section 05.
    - Per-user Last Record portrait mapping removed; native avatars retained universally.
    - Section labels and one unresolved design token normalized for release review.
+   - Forum-view New Topic action rebuilt as the primary Create Record control.
    - profile.css and private-messages.css remain separate owners.
 
    OWNERSHIP
@@ -1964,23 +1965,74 @@ hr {
 }
 
 .br-forum-action {
-    min-height: 34px !important;
+    position: relative;
+    flex: 0 0 auto;
+    box-sizing: border-box;
     display: inline-flex !important;
-    align-items: center;
-    background: var(--br-red) !important;
-    border: 1px solid var(--br-red) !important;
+    align-items: flex-end;
+    justify-content: flex-start;
+    min-width: 168px;
+    height: 48px;
+    min-height: 48px !important;
+    margin: 0 !important;
+    padding: 20px 42px 7px 14px !important;
+    overflow: hidden;
+    background: linear-gradient(90deg,#101010 0%,#161616 100%) !important;
+    border: 1px solid var(--br-border) !important;
+    border-left: 3px solid var(--br-red) !important;
     border-radius: 0 !important;
     font-family: "Oswald",Arial,sans-serif !important;
-    font-size: 10px !important;
+    font-size: 11px !important;
     font-weight: 600 !important;
-    letter-spacing: .8px !important;
+    line-height: 1 !important;
+    letter-spacing: 1px !important;
     text-transform: uppercase !important;
+    white-space: nowrap;
+    color: var(--br-paper) !important;
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,.02) !important;
+    transition: background-color .15s ease,border-color .15s ease,color .15s ease !important;
+}
+
+.br-forum-action::after {
+    content: "CREATE RECORD";
+    position: absolute;
+    top: 8px;
+    left: 14px;
+    font-family: "JetBrains Mono",monospace;
+    font-size: 6px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1.35px;
+    color: var(--br-red);
+}
+
+.br-forum-action::before {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    margin: 0 !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    color: var(--br-orange) !important;
+    transform: translateY(-50%);
+}
+
+.br-forum-action:hover,
+.br-forum-action:focus-visible {
+    background: linear-gradient(90deg,#151515 0%,#1b1b1b 100%) !important;
+    border-color: var(--br-red) !important;
+    border-left-color: var(--br-pink) !important;
     color: var(--br-white) !important;
 }
 
-.br-forum-action:hover {
-    background: var(--br-pink) !important;
-    border-color: var(--br-pink) !important;
+.br-forum-action:hover::after,
+.br-forum-action:focus-visible::after {
+    color: var(--br-pink);
+}
+
+.br-forum-action:focus-visible {
+    outline: 1px solid var(--br-red);
+    outline-offset: 2px;
 }
 
 .br-forum-system {
@@ -2045,6 +2097,10 @@ hr {
     .br-forum-controls {
         margin-top: 16px;
         flex-wrap: wrap;
+    }
+
+    .br-forum-action {
+        min-width: 160px;
     }
 
     .br-forum-system {
