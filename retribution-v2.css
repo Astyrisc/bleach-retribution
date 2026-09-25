@@ -1,7 +1,7 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 10
+   RECOVERY MASTER // RELEASE CANDIDATE 11
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -17,6 +17,7 @@
    - Section labels and one unresolved design token normalized for release review.
    - Forum-view New Topic action rebuilt as the primary Create Record control.
    - New Topic selector hardened against a missing custom template class.
+   - Native New Topic selector decoupled from inconsistent control wrappers.
    - profile.css and private-messages.css remain separate owners.
 
    OWNERSHIP
@@ -1966,7 +1967,7 @@ hr {
 }
 
 .br-forum-action,
-.br-forum-controls > a[href*="mode=newtopic"] {
+a[href*="mode=newtopic"] {
     position: relative;
     flex: 0 0 auto;
     box-sizing: border-box;
@@ -1996,7 +1997,7 @@ hr {
 }
 
 .br-forum-action::after,
-.br-forum-controls > a[href*="mode=newtopic"]::after {
+a[href*="mode=newtopic"]::after {
     content: "CREATE RECORD";
     position: absolute;
     top: 8px;
@@ -2010,7 +2011,7 @@ hr {
 }
 
 .br-forum-action::before,
-.br-forum-controls > a[href*="mode=newtopic"]::before {
+a[href*="mode=newtopic"]::before {
     position: absolute;
     top: 50%;
     right: 14px;
@@ -2023,8 +2024,8 @@ hr {
 
 .br-forum-action:hover,
 .br-forum-action:focus-visible,
-.br-forum-controls > a[href*="mode=newtopic"]:hover,
-.br-forum-controls > a[href*="mode=newtopic"]:focus-visible {
+a[href*="mode=newtopic"]:hover,
+a[href*="mode=newtopic"]:focus-visible {
     background: linear-gradient(90deg,#151515 0%,#1b1b1b 100%) !important;
     border-color: var(--br-red) !important;
     border-left-color: var(--br-pink) !important;
@@ -2033,13 +2034,13 @@ hr {
 
 .br-forum-action:hover::after,
 .br-forum-action:focus-visible::after,
-.br-forum-controls > a[href*="mode=newtopic"]:hover::after,
-.br-forum-controls > a[href*="mode=newtopic"]:focus-visible::after {
+a[href*="mode=newtopic"]:hover::after,
+a[href*="mode=newtopic"]:focus-visible::after {
     color: var(--br-pink);
 }
 
 .br-forum-action:focus-visible,
-.br-forum-controls > a[href*="mode=newtopic"]:focus-visible {
+a[href*="mode=newtopic"]:focus-visible {
     outline: 1px solid var(--br-red);
     outline-offset: 2px;
 }
@@ -2109,7 +2110,7 @@ hr {
     }
 
     .br-forum-action,
-    .br-forum-controls > a[href*="mode=newtopic"] {
+    a[href*="mode=newtopic"] {
         min-width: 160px;
     }
 
