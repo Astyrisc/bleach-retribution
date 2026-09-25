@@ -5550,3 +5550,88 @@ body::after {
     color: var(--br-red);
     text-transform: uppercase;
 }
+/* PORTAL // LATEST TRANSMISSIONS TEST */
+
+.br-portal-archive-body > .module {
+    overflow: hidden;
+    background: var(--br-surface-black) !important;
+    border: 1px solid var(--br-border-muted) !important;
+    border-left: 3px solid var(--br-red) !important;
+    box-shadow: none !important;
+}
+
+/* Native Latest Topics module heading */
+.br-portal-archive-body > .module > .h3 {
+    margin: 0 !important;
+    padding: 12px 16px !important;
+    background: var(--br-surface-soft) !important;
+    border-bottom: 1px solid var(--br-border-muted) !important;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px !important;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1.2px;
+    color: var(--br-paper) !important;
+    text-transform: uppercase;
+}
+
+/* Forumotion places every record inside one legacy container */
+.br-portal-archive .mod-recent-row {
+    padding: 0 16px 14px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px;
+    line-height: 1.55;
+    color: var(--br-muted);
+}
+
+/* Native line breaks become unnecessary once titles form records */
+.br-portal-archive .mod-recent-row br {
+    display: none;
+}
+
+/* Each title begins a new archive record */
+.br-portal-archive .mod-recent-title {
+    display: block;
+    margin: 14px 0 5px;
+    padding-top: 12px;
+    border-top: 1px solid var(--br-line);
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: .2px;
+    color: var(--br-content) !important;
+    transition:
+        color .15s ease,
+        border-color .15s ease,
+        padding-left .15s ease;
+}
+
+.br-portal-archive .mod-recent-title:first-of-type {
+    margin-top: 0;
+    border-top: 0;
+}
+
+.br-portal-archive .mod-recent-title:hover,
+.br-portal-archive .mod-recent-title:focus-visible {
+    padding-left: 6px;
+    border-color: var(--br-red);
+    color: var(--br-pink) !important;
+}
+
+/* Timestamp and author links */
+.br-portal-archive .mod-recent-info,
+.br-portal-archive .mod-recent-row a:not(.mod-recent-title) {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: .35px;
+}
+
+.br-portal-archive .mod-recent-info {
+    color: var(--br-text-soft);
+}
+
+.br-portal-archive .mod-recent-row a:not(.mod-recent-title) {
+    color: var(--br-pink);
+}
