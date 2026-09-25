@@ -1,7 +1,7 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 11
+   RECOVERY MASTER // RELEASE CANDIDATE 12
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -18,6 +18,7 @@
    - Forum-view New Topic action rebuilt as the primary Create Record control.
    - New Topic selector hardened against a missing custom template class.
    - Native New Topic selector decoupled from inconsistent control wrappers.
+   - Upper dossier action targeted structurally when Forumotion omits its native URL.
    - profile.css and private-messages.css remain separate owners.
 
    OWNERSHIP
@@ -1967,7 +1968,8 @@ hr {
 }
 
 .br-forum-action,
-a[href*="mode=newtopic"] {
+a[href*="mode=newtopic"],
+.br-forum-dossier .sub-header-buttons > a:last-child {
     position: relative;
     flex: 0 0 auto;
     box-sizing: border-box;
@@ -1997,7 +1999,8 @@ a[href*="mode=newtopic"] {
 }
 
 .br-forum-action::after,
-a[href*="mode=newtopic"]::after {
+a[href*="mode=newtopic"]::after,
+.br-forum-dossier .sub-header-buttons > a:last-child::after {
     content: "CREATE RECORD";
     position: absolute;
     top: 8px;
@@ -2011,7 +2014,8 @@ a[href*="mode=newtopic"]::after {
 }
 
 .br-forum-action::before,
-a[href*="mode=newtopic"]::before {
+a[href*="mode=newtopic"]::before,
+.br-forum-dossier .sub-header-buttons > a:last-child::before {
     position: absolute;
     top: 50%;
     right: 14px;
@@ -2025,7 +2029,9 @@ a[href*="mode=newtopic"]::before {
 .br-forum-action:hover,
 .br-forum-action:focus-visible,
 a[href*="mode=newtopic"]:hover,
-a[href*="mode=newtopic"]:focus-visible {
+a[href*="mode=newtopic"]:focus-visible,
+.br-forum-dossier .sub-header-buttons > a:last-child:hover,
+.br-forum-dossier .sub-header-buttons > a:last-child:focus-visible {
     background: linear-gradient(90deg,#151515 0%,#1b1b1b 100%) !important;
     border-color: var(--br-red) !important;
     border-left-color: var(--br-pink) !important;
@@ -2035,12 +2041,15 @@ a[href*="mode=newtopic"]:focus-visible {
 .br-forum-action:hover::after,
 .br-forum-action:focus-visible::after,
 a[href*="mode=newtopic"]:hover::after,
-a[href*="mode=newtopic"]:focus-visible::after {
+a[href*="mode=newtopic"]:focus-visible::after,
+.br-forum-dossier .sub-header-buttons > a:last-child:hover::after,
+.br-forum-dossier .sub-header-buttons > a:last-child:focus-visible::after {
     color: var(--br-pink);
 }
 
 .br-forum-action:focus-visible,
-a[href*="mode=newtopic"]:focus-visible {
+a[href*="mode=newtopic"]:focus-visible,
+.br-forum-dossier .sub-header-buttons > a:last-child:focus-visible {
     outline: 1px solid var(--br-red);
     outline-offset: 2px;
 }
@@ -2110,7 +2119,8 @@ a[href*="mode=newtopic"]:focus-visible {
     }
 
     .br-forum-action,
-    a[href*="mode=newtopic"] {
+    a[href*="mode=newtopic"],
+    .br-forum-dossier .sub-header-buttons > a:last-child {
         min-width: 160px;
     }
 
