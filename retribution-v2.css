@@ -1,7 +1,7 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 14
+   RECOVERY MASTER // RELEASE CANDIDATE 15
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -19,6 +19,7 @@
    - New Topic selector hardened against a missing custom template class.
    - Native New Topic selector decoupled from inconsistent control wrappers.
    - Upper New Topic action targeted as the first header anchor across forum and topic layouts.
+   - Reply action arrows harmonized with the orange New Topic icon system.
    - profile.css and private-messages.css remain separate owners.
 
    OWNERSHIP
@@ -2052,6 +2053,16 @@ a[href*="mode=newtopic"]:focus-visible,
 .sub-header-buttons > a:first-of-type:focus-visible {
     outline: 1px solid var(--br-red);
     outline-offset: 2px;
+}
+
+/* Keep each action's distinct glyph while unifying its icon treatment. */
+.sub-header-buttons > a.ion-reply::before,
+.topic-actions-buttons > a.ion-reply::before {
+    margin-right: 8px !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    color: var(--br-orange) !important;
+    opacity: 1 !important;
 }
 
 .br-forum-system {
