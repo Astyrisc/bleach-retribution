@@ -1,7 +1,7 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 18
+   RECOVERY MASTER // RELEASE CANDIDATE 19
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -25,6 +25,10 @@
    - Portal command identity and archive feed hierarchy consolidated from verified live-DOM patches.
    - Portal operator portrait restored to Forumotion's native per-user avatar source.
    - Fixed decorative operator artwork removed so account identity remains dynamic.
+   - Night City study translated into Retribution-native interface discipline.
+   - Typography, motion and readable-surface tokens expanded without changing ownership.
+   - Forum and topic dossiers gain a restrained archive-grid treatment.
+   - Keyboard focus and reduced-motion behavior standardized across primary controls.
    - profile.css and private-messages.css remain separate owners.
 
    OWNERSHIP
@@ -85,6 +89,15 @@
     --br-text-mid: #aaa;
     --br-text-light: #d0d0d0;
     --br-hover: #ff1744;
+    --br-readable: #dedede;
+    --br-input-text: #cfcfcf;
+    --br-editor-paper: #f2f2f0;
+    --br-font-display: "Oswald",Arial,sans-serif;
+    --br-font-body: "Inter",Arial,sans-serif;
+    --br-font-mono: "JetBrains Mono",monospace;
+    --br-motion-fast: 150ms;
+    --br-motion-standard: 220ms;
+    --br-ease-interface: cubic-bezier(.4,0,.2,1);
     --br-post-rail: 290px;
     --br-post-gutter: 30px;
     --br-post-offset: 320px;
@@ -96,7 +109,7 @@ html,body {
 
 body {
     color: var(--br-content);
-    font-family: "Inter",Arial,sans-serif;
+    font-family: var(--br-font-body);
     background-color: var(--br-void);
     background-image: radial-gradient(circle at 20% 10%,rgba(255,255,255,.018),transparent 24%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.012),transparent 30%);
 }
@@ -125,13 +138,23 @@ a:active {
 }
 
 h1,h2,h3,h4,h5,h6 {
-    font-family: "Oswald",Arial,sans-serif;
+    font-family: var(--br-font-display);
     color: var(--br-paper);
 }
 
 ::selection {
     background: var(--br-red);
     color: var(--br-white);
+}
+
+/* One visible keyboard language across native and rebuilt controls. */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible {
+    outline: 1px solid var(--br-red);
+    outline-offset: 3px;
+}
+
+:where(a,button,input,select,textarea,[tabindex]):focus:not(:focus-visible) {
+    outline: 0;
 }
 
 .panel,.module {
@@ -1882,7 +1905,9 @@ hr {
     gap: 24px;
     margin: 0 0 12px !important;
     padding: 22px 22px 18px !important;
-    background: linear-gradient(110deg,var(--br-surface-black) 0%,var(--br-ink) 68%,var(--br-surface-alt) 68%,var(--br-ink) 100%);
+    background:
+        repeating-linear-gradient(90deg,transparent 0 99px,rgba(255,255,255,.012) 100px),
+        linear-gradient(110deg,var(--br-surface-black) 0%,var(--br-ink) 68%,var(--br-surface-alt) 68%,var(--br-ink) 100%);
     border: 1px solid var(--br-ash);
     border-left: 3px solid var(--br-red);
     border-bottom: 1px solid var(--br-border);
@@ -1906,7 +1931,7 @@ hr {
 
 .br-forum-kicker {
     margin-bottom: 8px;
-    font-family: "JetBrains Mono",monospace;
+    font-family: var(--br-font-mono);
     font-size: 7px;
     font-weight: 700;
     letter-spacing: 1.8px;
@@ -1925,7 +1950,7 @@ hr {
 }
 
 .br-forum-title a {
-    font-family: "Oswald",Arial,sans-serif !important;
+    font-family: var(--br-font-display) !important;
     font-size: 42px !important;
     font-weight: 700 !important;
     letter-spacing: -1px !important;
@@ -1939,7 +1964,7 @@ hr {
 
 .br-forum-path {
     margin-top: 9px !important;
-    font-family: "JetBrains Mono",monospace !important;
+    font-family: var(--br-font-mono) !important;
     font-size: 8px !important;
     letter-spacing: .5px !important;
     color: var(--br-text-faint) !important;
@@ -1972,7 +1997,7 @@ hr {
     box-sizing: border-box;
     background: var(--br-ink) !important;
     border: 1px solid var(--br-border) !important;
-    color: #cfcfcf !important;
+    color: var(--br-input-text) !important;
 }
 
 .br-forum-search button {
@@ -2007,7 +2032,7 @@ a[href*="mode=newtopic"] {
     border: 1px solid var(--br-border) !important;
     border-left: 3px solid var(--br-red) !important;
     border-radius: 0 !important;
-    font-family: "Oswald",Arial,sans-serif !important;
+    font-family: var(--br-font-display) !important;
     font-size: 11px !important;
     font-weight: 600 !important;
     line-height: 1 !important;
@@ -2016,7 +2041,10 @@ a[href*="mode=newtopic"] {
     white-space: nowrap;
     color: var(--br-paper) !important;
     box-shadow: inset 0 -1px 0 rgba(255,255,255,.02) !important;
-    transition: background-color .15s ease,border-color .15s ease,color .15s ease !important;
+    transition:
+        background-color var(--br-motion-fast) var(--br-ease-interface),
+        border-color var(--br-motion-fast) var(--br-ease-interface),
+        color var(--br-motion-fast) var(--br-ease-interface) !important;
 }
 
 .br-forum-action::after,
@@ -2025,7 +2053,7 @@ a[href*="mode=newtopic"]::after {
     position: absolute;
     top: 8px;
     left: 14px;
-    font-family: "JetBrains Mono",monospace;
+    font-family: var(--br-font-mono);
     font-size: 6px;
     font-weight: 700;
     line-height: 1;
@@ -2175,7 +2203,9 @@ a[href*="mode=newtopic"]:focus-visible {
     gap: 24px;
     margin: 0 0 18px !important;
     padding: 22px 22px 18px !important;
-    background: linear-gradient(110deg,var(--br-surface-black) 0%,var(--br-ink) 68%,var(--br-surface-alt) 68%,var(--br-ink) 100%);
+    background:
+        repeating-linear-gradient(90deg,transparent 0 99px,rgba(255,255,255,.012) 100px),
+        linear-gradient(110deg,var(--br-surface-black) 0%,var(--br-ink) 68%,var(--br-surface-alt) 68%,var(--br-ink) 100%);
     border: 1px solid var(--br-ash);
     border-left: 3px solid var(--br-red);
     border-bottom: 1px solid var(--br-border);
@@ -2194,7 +2224,7 @@ a[href*="mode=newtopic"]:focus-visible {
 
 .br-topic-kicker {
     margin-bottom: 8px;
-    font-family: "JetBrains Mono",monospace;
+    font-family: var(--br-font-mono);
     font-size: 7px;
     font-weight: 700;
     letter-spacing: 1.8px;
@@ -2213,7 +2243,7 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 
 .br-topic-page-title a {
-    font-family: "Oswald",Arial,sans-serif !important;
+    font-family: var(--br-font-display) !important;
     font-size: 40px !important;
     font-weight: 700 !important;
     letter-spacing: -1px !important;
@@ -2234,7 +2264,7 @@ a[href*="mode=newtopic"]:focus-visible {
 
 .br-topic-path {
     margin-top: 9px !important;
-    font-family: "JetBrains Mono",monospace !important;
+    font-family: var(--br-font-mono) !important;
     font-size: 8px !important;
     letter-spacing: .5px !important;
     color: var(--br-text-faint) !important;
@@ -2529,13 +2559,13 @@ a[href*="mode=newtopic"]:focus-visible {
     margin-right: 0 !important;
     margin-left: var(--br-post-offset) !important;
     background: var(--br-panel) !important;
-    color: #dedede !important;
+    color: var(--br-readable) !important;
 }
 .br-post .br-post-content {
     box-sizing: border-box;
     padding: 24px 28px 32px !important;
-    font: 13px/1.7 "Inter",Arial,sans-serif !important;
-    color: #dedede !important;
+    font: 13px/1.7 var(--br-font-body) !important;
+    color: var(--br-readable) !important;
 }
 .br-post .br-post-content p { margin-bottom: 1em; }
 .br-post .br-post-content strong,
@@ -2704,7 +2734,7 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 
 .br-quick-reply .sceditor-editor {
-    background: #f2f2f0 !important;
+    background: var(--br-editor-paper) !important;
 }
 
 .br-quick-reply .sceditor-container iframe,.br-quick-reply .sceditor-container textarea {
@@ -2712,7 +2742,7 @@ a[href*="mode=newtopic"]:focus-visible {
     width: 100% !important;
     min-height: 230px !important;
     padding: 20px 22px !important;
-    background: #f2f2f0 !important;
+    background: var(--br-editor-paper) !important;
     border: 0 !important;
     border-radius: 0 !important;
     font-family: "Inter",Arial,sans-serif !important;
@@ -5622,6 +5652,29 @@ html body .br-footer-admin a:hover {
 
     .portal #comments_scroll_div {
         max-height: 360px !important;
+    }
+}
+
+/* ---------------------------------------------------------
+   16.12 // INTERFACE MOTION SAFETY
+
+   Retribution uses motion only as operational feedback.
+   Respect the visitor's platform preference without disabling
+   native Forumotion visibility or navigation behavior.
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
     }
 }
 
