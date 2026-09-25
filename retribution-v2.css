@@ -1,7 +1,7 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 12
+   RECOVERY MASTER // RELEASE CANDIDATE 13
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -18,7 +18,7 @@
    - Forum-view New Topic action rebuilt as the primary Create Record control.
    - New Topic selector hardened against a missing custom template class.
    - Native New Topic selector decoupled from inconsistent control wrappers.
-   - Upper dossier action targeted structurally when Forumotion omits its native URL.
+   - Upper dossier action targeted structurally without an invalid last-child assumption.
    - profile.css and private-messages.css remain separate owners.
 
    OWNERSHIP
@@ -1969,7 +1969,7 @@ hr {
 
 .br-forum-action,
 a[href*="mode=newtopic"],
-.br-forum-dossier .sub-header-buttons > a:last-child {
+.br-forum-dossier .sub-header-buttons > a {
     position: relative;
     flex: 0 0 auto;
     box-sizing: border-box;
@@ -2000,7 +2000,7 @@ a[href*="mode=newtopic"],
 
 .br-forum-action::after,
 a[href*="mode=newtopic"]::after,
-.br-forum-dossier .sub-header-buttons > a:last-child::after {
+.br-forum-dossier .sub-header-buttons > a::after {
     content: "CREATE RECORD";
     position: absolute;
     top: 8px;
@@ -2015,7 +2015,7 @@ a[href*="mode=newtopic"]::after,
 
 .br-forum-action::before,
 a[href*="mode=newtopic"]::before,
-.br-forum-dossier .sub-header-buttons > a:last-child::before {
+.br-forum-dossier .sub-header-buttons > a::before {
     position: absolute;
     top: 50%;
     right: 14px;
@@ -2030,8 +2030,8 @@ a[href*="mode=newtopic"]::before,
 .br-forum-action:focus-visible,
 a[href*="mode=newtopic"]:hover,
 a[href*="mode=newtopic"]:focus-visible,
-.br-forum-dossier .sub-header-buttons > a:last-child:hover,
-.br-forum-dossier .sub-header-buttons > a:last-child:focus-visible {
+.br-forum-dossier .sub-header-buttons > a:hover,
+.br-forum-dossier .sub-header-buttons > a:focus-visible {
     background: linear-gradient(90deg,#151515 0%,#1b1b1b 100%) !important;
     border-color: var(--br-red) !important;
     border-left-color: var(--br-pink) !important;
@@ -2042,14 +2042,14 @@ a[href*="mode=newtopic"]:focus-visible,
 .br-forum-action:focus-visible::after,
 a[href*="mode=newtopic"]:hover::after,
 a[href*="mode=newtopic"]:focus-visible::after,
-.br-forum-dossier .sub-header-buttons > a:last-child:hover::after,
-.br-forum-dossier .sub-header-buttons > a:last-child:focus-visible::after {
+.br-forum-dossier .sub-header-buttons > a:hover::after,
+.br-forum-dossier .sub-header-buttons > a:focus-visible::after {
     color: var(--br-pink);
 }
 
 .br-forum-action:focus-visible,
 a[href*="mode=newtopic"]:focus-visible,
-.br-forum-dossier .sub-header-buttons > a:last-child:focus-visible {
+.br-forum-dossier .sub-header-buttons > a:focus-visible {
     outline: 1px solid var(--br-red);
     outline-offset: 2px;
 }
@@ -2120,7 +2120,7 @@ a[href*="mode=newtopic"]:focus-visible,
 
     .br-forum-action,
     a[href*="mode=newtopic"],
-    .br-forum-dossier .sub-header-buttons > a:last-child {
+    .br-forum-dossier .sub-header-buttons > a {
         min-width: 160px;
     }
 
