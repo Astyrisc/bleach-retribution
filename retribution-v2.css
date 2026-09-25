@@ -1,7 +1,7 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 16
+   RECOVERY MASTER // RELEASE CANDIDATE 17
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -21,6 +21,8 @@
    - Reply action arrows harmonized with the orange New Topic icon system.
    - Recovery-layer tokens normalized and repeated literals consolidated without intended visual change.
    - Failed upper New Topic selector experiments removed pending a verified live-DOM solution.
+   - Legacy Portal rows promoted into a CSS Grid without changing Forumotion widget structure.
+   - Portal command identity and archive feed hierarchy consolidated from verified live-DOM patches.
    - profile.css and private-messages.css remain separate owners.
 
    OWNERSHIP
@@ -4742,7 +4744,113 @@ html body .br-footer-admin a:hover {
    ========================================================= */
 
 /* ---------------------------------------------------------
-   16.01 // PORTAL FRAME
+   16.01 // PORTAL SHELL / LEGACY GRID RECOVERY
+   --------------------------------------------------------- */
+
+/*
+   Forumotion emits Recent Topics after the complete three-column Portal row.
+   Displaying the native Portal wrapper as contents allows the archive feed to
+   begin beneath the operator/communication workspace while telemetry continues
+   down the right rail. Native widgets and their Admin ordering remain intact.
+*/
+
+.br-portal-shell {
+    display: grid;
+    grid-template-columns: 220px minmax(0,1fr) 200px;
+    column-gap: 18px;
+    align-items: start;
+}
+
+.br-portal-command,
+.br-portal-upper {
+    grid-column: 1 / -1;
+}
+
+.br-portal-shell > .portal {
+    display: contents;
+}
+
+.br-portal-shell > .portal::after {
+    display: none;
+}
+
+.br-portal-left {
+    grid-column: 1;
+    grid-row: 3;
+    width: auto !important;
+    float: none !important;
+}
+
+.br-portal-center {
+    grid-column: 2;
+    grid-row: 3;
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    float: none !important;
+}
+
+.br-portal-right {
+    grid-column: 3;
+    grid-row: 3 / span 2;
+    width: auto !important;
+    float: none !important;
+}
+
+.br-portal-archive {
+    grid-column: 1 / 3;
+    grid-row: 4;
+    min-width: 0;
+    margin-top: 18px;
+}
+
+/* Portal identity uses existing semantic spans; no generated copy. */
+
+.br-portal-command-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    min-width: 0;
+}
+
+.br-portal-command-title,
+.br-portal-command-sub {
+    display: block;
+}
+
+.br-portal-command-title {
+    font-family: "Oswald",Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .8px;
+    color: var(--br-paper);
+    text-transform: uppercase;
+}
+
+.br-portal-command-sub {
+    font-family: "JetBrains Mono",monospace;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 1.2px;
+    color: var(--br-muted);
+    text-transform: uppercase;
+}
+
+.br-portal-command-state {
+    margin-top: 7px;
+    font-family: "JetBrains Mono",monospace;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    color: var(--br-red);
+    text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------
+   16.02 // PORTAL FRAME
    --------------------------------------------------------- */
 
 .portal {
@@ -4775,7 +4883,7 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.02 // PORTAL MODULE LANGUAGE
+   16.03 // PORTAL MODULE LANGUAGE
    --------------------------------------------------------- */
 
 .portal .module {
@@ -4842,7 +4950,7 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.03 // OPERATOR RECORD
+   16.04 // OPERATOR RECORD
    --------------------------------------------------------- */
 
 .portal > .column:first-child > .module:first-child {
@@ -5017,7 +5125,7 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.04 // LATEST TRANSMISSIONS
+   16.05 // LATEST TRANSMISSIONS
 
    Scrolling is intentionally disabled in Forumotion.
    The feed is a static archive list; no marquee ownership.
@@ -5139,8 +5247,86 @@ html body .br-footer-admin a:hover {
     color: var(--br-paper) !important;
 }
 
+/* Current legacy Portal feed: Forumotion places all records in one container. */
+
+.br-portal-archive-body > .module {
+    overflow: hidden;
+    background: var(--br-surface-black) !important;
+    border: 1px solid var(--br-border-muted) !important;
+    border-left: 3px solid var(--br-red) !important;
+    box-shadow: none !important;
+}
+
+.br-portal-archive-body > .module > .h3 {
+    margin: 0 !important;
+    padding: 12px 16px !important;
+    background: var(--br-surface-soft) !important;
+    border-bottom: 1px solid var(--br-border-muted) !important;
+    font-family: "JetBrains Mono",monospace;
+    font-size: 8px !important;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1.2px;
+    color: var(--br-paper) !important;
+    text-transform: uppercase;
+}
+
+.br-portal-archive .mod-recent-row {
+    padding: 0 16px 14px;
+    font-family: "JetBrains Mono",monospace;
+    font-size: 8px;
+    line-height: 1.55;
+    color: var(--br-muted);
+}
+
+.br-portal-archive .mod-recent-row br {
+    display: none;
+}
+
+.br-portal-archive .mod-recent-title {
+    display: block;
+    margin: 14px 0 5px;
+    padding-top: 12px;
+    border-top: 1px solid var(--br-line);
+    font-family: "Oswald",Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: .2px;
+    color: var(--br-content) !important;
+    transition: color .15s ease,border-color .15s ease,padding-left .15s ease;
+}
+
+.br-portal-archive .mod-recent-title:first-of-type {
+    margin-top: 0;
+    border-top: 0;
+}
+
+.br-portal-archive .mod-recent-title:hover,
+.br-portal-archive .mod-recent-title:focus-visible {
+    padding-left: 6px;
+    border-color: var(--br-red);
+    color: var(--br-pink) !important;
+}
+
+.br-portal-archive .mod-recent-info,
+.br-portal-archive .mod-recent-row a:not(.mod-recent-title) {
+    font-family: "JetBrains Mono",monospace;
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: .35px;
+}
+
+.br-portal-archive .mod-recent-info {
+    color: var(--br-text-soft);
+}
+
+.br-portal-archive .mod-recent-row a:not(.mod-recent-title) {
+    color: var(--br-pink);
+}
+
 /* ---------------------------------------------------------
-   16.05 // COMMUNICATION TERMINAL
+   16.06 // COMMUNICATION TERMINAL
    --------------------------------------------------------- */
 
 .portal .portal-mid #chatbox_bottom {
@@ -5153,7 +5339,7 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.06 // NETWORK STATUS
+   16.07 // NETWORK STATUS
    --------------------------------------------------------- */
 
 .portal > .column:last-of-type > .module:first-child {
@@ -5274,7 +5460,7 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.07 // ACTIVITY INDEX / TOP POSTERS
+   16.08 // ACTIVITY INDEX / TOP POSTERS
    --------------------------------------------------------- */
 
 .portal .mod-top {
@@ -5354,7 +5540,7 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.08 // LIVE PRESENCE
+   16.09 // LIVE PRESENCE
    --------------------------------------------------------- */
 
 .portal .module .h3 + strong {
@@ -5393,7 +5579,7 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.09 // PORTAL SCROLLBARS
+   16.10 // PORTAL SCROLLBARS
    --------------------------------------------------------- */
 
 .portal #comments_scroll_div::-webkit-scrollbar {
@@ -5414,7 +5600,7 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.10 // PORTAL RESPONSIVE SAFETY
+   16.11 // PORTAL RESPONSIVE SAFETY
 
    Desktop remains the primary Retribution experience.
    Field Terminal is a separate future mobile project.
@@ -5451,187 +5637,4 @@ body::after {
     font: 700 9px monospace;
     letter-spacing: 1px;
     pointer-events: none;
-}
-/* PORTAL LAYOUT TEST
-   Allows the archive feed to begin beneath the center workspace
-   while the right telemetry rail continues independently.
-*/
-
-.br-portal-shell {
-    display: grid;
-    grid-template-columns: 220px minmax(0, 1fr) 200px;
-    column-gap: 18px;
-    align-items: start;
-}
-
-.br-portal-command,
-.br-portal-upper {
-    grid-column: 1 / -1;
-}
-
-.br-portal-shell > .portal {
-    display: contents;
-}
-
-.br-portal-shell > .portal::after {
-    display: none;
-}
-
-.br-portal-left {
-    grid-column: 1;
-    grid-row: 3;
-    width: auto !important;
-    float: none !important;
-}
-
-.br-portal-center {
-    grid-column: 2;
-    grid-row: 3;
-    width: auto !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    float: none !important;
-}
-
-.br-portal-right {
-    grid-column: 3;
-    grid-row: 3 / span 2;
-    width: auto !important;
-    float: none !important;
-}
-
-.br-portal-archive {
-    grid-column: 1 / 3;
-    grid-row: 4;
-    min-width: 0;
-    margin-top: 18px;
-}
-/* PORTAL IDENTITY HIERARCHY TEST */
-
-.br-portal-command-copy {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    min-width: 0;
-}
-
-.br-portal-command-title,
-.br-portal-command-sub {
-    display: block;
-}
-
-.br-portal-command-title {
-    font-family: "Oswald", Arial, sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: .8px;
-    color: var(--br-paper);
-    text-transform: uppercase;
-}
-
-.br-portal-command-sub {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 7px;
-    font-weight: 700;
-    line-height: 1.4;
-    letter-spacing: 1.2px;
-    color: var(--br-muted);
-    text-transform: uppercase;
-}
-
-.br-portal-command-state {
-    margin-top: 7px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 1.1px;
-    color: var(--br-red);
-    text-transform: uppercase;
-}
-/* PORTAL // LATEST TRANSMISSIONS TEST */
-
-.br-portal-archive-body > .module {
-    overflow: hidden;
-    background: var(--br-surface-black) !important;
-    border: 1px solid var(--br-border-muted) !important;
-    border-left: 3px solid var(--br-red) !important;
-    box-shadow: none !important;
-}
-
-/* Native Latest Topics module heading */
-.br-portal-archive-body > .module > .h3 {
-    margin: 0 !important;
-    padding: 12px 16px !important;
-    background: var(--br-surface-soft) !important;
-    border-bottom: 1px solid var(--br-border-muted) !important;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 8px !important;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: 1.2px;
-    color: var(--br-paper) !important;
-    text-transform: uppercase;
-}
-
-/* Forumotion places every record inside one legacy container */
-.br-portal-archive .mod-recent-row {
-    padding: 0 16px 14px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 8px;
-    line-height: 1.55;
-    color: var(--br-muted);
-}
-
-/* Native line breaks become unnecessary once titles form records */
-.br-portal-archive .mod-recent-row br {
-    display: none;
-}
-
-/* Each title begins a new archive record */
-.br-portal-archive .mod-recent-title {
-    display: block;
-    margin: 14px 0 5px;
-    padding-top: 12px;
-    border-top: 1px solid var(--br-line);
-    font-family: "Oswald", Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: .2px;
-    color: var(--br-content) !important;
-    transition:
-        color .15s ease,
-        border-color .15s ease,
-        padding-left .15s ease;
-}
-
-.br-portal-archive .mod-recent-title:first-of-type {
-    margin-top: 0;
-    border-top: 0;
-}
-
-.br-portal-archive .mod-recent-title:hover,
-.br-portal-archive .mod-recent-title:focus-visible {
-    padding-left: 6px;
-    border-color: var(--br-red);
-    color: var(--br-pink) !important;
-}
-
-/* Timestamp and author links */
-.br-portal-archive .mod-recent-info,
-.br-portal-archive .mod-recent-row a:not(.mod-recent-title) {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 7px;
-    font-weight: 600;
-    letter-spacing: .35px;
-}
-
-.br-portal-archive .mod-recent-info {
-    color: var(--br-text-soft);
-}
-
-.br-portal-archive .mod-recent-row a:not(.mod-recent-title) {
-    color: var(--br-pink);
 }
