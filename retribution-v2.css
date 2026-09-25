@@ -5506,3 +5506,47 @@ body::after {
     min-width: 0;
     margin-top: 18px;
 }
+/* PORTAL IDENTITY HIERARCHY TEST */
+
+.br-portal-command-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    min-width: 0;
+}
+
+.br-portal-command-title,
+.br-portal-command-sub {
+    display: block;
+}
+
+.br-portal-command-title {
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .8px;
+    color: var(--br-paper);
+    text-transform: uppercase;
+}
+
+.br-portal-command-sub {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 1.2px;
+    color: var(--br-muted);
+    text-transform: uppercase;
+}
+
+.br-portal-command-state {
+    margin-top: 7px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    color: var(--br-red);
+    text-transform: uppercase;
+}
