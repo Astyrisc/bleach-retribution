@@ -1,7 +1,7 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 17
+   RECOVERY MASTER // RELEASE CANDIDATE 18
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -23,6 +23,8 @@
    - Failed upper New Topic selector experiments removed pending a verified live-DOM solution.
    - Legacy Portal rows promoted into a CSS Grid without changing Forumotion widget structure.
    - Portal command identity and archive feed hierarchy consolidated from verified live-DOM patches.
+   - Portal operator portrait restored to Forumotion's native per-user avatar source.
+   - Fixed decorative operator artwork removed so account identity remains dynamic.
    - profile.css and private-messages.css remain separate owners.
 
    OWNERSHIP
@@ -4990,7 +4992,7 @@ html body .br-footer-admin a:hover {
     height: 150px !important;
     margin: 16px auto 12px !important;
     padding: 0 !important;
-    background: var(--br-deep) url("https://2img.net/i.imgur.com/Ie5X4L8.png") center/cover no-repeat !important;
+    background: var(--br-deep) !important;
     border: 1px solid var(--br-border) !important;
     border-left: 2px solid var(--br-red) !important;
     border-radius: 0 !important;
@@ -4999,9 +5001,14 @@ html body .br-footer-admin a:hover {
 }
 
 .portal > .column:first-child .mod-login-avatar img {
-    width: 150px !important;
-    height: 150px !important;
-    opacity: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    object-fit: cover !important;
+    object-position: center !important;
     border: 0 !important;
     border-radius: 0 !important;
     pointer-events: none;
