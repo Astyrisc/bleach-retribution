@@ -5698,3 +5698,206 @@ body::after {
     letter-spacing: 1px;
     pointer-events: none;
 }
+/* ================================================================
+   SOUL RESONANCE / TYBW INTERACTION LAYER
+   Captain-insignia diamond + golden Getsuga activation
+   ================================================================ */
+
+:root {
+    --br-getsuga-core: #fff6d2;
+    --br-getsuga-gold: #ffc44d;
+    --br-getsuga-orange: #ff7a18;
+    --br-getsuga-ember: #d93b0b;
+}
+
+.br-reiatsu-mark {
+    position: fixed;
+    z-index: 2147483646;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transform-origin: center;
+    contain: strict;
+}
+
+/* Outer Captain-style division diamond */
+.br-reiatsu-mark::before {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    border: 1px solid var(--br-getsuga-gold);
+    opacity: 0;
+    box-shadow:
+        0 0 4px var(--br-getsuga-core),
+        0 0 10px rgba(255, 196, 77, 0.9),
+        0 0 20px rgba(255, 122, 24, 0.62);
+    animation:
+        br-getsuga-outer
+        440ms
+        cubic-bezier(.16, .84, .24, 1)
+        forwards;
+}
+
+/* Concentrated center diamond */
+.br-reiatsu-mark::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: var(--br-getsuga-core);
+    opacity: 0;
+    box-shadow:
+        0 0 3px var(--br-getsuga-core),
+        0 0 8px var(--br-getsuga-gold),
+        0 0 14px var(--br-getsuga-orange);
+    animation:
+        br-getsuga-core
+        390ms
+        cubic-bezier(.2, .72, .2, 1)
+        forwards;
+}
+
+/* Links and buttons receive a stronger release. */
+.br-reiatsu-mark--strong::before {
+    border-width: 2px;
+    box-shadow:
+        0 0 5px var(--br-getsuga-core),
+        0 0 13px var(--br-getsuga-gold),
+        0 0 25px rgba(255, 122, 24, 0.78),
+        0 0 34px rgba(217, 59, 11, 0.32);
+}
+
+@keyframes br-getsuga-outer {
+    0% {
+        opacity: 0;
+        transform: scale(.35);
+        border-color: var(--br-getsuga-core);
+    }
+
+    16% {
+        opacity: 1;
+        transform: scale(.72);
+        border-color: var(--br-getsuga-gold);
+    }
+
+    58% {
+        opacity: .92;
+        transform: scale(1.12);
+        border-color: var(--br-getsuga-orange);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.58);
+        border-color: var(--br-getsuga-ember);
+    }
+}
+
+@keyframes br-getsuga-core {
+    0% {
+        opacity: 0;
+        transform: scale(.2);
+        background: #fff;
+    }
+
+    18% {
+        opacity: 1;
+        transform: scale(1.18);
+        background: var(--br-getsuga-core);
+    }
+
+    52% {
+        opacity: 1;
+        transform: scale(.88);
+        background: var(--br-getsuga-gold);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(.35);
+        background: var(--br-getsuga-ember);
+    }
+}
+
+/* Number state: muted at rest, white on intent, Getsuga on release. */
+#main-content
+.br-category
+.topiclist.forums
+li.row
+dl.icon > dd.dterm::before,
+.br-topic-row .br-topic-main::before {
+    transition:
+        color 160ms ease,
+        text-shadow 160ms ease,
+        transform 160ms ease;
+}
+
+#main-content
+.br-category
+.topiclist.forums
+li.row:hover
+dl.icon > dd.dterm::before,
+#main-content
+.br-category
+.topiclist.forums
+li.row:focus-within
+dl.icon > dd.dterm::before,
+.br-topic-row:hover .br-topic-main::before,
+.br-topic-row:focus-within .br-topic-main::before {
+    color: var(--br-white, #f4f1ea);
+}
+
+#main-content
+.br-category
+.topiclist.forums
+li.row.br-row-activated
+dl.icon > dd.dterm::before,
+.br-topic-row.br-row-activated .br-topic-main::before {
+    color: var(--br-getsuga-gold) !important;
+    text-shadow:
+        0 0 5px var(--br-getsuga-core),
+        0 0 12px var(--br-getsuga-orange);
+    animation:
+        br-row-number-release
+        440ms
+        cubic-bezier(.16, .84, .24, 1);
+}
+
+@keyframes br-row-number-release {
+    0% {
+        transform:
+            translateY(-50%)
+            translateX(0)
+            scale(1);
+    }
+
+    24% {
+        transform:
+            translateY(-50%)
+            translateX(2px)
+            scale(1.08);
+    }
+
+    100% {
+        transform:
+            translateY(-50%)
+            translateX(0)
+            scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .br-reiatsu-mark {
+        display: none !important;
+    }
+
+    #main-content
+    .br-category
+    .topiclist.forums
+    li.row
+    dl.icon > dd.dterm::before,
+    .br-topic-row .br-topic-main::before {
+        animation: none !important;
+        transition: none !important;
+    }
+}
