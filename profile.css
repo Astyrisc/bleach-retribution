@@ -6929,3 +6929,241 @@ input[name="avatarremoteurl"]:focus{
 #profile-tab-field-profil > dl#field_id1 + .separator {
     display: none !important;
 }
+
+
+/* =========================================================
+   PROFILE PASS 5 // SOUL SOCIETY PERSONNEL MASTHEAD
+
+   Template dependency:
+   - .br-profile-masthead
+   - .br-profile-grade
+   - profile-only Spiritual Grade reader
+
+   Existing portrait, tabs, records, controls and modules remain
+   owned by the earlier profile passes.
+   ========================================================= */
+
+#profile-advanced-layout{
+    --br-profile-void:var(--br-void,#080808);
+    --br-profile-panel:var(--br-panel,#0d0d0d);
+    --br-profile-line:var(--br-ash,#242424);
+    --br-profile-paper:var(--br-white,#f2f2f2);
+    --br-profile-muted:var(--br-muted,#777);
+    --br-profile-red:var(--br-red,#b00020);
+    --br-profile-pink:var(--br-pink,#e6005c);
+    --br-profile-orange:var(--br-orange,#e06a16);
+
+    grid-template-areas:
+        "masthead masthead"
+        "character dossier";
+}
+
+.br-profile-masthead{
+    grid-area:masthead;
+    position:relative;
+    min-height:170px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 230px;
+    align-items:stretch;
+    background:
+        linear-gradient(112deg,transparent 0 66%,rgba(255,255,255,.025) 66% 76%,transparent 76%),
+        linear-gradient(90deg,var(--br-profile-void),var(--br-profile-panel));
+    border:1px solid var(--br-profile-line);
+    border-left:3px solid var(--br-profile-red);
+}
+
+.br-profile-masthead::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.22;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:28px 28px;
+}
+
+.br-profile-masthead::after{
+    content:"RETRIBUTION";
+    position:absolute;
+    left:34%;
+    bottom:-38px;
+    pointer-events:none;
+    color:rgba(255,255,255,.026);
+    font:700 112px/1 "Oswald",Arial,sans-serif;
+    letter-spacing:-5px;
+}
+
+.br-profile-masthead-copy{
+    position:relative;
+    z-index:1;
+    min-width:0;
+    padding:29px 34px 27px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.br-profile-eyebrow{
+    display:block;
+    margin-bottom:12px;
+    color:var(--br-profile-red);
+    font:700 8px/1.2 "JetBrains Mono",monospace;
+    letter-spacing:2.2px;
+}
+
+.br-profile-masthead-name{
+    min-width:0;
+    color:var(--br-profile-paper);
+    font:700 clamp(34px,5vw,64px)/.95 "Oswald",Arial,sans-serif;
+    letter-spacing:-1.5px;
+    text-transform:uppercase;
+}
+
+.br-profile-masthead-name a,
+.br-profile-masthead-name span,
+.br-profile-masthead-name strong{
+    font:inherit !important;
+    text-decoration:none !important;
+}
+
+.br-profile-masthead-meta{
+    min-height:24px;
+    margin-top:18px;
+    padding-top:12px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border-top:1px solid var(--br-profile-line);
+}
+
+.br-profile-masthead-rank,
+.br-profile-masthead-status{
+    color:var(--br-profile-muted);
+    font:700 8px/1.35 "JetBrains Mono",monospace;
+    letter-spacing:1.25px;
+    text-transform:uppercase;
+}
+
+.br-profile-masthead-rank{
+    color:var(--br-profile-paper);
+}
+
+.br-profile-masthead-status{
+    margin-left:auto;
+}
+
+.br-profile-grade{
+    position:relative;
+    z-index:1;
+    padding:20px 20px 18px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:rgba(0,0,0,.22);
+    border-left:1px solid var(--br-profile-line);
+}
+
+.br-profile-grade-label,
+.br-profile-grade-state{
+    color:var(--br-profile-muted);
+    font:700 7px/1.2 "JetBrains Mono",monospace;
+    letter-spacing:1.55px;
+    text-align:center;
+}
+
+.br-profile-grade-label{
+    color:var(--br-profile-orange);
+}
+
+.br-profile-grade-diamond{
+    position:relative;
+    width:76px;
+    height:76px;
+    display:grid;
+    place-items:center;
+    transform:rotate(45deg);
+    border:1px solid var(--br-profile-orange);
+    box-shadow:
+        0 0 0 8px rgba(224,106,22,.035),
+        0 0 24px rgba(224,106,22,.12);
+}
+
+.br-profile-grade-diamond::before{
+    content:"";
+    position:absolute;
+    inset:8px;
+    border:1px solid rgba(224,106,22,.5);
+}
+
+.br-profile-grade-diamond::after{
+    content:"";
+    position:absolute;
+    inset:-8px;
+    border:1px solid rgba(224,106,22,.14);
+}
+
+.br-profile-grade-value{
+    position:relative;
+    z-index:1;
+    transform:rotate(-45deg);
+    color:var(--br-profile-paper);
+    font:700 29px/1 "Oswald",Arial,sans-serif;
+    letter-spacing:1px;
+    text-shadow:0 0 14px rgba(224,106,22,.32);
+}
+
+#profile-tab-field-profil > dl.br-spiritual-grade-source,
+#profile-tab-field-profil > dl.br-spiritual-grade-source + .separator{
+    display:none !important;
+}
+
+@media(max-width:900px){
+    #profile-advanced-layout{
+        display:grid;
+        grid-template-columns:1fr;
+        grid-template-areas:
+            "masthead"
+            "character"
+            "dossier";
+    }
+
+    .br-profile-masthead{
+        grid-template-columns:minmax(0,1fr) 190px;
+    }
+}
+
+@media(max-width:620px){
+    .br-profile-masthead{
+        min-height:0;
+        grid-template-columns:1fr;
+    }
+
+    .br-profile-masthead-copy{
+        padding:25px 22px 21px;
+    }
+
+    .br-profile-masthead-name{
+        font-size:36px;
+    }
+
+    .br-profile-masthead-meta{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:7px;
+    }
+
+    .br-profile-masthead-status{
+        margin-left:0;
+    }
+
+    .br-profile-grade{
+        min-height:142px;
+        border-top:1px solid var(--br-profile-line);
+        border-left:0;
+    }
+}
