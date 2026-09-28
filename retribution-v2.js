@@ -1,6 +1,6 @@
 /*
  * BLEACH: Retribution — Transmission Portrait Resolver
- * Stage 2: Forum-index last-post portraits and portal login portrait
+ * Stage 3: Forum index, portal login, and private-message portraits
  *
  * Appearance remains CSS-owned. This script only resolves member data,
  * replaces eligible image sources, and exposes state classes.
@@ -10,12 +10,29 @@
 
     const CONFIG = {
         fieldLabel: "transmission portrait",
+
         rowSelector: ".lastpost",
         avatarSelector: ".lastpost-avatar img",
         profileSelector: 'a[href^="/u"]',
-        portalAvatarSelector: ".mod-login-avatar img",
-        cachePrefix: "br-transmission-portrait:v1:",
-        cacheLifetime: 24 * 60 * 60 * 1000,
+
+        portalAvatarSelector:
+            ".mod-login-avatar img",
+
+        pmRecordSelector:
+            ".br-pm-message",
+
+        pmAvatarSelector:
+            ".postprofile-avatar.br-pm-avatar img",
+
+        pmProfileSelector:
+            ".postprofile-contact.br-pm-contact a[href^='/u']",
+
+        cachePrefix:
+            "br-transmission-portrait:v1:",
+
+        cacheLifetime:
+            24 * 60 * 60 * 1000,
+
         maxConcurrentRequests: 4
     };
 
@@ -23,10 +40,19 @@
 
     function normalizeProfilePath(value) {
         try {
-            const url = new URL(value, window.location.origin);
-            const match = url.pathname.match(/^\/u(\d+)\/?$/i);
+            const url = new URL(
+                value,
+                window.location.origin
+            );
 
-            return match && url.origin === window.location.origin
+            const match = url.pathname.match(
+                /^\/u(\d+)\/?$/i
+            );
+
+            return (
+                match &&
+                url.origin === window.location.origin
+            )
                 ? "/u" + match[1]
                 : null;
         } catch (_error) {
@@ -38,7 +64,10 @@
         if (!value) return null;
 
         try {
-            const url = new URL(value.trim(), window.location.href);
+            const url = new URL(
+                value.trim(),
+                window.location.href
+            );
 
             return /^(https?:)$/i.test(url.protocol)
                 ? url.href
@@ -60,7 +89,8 @@
 
             if (
                 !entry ||
-                Date.now() - entry.savedAt > CONFIG.cacheLifetime
+                Date.now() - entry.savedAt >
+                    CONFIG.cacheLifetime
             ) {
                 sessionStorage.removeItem(
                     CONFIG.cachePrefix + profilePath
@@ -87,18 +117,20 @@
         } catch (_error) {
             /*
              * Storage may be disabled.
-             * The in-memory map still prevents duplicate requests.
+             * The in-memory map still prevents repeats.
              */
         }
     }
 
     function extractPortrait(documentNode) {
-        const fields = documentNode.querySelectorAll(
-            '#profile-tab-field-profil dl, [id^="field_id"]'
-        );
+        const fields =
+            documentNode.querySelectorAll(
+                '#profile-tab-field-profil dl, [id^="field_id"]'
+            );
 
         for (const field of fields) {
-            const labelNode = field.querySelector("dt");
+            const labelNode =
+                field.querySelector("dt");
 
             const label = labelNode
                 ? labelNode.textContent
@@ -107,10 +139,14 @@
                     .toLowerCase()
                 : "";
 
-            if (label !== CONFIG.fieldLabel) continue;
+            if (label !== CONFIG.fieldLabel) {
+                continue;
+            }
 
             const valueNode =
-                field.querySelector("dd .field_uneditable") ||
+                field.querySelector(
+                    "dd .field_uneditable"
+                ) ||
                 field.querySelector("dd");
 
             if (!valueNode) return null;
@@ -134,13 +170,16 @@
 
     async function resolvePortrait(profilePath) {
         if (resolvedProfiles.has(profilePath)) {
-            return resolvedProfiles.get(profilePath);
+            return resolvedProfiles.get(
+                profilePath
+            );
         }
 
         const cached = readCache(profilePath);
 
         if (cached !== undefined) {
-            const cachedPromise = Promise.resolve(cached);
+            const cachedPromise =
+                Promise.resolve(cached);
 
             resolvedProfiles.set(
                 profilePath,
@@ -152,8 +191,10 @@
 
         const request = fetch(profilePath, {
             credentials: "same-origin",
+
             headers: {
-                "X-Requested-With": "XMLHttpRequest"
+                "X-Requested-With":
+                    "XMLHttpRequest"
             }
         })
             .then(function (response) {
@@ -173,7 +214,9 @@
                     );
 
                 const portraitUrl =
-                    extractPortrait(profileDocument);
+                    extractPortrait(
+                        profileDocument
+                    );
 
                 writeCache(
                     profilePath,
@@ -211,20 +254,27 @@
             }
 
             if (!groups.has(profilePath)) {
-                groups.set(profilePath, []);
+                groups.set(
+                    profilePath,
+                    []
+                );
             }
 
-            groups.get(profilePath).push({
-                image: image,
-                owner: owner
-            });
+            groups
+                .get(profilePath)
+                .push({
+                    image: image,
+                    owner: owner
+                });
         }
 
         /*
-         * Forum-index last-post avatars
+         * Forum-index last-post portraits
          */
         document
-            .querySelectorAll(CONFIG.rowSelector)
+            .querySelectorAll(
+                CONFIG.rowSelector
+            )
             .forEach(function (row) {
                 const image =
                     row.querySelector(
@@ -236,13 +286,18 @@
                         CONFIG.profileSelector
                     );
 
-                if (!image || !profileLink) {
+                if (
+                    !image ||
+                    !profileLink
+                ) {
                     return;
                 }
 
                 const profilePath =
                     normalizeProfilePath(
-                        profileLink.getAttribute("href")
+                        profileLink.getAttribute(
+                            "href"
+                        )
                     );
 
                 if (!profilePath) return;
@@ -263,11 +318,15 @@
             );
 
         const portalOwner =
-            portalImage?.closest(".mod-login") ||
+            portalImage?.closest(
+                ".mod-login"
+            ) ||
             portalImage?.parentElement;
 
         const userId =
-            Number(window._userdata?.user_id);
+            Number(
+                window._userdata?.user_id
+            );
 
         if (
             portalImage &&
@@ -281,6 +340,53 @@
                 portalOwner
             );
         }
+
+        /*
+         * Private-message sender portraits
+         */
+        document
+            .querySelectorAll(
+                CONFIG.pmRecordSelector
+            )
+            .forEach(function (record) {
+                const image =
+                    record.querySelector(
+                        CONFIG.pmAvatarSelector
+                    );
+
+                const profileLink =
+                    record.querySelector(
+                        CONFIG.pmProfileSelector
+                    );
+
+                if (
+                    !image ||
+                    !profileLink
+                ) {
+                    return;
+                }
+
+                const profilePath =
+                    normalizeProfilePath(
+                        profileLink.getAttribute(
+                            "href"
+                        )
+                    );
+
+                if (!profilePath) return;
+
+                const owner =
+                    image.closest(
+                        ".postprofile.br-pm-profile"
+                    ) ||
+                    record;
+
+                addTarget(
+                    profilePath,
+                    image,
+                    owner
+                );
+            });
 
         return Array.from(
             groups.entries()
@@ -303,7 +409,8 @@
             "error",
             function restoreNativeAvatar() {
                 const nativeSource =
-                    target.image.dataset.brNativeSrc;
+                    target.image.dataset
+                        .brNativeSrc;
 
                 if (nativeSource) {
                     target.image.src =
@@ -325,7 +432,8 @@
             target.image.currentSrc ||
             target.image.src;
 
-        target.image.src = portraitUrl;
+        target.image.src =
+            portraitUrl;
 
         target.owner.classList.remove(
             "br-portrait-fallback"
@@ -341,22 +449,28 @@
 
         async function worker() {
             while (queue.length) {
-                const entry = queue.shift();
+                const entry =
+                    queue.shift();
 
-                const profilePath = entry[0];
-                const targets = entry[1];
+                const profilePath =
+                    entry[0];
+
+                const targets =
+                    entry[1];
 
                 const portraitUrl =
                     await resolvePortrait(
                         profilePath
                     );
 
-                targets.forEach(function (target) {
-                    applyPortrait(
-                        target,
-                        portraitUrl
-                    );
-                });
+                targets.forEach(
+                    function (target) {
+                        applyPortrait(
+                            target,
+                            portraitUrl
+                        );
+                    }
+                );
             }
         }
 
@@ -367,7 +481,9 @@
 
         await Promise.all(
             Array.from(
-                { length: workerCount },
+                {
+                    length: workerCount
+                },
                 worker
             )
         );
@@ -384,9 +500,15 @@
                 CONFIG.portalAvatarSelector
             );
 
+        const hasPrivateMessageTarget =
+            document.querySelector(
+                CONFIG.pmRecordSelector
+            );
+
         if (
             !hasForumTargets &&
-            !hasPortalTarget
+            !hasPortalTarget &&
+            !hasPrivateMessageTarget
         ) {
             return;
         }
@@ -394,7 +516,10 @@
         processTargets();
     }
 
-    if (document.readyState === "loading") {
+    if (
+        document.readyState ===
+        "loading"
+    ) {
         document.addEventListener(
             "DOMContentLoaded",
             initialize,
