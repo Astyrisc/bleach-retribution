@@ -1,6 +1,6 @@
 /*
  * BLEACH: Retribution — Transmission Portrait Resolver
- * Stage 3: Forum index, portal login, and private-message portraits
+ * Stage 4: Forum index and portal login portraits
  *
  * Appearance remains CSS-owned. This script only resolves member data,
  * replaces eligible image sources, and exposes state classes.
@@ -17,15 +17,6 @@
 
         portalAvatarSelector:
             ".mod-login-avatar img",
-
-        pmRecordSelector:
-            ".br-pm-message",
-
-        pmAvatarSelector:
-            ".postprofile-avatar.br-pm-avatar img",
-
-        pmProfileSelector:
-            ".postprofile-contact.br-pm-contact a[href^='/u']",
 
         cachePrefix:
             "br-transmission-portrait:v1:",
@@ -341,53 +332,6 @@
             );
         }
 
-        /*
-         * Private-message sender portraits
-         */
-        document
-            .querySelectorAll(
-                CONFIG.pmRecordSelector
-            )
-            .forEach(function (record) {
-                const image =
-                    record.querySelector(
-                        CONFIG.pmAvatarSelector
-                    );
-
-                const profileLink =
-                    record.querySelector(
-                        CONFIG.pmProfileSelector
-                    );
-
-                if (
-                    !image ||
-                    !profileLink
-                ) {
-                    return;
-                }
-
-                const profilePath =
-                    normalizeProfilePath(
-                        profileLink.getAttribute(
-                            "href"
-                        )
-                    );
-
-                if (!profilePath) return;
-
-                const owner =
-                    image.closest(
-                        ".postprofile.br-pm-profile"
-                    ) ||
-                    record;
-
-                addTarget(
-                    profilePath,
-                    image,
-                    owner
-                );
-            });
-
         return Array.from(
             groups.entries()
         );
@@ -500,15 +444,9 @@
                 CONFIG.portalAvatarSelector
             );
 
-        const hasPrivateMessageTarget =
-            document.querySelector(
-                CONFIG.pmRecordSelector
-            );
-
         if (
             !hasForumTargets &&
-            !hasPortalTarget &&
-            !hasPrivateMessageTarget
+            !hasPortalTarget
         ) {
             return;
         }
