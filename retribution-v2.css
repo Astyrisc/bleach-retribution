@@ -5716,16 +5716,17 @@ body::after {
     width: 18px;
     height: 18px;
     pointer-events: none;
-    transform: translate(-50%, -50%) rotate(45deg);
+    transform: translate(-50%, -50%);
     transform-origin: center;
-    contain: strict;
+    isolation: isolate;
 }
 
-/* Outer Captain-style division diamond */
+/* Pressure wave behind the Captain-style insignia. */
 .br-reiatsu-mark::before {
     content: "";
     position: absolute;
-    inset: -14px;
+    inset: -8px;
+    border-radius: 50%;
     border: 1px solid var(--br-getsuga-gold);
     opacity: 0;
     box-shadow:
@@ -5733,18 +5734,25 @@ body::after {
         0 0 10px rgba(255, 196, 77, 0.9),
         0 0 20px rgba(255, 122, 24, 0.62);
     animation:
-        br-getsuga-outer
-        440ms
+        br-getsuga-wave
+        480ms
         cubic-bezier(.16, .84, .24, 1)
         forwards;
 }
 
-/* Concentrated center diamond */
+/* White-hot ignition point. */
 .br-reiatsu-mark::after {
     content: "";
     position: absolute;
-    inset: 5px;
-    background: var(--br-getsuga-core);
+    inset: 2px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        #fff 0 18%,
+        var(--br-getsuga-core) 30%,
+        var(--br-getsuga-gold) 52%,
+        rgba(255, 122, 24, 0) 76%
+    );
     opacity: 0;
     box-shadow:
         0 0 3px var(--br-getsuga-core),
@@ -5767,28 +5775,92 @@ body::after {
         0 0 34px rgba(217, 59, 11, 0.32);
 }
 
+/* Double Captain-insignia diamond. */
+.br-reiatsu-mark__diamond {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--br-getsuga-gold);
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(45deg) scale(.25);
+    box-shadow:
+        0 0 5px rgba(255, 246, 210, .82),
+        0 0 14px rgba(255, 178, 26, .62),
+        inset 0 0 10px rgba(255, 122, 24, .16);
+    animation:
+        br-getsuga-outer
+        470ms
+        cubic-bezier(.16, .84, .24, 1)
+        forwards;
+}
+
+.br-reiatsu-mark__diamond::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid var(--br-getsuga-orange);
+    box-shadow:0 0 8px rgba(255, 122, 24, .7);
+}
+
+.br-reiatsu-mark--strong .br-reiatsu-mark__diamond {
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+}
+
+/* Four diagonal reiatsu fragments released by the click. */
+.br-reiatsu-mark__shard {
+    --br-shard-angle:45deg;
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:3px;
+    height:11px;
+    opacity:0;
+    background:linear-gradient(
+        to top,
+        rgba(217,59,11,0),
+        var(--br-getsuga-orange) 38%,
+        var(--br-getsuga-core)
+    );
+    box-shadow:0 0 7px var(--br-getsuga-orange);
+    transform-origin:50% 50%;
+    animation:
+        br-getsuga-shard
+        430ms
+        cubic-bezier(.12,.72,.2,1)
+        forwards;
+}
+
+.br-reiatsu-mark__shard--1 { --br-shard-angle:45deg; }
+.br-reiatsu-mark__shard--2 { --br-shard-angle:135deg; }
+.br-reiatsu-mark__shard--3 { --br-shard-angle:225deg; }
+.br-reiatsu-mark__shard--4 { --br-shard-angle:315deg; }
+
 @keyframes br-getsuga-outer {
     0% {
         opacity: 0;
-        transform: scale(.35);
+        transform:translate(-50%,-50%) rotate(45deg) scale(.25);
         border-color: var(--br-getsuga-core);
     }
 
     16% {
         opacity: 1;
-        transform: scale(.72);
+        transform:translate(-50%,-50%) rotate(45deg) scale(.72);
         border-color: var(--br-getsuga-gold);
     }
 
     58% {
         opacity: .92;
-        transform: scale(1.12);
+        transform:translate(-50%,-50%) rotate(45deg) scale(1.08);
         border-color: var(--br-getsuga-orange);
     }
 
     100% {
         opacity: 0;
-        transform: scale(1.58);
+        transform:translate(-50%,-50%) rotate(45deg) scale(1.44);
         border-color: var(--br-getsuga-ember);
     }
 }
@@ -5797,25 +5869,62 @@ body::after {
     0% {
         opacity: 0;
         transform: scale(.2);
-        background: #fff;
     }
 
-    18% {
+    12% {
         opacity: 1;
-        transform: scale(1.18);
-        background: var(--br-getsuga-core);
+        transform: scale(1.35);
     }
 
-    52% {
-        opacity: 1;
-        transform: scale(.88);
-        background: var(--br-getsuga-gold);
+    42% {
+        opacity: .92;
+        transform: scale(.9);
     }
 
     100% {
         opacity: 0;
-        transform: scale(.35);
-        background: var(--br-getsuga-ember);
+        transform: scale(.25);
+    }
+}
+
+@keyframes br-getsuga-wave {
+    0% {
+        opacity:0;
+        transform:scale(.18);
+    }
+
+    18% {
+        opacity:.88;
+        transform:scale(.72);
+    }
+
+    100% {
+        opacity:0;
+        transform:scale(2.1);
+    }
+}
+
+@keyframes br-getsuga-shard {
+    0% {
+        opacity:0;
+        transform:
+            translate(-50%,-50%)
+            rotate(var(--br-shard-angle))
+            translateY(-5px)
+            scaleY(.15);
+    }
+
+    22% {
+        opacity:1;
+    }
+
+    100% {
+        opacity:0;
+        transform:
+            translate(-50%,-50%)
+            rotate(var(--br-shard-angle))
+            translateY(-34px)
+            scaleY(.72);
     }
 }
 
