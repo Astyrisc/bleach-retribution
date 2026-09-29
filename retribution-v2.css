@@ -72,6 +72,7 @@
     --br-pink: #d0005b;
     --br-orange: #e06a16;
     --br-orange-soft: #f28a2a;
+    --br-spirit-cyan: #63d8e6;
     --br-content: #e8e8e8;
     --br-deep: #0d0d0d;
     --br-row: #141414;
@@ -356,6 +357,9 @@ hr {
 }
 
 .br-masthead-title {
+    display: flex;
+    align-items: flex-end;
+
     font-family: "Oswald", Arial, sans-serif;
     font-size: clamp(44px, 5.5vw, 76px);
     font-weight: 700;
@@ -363,6 +367,61 @@ hr {
     letter-spacing: -2px;
 
     color: var(--br-paper);
+}
+
+/* RETRIBUTION insignia:
+   a geometric R, a Hueco Mundo crescent and a restrained blade cut.
+   The mark inherits the title scale, so the masthead remains responsive. */
+.br-retribution-mark {
+    position: relative;
+
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+
+    width: .78em;
+    height: 1.04em;
+    margin: 0 .015em -.07em 0;
+
+    filter: drop-shadow(0 0 8px rgba(255,255,255,.06));
+}
+
+.br-retribution-mark-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.br-retribution-mark-r {
+    fill: currentColor;
+}
+
+.br-retribution-mark-moon {
+    fill: var(--br-spirit-cyan);
+    filter: drop-shadow(0 0 3px rgba(79,220,255,.26));
+}
+
+.br-retribution-mark-moon-cut {
+    fill: var(--br-void);
+}
+
+.br-retribution-mark-slash {
+    fill: none;
+    stroke: var(--br-red);
+    stroke-width: 2;
+    stroke-linecap: square;
+    opacity: .9;
+}
+
+.br-retribution-mark-spark {
+    fill: var(--br-orange);
+    filter: drop-shadow(0 0 3px rgba(255,146,36,.45));
+}
+
+.br-masthead-word-rest {
+    display: inline-block;
 }
 
 .br-masthead-subtitle {
