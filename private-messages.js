@@ -779,3 +779,95 @@
         initialize();
     }
 })();
+
+/* =========================================================
+   BLEACH // RETRIBUTION
+   PRIVATE TRANSMISSION INTERACTION STATES
+
+   Adds reliable unread and selected-row hooks without
+   modifying Forumotion's message behavior.
+   ========================================================= */
+
+(function () {
+    "use strict";
+
+    const FORM_SELECTOR = 'form[name="privmsg_list"]';
+    const ROW_SELECTOR = "ul.pmlist > li.row";
+    const CHECKBOX_SELECTOR = 'dd.mark input[type="checkbox"]';
+
+    function unreadEvidence(row) {
+        const icon = row.querySelector("dl.icon");
+        const images = Array.from(row.querySelectorAll("img"));
+
+        return [
+            row.className,
+            icon ? icon.className : "",
+            icon ? icon.getAttribute("style") : "",
+            row.getAttribute("title") || "",
+            images.map(function (image) {
+                return [
+                    image.getAttribute("src") || "",
+                    image.getAttribute("alt") || "",
+                    image.getAttribute("title") || ""
+                ].join(" ");
+            }).join(" ")
+        ].join(" ").toLowerCase();
+    }
+
+    function isUnread(row) {
+        return /(^|[\s_\/-])(unread|new)([\s_\/-]|$)|not[\s_-]*read/.test(
+            unreadEvidence(row)
+        );
+    }
+
+    function updateRow(row) {
+        const checkbox = row.querySelector(CHECKBOX_SELECTOR);
+
+        row.classList.toggle("br-pm-unread", isUnread(row));
+        row.classList.toggle(
+            "br-pm-selected",
+            Boolean(checkbox && checkbox.checked)
+        );
+    }
+
+    function initializeTransmissionIndex() {
+        const form = document.querySelector(FORM_SELECTOR);
+        if (!form) return;
+
+        const rows = Array.from(form.querySelectorAll(ROW_SELECTOR));
+        rows.forEach(updateRow);
+
+        form.addEventListener("change", function (event) {
+            if (!(event.target instanceof HTMLInputElement)) return;
+            if (!event.target.matches(CHECKBOX_SELECTOR)) return;
+
+            const row = event.target.closest(ROW_SELECTOR);
+            if (row) updateRow(row);
+        });
+
+        const observer = new MutationObserver(function (mutations) {
+            const needsRefresh = mutations.some(function (mutation) {
+                return mutation.type === "childList" && mutation.addedNodes.length;
+            });
+
+            if (needsRefresh) {
+                form.querySelectorAll(ROW_SELECTOR).forEach(updateRow);
+            }
+        });
+
+        observer.observe(form, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            initializeTransmissionIndex,
+            { once: true }
+        );
+    } else {
+        initializeTransmissionIndex();
+    }
+})();
