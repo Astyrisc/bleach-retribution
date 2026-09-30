@@ -14,7 +14,8 @@
    - Row artwork dimensions reset to prevent inherited divider sizing.
    - Karakura row appearance confirmed in desktop screenshot.
    - Naruki artwork reduced to 62% width and bottom-aligned for rooftops.
-   - Karakura crop preserved; Naruki crop awaiting visual review.
+   - Naruki rooftop crop confirmed in desktop screenshot.
+   - Karakura artwork reduced to 75% width and bottom-aligned; review pending.
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -2264,7 +2265,8 @@ a[href*="mode=newtopic"]:focus-visible {
 .br-forum-dossier:has(.br-forum-path a[href^="/f34-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]) {
     --br-location-art: var(--br-location-karakura-art);
-    --br-location-art-y: 58%;
+    --br-location-art-y: 100%;
+    --br-location-art-size: 75% auto;
 }
 
 .br-forum-dossier:has(.br-forum-path a[href^="/f102-"]),
