@@ -5,7 +5,7 @@
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
-   - Topic portrait preserved from the recovered September 17–19 post lineage.
+   - Topic portrait preserved from the recovered September 17â€“19 post lineage.
    - Post-header positioning correction prevents the header layer from occluding the upper portrait.
    - Character dossier/content rail added as canonical post architecture.
    - Later verified desktop systems consolidated forward.
@@ -98,6 +98,10 @@
     --br-motion-fast: 150ms;
     --br-motion-standard: 220ms;
     --br-ease-interface: cubic-bezier(.4,0,.2,1);
+    --br-location-world-art: url("https://astyrisc.github.io/bleach-retribution/world-of-the-living-ink.png");
+    --br-location-karakura-art: url("https://astyrisc.github.io/bleach-retribution/karakura-town-ink.png");
+    --br-location-category-opacity: .14;
+    --br-location-dossier-opacity: .18;
     --br-post-rail: 290px;
     --br-post-gutter: 30px;
     --br-post-offset: 320px;
@@ -1083,7 +1087,7 @@ hr {
 }
 
 #fa_ticker_container:before {
-    content: "警" !important;
+    content: "è­¦" !important;
     position: absolute !important;
     left: 13px !important;
     top: 50% !important;
@@ -2234,6 +2238,53 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 
 /* =========================================================
+   07A // LOCATION ARTWORK
+
+   Stable native forum links select the location.
+   Decoration stays behind controls and preserves header height.
+   ========================================================= */
+
+#main .br-category:has(a.forumtitle[href^="/f34-"]) .br-category-bar .header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--br-location-world-art);
+    background-position: right 48%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: var(--br-location-category-opacity);
+    -webkit-mask-image: linear-gradient(90deg, transparent 24%, var(--br-ink) 78%);
+    mask-image: linear-gradient(90deg, transparent 24%, var(--br-ink) 78%);
+    pointer-events: none;
+}
+
+#main .br-category:has(a.forumtitle[href^="/f34-"]) .br-category-bar .header dl.icon {
+    position: relative;
+    z-index: 1;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f34-"])::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--br-location-karakura-art);
+    background-position: right 58%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: invert(1);
+    mix-blend-mode: screen;
+    opacity: var(--br-location-dossier-opacity);
+    -webkit-mask-image: linear-gradient(90deg, transparent 25%, var(--br-ink) 85%);
+    mask-image: linear-gradient(90deg, transparent 25%, var(--br-ink) 85%);
+    pointer-events: none;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f34-"]) .br-forum-controls {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================================
    08 // TOPIC DOSSIER
 
    Topic-view identity header and controls. Post rendering is owned by the dedicated Topic Post System below.
@@ -2360,7 +2411,7 @@ a[href*="mode=newtopic"]:focus-visible {
    - Character dossier: 290px
    - Intentional gutter: 30px
    - Content offset: 320px
-   - Canonical portrait: exact 250 × 400 presentation
+   - Canonical portrait: exact 250 Ã— 400 presentation
 
    Forumotion positions the profile rail independently from
    the post body. The permanent content offset prevents long
@@ -2452,9 +2503,9 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 
 /* 08.54 // CANONICAL CHARACTER PORTRAIT
-   RETRIBUTION STANDARD // 250 × 400
+   RETRIBUTION STANDARD // 250 Ã— 400
 
-   Recovered from the September 17–19 approved post lineage.
+   Recovered from the September 17â€“19 approved post lineage.
    Keep the fixed dossier presentation while preserving the complete
    uploaded composition. No crop. No circle. */
 .br-post .br-post-profile .postprofile-avatar {
@@ -2585,7 +2636,7 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 .br-post .br-post-profile .postprofile-info .label span { color: inherit !important; }
 .br-post .br-post-profile .postprofile-info .label::before {
-    content: "·";
+    content: "Â·";
     margin-right: 5px;
     color: var(--br-orange);
     font-size: 9px;
@@ -4274,7 +4325,7 @@ html body .br-footer-admin a:hover {
 }
 
 .br-post .vote > a.ion-minus-circled::before {
-    content: "−";
+    content: "âˆ’";
 
     font-family: "JetBrains Mono", monospace !important;
     font-size: 11px !important;
@@ -4609,7 +4660,7 @@ html body .br-footer-admin a:hover {
    --------------------------------------------------------- */
 
 .br-post .fa_like_div .rep-button.fa_dislike::before {
-    content: "−";
+    content: "âˆ’";
 
     font-family: "JetBrains Mono", monospace;
     font-size: 10px;
@@ -5195,7 +5246,7 @@ html body .br-footer-admin a:hover {
 }
 
 .portal > .column:first-child .module-footer::after {
-    content: "→";
+    content: "â†’";
     font-size: 8px;
     color: var(--br-red);
 }
@@ -6095,7 +6146,7 @@ dl.icon > dd.dterm::before,
 }
 
 #main .br-category .br-subforums a.postlink::before {
-    content: "›";
+    content: "â€º";
     flex: 0 0 auto;
     margin-right: 6px;
     color: var(--br-red);
