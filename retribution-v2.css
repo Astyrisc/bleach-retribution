@@ -6055,3 +6055,66 @@ dl.icon > dd.dterm::before,
         transition: none !important;
     }
 }
+/* =========================================================
+   SUBFORUM DIRECTORY
+   Compact location links inside forum descriptions
+   ========================================================= */
+
+#main .br-category .dterm hr {
+    width: 44px;
+    height: 1px;
+    margin: 8px 0 7px;
+    background: var(--br-red);
+    border: 0;
+    opacity: 0.7;
+}
+
+#main .br-category .br-subforums {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px 16px;
+    width: 100%;
+    max-width: 430px;
+    margin: 0;
+}
+
+#main .br-category .br-subforums a.postlink {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: var(--br-pink) !important;
+    transition:
+        color 0.15s ease,
+        transform 0.15s ease;
+}
+
+#main .br-category .br-subforums a.postlink::before {
+    content: "›";
+    flex: 0 0 auto;
+    margin-right: 6px;
+    color: var(--br-red);
+}
+
+#main .br-category .br-subforums a.postlink:hover,
+#main .br-category .br-subforums a.postlink:focus-visible {
+    color: var(--br-white) !important;
+    transform: translateX(2px);
+}
+
+#main .br-category .br-subforums a.postlink:hover::before,
+#main .br-category .br-subforums a.postlink:focus-visible::before {
+    color: var(--br-orange);
+}
+
+@media (max-width: 700px) {
+    #main .br-category .br-subforums {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 4px;
+    }
+}
