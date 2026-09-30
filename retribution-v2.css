@@ -13,7 +13,8 @@
    - Header appearance confirmed in desktop screenshots.
    - Row artwork dimensions reset to prevent inherited divider sizing.
    - Karakura row appearance confirmed in desktop screenshot.
-   - Shared row/header artwork rules now support Naruki; review pending.
+   - Naruki artwork reduced to 62% width and bottom-aligned for rooftops.
+   - Karakura crop preserved; Naruki crop awaiting visual review.
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -2269,7 +2270,8 @@ a[href*="mode=newtopic"]:focus-visible {
 .br-forum-dossier:has(.br-forum-path a[href^="/f102-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f102-"]) {
     --br-location-art: var(--br-location-naruki-art);
-    --br-location-art-y: 72%;
+    --br-location-art-y: 100%;
+    --br-location-art-size: 62% auto;
 }
 
 #main .br-category:has(a.forumtitle[href^="/f34-"]) .br-category-bar .header::before {
@@ -2297,7 +2299,7 @@ a[href*="mode=newtopic"]:focus-visible {
     inset: 0;
     background-image: var(--br-location-art);
     background-position: right var(--br-location-art-y, 58%);
-    background-size: cover;
+    background-size: var(--br-location-art-size, cover);
     background-repeat: no-repeat;
     filter: invert(1);
     mix-blend-mode: screen;
@@ -2324,7 +2326,7 @@ a[href*="mode=newtopic"]:focus-visible {
     width: auto;
     height: auto;
     z-index: 0;
-    background: var(--br-location-art) right var(--br-location-art-y, 58%) / cover no-repeat;
+    background: var(--br-location-art) right var(--br-location-art-y, 58%) / var(--br-location-art-size, cover) no-repeat;
     filter: invert(1);
     mix-blend-mode: screen;
     opacity: var(--br-location-row-opacity);
