@@ -5,14 +5,15 @@
 
    LATEST UPDATE // SEPTEMBER 30, 2026
    - World of the Living category header artwork added.
-   - Karakura Town forum header artwork added.
+   - Karakura Town and Naruki City row/header artwork mapped by forum ID.
    - Karakura homepage row gains a masked ink background and hover fade.
    - Location artwork URLs and opacity use shared tokens.
    - Existing layout and subforum directory styling preserved.
    - No JavaScript changes required.
    - Header appearance confirmed in desktop screenshots.
    - Row artwork dimensions reset to prevent inherited divider sizing.
-   - Row content layered above artwork; visual confirmation pending.
+   - Karakura row appearance confirmed in desktop screenshot.
+   - Shared row/header artwork rules now support Naruki; review pending.
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -110,6 +111,7 @@
     --br-motion-standard: 220ms;
     --br-ease-interface: cubic-bezier(.4,0,.2,1);
     --br-location-world-art: url("https://astyrisc.github.io/bleach-retribution/world-of-the-living-ink.png");
+    --br-location-naruki-art: url("https://astyrisc.github.io/bleach-retribution/naruki-city-ink.png");
     --br-location-karakura-art: url("https://astyrisc.github.io/bleach-retribution/karakura-town-ink.png");
     --br-location-category-opacity: .14;
     --br-location-dossier-opacity: .18;
@@ -2257,6 +2259,19 @@ a[href*="mode=newtopic"]:focus-visible {
    Decoration stays behind controls and preserves header height.
    ========================================================= */
 
+/* Per-location mapping; shared rules below own the presentation. */
+.br-forum-dossier:has(.br-forum-path a[href^="/f34-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]) {
+    --br-location-art: var(--br-location-karakura-art);
+    --br-location-art-y: 58%;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f102-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f102-"]) {
+    --br-location-art: var(--br-location-naruki-art);
+    --br-location-art-y: 72%;
+}
+
 #main .br-category:has(a.forumtitle[href^="/f34-"]) .br-category-bar .header::before {
     content: "";
     position: absolute;
@@ -2276,12 +2291,12 @@ a[href*="mode=newtopic"]:focus-visible {
     z-index: 1;
 }
 
-.br-forum-dossier:has(.br-forum-path a[href^="/f34-"])::before {
+.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"]))::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: var(--br-location-karakura-art);
-    background-position: right 58%;
+    background-image: var(--br-location-art);
+    background-position: right var(--br-location-art-y, 58%);
     background-size: cover;
     background-repeat: no-repeat;
     filter: invert(1);
@@ -2292,24 +2307,24 @@ a[href*="mode=newtopic"]:focus-visible {
     pointer-events: none;
 }
 
-.br-forum-dossier:has(.br-forum-path a[href^="/f34-"]) .br-forum-controls {
+.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"])) .br-forum-controls {
     position: relative;
     z-index: 2;
 }
 
-/* Karakura directory row: the native forum link identifies this row only. */
-#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]) {
+/* Location directory rows share one artwork treatment. */
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"])) {
     isolation: isolate;
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"])::after {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"]))::after {
     content: "";
     position: absolute;
     inset: 0;
     width: auto;
     height: auto;
     z-index: 0;
-    background: var(--br-location-karakura-art) right 58% / cover no-repeat;
+    background: var(--br-location-art) right var(--br-location-art-y, 58%) / cover no-repeat;
     filter: invert(1);
     mix-blend-mode: screen;
     opacity: var(--br-location-row-opacity);
@@ -2319,18 +2334,18 @@ a[href*="mode=newtopic"]:focus-visible {
     transition: opacity var(--br-motion-standard) var(--br-ease-interface);
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]):hover::after,
-#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]):focus-within::after {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"])):hover::after,
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"])):focus-within::after {
     opacity: var(--br-location-row-hover-opacity);
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]) dl.icon {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"])) dl.icon {
     position: relative;
     z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"])::after {
+    #main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"]))::after {
         transition: none;
     }
 }
