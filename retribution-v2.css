@@ -11,7 +11,8 @@
    - Existing layout and subforum directory styling preserved.
    - No JavaScript changes required.
    - Header appearance confirmed in desktop screenshots.
-   - Row artwork awaiting rendered review.
+   - Row artwork dimensions reset to prevent inherited divider sizing.
+   - Row content layered above artwork; visual confirmation pending.
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -2305,7 +2306,9 @@ a[href*="mode=newtopic"]:focus-visible {
     content: "";
     position: absolute;
     inset: 0;
-    z-index: -1;
+    width: auto;
+    height: auto;
+    z-index: 0;
     background: var(--br-location-karakura-art) right 58% / cover no-repeat;
     filter: invert(1);
     mix-blend-mode: screen;
@@ -2319,6 +2322,11 @@ a[href*="mode=newtopic"]:focus-visible {
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]):hover::after,
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]):focus-within::after {
     opacity: var(--br-location-row-hover-opacity);
+}
+
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]) dl.icon {
+    position: relative;
+    z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
