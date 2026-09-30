@@ -3076,7 +3076,7 @@ a[href*="mode=newtopic"]:focus-visible {
    .container-imgs-list uniquely identifies the gallery.
    ========================================================= */
 
-#main-content > .forabg:has(.container-imgs-list) {
+#main > .forabg:has(.container-imgs-list) {
     display: none !important;
 }
 
