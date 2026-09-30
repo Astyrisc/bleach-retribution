@@ -1,7 +1,7 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   LOCATION HEADERS + ROW ART // REVIEW BUILD
+   LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
 
    LATEST UPDATE // SEPTEMBER 30, 2026
    - World of the Living category header artwork added.
@@ -15,7 +15,9 @@
    - Karakura row appearance confirmed in desktop screenshot.
    - Naruki artwork reduced to 62% width and bottom-aligned for rooftops.
    - Naruki rooftop crop confirmed in desktop screenshot.
-   - Karakura artwork reduced to 75% width and bottom-aligned; review pending.
+   - Karakura artwork reduced to 75% width and bottom-aligned; screenshot reviewed.
+   - World of the Living row dividers use shared charcoal/crimson tokens.
+   - Divider hover and keyboard-focus appearance pending browser review.
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -119,6 +121,8 @@
     --br-location-dossier-opacity: .18;
     --br-location-row-opacity: .13;
     --br-location-row-hover-opacity: .19;
+    --br-location-divider: var(--br-border2);
+    --br-location-divider-active: var(--br-blood);
     --br-post-rail: 290px;
     --br-post-gutter: 30px;
     --br-post-offset: 320px;
@@ -2314,6 +2318,15 @@ a[href*="mode=newtopic"]:focus-visible {
 .br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"])) .br-forum-controls {
     position: relative;
     z-index: 2;
+}
+
+/* World of the Living: thin separators, preserving the final outer edge. */
+#main .br-category:has(a.forumtitle[href^="/f34-"]) .topiclist.forums li.row:not(:last-child) {
+    border-bottom-color: var(--br-location-divider) !important;
+}
+
+#main .br-category:has(a.forumtitle[href^="/f34-"]) .topiclist.forums li.row:not(:last-child):is(:hover, :focus-within) {
+    border-bottom-color: var(--br-location-divider-active) !important;
 }
 
 /* Location directory rows share one artwork treatment. */
