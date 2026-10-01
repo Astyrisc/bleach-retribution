@@ -17,7 +17,7 @@
    - Karakura row appearance confirmed in desktop screenshot.
    - Naruki artwork reduced to 62% width and bottom-aligned for rooftops.
    - Naruki rooftop crop confirmed in desktop screenshot.
-   - Karakura retains a 65% artwork layer; image scales to 85% within its fixed fade area.
+   - Karakura uses the shared full-row layer, 62% image width and 75% vertical crop.
    - Updated Karakura bridge crop awaits screenshot review.
    - World of the Living row dividers use shared charcoal/crimson tokens.
    - World of the Living divider behavior confirmed by user.
@@ -25,10 +25,10 @@
    - Kagamino uses a 75% width crop at 55% vertical position.
    - Crop raised to include sky, hills, apartments and residential rooftops; review pending.
    - External Districts /f48 uses the approved Burn the Witch ink panorama.
-   - External retains a 48% artwork layer; height-based scaling frames more of the clock tower.
-   - External fade uses local layer coordinates, independent of image scaling.
-   - Previous smooth fade confirmed in screenshot; wider tower framing awaits review.
-   - Artwork layer width and image scale are separate tokens; corrected crops await visual review.
+   - External uses the shared full-row layer, 62% image width and 35% vertical crop.
+   - External fade starts at the 38% image edge; tower framing uses a higher vertical crop.
+   - Latest screenshot confirmed prior framing defects; full-row correction replaces that approach.
+   - Removed separate artwork widths after loaded CSS was confirmed; new crops await visual review.
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -2282,10 +2282,8 @@ a[href*="mode=newtopic"]:focus-visible {
 .br-forum-dossier:has(.br-forum-path a[href^="/f34-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]) {
     --br-location-art: var(--br-location-karakura-art);
-    --br-location-art-y: 100%;
-    --br-location-art-width: 65%;
-    --br-location-art-size: 85% auto;
-    --br-location-art-mask: linear-gradient(90deg, transparent 0%, var(--br-ink) 77%);
+    --br-location-art-y: 75%;
+    --br-location-art-size: 62% auto;
 }
 
 .br-forum-dossier:has(.br-forum-path a[href^="/f102-"]),
@@ -2305,10 +2303,9 @@ a[href*="mode=newtopic"]:focus-visible {
 .br-forum-dossier:has(.br-forum-path a[href^="/f48-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f48-"]) {
     --br-location-art: var(--br-location-external-art);
-    --br-location-art-width: 48%;
-    --br-location-art-y: 50%;
-    --br-location-art-size: auto 150%;
-    --br-location-art-mask: linear-gradient(90deg, transparent 0%, var(--br-ink) 35%);
+    --br-location-art-y: 35%;
+    --br-location-art-size: 62% auto;
+    --br-location-art-mask: linear-gradient(90deg, transparent 38%, var(--br-ink) 65%);
 }
 
 #main .br-category:has(a.forumtitle[href^="/f34-"]) .br-category-bar .header::before {
@@ -2334,8 +2331,7 @@ a[href*="mode=newtopic"]:focus-visible {
     content: "";
     position: absolute;
     inset: 0;
-    left: auto;
-    width: var(--br-location-art-width, 100%);
+    width: 100%;
     background-image: var(--br-location-art);
     background-position: right var(--br-location-art-y, 58%);
     background-size: var(--br-location-art-size, cover);
@@ -2371,8 +2367,7 @@ a[href*="mode=newtopic"]:focus-visible {
     content: "";
     position: absolute;
     inset: 0;
-    left: auto;
-    width: var(--br-location-art-width, 100%);
+    width: 100%;
     height: auto;
     z-index: 0;
     background: var(--br-location-art) right var(--br-location-art-y, 58%) / var(--br-location-art-size, cover) no-repeat;
