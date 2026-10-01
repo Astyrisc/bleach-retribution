@@ -9,7 +9,8 @@
    - Between Worlds artwork loaded in the user screenshot.
    - Between Worlds shares the World of the Living hover divider treatment.
    - Garganta artwork reduced from 70% to 56% width; container dimensions preserved.
-   - Revised Garganta crop awaits screenshot review.
+   - Garganta artwork top-aligned to reveal the stepped opening; 56% width retained.
+   - Top-aligned Garganta crop awaits screenshot review.
    - World of the Living category header artwork added.
    - Karakura Town and Naruki City row/header artwork mapped by forum ID.
    - Karakura homepage row gains a masked ink background and hover fade.
@@ -2319,7 +2320,7 @@ a[href*="mode=newtopic"]:focus-visible {
 .br-forum-dossier:has(.br-forum-path a[href^="/f85-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f85-"]) {
     --br-location-art: var(--br-location-garganta-art);
-    --br-location-art-y: 50%;
+    --br-location-art-y: 0%;
     --br-location-art-size: 56% auto;
     --br-location-art-filter: none;
 }
