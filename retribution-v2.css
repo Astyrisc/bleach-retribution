@@ -4,6 +4,7 @@
    LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
 
    LATEST UPDATE // OCTOBER 1, 2026
+   - Senzaikyu f44 gains right-composed monochrome tower artwork in row and dossier; 40% width, 28% vertical framing, fade reaches full visibility at 84% to retain tower; shared red hover border; screenshot review pending.
    - Shinâ€™o Academy f76 gains monochrome lecture-hall artwork in row and dossier; 40% width, 24% vertical framing favors chalkboard and lectern; shared fade and red hover border; screenshot review pending.
    - Central 46 Chambers f87 gains approved monochrome tribunal artwork in row and dossier; 40% width, 18% vertical framing favors numbered tiers; modest brightness lift and shared red hover border; screenshot review pending.
    - Gotei 13 Division Barracks f50 and Seireitei Estates f89 gain monochrome row and dossier artwork through shared fade and hover treatments; 40% width, tower/garden framing; screenshot review pending.
@@ -181,6 +182,7 @@
     --br-location-between-worlds-art: url("https://astyrisc.github.io/bleach-retribution/between-worlds-ink.png");
     --br-location-soul-header-art: url("https://astyrisc.github.io/bleach-retribution/soul-society-header-ink.png");
     --br-location-shadow-header-art: url("https://astyrisc.github.io/bleach-retribution/schatten-bereich-header-ink.png");
+    --br-location-senzaikyu-art: url("https://astyrisc.github.io/bleach-retribution/senzaikyu-ink.png");
     --br-location-academy-art: url("https://astyrisc.github.io/bleach-retribution/shino-academy-ink.png");
     --br-location-central-46-art: url("https://astyrisc.github.io/bleach-retribution/central-46-chambers-ink.png");
     --br-location-barracks-art: url("https://astyrisc.github.io/bleach-retribution/gotei-13-barracks-ink.png");
@@ -2508,6 +2510,17 @@ a[href*="mode=newtopic"]:focus-visible {
     --br-location-row-hover-opacity: .29;
 }
 
+.br-forum-dossier:has(.br-forum-path a[href^="/f44-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f44-"]) {
+    --br-location-art: var(--br-location-senzaikyu-art);
+    --br-location-art-y: 28%;
+    --br-location-art-size: 40% auto;
+    --br-location-art-filter: none;
+    --br-location-art-mask: linear-gradient(90deg, transparent 60%, var(--br-ink) 84%);
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
 .br-forum-dossier:has(.br-forum-path a[href^="/f76-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f76-"]) {
     --br-location-art: var(--br-location-academy-art);
@@ -2733,7 +2746,7 @@ a[href*="mode=newtopic"]:focus-visible {
     z-index: 1;
 }
 
-.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"]))::before {
+.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"], [href^="/f44-"]))::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -2750,26 +2763,26 @@ a[href*="mode=newtopic"]:focus-visible {
     pointer-events: none;
 }
 
-.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"])) .br-forum-controls {
+.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"], [href^="/f44-"])) .br-forum-controls {
     position: relative;
     z-index: 2;
 }
 
 /* Location categories: shared dividers, preserving the final outer edge. */
-#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"])) .topiclist.forums li.row:not(:last-child) {
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"], [href^="/f44-"])) .topiclist.forums li.row:not(:last-child) {
     border-bottom-color: var(--br-location-divider) !important;
 }
 
-#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"])) .topiclist.forums li.row:not(:last-child):is(:hover, :focus-within) {
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"], [href^="/f44-"])) .topiclist.forums li.row:not(:last-child):is(:hover, :focus-within) {
     border-bottom-color: var(--br-location-divider-active) !important;
 }
 
 /* Location directory rows share one artwork treatment. */
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"])) {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"], [href^="/f44-"])) {
     isolation: isolate;
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"]))::after {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"], [href^="/f44-"]))::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -2786,18 +2799,18 @@ a[href*="mode=newtopic"]:focus-visible {
     transition: opacity var(--br-motion-standard) var(--br-ease-interface);
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"])):hover::after,
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"])):focus-within::after {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"], [href^="/f44-"])):hover::after,
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"], [href^="/f44-"])):focus-within::after {
     opacity: var(--br-location-row-hover-opacity);
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"])) dl.icon {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"], [href^="/f44-"])) dl.icon {
     position: relative;
     z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    #main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"]))::after {
+    #main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"], [href^="/f63-"], [href^="/f65-"], [href^="/f51-"], [href^="/f88-"], [href^="/f50-"], [href^="/f89-"], [href^="/f87-"], [href^="/f76-"], [href^="/f44-"]))::after {
         transition: none;
     }
 }
