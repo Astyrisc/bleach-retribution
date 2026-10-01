@@ -4,6 +4,8 @@
    LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
 
    LATEST UPDATE // SEPTEMBER 30, 2026
+   - Between Worlds category header uses its approved monochrome seam artwork.
+   - Category artwork shares one treatment with separate image tokens; visual review pending.
    - Garganta /f85 and Dangai /f54 added to shared row/header artwork.
    - New monochrome artwork retains its original polarity; city treatment preserved.
    - Between Worlds artwork loaded in the user screenshot.
@@ -140,6 +142,7 @@
     --br-location-kagamino-art: url("https://astyrisc.github.io/bleach-retribution/kagamino-city-ink.png");
     --br-location-karakura-art: url("https://astyrisc.github.io/bleach-retribution/karakura-town-ink.png");
     --br-location-garganta-art: url("https://astyrisc.github.io/bleach-retribution/garganta-ink.png");
+    --br-location-between-worlds-art: url("https://astyrisc.github.io/bleach-retribution/between-worlds-ink.png");
     --br-location-dangai-art: url("https://astyrisc.github.io/bleach-retribution/dangai-ink.png");
     --br-location-category-opacity: .17;
     --br-location-dossier-opacity: .25;
@@ -2339,11 +2342,19 @@ a[href*="mode=newtopic"]:focus-visible {
     --br-location-row-hover-opacity: .29;
 }
 
-#main .br-category:has(a.forumtitle[href^="/f34-"]) .br-category-bar .header::before {
+#main .br-category:has(a.forumtitle[href^="/f34-"]) {
+    --br-category-location-art: var(--br-location-world-art);
+}
+
+#main .br-category:has(a.forumtitle[href^="/f85-"]) {
+    --br-category-location-art: var(--br-location-between-worlds-art);
+}
+
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"])) .br-category-bar .header::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: var(--br-location-world-art);
+    background-image: var(--br-category-location-art);
     background-position: right 48%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -2353,7 +2364,7 @@ a[href*="mode=newtopic"]:focus-visible {
     pointer-events: none;
 }
 
-#main .br-category:has(a.forumtitle[href^="/f34-"]) .br-category-bar .header dl.icon {
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"])) .br-category-bar .header dl.icon {
     position: relative;
     z-index: 1;
 }
