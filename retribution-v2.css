@@ -8,8 +8,8 @@
    - Karakura Town and Naruki City row/header artwork mapped by forum ID.
    - Karakura homepage row gains a masked ink background and hover fade.
    - Location artwork URLs and opacity use shared tokens.
-   - Artwork visibility increased: rows .17, hovered rows .23, forum headers .22.
-   - White category-header artwork remains at .14; brighter art confirmed in desktop screenshot.
+   - Artwork visibility raised by three percentage points: rows .20, hover .26, headers .25.
+   - Category-header artwork raised from .14 to .17; new visibility awaits screenshot review.
    - Existing layout and subforum directory styling preserved.
    - No JavaScript changes required.
    - Header appearance confirmed in desktop screenshots.
@@ -17,7 +17,7 @@
    - Karakura row appearance confirmed in desktop screenshot.
    - Naruki artwork reduced to 62% width and bottom-aligned for rooftops.
    - Naruki rooftop crop confirmed in desktop screenshot.
-   - Karakura artwork reduced to 65% width and bottom-aligned to reveal more bridge.
+   - Karakura artwork reduced to 55% width and bottom-aligned for a wider bridge/city view.
    - Updated Karakura bridge crop awaits screenshot review.
    - World of the Living row dividers use shared charcoal/crimson tokens.
    - World of the Living divider behavior confirmed by user.
@@ -25,10 +25,10 @@
    - Kagamino uses a 75% width crop at 55% vertical position.
    - Crop raised to include sky, hills, apartments and residential rooftops; review pending.
    - External Districts /f48 uses the approved Burn the Witch ink panorama.
-   - External artwork URL verified; 48% width, 45% vertical crop.
-   - External fade starts at its 52% image boundary to remove the hard seam.
-   - Revised fade and tower framing await screenshot review.
-   - Per-location mask token reveals the clock tower beside the description.
+   - External artwork URL verified; reduced to 36% width with 45% vertical positioning.
+   - External fade now starts at its 64% image boundary and reaches full strength at 72%.
+   - Previous smooth fade confirmed in screenshot; wider tower framing awaits review.
+   - Per-location mask follows the smaller artwork to avoid reintroducing a hard seam.
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -130,10 +130,10 @@
     --br-location-external-art: url("https://astyrisc.github.io/bleach-retribution/external-districts-ink.png");
     --br-location-kagamino-art: url("https://astyrisc.github.io/bleach-retribution/kagamino-city-ink.png");
     --br-location-karakura-art: url("https://astyrisc.github.io/bleach-retribution/karakura-town-ink.png");
-    --br-location-category-opacity: .14;
-    --br-location-dossier-opacity: .22;
-    --br-location-row-opacity: .17;
-    --br-location-row-hover-opacity: .23;
+    --br-location-category-opacity: .17;
+    --br-location-dossier-opacity: .25;
+    --br-location-row-opacity: .20;
+    --br-location-row-hover-opacity: .26;
     --br-location-divider: var(--br-border2);
     --br-location-divider-active: var(--br-blood);
     --br-post-rail: 290px;
@@ -2283,7 +2283,7 @@ a[href*="mode=newtopic"]:focus-visible {
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]) {
     --br-location-art: var(--br-location-karakura-art);
     --br-location-art-y: 100%;
-    --br-location-art-size: 65% auto;
+    --br-location-art-size: 55% auto;
 }
 
 .br-forum-dossier:has(.br-forum-path a[href^="/f102-"]),
@@ -2304,8 +2304,8 @@ a[href*="mode=newtopic"]:focus-visible {
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f48-"]) {
     --br-location-art: var(--br-location-external-art);
     --br-location-art-y: 45%;
-    --br-location-art-size: 48% auto;
-    --br-location-art-mask: linear-gradient(90deg, transparent 52%, var(--br-ink) 66%);
+    --br-location-art-size: 36% auto;
+    --br-location-art-mask: linear-gradient(90deg, transparent 64%, var(--br-ink) 72%);
 }
 
 #main .br-category:has(a.forumtitle[href^="/f34-"]) .br-category-bar .header::before {
