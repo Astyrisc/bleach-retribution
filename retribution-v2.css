@@ -4,7 +4,7 @@
    LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
 
    LATEST UPDATE // SEPTEMBER 30, 2026
-   - Las Noches /f31 added; dome/tower framing at 44% width and 42% vertical position, review pending.
+   - Las Noches /f31 artwork increased to 52% width at 42% vertical position; fade starts at 48%, row dimensions preserved; review pending.
    - White Sand Desert horizon/fade and Hueco Mundo crescent confirmed in screenshot.
    - White Desert /f32 mapped to shared row and forum-header artwork.
    - White Sand Desert row/forum dossier pulls back to 44% width at 60% vertical position to reveal the night horizon.
@@ -2367,9 +2367,9 @@ a[href*="mode=newtopic"]:focus-visible {
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f31-"]) {
     --br-location-art: var(--br-location-las-noches-art);
     --br-location-art-y: 42%;
-    --br-location-art-size: 44% auto;
+    --br-location-art-size: 52% auto;
     --br-location-art-filter: none;
-    --br-location-art-mask: linear-gradient(90deg, transparent 56%, var(--br-ink) 90%);
+    --br-location-art-mask: linear-gradient(90deg, transparent 48%, var(--br-ink) 90%);
     --br-location-row-opacity: .23;
     --br-location-row-hover-opacity: .29;
 }
