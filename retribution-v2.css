@@ -4,7 +4,7 @@
    LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
 
    LATEST UPDATE // OCTOBER 1, 2026
-   - Sternritter Quarters f65 gains monochrome room artwork in row and dossier; 40% width, 62% vertical framing; screenshot review pending.
+   - Sternritter Quarters f65 gains monochrome room artwork in row and dossier; 40% width retained; image shifted downward with 32% vertical alignment, brighter resting opacity and modest brightness adjustment; revised screenshot review pending.
    - Silbern Outskirts f63 gains approved frozen-city artwork in row and dossier; 44% width, 58% vertical framing; user approved rooftop-focused crop.
    - Daylight Dome f64 gains monochrome pillar landscape in row and dossier; 44% width, 70% vertical framing; screenshot review pending.
    - Karakura Town subforum artwork framing confirmed in user screenshot.
@@ -74,7 +74,7 @@
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
-   - Topic portrait preserved from the recovered September 17â€“19 post lineage.
+   - Topic portrait preserved from the recovered September 17Ã¢â‚¬â€œ19 post lineage.
    - Post-header positioning correction prevents the header layer from occluding the upper portrait.
    - Character dossier/content rail added as canonical post architecture.
    - Later verified desktop systems consolidated forward.
@@ -1185,7 +1185,7 @@ hr {
 }
 
 #fa_ticker_container:before {
-    content: "è­¦" !important;
+    content: "Ã¨Â­Â¦" !important;
     position: absolute !important;
     left: 13px !important;
     top: 50% !important;
@@ -1554,7 +1554,7 @@ hr {
 }
 
 .br-category-bar .btn-collapse i[class*="minus"]::before {
-    content: "−" !important;
+    content: "âˆ’" !important;
 }
 
 .br-category-bar .btn-collapse i[class*="plus"]::before {
@@ -2500,12 +2500,12 @@ a[href*="mode=newtopic"]:focus-visible {
 .br-forum-dossier:has(.br-forum-path a[href^="/f65-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f65-"]) {
     --br-location-art: var(--br-location-quarters-art);
-    --br-location-art-y: 62%;
+    --br-location-art-y: 32%;
     --br-location-art-size: 40% auto;
-    --br-location-art-filter: none;
+    --br-location-art-filter: brightness(1.15);
     --br-location-art-mask: linear-gradient(90deg, transparent 60%, var(--br-ink) 92%);
-    --br-location-row-opacity: .23;
-    --br-location-row-hover-opacity: .29;
+    --br-location-row-opacity: .28;
+    --br-location-row-hover-opacity: .33;
 }
 
 .br-forum-dossier:has(.br-forum-path a[href^="/f63-"]),
@@ -2852,7 +2852,7 @@ a[href*="mode=newtopic"]:focus-visible {
    - Character dossier: 290px
    - Intentional gutter: 30px
    - Content offset: 320px
-   - Canonical portrait: exact 250 Ã— 400 presentation
+   - Canonical portrait: exact 250 Ãƒâ€” 400 presentation
 
    Forumotion positions the profile rail independently from
    the post body. The permanent content offset prevents long
@@ -2944,9 +2944,9 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 
 /* 08.54 // CANONICAL CHARACTER PORTRAIT
-   RETRIBUTION STANDARD // 250 Ã— 400
+   RETRIBUTION STANDARD // 250 Ãƒâ€” 400
 
-   Recovered from the September 17â€“19 approved post lineage.
+   Recovered from the September 17Ã¢â‚¬â€œ19 approved post lineage.
    Keep the fixed dossier presentation while preserving the complete
    uploaded composition. No crop. No circle. */
 .br-post .br-post-profile .postprofile-avatar {
@@ -3077,7 +3077,7 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 .br-post .br-post-profile .postprofile-info .label span { color: inherit !important; }
 .br-post .br-post-profile .postprofile-info .label::before {
-    content: "Â·";
+    content: "Ã‚Â·";
     margin-right: 5px;
     color: var(--br-orange);
     font-size: 9px;
@@ -4766,7 +4766,7 @@ html body .br-footer-admin a:hover {
 }
 
 .br-post .vote > a.ion-minus-circled::before {
-    content: "âˆ’";
+    content: "Ã¢Ë†â€™";
 
     font-family: "JetBrains Mono", monospace !important;
     font-size: 11px !important;
@@ -5101,7 +5101,7 @@ html body .br-footer-admin a:hover {
    --------------------------------------------------------- */
 
 .br-post .fa_like_div .rep-button.fa_dislike::before {
-    content: "âˆ’";
+    content: "Ã¢Ë†â€™";
 
     font-family: "JetBrains Mono", monospace;
     font-size: 10px;
@@ -5687,7 +5687,7 @@ html body .br-footer-admin a:hover {
 }
 
 .portal > .column:first-child .module-footer::after {
-    content: "â†’";
+    content: "Ã¢â€ â€™";
     font-size: 8px;
     color: var(--br-red);
 }
@@ -6587,7 +6587,7 @@ dl.icon > dd.dterm::before,
 }
 
 #main .br-category .br-subforums a.postlink::before {
-    content: "â€º";
+    content: "Ã¢â‚¬Âº";
     flex: 0 0 auto;
     margin-right: 6px;
     color: var(--br-red);
