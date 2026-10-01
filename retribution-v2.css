@@ -6,7 +6,10 @@
    LATEST UPDATE // SEPTEMBER 30, 2026
    - Garganta /f85 and Dangai /f54 added to shared row/header artwork.
    - New monochrome artwork retains its original polarity; city treatment preserved.
-   - Between Worlds artwork crops await browser screenshot review.
+   - Between Worlds artwork loaded in the user screenshot.
+   - Between Worlds shares the World of the Living hover divider treatment.
+   - Garganta artwork reduced from 70% to 56% width; container dimensions preserved.
+   - Revised Garganta crop awaits screenshot review.
    - World of the Living category header artwork added.
    - Karakura Town and Naruki City row/header artwork mapped by forum ID.
    - Karakura homepage row gains a masked ink background and hover fade.
@@ -2317,7 +2320,7 @@ a[href*="mode=newtopic"]:focus-visible {
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f85-"]) {
     --br-location-art: var(--br-location-garganta-art);
     --br-location-art-y: 50%;
-    --br-location-art-size: 70% auto;
+    --br-location-art-size: 56% auto;
     --br-location-art-filter: none;
 }
 
@@ -2370,12 +2373,12 @@ a[href*="mode=newtopic"]:focus-visible {
     z-index: 2;
 }
 
-/* World of the Living: thin separators, preserving the final outer edge. */
-#main .br-category:has(a.forumtitle[href^="/f34-"]) .topiclist.forums li.row:not(:last-child) {
+/* Location categories: shared dividers, preserving the final outer edge. */
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"])) .topiclist.forums li.row:not(:last-child) {
     border-bottom-color: var(--br-location-divider) !important;
 }
 
-#main .br-category:has(a.forumtitle[href^="/f34-"]) .topiclist.forums li.row:not(:last-child):is(:hover, :focus-within) {
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"])) .topiclist.forums li.row:not(:last-child):is(:hover, :focus-within) {
     border-bottom-color: var(--br-location-divider-active) !important;
 }
 
