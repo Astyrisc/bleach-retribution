@@ -1,11 +1,58 @@
 /* =========================================================
    BLEACH // RETRIBUTION
    MASTER STYLESHEET v2.0
-   RECOVERY MASTER // RELEASE CANDIDATE 08
+   LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
+
+   LATEST UPDATE // SEPTEMBER 30, 2026
+   - Forest of Menos /f33 added to shared row/dossier art; 52% width, 60% vertical crop; review pending.
+   - Las Noches /f31 artwork increased to 52% width at 42% vertical position; fade starts at 48%, row dimensions preserved; review pending.
+   - White Sand Desert horizon/fade and Hueco Mundo crescent confirmed in screenshot.
+   - White Desert /f32 mapped to shared row and forum-header artwork.
+   - White Sand Desert row/forum dossier pulls back to 44% width at 60% vertical position to reveal the night horizon.
+   - Hueco Mundo category header frames the crescent moon; monochrome polarity adapted to white bar.
+   - Desert fade begins at its 56% image edge to remove the rectangular seam.
+   - Hueco Mundo category crop shifted to 20% to bring the crescent into the bar.
+   - Desert/moon framing confirmed in desktop screenshot.
+   - Between Worlds category header uses its approved monochrome seam artwork.
+   - Category artwork shares one treatment with separate image tokens; Between Worlds confirmed in screenshot.
+   - Garganta /f85 and Dangai /f54 added to shared row/header artwork.
+   - New monochrome artwork retains its original polarity; city treatment preserved.
+   - Between Worlds artwork loaded in the user screenshot.
+   - Between Worlds shares the World of the Living hover divider treatment.
+   - Garganta artwork reduced from 70% to 56% width; container dimensions preserved.
+   - Garganta artwork top-aligned to reveal the stepped opening; 56% width retained.
+   - Top-aligned Garganta crop confirmed in desktop screenshot.
+   - Garganta and Dangai row opacity raised to .23, hover .29; headers and cities preserved.
+   - Passage brightness adjustment confirmed in desktop screenshot.
+   - World of the Living category header artwork added.
+   - Karakura Town and Naruki City row/header artwork mapped by forum ID.
+   - Karakura homepage row gains a masked ink background and hover fade.
+   - Location artwork URLs and opacity use shared tokens.
+   - Artwork visibility raised by three percentage points: rows .20, hover .26, headers .25.
+   - Category-header artwork raised from .14 to .17; new visibility awaits screenshot review.
+   - Existing layout and subforum directory styling preserved.
+   - No JavaScript changes required.
+   - Header appearance confirmed in desktop screenshots.
+   - Row artwork dimensions reset to prevent inherited divider sizing.
+   - Karakura row appearance confirmed in desktop screenshot.
+   - Naruki artwork reduced to 62% width and bottom-aligned for rooftops.
+   - Naruki rooftop crop confirmed in desktop screenshot.
+   - Karakura uses the shared full-row layer, 62% image width and 75% vertical crop.
+   - Updated Karakura bridge crop awaits screenshot review.
+   - World of the Living row dividers use shared charcoal/crimson tokens.
+   - World of the Living divider behavior confirmed by user.
+   - Kagamino City /f37 mapped to shared row/header artwork treatment.
+   - Kagamino uses a 75% width crop at 55% vertical position.
+   - Crop raised to include sky, hills, apartments and residential rooftops; review pending.
+   - External Districts /f48 uses the approved Burn the Witch ink panorama.
+   - External uses the shared full-row layer, 62% image width and 48% vertical crop.
+   - External fade starts at the 38% image edge; artwork shifted upward to reveal more of the lower building and bridge.
+   - Latest screenshot confirmed prior framing defects; full-row correction replaces that approach.
+   - Removed separate artwork widths after loaded CSS was confirmed; shared framing confirmed by user; upward External crop awaits visual review.
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
-   - Topic portrait preserved from the recovered September 17–19 post lineage.
+   - Topic portrait preserved from the recovered September 17â€“19 post lineage.
    - Post-header positioning correction prevents the header layer from occluding the upper portrait.
    - Character dossier/content rail added as canonical post architecture.
    - Later verified desktop systems consolidated forward.
@@ -15,6 +62,20 @@
    - Forum Index native Last Record avatar presentation consolidated into section 05.
    - Per-user Last Record portrait mapping removed; native avatars retained universally.
    - Section labels and one unresolved design token normalized for release review.
+   - Forum-view New Topic action rebuilt as the primary Create Record control.
+   - New Topic selector hardened against a missing custom template class.
+   - Native New Topic selector decoupled from inconsistent control wrappers.
+   - Reply action arrows harmonized with the orange New Topic icon system.
+   - Recovery-layer tokens normalized and repeated literals consolidated without intended visual change.
+   - Failed upper New Topic selector experiments removed pending a verified live-DOM solution.
+   - Legacy Portal rows promoted into a CSS Grid without changing Forumotion widget structure.
+   - Portal command identity and archive feed hierarchy consolidated from verified live-DOM patches.
+   - Portal operator portrait restored to Forumotion's native per-user avatar source.
+   - Fixed decorative operator artwork removed so account identity remains dynamic.
+   - Night City study translated into Retribution-native interface discipline.
+   - Typography, motion and readable-surface tokens expanded without changing ownership.
+   - Forum and topic dossiers gain a restrained archive-grid treatment.
+   - Keyboard focus and reduced-motion behavior standardized across primary controls.
    - profile.css and private-messages.css remain separate owners.
 
    OWNERSHIP
@@ -59,6 +120,48 @@
     --br-orange: #e06a16;
     --br-orange-soft: #f28a2a;
     --br-content: #e8e8e8;
+    --br-deep: #0d0d0d;
+    --br-row: #141414;
+    --br-line: #1d1d1d;
+    --br-control-border: #3a3a3a;
+    --br-dim: #555;
+    --br-muted: #8b8b8b;
+    --br-neutral: #d6d6d6;
+    --br-surface-black: #0b0b0b;
+    --br-surface-soft: #151515;
+    --br-surface-alt: #171717;
+    --br-border-muted: #2a2a2a;
+    --br-text-faint: #666;
+    --br-text-soft: #888;
+    --br-text-mid: #aaa;
+    --br-text-light: #d0d0d0;
+    --br-hover: #ff1744;
+    --br-readable: #dedede;
+    --br-input-text: #cfcfcf;
+    --br-editor-paper: #f2f2f0;
+    --br-font-display: "Oswald",Arial,sans-serif;
+    --br-font-body: "Inter",Arial,sans-serif;
+    --br-font-mono: "JetBrains Mono",monospace;
+    --br-motion-fast: 150ms;
+    --br-motion-standard: 220ms;
+    --br-ease-interface: cubic-bezier(.4,0,.2,1);
+    --br-location-world-art: url("https://astyrisc.github.io/bleach-retribution/world-of-the-living-ink.png");
+    --br-location-naruki-art: url("https://astyrisc.github.io/bleach-retribution/naruki-city-ink.png");
+    --br-location-external-art: url("https://astyrisc.github.io/bleach-retribution/external-districts-ink.png");
+    --br-location-kagamino-art: url("https://astyrisc.github.io/bleach-retribution/kagamino-city-ink.png");
+    --br-location-karakura-art: url("https://astyrisc.github.io/bleach-retribution/karakura-town-ink.png");
+    --br-location-garganta-art: url("https://astyrisc.github.io/bleach-retribution/garganta-ink.png");
+    --br-location-between-worlds-art: url("https://astyrisc.github.io/bleach-retribution/between-worlds-ink.png");
+    --br-location-menos-art: url("https://astyrisc.github.io/bleach-retribution/forest-of-menos-ink.png");
+    --br-location-las-noches-art: url("https://astyrisc.github.io/bleach-retribution/las-noches-ink.png");
+    --br-location-white-desert-art: url("https://astyrisc.github.io/bleach-retribution/white-desert-ink.png");
+    --br-location-dangai-art: url("https://astyrisc.github.io/bleach-retribution/dangai-ink.png");
+    --br-location-category-opacity: .17;
+    --br-location-dossier-opacity: .25;
+    --br-location-row-opacity: .20;
+    --br-location-row-hover-opacity: .26;
+    --br-location-divider: var(--br-border2);
+    --br-location-divider-active: var(--br-blood);
     --br-post-rail: 290px;
     --br-post-gutter: 30px;
     --br-post-offset: 320px;
@@ -69,15 +172,15 @@ html,body {
 }
 
 body {
-    color: #e8e8e8;
-    font-family: "Inter",Arial,sans-serif;
+    color: var(--br-content);
+    font-family: var(--br-font-body);
     background-color: var(--br-void);
     background-image: radial-gradient(circle at 20% 10%,rgba(255,255,255,.018),transparent 24%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.012),transparent 30%);
 }
 
 #wrap {
     background: var(--br-ink);
-    color: #e8e8e8;
+    color: var(--br-content);
 }
 
 a {
@@ -90,7 +193,7 @@ a:visited {
 }
 
 a:hover {
-    color: #ff1744;
+    color: var(--br-hover);
     text-decoration: none;
 }
 
@@ -99,13 +202,23 @@ a:active {
 }
 
 h1,h2,h3,h4,h5,h6 {
-    font-family: "Oswald",Arial,sans-serif;
+    font-family: var(--br-font-display);
     color: var(--br-paper);
 }
 
 ::selection {
     background: var(--br-red);
     color: var(--br-white);
+}
+
+/* One visible keyboard language across native and rebuilt controls. */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible {
+    outline: 1px solid var(--br-red);
+    outline-offset: 3px;
+}
+
+:where(a,button,input,select,textarea,[tabindex]):focus:not(:focus-visible) {
+    outline: 0;
 }
 
 .panel,.module {
@@ -146,7 +259,7 @@ blockquote {
 input,textarea,select {
     background: var(--br-paper);
     color: var(--br-ink);
-    border: 1px solid #3a3a3a;
+    border: 1px solid var(--br-control-border);
     border-radius: 0;
 }
 
@@ -192,7 +305,7 @@ hr {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #3a3a3a;
+    background: var(--br-control-border);
     border: 2px solid var(--br-void);
 }
 
@@ -307,6 +420,9 @@ hr {
 }
 
 .br-masthead-title {
+    display: flex;
+    align-items: flex-end;
+
     font-family: "Oswald", Arial, sans-serif;
     font-size: clamp(44px, 5.5vw, 76px);
     font-weight: 700;
@@ -314,6 +430,48 @@ hr {
     letter-spacing: -2px;
 
     color: var(--br-paper);
+}
+
+/* RETRIBUTION insignia:
+   a geometric R with a large lunar counter inspired by BLEACH's
+   severe monochrome title-card language.
+   The mark inherits the title scale, so the masthead remains responsive. */
+.br-retribution-mark {
+    position: relative;
+
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+
+    width: .82em;
+    height: 1.04em;
+    margin: 0 -.01em -.07em 0;
+
+    filter: drop-shadow(0 0 7px rgba(255,255,255,.05));
+}
+
+.br-retribution-mark-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.br-retribution-mark-r {
+    fill: currentColor;
+}
+
+.br-retribution-mark-moon {
+    fill: currentColor;
+}
+
+.br-masthead-word-rest {
+    display: inline-block;
+    margin-left: -.025em;
+    letter-spacing: -.045em;
+    transform: scaleX(.96);
+    transform-origin: left bottom;
 }
 
 .br-masthead-subtitle {
@@ -421,7 +579,7 @@ hr {
 
     margin: -28px auto 28px !important;
 
-    background: #0b0b0b;
+    background: var(--br-surface-black);
 
     border-left: 1px solid var(--br-panel);
     border-right: 1px solid var(--br-panel);
@@ -458,7 +616,7 @@ hr {
     font-size: 7px !important;
     letter-spacing: 2.1px !important;
 
-    color: #555;
+    color: var(--br-dim);
 }
 
 .br-nav-links {
@@ -469,9 +627,9 @@ hr {
     background:
         linear-gradient(
             90deg,
-            #0b0b0b 0%,
+            var(--br-surface-black) 0%,
             var(--br-ink) 65%,
-            #0b0b0b 100%
+            var(--br-surface-black) 100%
         );
 
     border-bottom: 2px solid var(--br-red) !important;
@@ -521,7 +679,7 @@ hr {
     letter-spacing: .9px !important;
     text-transform: uppercase;
 
-    color: #d6d6d6 !important;
+    color: var(--br-neutral) !important;
 
     transition: .15s;
 }
@@ -641,7 +799,7 @@ hr {
     letter-spacing: .9px !important;
     text-transform: uppercase;
 
-    color: #d6d6d6 !important;
+    color: var(--br-neutral) !important;
 
     background: none !important;
     border: 0 !important;
@@ -686,7 +844,7 @@ hr {
 .module {
     position: relative;
     background: var(--br-ink) !important;
-    border: 1px solid #2a2a2a !important;
+    border: 1px solid var(--br-border-muted) !important;
     border-left: 3px solid var(--br-red) !important;
     border-radius: 0 !important;
     box-shadow: none !important;
@@ -697,7 +855,7 @@ hr {
     position: relative;
     margin: 0 !important;
     padding: 12px 14px 11px 34px !important;
-    background: linear-gradient(90deg,var(--br-ink),#151515) !important;
+    background: linear-gradient(90deg,var(--br-ink),var(--br-surface-soft)) !important;
     border: 0 !important;
     border-bottom: 1px solid var(--br-border) !important;
     font-family: "Oswald",Arial,sans-serif !important;
@@ -745,7 +903,7 @@ hr {
 }
 
 .module a:hover {
-    color: #ff1744 !important;
+    color: var(--br-hover) !important;
 }
 
 .module strong,.module b {
@@ -989,7 +1147,7 @@ hr {
 }
 
 #fa_ticker_container:before {
-    content: "警" !important;
+    content: "è­¦" !important;
     position: absolute !important;
     left: 13px !important;
     top: 50% !important;
@@ -1218,22 +1376,22 @@ hr {
    Category headers and forum-record rows.
    ========================================================= */
 
-#main-content .br-category {
+#main .br-category {
     margin: 0 0 20px !important;
     background: var(--br-ink) !important;
-    border: 1px solid #2a2a2a !important;
+    border: 1px solid var(--br-border-muted) !important;
     border-left: 3px solid var(--br-red) !important;
     border-radius: 0 !important;
     box-shadow: none !important;
     overflow: hidden !important;
 }
 
-#main-content .br-category-bar {
+#main .br-category-bar {
     margin: 0 !important;
     background: #f2f2f0 !important;
 }
 
-#main-content .br-category-bar .header {
+#main .br-category-bar .header {
     position: relative !important;
     box-sizing: border-box !important;
     min-height: 58px !important;
@@ -1244,12 +1402,12 @@ hr {
     overflow: hidden !important;
 }
 
-#main-content .br-category-bar .header dl.icon {
+#main .br-category-bar .header dl.icon {
     min-height: 58px !important;
     background: none !important;
 }
 
-#main-content .br-category-bar .dterm {
+#main .br-category-bar .dterm {
     box-sizing: border-box !important;
     display: flex !important;
     align-items: center !important;
@@ -1293,7 +1451,7 @@ hr {
     justify-content: center !important;
     background: none !important;
     border-left: 1px solid rgba(0,0,0,.08) !important;
-    color: #555 !important;
+    color: var(--br-dim) !important;
 }
 
 .br-column-label {
@@ -1301,7 +1459,7 @@ hr {
     font-size: 7px;
     font-weight: 700;
     letter-spacing: 1.25px;
-    color: #666;
+    color: var(--br-text-faint);
 }
 
 .br-category-system {
@@ -1335,30 +1493,30 @@ hr {
     color: var(--br-ink) !important;
 }
 
-#main-content .br-category .topiclist.forums {
+#main .br-category .topiclist.forums {
     counter-reset: br-forum-record;
     background: var(--br-ink) !important;
 }
 
-#main-content .br-category .topiclist.forums li.row {
+#main .br-category .topiclist.forums li.row {
     position: relative;
     counter-increment: br-forum-record;
     min-height: 86px !important;
-    background: linear-gradient(90deg,#141414 0%,var(--br-panel) 70%,#141414 100%) !important;
+    background: linear-gradient(90deg,var(--br-row) 0%,var(--br-panel) 70%,var(--br-row) 100%) !important;
     border: 0 !important;
     border-bottom: 1px solid var(--br-border) !important;
     transition: background .18s ease;
 }
 
-#main-content .br-category .topiclist.forums li.row:last-child {
+#main .br-category .topiclist.forums li.row:last-child {
     border-bottom: 0 !important;
 }
 
-#main-content .br-category .topiclist.forums li.row:hover {
-    background: linear-gradient(90deg,var(--br-panel) 0%,#1d1d1d 72%,var(--br-panel) 100%) !important;
+#main .br-category .topiclist.forums li.row:hover {
+    background: linear-gradient(90deg,var(--br-panel) 0%,var(--br-line) 72%,var(--br-panel) 100%) !important;
 }
 
-#main-content .br-category .topiclist.forums li.row:before {
+#main .br-category .topiclist.forums li.row:before {
     content: "";
     position: absolute;
     left: 0;
@@ -1369,11 +1527,11 @@ hr {
     transition: background .18s ease;
 }
 
-#main-content .br-category .topiclist.forums li.row:hover:before {
+#main .br-category .topiclist.forums li.row:hover:before {
     background: var(--br-pink);
 }
 
-#main-content .br-category .topiclist.forums li.row:after {
+#main .br-category .topiclist.forums li.row:after {
     content: "";
     position: absolute;
     left: 64px;
@@ -1384,18 +1542,18 @@ hr {
     opacity: .35;
 }
 
-#main-content .br-category .topiclist.forums li.row dl.icon {
+#main .br-category .topiclist.forums li.row dl.icon {
     background-image: none !important;
 }
 
-#main-content .br-category .topiclist.forums li.row dl.icon>dd.dterm {
+#main .br-category .topiclist.forums li.row dl.icon>dd.dterm {
     position: relative !important;
     box-sizing: border-box !important;
     padding-left: 64px !important;
     background-image: none !important;
 }
 
-#main-content .br-category .topiclist.forums li.row dl.icon>dd.dterm:before {
+#main .br-category .topiclist.forums li.row dl.icon>dd.dterm:before {
     content: counter(br-forum-record,decimal-leading-zero);
     position: absolute;
     left: 17px;
@@ -1410,11 +1568,11 @@ hr {
     transition: color .18s ease;
 }
 
-#main-content .br-category .topiclist.forums li.row:hover dl.icon>dd.dterm:before {
+#main .br-category .topiclist.forums li.row:hover dl.icon>dd.dterm:before {
     color: var(--br-red);
 }
 
-#main-content .br-category .topiclist.forums li.row dl.icon>dd.dterm:after {
+#main .br-category .topiclist.forums li.row dl.icon>dd.dterm:after {
     content: "";
     position: absolute;
     left: 48px;
@@ -1424,13 +1582,13 @@ hr {
     background: var(--br-border);
 }
 
-#main-content .br-category .topiclist.forums h3.hierarchy {
+#main .br-category .topiclist.forums h3.hierarchy {
     margin: 0 0 5px !important;
     padding: 0 !important;
     line-height: 1 !important;
 }
 
-#main-content .br-category .topiclist.forums .forumtitle {
+#main .br-category .topiclist.forums .forumtitle {
     display: block !important;
     width: fit-content;
     margin: 0 !important;
@@ -1444,68 +1602,68 @@ hr {
     color: var(--br-paper) !important;
 }
 
-#main-content .br-category .topiclist.forums .forumtitle:hover {
+#main .br-category .topiclist.forums .forumtitle:hover {
     color: var(--br-pink) !important;
 }
 
-#main-content .br-category .topiclist.forums dd.dterm {
+#main .br-category .topiclist.forums dd.dterm {
     font-family: "Inter",Arial,sans-serif !important;
     font-size: 11px !important;
     line-height: 1.5 !important;
     color: #afafaf !important;
 }
 
-#main-content .br-category .topiclist.forums dd.topics,#main-content .br-category .topiclist.forums dd.posts {
+#main .br-category .topiclist.forums dd.topics,#main .br-category .topiclist.forums dd.posts {
     font-family: "JetBrains Mono",monospace !important;
     font-size: 11px !important;
     font-weight: 500 !important;
-    color: #d0d0d0 !important;
+    color: var(--br-text-light) !important;
     border-left: 1px solid var(--br-ash) !important;
 }
 
-#main-content .br-category .topiclist.forums dd.topics:after {
+#main .br-category .topiclist.forums dd.topics:after {
     content: "TOPICS";
     display: block;
     margin-top: 3px;
     font-size: 6px;
     letter-spacing: 1px;
-    color: #666;
+    color: var(--br-text-faint);
 }
 
-#main-content .br-category .topiclist.forums dd.posts:after {
+#main .br-category .topiclist.forums dd.posts:after {
     content: "POSTS";
     display: block;
     margin-top: 3px;
     font-size: 6px;
     letter-spacing: 1px;
-    color: #666;
+    color: var(--br-text-faint);
 }
 
-#main-content .br-category .topiclist.forums dd.lastpost {
+#main .br-category .topiclist.forums dd.lastpost {
     padding-left: 18px !important;
     border-left: 1px solid var(--br-border) !important;
     font-family: "Inter",Arial,sans-serif !important;
     font-size: 10px !important;
-    color: #888 !important;
+    color: var(--br-text-soft) !important;
 }
 
-#main-content .br-category .topiclist.forums dd.lastpost:before {
+#main .br-category .topiclist.forums dd.lastpost:before {
     content: "LAST RECORD";
     display: block;
     margin-bottom: 5px;
     font-family: "JetBrains Mono",monospace;
     font-size: 6px;
     letter-spacing: 1.2px;
-    color: #555;
+    color: var(--br-dim);
 }
 
-#main-content .br-category .topiclist.forums dd.lastpost a {
+#main .br-category .topiclist.forums dd.lastpost a {
     color: var(--br-pink) !important;
     font-weight: 500;
 }
 
-#main-content .br-category .topiclist.forums dd.lastpost a:hover {
-    color: #ff1744 !important;
+#main .br-category .topiclist.forums dd.lastpost a:hover {
+    color: var(--br-hover) !important;
 }
 
 @media (max-width:900px) {
@@ -1521,20 +1679,20 @@ hr {
         font-size: 16px !important;
     }
 
-    #main-content .br-category .topiclist.forums li.row dl.icon>dd.dterm {
+    #main .br-category .topiclist.forums li.row dl.icon>dd.dterm {
         padding-left: 52px !important;
     }
 
-    #main-content .br-category .topiclist.forums li.row dl.icon>dd.dterm:before {
+    #main .br-category .topiclist.forums li.row dl.icon>dd.dterm:before {
         left: 13px;
         font-size: 18px;
     }
 
-    #main-content .br-category .topiclist.forums li.row dl.icon>dd.dterm:after {
+    #main .br-category .topiclist.forums li.row dl.icon>dd.dterm:after {
         left: 40px;
     }
 
-    #main-content .br-category .topiclist.forums li.row:after {
+    #main .br-category .topiclist.forums li.row:after {
         left: 52px;
     }
 }
@@ -1547,7 +1705,7 @@ hr {
    No per-user portrait registry. No DOM mutation JavaScript.
    --------------------------------------------------------- */
 
-#main-content .br-category .lastpost-avatar {
+#main .br-category .lastpost-avatar {
     position: relative;
     display: block !important;
     flex: 0 0 46px;
@@ -1563,7 +1721,7 @@ hr {
     overflow: hidden !important;
 }
 
-#main-content .br-category .lastpost-avatar img {
+#main .br-category .lastpost-avatar img {
     display: block !important;
     width: 100% !important;
     height: 100% !important;
@@ -1578,7 +1736,7 @@ hr {
     box-shadow: none !important;
 }
 
-#main-content .br-category .lastpost-avatar::after {
+#main .br-category .lastpost-avatar::after {
     content: "";
     position: absolute;
     top: 4px;
@@ -1599,7 +1757,7 @@ hr {
 .br-topic-section {
     margin: 0 0 18px !important;
     background: var(--br-ink) !important;
-    border: 1px solid #2a2a2a !important;
+    border: 1px solid var(--br-border-muted) !important;
     border-left: 3px solid var(--br-red) !important;
     border-radius: 0 !important;
     overflow: hidden !important;
@@ -1650,7 +1808,7 @@ hr {
     justify-content: center !important;
     background: none !important;
     border-left: 1px solid rgba(0,0,0,.08) !important;
-    color: #666 !important;
+    color: var(--br-text-faint) !important;
     font-family: "JetBrains Mono",monospace !important;
     font-size: 8px !important;
     letter-spacing: 1px !important;
@@ -1674,7 +1832,7 @@ hr {
     position: relative;
     counter-increment: br-topic-record;
     min-height: 74px !important;
-    background: linear-gradient(90deg,#141414 0%,var(--br-panel) 70%,#141414 100%) !important;
+    background: linear-gradient(90deg,var(--br-row) 0%,var(--br-panel) 70%,var(--br-row) 100%) !important;
     border-bottom: 1px solid var(--br-border) !important;
     transition: background .18s ease;
 }
@@ -1684,7 +1842,7 @@ hr {
 }
 
 .br-topic-row:hover {
-    background: linear-gradient(90deg,var(--br-panel) 0%,#1d1d1d 72%,var(--br-panel) 100%) !important;
+    background: linear-gradient(90deg,var(--br-panel) 0%,var(--br-line) 72%,var(--br-panel) 100%) !important;
 }
 
 .br-topic-row:before {
@@ -1766,7 +1924,7 @@ hr {
     margin-top: 4px !important;
     font-family: "Inter",Arial,sans-serif !important;
     font-size: 10px !important;
-    color: #888 !important;
+    color: var(--br-text-soft) !important;
 }
 
 .br-topic-title-wrap {
@@ -1784,7 +1942,7 @@ hr {
     font-family: "JetBrains Mono",monospace !important;
     font-size: 11px !important;
     font-weight: 500 !important;
-    color: #d0d0d0 !important;
+    color: var(--br-text-light) !important;
     border-left: 1px solid var(--br-ash) !important;
 }
 
@@ -1793,7 +1951,7 @@ hr {
     margin-top: 3px;
     font-size: 6px !important;
     letter-spacing: 1px;
-    color: #666 !important;
+    color: var(--br-text-faint) !important;
 }
 
 .br-topic-last {
@@ -1801,7 +1959,7 @@ hr {
     border-left: 1px solid var(--br-border) !important;
     font-family: "Inter",Arial,sans-serif !important;
     font-size: 10px !important;
-    color: #888 !important;
+    color: var(--br-text-soft) !important;
 }
 
 .br-topic-last:before {
@@ -1811,7 +1969,7 @@ hr {
     font-family: "JetBrains Mono",monospace;
     font-size: 6px;
     letter-spacing: 1.2px;
-    color: #555;
+    color: var(--br-dim);
 }
 
 .br-topic-last a {
@@ -1819,7 +1977,7 @@ hr {
 }
 
 .br-topic-last a:hover {
-    color: #ff1744 !important;
+    color: var(--br-hover) !important;
 }
 
 @media (max-width:900px) {
@@ -1856,7 +2014,9 @@ hr {
     gap: 24px;
     margin: 0 0 12px !important;
     padding: 22px 22px 18px !important;
-    background: linear-gradient(110deg,#0b0b0b 0%,var(--br-ink) 68%,#171717 68%,var(--br-ink) 100%);
+    background:
+        repeating-linear-gradient(90deg,transparent 0 99px,rgba(255,255,255,.012) 100px),
+        linear-gradient(110deg,var(--br-surface-black) 0%,var(--br-ink) 68%,var(--br-surface-alt) 68%,var(--br-ink) 100%);
     border: 1px solid var(--br-ash);
     border-left: 3px solid var(--br-red);
     border-bottom: 1px solid var(--br-border);
@@ -1880,7 +2040,7 @@ hr {
 
 .br-forum-kicker {
     margin-bottom: 8px;
-    font-family: "JetBrains Mono",monospace;
+    font-family: var(--br-font-mono);
     font-size: 7px;
     font-weight: 700;
     letter-spacing: 1.8px;
@@ -1899,7 +2059,7 @@ hr {
 }
 
 .br-forum-title a {
-    font-family: "Oswald",Arial,sans-serif !important;
+    font-family: var(--br-font-display) !important;
     font-size: 42px !important;
     font-weight: 700 !important;
     letter-spacing: -1px !important;
@@ -1913,14 +2073,14 @@ hr {
 
 .br-forum-path {
     margin-top: 9px !important;
-    font-family: "JetBrains Mono",monospace !important;
+    font-family: var(--br-font-mono) !important;
     font-size: 8px !important;
     letter-spacing: .5px !important;
-    color: #666 !important;
+    color: var(--br-text-faint) !important;
 }
 
 .br-forum-path a {
-    color: #888 !important;
+    color: var(--br-text-soft) !important;
 }
 
 .br-forum-path a:hover {
@@ -1946,7 +2106,7 @@ hr {
     box-sizing: border-box;
     background: var(--br-ink) !important;
     border: 1px solid var(--br-border) !important;
-    color: #cfcfcf !important;
+    color: var(--br-input-text) !important;
 }
 
 .br-forum-search button {
@@ -1963,24 +2123,96 @@ hr {
     background: var(--br-red) !important;
 }
 
-.br-forum-action {
-    min-height: 34px !important;
+.br-forum-action,
+a[href*="mode=newtopic"] {
+    position: relative;
+    flex: 0 0 auto;
+    box-sizing: border-box;
     display: inline-flex !important;
-    align-items: center;
-    background: var(--br-red) !important;
-    border: 1px solid var(--br-red) !important;
+    align-items: flex-end;
+    justify-content: flex-start;
+    min-width: 168px;
+    height: 48px;
+    min-height: 48px !important;
+    margin: 0 !important;
+    padding: 20px 42px 7px 14px !important;
+    overflow: hidden;
+    background: linear-gradient(90deg,#101010 0%,#161616 100%) !important;
+    border: 1px solid var(--br-border) !important;
+    border-left: 3px solid var(--br-red) !important;
     border-radius: 0 !important;
-    font-family: "Oswald",Arial,sans-serif !important;
-    font-size: 10px !important;
+    font-family: var(--br-font-display) !important;
+    font-size: 11px !important;
     font-weight: 600 !important;
-    letter-spacing: .8px !important;
+    line-height: 1 !important;
+    letter-spacing: 1px !important;
     text-transform: uppercase !important;
+    white-space: nowrap;
+    color: var(--br-paper) !important;
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,.02) !important;
+    transition:
+        background-color var(--br-motion-fast) var(--br-ease-interface),
+        border-color var(--br-motion-fast) var(--br-ease-interface),
+        color var(--br-motion-fast) var(--br-ease-interface) !important;
+}
+
+.br-forum-action::after,
+a[href*="mode=newtopic"]::after {
+    content: "CREATE RECORD";
+    position: absolute;
+    top: 8px;
+    left: 14px;
+    font-family: var(--br-font-mono);
+    font-size: 6px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1.35px;
+    color: var(--br-red);
+}
+
+.br-forum-action::before,
+a[href*="mode=newtopic"]::before {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    margin: 0 !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    color: var(--br-orange) !important;
+    transform: translateY(-50%);
+}
+
+.br-forum-action:hover,
+.br-forum-action:focus-visible,
+a[href*="mode=newtopic"]:hover,
+a[href*="mode=newtopic"]:focus-visible {
+    background: linear-gradient(90deg,var(--br-surface-soft) 0%,#1b1b1b 100%) !important;
+    border-color: var(--br-red) !important;
+    border-left-color: var(--br-pink) !important;
     color: var(--br-white) !important;
 }
 
-.br-forum-action:hover {
-    background: var(--br-pink) !important;
-    border-color: var(--br-pink) !important;
+.br-forum-action:hover::after,
+.br-forum-action:focus-visible::after,
+a[href*="mode=newtopic"]:hover::after,
+a[href*="mode=newtopic"]:focus-visible::after {
+    color: var(--br-pink);
+}
+
+.br-forum-action:focus-visible,
+a[href*="mode=newtopic"]:focus-visible {
+    outline: 1px solid var(--br-red);
+    outline-offset: 2px;
+}
+
+/* Keep each action's distinct glyph while unifying its icon treatment. */
+.sub-header-buttons > a.ion-reply::before,
+.topic-actions-buttons > a.ion-reply::before {
+    margin-right: 8px !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    color: var(--br-orange) !important;
+    opacity: 1 !important;
 }
 
 .br-forum-system {
@@ -1991,13 +2223,13 @@ hr {
     font-size: 6px;
     font-weight: 700;
     letter-spacing: 1.7px;
-    color: #555;
+    color: var(--br-dim);
 }
 
 .br-forum-brief {
     margin: 0 0 18px !important;
     padding: 0 !important;
-    background: #151515 !important;
+    background: var(--br-surface-soft) !important;
     border: 1px solid var(--br-ash) !important;
     border-left: 3px solid var(--br-red) !important;
     border-radius: 0 !important;
@@ -2025,7 +2257,7 @@ hr {
     font-family: "Inter",Arial,sans-serif;
     font-size: 11px;
     line-height: 1.5;
-    color: #d0d0d0;
+    color: var(--br-text-light);
 }
 
 .br-forum-brief + .topic-actions {
@@ -2047,6 +2279,11 @@ hr {
         flex-wrap: wrap;
     }
 
+    .br-forum-action,
+    a[href*="mode=newtopic"] {
+        min-width: 160px;
+    }
+
     .br-forum-system {
         display: none;
     }
@@ -2057,6 +2294,200 @@ hr {
 
     .br-forum-brief-label {
         margin-bottom: 6px;
+    }
+}
+
+/* =========================================================
+   07A // LOCATION ARTWORK
+
+   Stable native forum links select the location.
+   Decoration stays behind controls and preserves header height.
+   ========================================================= */
+
+/* Per-location mapping; shared rules below own the presentation. */
+.br-forum-dossier:has(.br-forum-path a[href^="/f34-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]) {
+    --br-location-art: var(--br-location-karakura-art);
+    --br-location-art-y: 75%;
+    --br-location-art-size: 62% auto;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f102-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f102-"]) {
+    --br-location-art: var(--br-location-naruki-art);
+    --br-location-art-y: 100%;
+    --br-location-art-size: 62% auto;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f37-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f37-"]) {
+    --br-location-art: var(--br-location-kagamino-art);
+    --br-location-art-y: 55%;
+    --br-location-art-size: 75% auto;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f48-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f48-"]) {
+    --br-location-art: var(--br-location-external-art);
+    --br-location-art-y: 48%;
+    --br-location-art-size: 62% auto;
+    --br-location-art-mask: linear-gradient(90deg, transparent 38%, var(--br-ink) 65%);
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f85-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f85-"]) {
+    --br-location-art: var(--br-location-garganta-art);
+    --br-location-art-y: 0%;
+    --br-location-art-size: 56% auto;
+    --br-location-art-filter: none;
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f54-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f54-"]) {
+    --br-location-art: var(--br-location-dangai-art);
+    --br-location-art-y: 58%;
+    --br-location-art-size: 62% auto;
+    --br-location-art-filter: none;
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f32-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f32-"]) {
+    --br-location-art: var(--br-location-white-desert-art);
+    --br-location-art-y: 60%;
+    --br-location-art-size: 44% auto;
+    --br-location-art-filter: none;
+    --br-location-art-mask: linear-gradient(90deg, transparent 56%, var(--br-ink) 90%);
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f31-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f31-"]) {
+    --br-location-art: var(--br-location-las-noches-art);
+    --br-location-art-y: 42%;
+    --br-location-art-size: 52% auto;
+    --br-location-art-filter: none;
+    --br-location-art-mask: linear-gradient(90deg, transparent 48%, var(--br-ink) 90%);
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f33-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f33-"]) {
+    --br-location-art: var(--br-location-menos-art);
+    --br-location-art-y: 60%;
+    --br-location-art-size: 52% auto;
+    --br-location-art-filter: none;
+    --br-location-art-mask: linear-gradient(90deg, transparent 48%, var(--br-ink) 90%);
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
+#main .br-category:has(a.forumtitle[href^="/f34-"]) {
+    --br-category-location-art: var(--br-location-world-art);
+}
+
+#main .br-category:has(a.forumtitle[href^="/f85-"]) {
+    --br-category-location-art: var(--br-location-between-worlds-art);
+}
+
+#main .br-category:has(a.forumtitle[href^="/f32-"]) {
+    --br-category-location-art: var(--br-location-white-desert-art);
+    --br-category-location-art-position: right 20%;
+    --br-category-location-art-size: 56% auto;
+    --br-category-location-art-filter: invert(1);
+}
+
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f32-"])) .br-category-bar .header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--br-category-location-art);
+    background-position: var(--br-category-location-art-position, right 48%);
+    background-size: var(--br-category-location-art-size, cover);
+    background-repeat: no-repeat;
+    filter: var(--br-category-location-art-filter, none);
+    opacity: var(--br-location-category-opacity);
+    -webkit-mask-image: linear-gradient(90deg, transparent 24%, var(--br-ink) 78%);
+    mask-image: linear-gradient(90deg, transparent 24%, var(--br-ink) 78%);
+    pointer-events: none;
+}
+
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f32-"])) .br-category-bar .header dl.icon {
+    position: relative;
+    z-index: 1;
+}
+
+.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"]))::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    background-image: var(--br-location-art);
+    background-position: right var(--br-location-art-y, 58%);
+    background-size: var(--br-location-art-size, cover);
+    background-repeat: no-repeat;
+    filter: var(--br-location-art-filter, invert(1));
+    mix-blend-mode: screen;
+    opacity: var(--br-location-dossier-opacity);
+    -webkit-mask-image: var(--br-location-art-mask, linear-gradient(90deg, transparent 25%, var(--br-ink) 85%));
+    mask-image: var(--br-location-art-mask, linear-gradient(90deg, transparent 25%, var(--br-ink) 85%));
+    pointer-events: none;
+}
+
+.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"])) .br-forum-controls {
+    position: relative;
+    z-index: 2;
+}
+
+/* Location categories: shared dividers, preserving the final outer edge. */
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"])) .topiclist.forums li.row:not(:last-child) {
+    border-bottom-color: var(--br-location-divider) !important;
+}
+
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"])) .topiclist.forums li.row:not(:last-child):is(:hover, :focus-within) {
+    border-bottom-color: var(--br-location-divider-active) !important;
+}
+
+/* Location directory rows share one artwork treatment. */
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"])) {
+    isolation: isolate;
+}
+
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"]))::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    background: var(--br-location-art) right var(--br-location-art-y, 58%) / var(--br-location-art-size, cover) no-repeat;
+    filter: var(--br-location-art-filter, invert(1));
+    mix-blend-mode: screen;
+    opacity: var(--br-location-row-opacity);
+    -webkit-mask-image: var(--br-location-art-mask, linear-gradient(90deg, transparent 38%, var(--br-ink) 85%));
+    mask-image: var(--br-location-art-mask, linear-gradient(90deg, transparent 38%, var(--br-ink) 85%));
+    pointer-events: none;
+    transition: opacity var(--br-motion-standard) var(--br-ease-interface);
+}
+
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"])):hover::after,
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"])):focus-within::after {
+    opacity: var(--br-location-row-hover-opacity);
+}
+
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"])) dl.icon {
+    position: relative;
+    z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"]))::after {
+        transition: none;
     }
 }
 
@@ -2075,7 +2506,9 @@ hr {
     gap: 24px;
     margin: 0 0 18px !important;
     padding: 22px 22px 18px !important;
-    background: linear-gradient(110deg,#0b0b0b 0%,var(--br-ink) 68%,#171717 68%,var(--br-ink) 100%);
+    background:
+        repeating-linear-gradient(90deg,transparent 0 99px,rgba(255,255,255,.012) 100px),
+        linear-gradient(110deg,var(--br-surface-black) 0%,var(--br-ink) 68%,var(--br-surface-alt) 68%,var(--br-ink) 100%);
     border: 1px solid var(--br-ash);
     border-left: 3px solid var(--br-red);
     border-bottom: 1px solid var(--br-border);
@@ -2094,7 +2527,7 @@ hr {
 
 .br-topic-kicker {
     margin-bottom: 8px;
-    font-family: "JetBrains Mono",monospace;
+    font-family: var(--br-font-mono);
     font-size: 7px;
     font-weight: 700;
     letter-spacing: 1.8px;
@@ -2113,7 +2546,7 @@ hr {
 }
 
 .br-topic-page-title a {
-    font-family: "Oswald",Arial,sans-serif !important;
+    font-family: var(--br-font-display) !important;
     font-size: 40px !important;
     font-weight: 700 !important;
     letter-spacing: -1px !important;
@@ -2134,14 +2567,14 @@ hr {
 
 .br-topic-path {
     margin-top: 9px !important;
-    font-family: "JetBrains Mono",monospace !important;
+    font-family: var(--br-font-mono) !important;
     font-size: 8px !important;
     letter-spacing: .5px !important;
-    color: #666 !important;
+    color: var(--br-text-faint) !important;
 }
 
 .br-topic-path a {
-    color: #888 !important;
+    color: var(--br-text-soft) !important;
 }
 
 .br-topic-path a:hover {
@@ -2174,7 +2607,7 @@ hr {
     font-size: 6px;
     font-weight: 700;
     letter-spacing: 1.7px;
-    color: #555;
+    color: var(--br-dim);
 }
 
 /* =========================================================
@@ -2185,7 +2618,7 @@ hr {
    - Character dossier: 290px
    - Intentional gutter: 30px
    - Content offset: 320px
-   - Canonical portrait: exact 250 × 400 presentation
+   - Canonical portrait: exact 250 Ã— 400 presentation
 
    Forumotion positions the profile rail independently from
    the post body. The permanent content offset prevents long
@@ -2196,7 +2629,7 @@ hr {
 .br-post {
     position: relative !important;
     margin-bottom: 22px !important;
-    background: #151515 !important;
+    background: var(--br-surface-soft) !important;
     border: 1px solid var(--br-border) !important;
     border-left: 3px solid var(--br-red) !important;
     border-radius: 0 !important;
@@ -2212,7 +2645,7 @@ hr {
     min-height: 58px !important;
     margin-right: var(--br-post-rail) !important;
     padding: 12px 18px !important;
-    background: linear-gradient(90deg,var(--br-ink) 0%,#171717 72%,var(--br-ink) 100%) !important;
+    background: linear-gradient(90deg,var(--br-ink) 0%,var(--br-surface-alt) 72%,var(--br-ink) 100%) !important;
     border-bottom: 1px solid var(--br-border) !important;
 }
 .br-post-head .topic-title { margin: 0 0 5px !important; }
@@ -2253,10 +2686,10 @@ hr {
     position: relative;
     width: var(--br-post-rail) !important;
     box-sizing: border-box;
-    background: #0d0d0d !important;
+    background: var(--br-deep) !important;
     border-left: 1px solid var(--br-border) !important;
     border-right: 1px solid var(--br-border) !important;
-    color: #aaa !important;
+    color: var(--br-text-mid) !important;
 }
 
 .br-post .br-post-profile::after {
@@ -2277,9 +2710,9 @@ hr {
 }
 
 /* 08.54 // CANONICAL CHARACTER PORTRAIT
-   RETRIBUTION STANDARD // 250 × 400
+   RETRIBUTION STANDARD // 250 Ã— 400
 
-   Recovered from the September 17–19 approved post lineage.
+   Recovered from the September 17â€“19 approved post lineage.
    Keep the fixed dossier presentation while preserving the complete
    uploaded composition. No crop. No circle. */
 .br-post .br-post-profile .postprofile-avatar {
@@ -2410,7 +2843,7 @@ hr {
 }
 .br-post .br-post-profile .postprofile-info .label span { color: inherit !important; }
 .br-post .br-post-profile .postprofile-info .label::before {
-    content: "·";
+    content: "Â·";
     margin-right: 5px;
     color: var(--br-orange);
     font-size: 9px;
@@ -2429,19 +2862,19 @@ hr {
     margin-right: 0 !important;
     margin-left: var(--br-post-offset) !important;
     background: var(--br-panel) !important;
-    color: #dedede !important;
+    color: var(--br-readable) !important;
 }
 .br-post .br-post-content {
     box-sizing: border-box;
     padding: 24px 28px 32px !important;
-    font: 13px/1.7 "Inter",Arial,sans-serif !important;
-    color: #dedede !important;
+    font: 13px/1.7 var(--br-font-body) !important;
+    color: var(--br-readable) !important;
 }
 .br-post .br-post-content p { margin-bottom: 1em; }
 .br-post .br-post-content strong,
 .br-post .br-post-content b { color: var(--br-paper); }
 .br-post .br-post-content a { color: var(--br-pink) !important; }
-.br-post .br-post-content a:hover { color: #ff1744 !important; }
+.br-post .br-post-content a:hover { color: var(--br-hover) !important; }
 .br-post .br-post-content hr {
     height: 1px !important;
     border: 0 !important;
@@ -2453,7 +2886,7 @@ hr {
     margin: 24px 28px 0 !important;
     padding: 20px 0 !important;
     border-top: 1px solid var(--br-border) !important;
-    color: #888 !important;
+    color: var(--br-text-soft) !important;
 }
 .br-post .fa_like_div {
     padding: 12px 18px !important;
@@ -2464,7 +2897,7 @@ hr {
     background: var(--br-panel) !important;
     border: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
-    color: #aaa !important;
+    color: var(--br-text-mid) !important;
 }
 .br-post .rep-button:hover {
     border-color: var(--br-red) !important;
@@ -2503,7 +2936,7 @@ hr {
 .br-quick-reply {
     margin: 24px 0 !important;
     background: #101010;
-    border: 1px solid #2a2a2a;
+    border: 1px solid var(--br-border-muted);
     border-left: 3px solid var(--br-red);
     border-radius: 0;
     overflow: hidden;
@@ -2516,7 +2949,7 @@ hr {
     justify-content: space-between;
     min-height: 46px;
     padding: 0 16px;
-    background: linear-gradient(90deg,var(--br-ink) 0%,#171717 70%,var(--br-ink) 100%);
+    background: linear-gradient(90deg,var(--br-ink) 0%,var(--br-surface-alt) 70%,var(--br-ink) 100%);
     border-bottom: 1px solid var(--br-border);
 }
 
@@ -2542,7 +2975,7 @@ hr {
     font-size: 6px;
     font-weight: 700;
     letter-spacing: 1.5px;
-    color: #555;
+    color: var(--br-dim);
 }
 
 .br-quick-reply>.h3 {
@@ -2572,7 +3005,7 @@ hr {
 .br-quick-reply .sceditor-toolbar {
     box-sizing: border-box !important;
     padding: 8px 10px !important;
-    background: #151515 !important;
+    background: var(--br-surface-soft) !important;
     border: 0 !important;
     border-bottom: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
@@ -2604,7 +3037,7 @@ hr {
 }
 
 .br-quick-reply .sceditor-editor {
-    background: #f2f2f0 !important;
+    background: var(--br-editor-paper) !important;
 }
 
 .br-quick-reply .sceditor-container iframe,.br-quick-reply .sceditor-container textarea {
@@ -2612,7 +3045,7 @@ hr {
     width: 100% !important;
     min-height: 230px !important;
     padding: 20px 22px !important;
-    background: #f2f2f0 !important;
+    background: var(--br-editor-paper) !important;
     border: 0 !important;
     border-radius: 0 !important;
     font-family: "Inter",Arial,sans-serif !important;
@@ -2710,7 +3143,7 @@ hr {
     min-width: 300px !important;
     height: 34px !important;
     padding: 0 11px !important;
-    background: #151515 !important;
+    background: var(--br-surface-soft) !important;
     border: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
     font-family: "Inter",Arial,sans-serif !important;
@@ -2807,7 +3240,7 @@ hr {
     font-weight: 700;
     letter-spacing: 1.1px;
     text-transform: uppercase;
-    color: #555;
+    color: var(--br-dim);
 }
 
 .br-archive-control-body {
@@ -2815,7 +3248,7 @@ hr {
     margin-left: auto;
     width: 580px;
     padding: 12px 12px 10px;
-    background: #0d0d0d;
+    background: var(--br-deep);
     border-left: 1px solid var(--br-ash);
     border-right: 1px solid var(--br-ash);
     border-bottom: 1px solid var(--br-ash);
@@ -2847,7 +3280,7 @@ hr {
     align-items: center;
     min-height: 38px;
     padding: 0 14px;
-    background: #151515;
+    background: var(--br-surface-soft);
     border-bottom: 1px solid var(--br-border);
 }
 
@@ -2857,7 +3290,7 @@ hr {
     font-family: "Inter",Arial,sans-serif;
     font-size: 11px;
     line-height: 1.65;
-    color: #d0d0d0;
+    color: var(--br-text-light);
 }
 
 .br-topic-permissions-source {
@@ -2901,7 +3334,7 @@ hr {
    .container-imgs-list uniquely identifies the gallery.
    ========================================================= */
 
-#main-content > .forabg:has(.container-imgs-list) {
+#main > .forabg:has(.container-imgs-list) {
     display: none !important;
 }
 
@@ -2911,7 +3344,7 @@ hr {
     background: var(--br-ink);
     border: 1px solid var(--br-border);
     border-left: 3px solid var(--br-red);
-    color: #aaa;
+    color: var(--br-text-mid);
     overflow: hidden;
 }
 
@@ -2920,7 +3353,7 @@ hr {
     align-items: center;
     justify-content: space-between;
     padding: 11px 16px;
-    background: #0b0b0b;
+    background: var(--br-surface-black);
     border-bottom: 1px solid var(--br-border);
 }
 
@@ -2972,7 +3405,7 @@ hr {
 
 .br-presence-data {
     font: 10px/1.65 "Inter",sans-serif;
-    color: #aaa;
+    color: var(--br-text-mid);
 }
 
 .br-presence-data a {
@@ -2981,10 +3414,10 @@ hr {
 
 .br-presence-groups {
     padding: 11px 18px;
-    background: #141414;
+    background: var(--br-row);
     border-top: 1px solid var(--br-border);
     font: 9px "JetBrains Mono",monospace;
-    color: #777;
+    color: var(--br-smoke);
 }
 
 .br-presence-groups .br-presence-label {
@@ -3097,7 +3530,7 @@ hr {
     align-items: center;
     gap: 8px;
     font: 10px "Inter",sans-serif;
-    color: #aaa;
+    color: var(--br-text-mid);
 }
 
 .br-record-status-items img {
@@ -3108,7 +3541,7 @@ hr {
 
 .br-record-status-code {
     margin-left: auto;
-    color: #555;
+    color: var(--br-dim);
 }
 
 @media (max-width:800px) {
@@ -3144,15 +3577,15 @@ html body .br-footer-signal {
     display: flex !important;
     align-items: center !important;
     gap: 10px !important;
-    background: #080808 !important;
-    border-top: 1px solid #b00020 !important;
-    border-bottom: 1px solid #303030 !important;
+    background: var(--br-void) !important;
+    border-top: 1px solid var(--br-red) !important;
+    border-bottom: 1px solid var(--br-border) !important;
     font-family: "JetBrains Mono",monospace !important;
     font-size: 9px !important;
     font-weight: 600 !important;
     letter-spacing: .14em !important;
     text-transform: uppercase !important;
-    color: #777 !important;
+    color: var(--br-smoke) !important;
 }
 
 html body .br-footer-signal>span {
@@ -3164,18 +3597,18 @@ html body .br-footer-signal>span {
 }
 
 html body .br-footer-signal-mark {
-    color: #b00020 !important;
+    color: var(--br-red) !important;
     font-size: 13px !important;
     font-weight: 700 !important;
 }
 
 html body .br-footer-signal-text {
-    color: #f2f2f2 !important;
+    color: var(--br-paper) !important;
 }
 
 html body .br-footer-signal-status {
     margin-left: auto !important;
-    color: #b00020 !important;
+    color: var(--br-red) !important;
 }
 
 html body .br-footer-statistics {
@@ -3183,8 +3616,8 @@ html body .br-footer-statistics {
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-    background: #f2f2f2 !important;
-    color: #111 !important;
+    background: var(--br-paper) !important;
+    color: var(--br-ink) !important;
 }
 
 html body .br-footer-statistics>.wrap {
@@ -3196,8 +3629,8 @@ html body .br-footer-statistics>.wrap {
     box-sizing: border-box !important;
     display: grid !important;
     grid-template-columns: minmax(270px,1.25fr) minmax(0,3fr) !important;
-    background: #f2f2f2 !important;
-    color: #111 !important;
+    background: var(--br-paper) !important;
+    color: var(--br-ink) !important;
 }
 
 html body .br-footer-identity {
@@ -3211,9 +3644,9 @@ html body .br-footer-identity {
     align-items: flex-start !important;
     justify-content: center !important;
     position: relative !important;
-    background: #f2f2f2 !important;
+    background: var(--br-paper) !important;
     border-right: 1px solid rgba(0,0,0,.14) !important;
-    color: #111 !important;
+    color: var(--br-ink) !important;
 }
 
 html body .br-footer-identity:before {
@@ -3223,7 +3656,7 @@ html body .br-footer-identity:before {
     top: 23px !important;
     bottom: 23px !important;
     width: 3px !important;
-    background: #b00020 !important;
+    background: var(--br-red) !important;
 }
 
 html body .br-footer-identity>span {
@@ -3243,7 +3676,7 @@ html body .br-footer-series {
     line-height: 1.2 !important;
     letter-spacing: .18em !important;
     text-transform: uppercase !important;
-    color: #b00020 !important;
+    color: var(--br-red) !important;
 }
 
 html body .br-footer-name {
@@ -3254,7 +3687,7 @@ html body .br-footer-name {
     line-height: 1 !important;
     letter-spacing: .05em !important;
     text-transform: uppercase !important;
-    color: #111 !important;
+    color: var(--br-ink) !important;
 }
 
 html body .br-footer-subtitle {
@@ -3265,7 +3698,7 @@ html body .br-footer-subtitle {
     line-height: 1.3 !important;
     letter-spacing: .15em !important;
     text-transform: uppercase !important;
-    color: #666 !important;
+    color: var(--br-text-faint) !important;
 }
 
 html body .br-footer-stat-grid {
@@ -3275,7 +3708,7 @@ html body .br-footer-stat-grid {
     padding: 0 !important;
     display: grid !important;
     grid-template-columns: repeat(3,minmax(0,1fr)) !important;
-    background: #f2f2f2 !important;
+    background: var(--br-paper) !important;
 }
 
 html body .br-footer-stat-grid .statistics-item {
@@ -3289,14 +3722,14 @@ html body .br-footer-stat-grid .statistics-item {
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-    background: #f2f2f2 !important;
+    background: var(--br-paper) !important;
     border: 0 !important;
     border-right: 1px solid rgba(0,0,0,.12) !important;
     font-family: "Inter",sans-serif !important;
     font-size: 10px !important;
     font-weight: 400 !important;
     line-height: 1.45 !important;
-    color: #111 !important;
+    color: var(--br-ink) !important;
 }
 
 html body .br-footer-stat-grid .statistics-item:last-child {
@@ -3315,7 +3748,7 @@ html body .br-footer-stat-code {
     line-height: 1 !important;
     letter-spacing: .14em !important;
     text-transform: uppercase !important;
-    color: #b00020 !important;
+    color: var(--br-red) !important;
 }
 
 html body .br-footer-stat-grid .statistics-item strong {
@@ -3324,14 +3757,14 @@ html body .br-footer-stat-grid .statistics-item strong {
     font-size: 27px !important;
     font-weight: 500 !important;
     line-height: 1 !important;
-    color: #111 !important;
+    color: var(--br-ink) !important;
 }
 
 html body #page-footer.br-footer-shell {
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-    background: #111 !important;
+    background: var(--br-ink) !important;
     border: 0 !important;
 }
 
@@ -3341,7 +3774,7 @@ html body #page-footer.br-footer-shell>.wrap {
     margin: 0 auto !important;
     padding: 0 !important;
     box-sizing: border-box !important;
-    background: #111 !important;
+    background: var(--br-ink) !important;
 }
 
 html body .br-footer-utility-label {
@@ -3354,15 +3787,15 @@ html body .br-footer-utility-label {
     align-items: center !important;
     justify-content: space-between !important;
     gap: 30px !important;
-    background: #111 !important;
-    border-bottom: 1px solid #303030 !important;
+    background: var(--br-ink) !important;
+    border-bottom: 1px solid var(--br-border) !important;
     font-family: "JetBrains Mono",monospace !important;
     font-size: 8px !important;
     font-weight: 600 !important;
     line-height: 1 !important;
     letter-spacing: .13em !important;
     text-transform: uppercase !important;
-    color: #555 !important;
+    color: var(--br-dim) !important;
 }
 
 html body .br-footer-utility-label>span {
@@ -3375,12 +3808,12 @@ html body .br-footer-utility-label>span {
 }
 
 html body .br-footer-utility-label>span:first-child {
-    color: #b00020 !important;
+    color: var(--br-red) !important;
 }
 
 html body .br-footer-utility-label>span:last-child {
     margin-left: auto !important;
-    color: #555 !important;
+    color: var(--br-dim) !important;
 }
 
 html body #page-footer .footerbar-system,html body #page-footer .footerbar-user {
@@ -3389,16 +3822,16 @@ html body #page-footer .footerbar-system,html body #page-footer .footerbar-user 
     margin: 0 !important;
     padding: 10px 18px !important;
     box-sizing: border-box !important;
-    background: #111 !important;
+    background: var(--br-ink) !important;
     border: 0 !important;
-    border-bottom: 1px solid #303030 !important;
+    border-bottom: 1px solid var(--br-border) !important;
     font-family: "JetBrains Mono",monospace !important;
     font-size: 8px !important;
     font-weight: 500 !important;
     line-height: 1.4 !important;
     letter-spacing: .07em !important;
     text-transform: uppercase !important;
-    color: #777 !important;
+    color: var(--br-smoke) !important;
 }
 
 html body #page-footer .footerbar-system:after,html body #page-footer .footerbar-user:after {
@@ -3416,27 +3849,27 @@ html body #page-footer .rightside {
 }
 
 html body #page-footer .footerbar-system a,html body #page-footer .footerbar-user a {
-    color: #888 !important;
+    color: var(--br-text-soft) !important;
     text-decoration: none !important;
     transition: color .18s ease !important;
 }
 
 html body #page-footer .footerbar-system a:hover,html body #page-footer .footerbar-user a:hover {
-    color: #f2f2f2 !important;
+    color: var(--br-paper) !important;
 }
 
 html body #page-footer .footer-home i,html body #page-footer .footerbar-user i {
     margin-right: 6px !important;
-    color: #b00020 !important;
+    color: var(--br-red) !important;
 }
 
 html body .br-footer-clock {
-    color: #777 !important;
+    color: var(--br-smoke) !important;
 }
 
 html body .br-footer-meta-label {
     margin-right: 8px !important;
-    color: #555 !important;
+    color: var(--br-dim) !important;
 }
 
 html body .br-footer-end {
@@ -3450,8 +3883,8 @@ html body .br-footer-end {
     align-items: center !important;
     justify-content: space-between !important;
     gap: 24px !important;
-    background: #080808 !important;
-    border-bottom: 1px solid #303030 !important;
+    background: var(--br-void) !important;
+    border-bottom: 1px solid var(--br-border) !important;
 }
 
 html body .br-footer-end-copy {
@@ -3465,7 +3898,7 @@ html body .br-footer-end-copy {
     line-height: 1 !important;
     letter-spacing: .13em !important;
     text-transform: uppercase !important;
-    color: #666 !important;
+    color: var(--br-text-faint) !important;
 }
 
 html body .br-footer-end-copy>span {
@@ -3477,12 +3910,12 @@ html body .br-footer-end-copy>span {
 }
 
 html body .br-footer-end-mark {
-    color: #b00020 !important;
+    color: var(--br-red) !important;
     font-size: 12px !important;
 }
 
 html body .br-footer-end-id {
-    color: #444 !important;
+    color: var(--br-border2) !important;
 }
 
 html body .br-footer-admin {
@@ -3496,13 +3929,13 @@ html body .br-footer-admin {
 }
 
 html body .br-footer-admin a {
-    color: #777 !important;
+    color: var(--br-smoke) !important;
     text-decoration: none !important;
     transition: color .18s ease !important;
 }
 
 html body .br-footer-admin a:hover {
-    color: #f2f2f2 !important;
+    color: var(--br-paper) !important;
 }
 
 @media (max-width:1100px) {
@@ -3848,7 +4281,7 @@ html body .br-footer-admin a:hover {
     margin: 12px 0 0 !important;
     padding: 24px 0 0 !important;
 
-    border-top: 1px solid #242424;
+    border-top: 1px solid var(--br-ash);
 }
 
 /* CONTACT // CHANNELS */
@@ -3899,9 +4332,9 @@ html body .br-footer-admin a:hover {
     margin: 0 !important;
     padding: 0 7px !important;
 
-    background: #111111 !important;
+    background: var(--br-ink) !important;
 
-    border: 1px solid #303030 !important;
+    border: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
 
     font-family: "JetBrains Mono", monospace;
@@ -3911,7 +4344,7 @@ html body .br-footer-admin a:hover {
     letter-spacing: .7px;
     text-decoration: none !important;
 
-    color: #777777 !important;
+    color: var(--br-smoke) !important;
 
     transition:
         color .15s ease,
@@ -3964,16 +4397,16 @@ html body .br-footer-admin a:hover {
 
 .br-post .postprofile-contact .profile-icon:hover,
 .br-post .postprofile-contact .profile-icon:focus-visible {
-    color: #f2f2f2 !important;
-    background: #181818 !important;
-    border-color: #b00020 !important;
+    color: var(--br-paper) !important;
+    background: var(--br-panel) !important;
+    border-color: var(--br-red) !important;
 }
 
 
 /* Keyboard focus */
 
 .br-post .postprofile-contact .profile-icon:focus-visible {
-    outline: 1px solid #b00020;
+    outline: 1px solid var(--br-red);
     outline-offset: 2px;
 }
 /* =========================================================
@@ -4067,14 +4500,14 @@ html body .br-footer-admin a:hover {
     margin: 0 !important;
     padding: 0 !important;
 
-    background: #111111 !important;
-    border: 1px solid #303030 !important;
+    background: var(--br-ink) !important;
+    border: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
 
     font-size: 0 !important;
     line-height: 1 !important;
 
-    color: #777777 !important;
+    color: var(--br-smoke) !important;
 
     text-decoration: none !important;
 
@@ -4099,7 +4532,7 @@ html body .br-footer-admin a:hover {
 }
 
 .br-post .vote > a.ion-minus-circled::before {
-    content: "−";
+    content: "âˆ’";
 
     font-family: "JetBrains Mono", monospace !important;
     font-size: 11px !important;
@@ -4114,9 +4547,9 @@ html body .br-footer-admin a:hover {
 
 .br-post .vote > a.ion-plus-circled:hover,
 .br-post .vote > a.ion-plus-circled:focus-visible {
-    color: #f2f2f2 !important;
-    background: #181818 !important;
-    border-color: var(--br-magenta, #d0005b) !important;
+    color: var(--br-paper) !important;
+    background: var(--br-panel) !important;
+    border-color: var(--br-pink) !important;
 }
 
 
@@ -4124,21 +4557,21 @@ html body .br-footer-admin a:hover {
 
 .br-post .vote > a.ion-minus-circled:hover,
 .br-post .vote > a.ion-minus-circled:focus-visible {
-    color: #f2f2f2 !important;
-    background: #181818 !important;
-    border-color: var(--br-red, #b00020) !important;
+    color: var(--br-paper) !important;
+    background: var(--br-panel) !important;
+    border-color: var(--br-red) !important;
 }
 
 
 /* Keyboard focus */
 
 .br-post .vote > a.ion-plus-circled:focus-visible {
-    outline: 1px solid var(--br-magenta, #d0005b);
+    outline: 1px solid var(--br-pink);
     outline-offset: 2px;
 }
 
 .br-post .vote > a.ion-minus-circled:focus-visible {
-    outline: 1px solid var(--br-red, #b00020);
+    outline: 1px solid var(--br-red);
     outline-offset: 2px;
 }
 
@@ -4199,7 +4632,7 @@ html body .br-footer-admin a:hover {
     line-height: 1 !important;
     letter-spacing: .6px !important;
 
-    color: #8b8b8b !important;
+    color: var(--br-muted) !important;
 
     background: transparent !important;
     border: 0 !important;
@@ -4221,7 +4654,7 @@ html body .br-footer-admin a:hover {
     margin: 0 !important;
     padding: 0 !important;
 
-    background: #242424 !important;
+    background: var(--br-ash) !important;
     border: 0 !important;
     border-radius: 0 !important;
 
@@ -4237,7 +4670,7 @@ html body .br-footer-admin a:hover {
     height: 2px !important;
     min-height: 2px !important;
 
-    background: var(--br-magenta, #d0005b) !important;
+    background: var(--br-pink) !important;
     border: 0 !important;
     border-radius: 0 !important;
 }
@@ -4251,7 +4684,7 @@ html body .br-footer-admin a:hover {
     height: 2px !important;
     min-height: 2px !important;
 
-    background: var(--br-red, #b00020) !important;
+    background: var(--br-red) !important;
     border: 0 !important;
     border-radius: 0 !important;
 }
@@ -4287,7 +4720,7 @@ html body .br-footer-admin a:hover {
 
 .br-post .vote .vote-bar .vote-bar-plus {
     height: 2px !important;
-    background: var(--br-magenta, #d0005b) !important;
+    background: var(--br-pink) !important;
 }
 /* =========================================================
    15 // POST FEEDBACK // CONTROL PASS
@@ -4316,8 +4749,8 @@ html body .br-footer-admin a:hover {
     margin: 0 !important;
     padding: 27px 12px 10px !important;
 
-    background: #0d0d0d !important;
-    border-top: 1px solid #242424 !important;
+    background: var(--br-deep) !important;
+    border-top: 1px solid var(--br-ash) !important;
 }
 
 
@@ -4381,8 +4814,8 @@ html body .br-footer-admin a:hover {
     margin: 0 !important;
     padding: 0 8px !important;
 
-    background: #111111 !important;
-    border: 1px solid #303030 !important;
+    background: var(--br-ink) !important;
+    border: 1px solid var(--br-border) !important;
     border-radius: 0 !important;
 
     font-family: "JetBrains Mono", monospace !important;
@@ -4391,7 +4824,7 @@ html body .br-footer-admin a:hover {
     line-height: 1 !important;
     letter-spacing: .7px !important;
 
-    color: #777777 !important;
+    color: var(--br-smoke) !important;
 
     box-shadow: none !important;
     text-transform: uppercase;
@@ -4425,7 +4858,7 @@ html body .br-footer-admin a:hover {
     font-weight: 700;
     line-height: 1;
 
-    color: #777777;
+    color: var(--br-smoke);
 }
 
 
@@ -4434,14 +4867,14 @@ html body .br-footer-admin a:hover {
    --------------------------------------------------------- */
 
 .br-post .fa_like_div .rep-button.fa_dislike::before {
-    content: "−";
+    content: "âˆ’";
 
     font-family: "JetBrains Mono", monospace;
     font-size: 10px;
     font-weight: 700;
     line-height: 1;
 
-    color: #777777;
+    color: var(--br-smoke);
 }
 
 
@@ -4465,10 +4898,10 @@ html body .br-footer-admin a:hover {
     font-weight: 700 !important;
     line-height: 1 !important;
 
-    color: #8b8b8b !important;
+    color: var(--br-muted) !important;
 
-    background: #181818 !important;
-    border-left: 1px solid #303030 !important;
+    background: var(--br-panel) !important;
+    border-left: 1px solid var(--br-border) !important;
 }
 
 
@@ -4486,8 +4919,8 @@ html body .br-footer-admin a:hover {
 
 .br-post .fa_like_div .rep-button:hover,
 .br-post .fa_like_div .rep-button:focus-visible {
-    color: #f2f2f2 !important;
-    background: #181818 !important;
+    color: var(--br-paper) !important;
+    background: var(--br-panel) !important;
 }
 
 
@@ -4495,12 +4928,12 @@ html body .br-footer-admin a:hover {
 
 .br-post .fa_like_div .rep-button.fa_like:hover,
 .br-post .fa_like_div .rep-button.fa_like:focus-visible {
-    border-color: var(--br-magenta, #d0005b) !important;
+    border-color: var(--br-pink) !important;
 }
 
 .br-post .fa_like_div .rep-button.fa_like:hover::before,
 .br-post .fa_like_div .rep-button.fa_like:focus-visible::before {
-    color: var(--br-magenta, #d0005b);
+    color: var(--br-pink);
 }
 
 
@@ -4508,12 +4941,12 @@ html body .br-footer-admin a:hover {
 
 .br-post .fa_like_div .rep-button.fa_dislike:hover,
 .br-post .fa_like_div .rep-button.fa_dislike:focus-visible {
-    border-color: var(--br-red, #b00020) !important;
+    border-color: var(--br-red) !important;
 }
 
 .br-post .fa_like_div .rep-button.fa_dislike:hover::before,
 .br-post .fa_like_div .rep-button.fa_dislike:focus-visible::before {
-    color: var(--br-red, #b00020);
+    color: var(--br-red);
 }
 
 
@@ -4524,11 +4957,11 @@ html body .br-footer-admin a:hover {
 }
 
 .br-post .fa_like_div .rep-button.fa_like:focus-visible {
-    outline: 1px solid var(--br-magenta, #d0005b);
+    outline: 1px solid var(--br-pink);
 }
 
 .br-post .fa_like_div .rep-button.fa_dislike:focus-visible {
-    outline: 1px solid var(--br-red, #b00020);
+    outline: 1px solid var(--br-red);
 }
 
 
@@ -4538,21 +4971,21 @@ html body .br-footer-admin a:hover {
    ========================================================= */
 
 .br-post .fa_like_div .rep-button.fa_like.fa_liked {
-    color: #f2f2f2 !important;
+    color: var(--br-paper) !important;
 
-    background: #141414 !important;
-    border-color: var(--br-magenta, #d0005b) !important;
+    background: var(--br-row) !important;
+    border-color: var(--br-pink) !important;
 
     box-shadow:
-        inset 2px 0 0 var(--br-magenta, #d0005b) !important;
+        inset 2px 0 0 var(--br-pink) !important;
 }
 
 .br-post .fa_like_div .rep-button.fa_like.fa_liked::before {
-    color: var(--br-magenta, #d0005b) !important;
+    color: var(--br-pink) !important;
 }
 
 .br-post .fa_like_div .rep-button.fa_like.fa_liked .rep-nb {
-    color: var(--br-magenta, #d0005b) !important;
+    color: var(--br-pink) !important;
 }
 
 
@@ -4563,21 +4996,21 @@ html body .br-footer-admin a:hover {
    ========================================================= */
 
 .br-post .fa_like_div .rep-button.fa_dislike.fa_disliked {
-    color: #f2f2f2 !important;
+    color: var(--br-paper) !important;
 
-    background: #141414 !important;
-    border-color: var(--br-red, #b00020) !important;
+    background: var(--br-row) !important;
+    border-color: var(--br-red) !important;
 
     box-shadow:
-        inset 2px 0 0 var(--br-red, #b00020) !important;
+        inset 2px 0 0 var(--br-red) !important;
 }
 
 .br-post .fa_like_div .rep-button.fa_dislike.fa_disliked::before {
-    color: var(--br-red, #b00020) !important;
+    color: var(--br-red) !important;
 }
 
 .br-post .fa_like_div .rep-button.fa_dislike.fa_disliked .rep-nb {
-    color: var(--br-red, #b00020) !important;
+    color: var(--br-red) !important;
 }
 
 
@@ -4601,17 +5034,17 @@ html body .br-footer-admin a:hover {
     line-height: 1.4 !important;
     letter-spacing: .45px !important;
 
-    color: #666666 !important;
+    color: var(--br-text-faint) !important;
 
     background: transparent !important;
-    border-top: 1px solid #1d1d1d !important;
+    border-top: 1px solid var(--br-line) !important;
 }
 
 
 /* Member identity inside response record */
 
 .br-post .fa_like_div .fa_like_list a {
-    color: var(--br-magenta, #d0005b) !important;
+    color: var(--br-pink) !important;
 
     font-weight: 700 !important;
     text-decoration: none !important;
@@ -4619,7 +5052,7 @@ html body .br-footer-admin a:hover {
 
 .br-post .fa_like_div .fa_like_list a:hover,
 .br-post .fa_like_div .fa_like_list a:focus-visible {
-    color: #f2f2f2 !important;
+    color: var(--br-paper) !important;
     text-decoration: none !important;
 }
 
@@ -4646,7 +5079,113 @@ html body .br-footer-admin a:hover {
    ========================================================= */
 
 /* ---------------------------------------------------------
-   16.01 // PORTAL FRAME
+   16.01 // PORTAL SHELL / LEGACY GRID RECOVERY
+   --------------------------------------------------------- */
+
+/*
+   Forumotion emits Recent Topics after the complete three-column Portal row.
+   Displaying the native Portal wrapper as contents allows the archive feed to
+   begin beneath the operator/communication workspace while telemetry continues
+   down the right rail. Native widgets and their Admin ordering remain intact.
+*/
+
+.br-portal-shell {
+    display: grid;
+    grid-template-columns: 220px minmax(0,1fr) 200px;
+    column-gap: 18px;
+    align-items: start;
+}
+
+.br-portal-command,
+.br-portal-upper {
+    grid-column: 1 / -1;
+}
+
+.br-portal-shell > .portal {
+    display: contents;
+}
+
+.br-portal-shell > .portal::after {
+    display: none;
+}
+
+.br-portal-left {
+    grid-column: 1;
+    grid-row: 3;
+    width: auto !important;
+    float: none !important;
+}
+
+.br-portal-center {
+    grid-column: 2;
+    grid-row: 3;
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    float: none !important;
+}
+
+.br-portal-right {
+    grid-column: 3;
+    grid-row: 3 / span 2;
+    width: auto !important;
+    float: none !important;
+}
+
+.br-portal-archive {
+    grid-column: 1 / 3;
+    grid-row: 4;
+    min-width: 0;
+    margin-top: 18px;
+}
+
+/* Portal identity uses existing semantic spans; no generated copy. */
+
+.br-portal-command-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    min-width: 0;
+}
+
+.br-portal-command-title,
+.br-portal-command-sub {
+    display: block;
+}
+
+.br-portal-command-title {
+    font-family: "Oswald",Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .8px;
+    color: var(--br-paper);
+    text-transform: uppercase;
+}
+
+.br-portal-command-sub {
+    font-family: "JetBrains Mono",monospace;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 1.2px;
+    color: var(--br-muted);
+    text-transform: uppercase;
+}
+
+.br-portal-command-state {
+    margin-top: 7px;
+    font-family: "JetBrains Mono",monospace;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    color: var(--br-red);
+    text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------
+   16.02 // PORTAL FRAME
    --------------------------------------------------------- */
 
 .portal {
@@ -4679,7 +5218,7 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.02 // PORTAL MODULE LANGUAGE
+   16.03 // PORTAL MODULE LANGUAGE
    --------------------------------------------------------- */
 
 .portal .module {
@@ -4687,7 +5226,7 @@ html body .br-footer-admin a:hover {
     box-sizing: border-box;
     max-width: 100%;
     background: var(--br-ink) !important;
-    border: 1px solid #2a2a2a !important;
+    border: 1px solid var(--br-border-muted) !important;
     border-left: 2px solid var(--br-red) !important;
     border-radius: 0 !important;
     box-shadow: none !important;
@@ -4701,7 +5240,7 @@ html body .br-footer-admin a:hover {
     min-height: 32px;
     margin: 0 !important;
     padding: 11px 12px 10px !important;
-    background: linear-gradient(90deg,#121212,#151515) !important;
+    background: linear-gradient(90deg,#121212,var(--br-surface-soft)) !important;
     border: 0 !important;
     border-bottom: 1px solid var(--br-ash) !important;
     font-family: "JetBrains Mono",monospace !important;
@@ -4710,7 +5249,7 @@ html body .br-footer-admin a:hover {
     line-height: 1.2 !important;
     letter-spacing: 1px !important;
     text-transform: uppercase;
-    color: #d6d6d6 !important;
+    color: var(--br-neutral) !important;
 }
 
 .portal .module > .h3 > i {
@@ -4746,12 +5285,12 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.03 // OPERATOR RECORD
+   16.04 // OPERATOR RECORD
    --------------------------------------------------------- */
 
 .portal > .column:first-child > .module:first-child {
     padding-bottom: 0 !important;
-    background: linear-gradient(180deg,#141414 0,var(--br-ink) 100%) !important;
+    background: linear-gradient(180deg,var(--br-row) 0,var(--br-ink) 100%) !important;
 }
 
 .portal > .column:first-child > .module:first-child > .h3 {
@@ -4786,7 +5325,7 @@ html body .br-footer-admin a:hover {
     height: 150px !important;
     margin: 16px auto 12px !important;
     padding: 0 !important;
-    background: #0d0d0d url("https://2img.net/i.imgur.com/Ie5X4L8.png") center/cover no-repeat !important;
+    background: var(--br-deep) !important;
     border: 1px solid var(--br-border) !important;
     border-left: 2px solid var(--br-red) !important;
     border-radius: 0 !important;
@@ -4795,9 +5334,14 @@ html body .br-footer-admin a:hover {
 }
 
 .portal > .column:first-child .mod-login-avatar img {
-    width: 150px !important;
-    height: 150px !important;
-    opacity: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    object-fit: cover !important;
+    object-position: center !important;
     border: 0 !important;
     border-radius: 0 !important;
     pointer-events: none;
@@ -4847,7 +5391,7 @@ html body .br-footer-admin a:hover {
     display: block !important;
     margin: 0 !important;
     padding: 5px 0 !important;
-    border-bottom: 1px solid #1d1d1d;
+    border-bottom: 1px solid var(--br-line);
     font-family: "JetBrains Mono",monospace !important;
     line-height: 1.2 !important;
 }
@@ -4866,7 +5410,7 @@ html body .br-footer-admin a:hover {
     font-weight: 700 !important;
     letter-spacing: .4px !important;
     text-align: right !important;
-    color: #d6d6d6 !important;
+    color: var(--br-neutral) !important;
 }
 
 .portal > .column:first-child dl.mod-login dd::after {
@@ -4888,7 +5432,7 @@ html body .br-footer-admin a:hover {
     width: 100%;
     margin: 0 !important;
     padding: 10px 12px !important;
-    background: #0d0d0d !important;
+    background: var(--br-deep) !important;
     border: 0 !important;
     border-top: 1px solid var(--br-ash) !important;
     border-radius: 0 !important;
@@ -4898,7 +5442,7 @@ html body .br-footer-admin a:hover {
     line-height: 1 !important;
     letter-spacing: .8px !important;
     text-transform: uppercase;
-    color: #8b8b8b !important;
+    color: var(--br-muted) !important;
     transition: color .15s ease,background-color .15s ease;
 }
 
@@ -4909,19 +5453,19 @@ html body .br-footer-admin a:hover {
 }
 
 .portal > .column:first-child .module-footer::after {
-    content: "→";
+    content: "â†’";
     font-size: 8px;
     color: var(--br-red);
 }
 
 .portal > .column:first-child .module-footer:hover,
 .portal > .column:first-child .module-footer:focus-visible {
-    background: #141414 !important;
+    background: var(--br-row) !important;
     color: var(--br-paper) !important;
 }
 
 /* ---------------------------------------------------------
-   16.04 // LATEST TRANSMISSIONS
+   16.05 // LATEST TRANSMISSIONS
 
    Scrolling is intentionally disabled in Forumotion.
    The feed is a static archive list; no marquee ownership.
@@ -4934,7 +5478,7 @@ html body .br-footer-admin a:hover {
     max-height: 430px !important;
     margin: 0 !important;
     padding: 4px 12px 6px !important;
-    background: #0d0d0d !important;
+    background: var(--br-deep) !important;
     background-image: none !important;
     border: 0 !important;
     box-shadow: none !important;
@@ -4967,7 +5511,7 @@ html body .br-footer-admin a:hover {
     padding: 10px 0 11px 10px !important;
     background: transparent !important;
     border: 0 !important;
-    border-bottom: 1px solid #1d1d1d !important;
+    border-bottom: 1px solid var(--br-line) !important;
     box-shadow: none !important;
     text-shadow: none !important;
     filter: none !important;
@@ -5020,7 +5564,7 @@ html body .br-footer-admin a:hover {
     display: inline-flex !important;
     align-items: center;
     gap: 3px;
-    color: #555 !important;
+    color: var(--br-dim) !important;
 }
 
 .portal #comments_scroll_div .mod-recent-author i {
@@ -5043,8 +5587,86 @@ html body .br-footer-admin a:hover {
     color: var(--br-paper) !important;
 }
 
+/* Current legacy Portal feed: Forumotion places all records in one container. */
+
+.br-portal-archive-body > .module {
+    overflow: hidden;
+    background: var(--br-surface-black) !important;
+    border: 1px solid var(--br-border-muted) !important;
+    border-left: 3px solid var(--br-red) !important;
+    box-shadow: none !important;
+}
+
+.br-portal-archive-body > .module > .h3 {
+    margin: 0 !important;
+    padding: 12px 16px !important;
+    background: var(--br-surface-soft) !important;
+    border-bottom: 1px solid var(--br-border-muted) !important;
+    font-family: "JetBrains Mono",monospace;
+    font-size: 8px !important;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1.2px;
+    color: var(--br-paper) !important;
+    text-transform: uppercase;
+}
+
+.br-portal-archive .mod-recent-row {
+    padding: 0 16px 14px;
+    font-family: "JetBrains Mono",monospace;
+    font-size: 8px;
+    line-height: 1.55;
+    color: var(--br-muted);
+}
+
+.br-portal-archive .mod-recent-row br {
+    display: none;
+}
+
+.br-portal-archive .mod-recent-title {
+    display: block;
+    margin: 14px 0 5px;
+    padding-top: 12px;
+    border-top: 1px solid var(--br-line);
+    font-family: "Oswald",Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: .2px;
+    color: var(--br-content) !important;
+    transition: color .15s ease,border-color .15s ease,padding-left .15s ease;
+}
+
+.br-portal-archive .mod-recent-title:first-of-type {
+    margin-top: 0;
+    border-top: 0;
+}
+
+.br-portal-archive .mod-recent-title:hover,
+.br-portal-archive .mod-recent-title:focus-visible {
+    padding-left: 6px;
+    border-color: var(--br-red);
+    color: var(--br-pink) !important;
+}
+
+.br-portal-archive .mod-recent-info,
+.br-portal-archive .mod-recent-row a:not(.mod-recent-title) {
+    font-family: "JetBrains Mono",monospace;
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: .35px;
+}
+
+.br-portal-archive .mod-recent-info {
+    color: var(--br-text-soft);
+}
+
+.br-portal-archive .mod-recent-row a:not(.mod-recent-title) {
+    color: var(--br-pink);
+}
+
 /* ---------------------------------------------------------
-   16.05 // COMMUNICATION TERMINAL
+   16.06 // COMMUNICATION TERMINAL
    --------------------------------------------------------- */
 
 .portal .portal-mid #chatbox_bottom {
@@ -5057,12 +5679,12 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.06 // NETWORK STATUS
+   16.07 // NETWORK STATUS
    --------------------------------------------------------- */
 
 .portal > .column:last-of-type > .module:first-child {
     padding-bottom: 10px !important;
-    background: linear-gradient(180deg,#141414 0,var(--br-ink) 100%) !important;
+    background: linear-gradient(180deg,var(--br-row) 0,var(--br-ink) 100%) !important;
 }
 
 .portal > .column:last-of-type > .module:first-child > .h3 {
@@ -5080,7 +5702,7 @@ html body .br-footer-admin a:hover {
     font-weight: 700;
     line-height: 1;
     letter-spacing: 1px;
-    color: #d6d6d6;
+    color: var(--br-neutral);
 }
 
 .portal > .column:last-of-type > .module:first-child > .h3::after {
@@ -5106,7 +5728,7 @@ html body .br-footer-admin a:hover {
     padding: 10px 0 !important;
     background: transparent !important;
     border: 0 !important;
-    border-bottom: 1px solid #1d1d1d !important;
+    border-bottom: 1px solid var(--br-line) !important;
     font-family: "JetBrains Mono",monospace !important;
     font-size: 6.5px !important;
     font-weight: 500 !important;
@@ -5174,11 +5796,11 @@ html body .br-footer-admin a:hover {
     font-weight: 700;
     line-height: 1;
     letter-spacing: .8px;
-    color: #555;
+    color: var(--br-dim);
 }
 
 /* ---------------------------------------------------------
-   16.07 // ACTIVITY INDEX / TOP POSTERS
+   16.08 // ACTIVITY INDEX / TOP POSTERS
    --------------------------------------------------------- */
 
 .portal .mod-top {
@@ -5194,7 +5816,7 @@ html body .br-footer-admin a:hover {
     margin: 0 !important;
     padding: 7px 0 8px !important;
     background: transparent !important;
-    border-bottom: 1px solid #1d1d1d !important;
+    border-bottom: 1px solid var(--br-line) !important;
 }
 
 .portal .mod-top-row:last-child {
@@ -5210,11 +5832,11 @@ html body .br-footer-admin a:hover {
     line-height: 1 !important;
     letter-spacing: .35px !important;
     text-align: left !important;
-    color: #d6d6d6 !important;
+    color: var(--br-neutral) !important;
 }
 
 .portal .mod-top-name a {
-    color: #d6d6d6 !important;
+    color: var(--br-neutral) !important;
 }
 
 .portal .mod-top-name a:hover,
@@ -5242,7 +5864,7 @@ html body .br-footer-admin a:hover {
     line-height: 12px !important;
     letter-spacing: .35px !important;
     text-align: right !important;
-    color: #8b8b8b !important;
+    color: var(--br-muted) !important;
     overflow: hidden !important;
 }
 
@@ -5258,7 +5880,7 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.08 // LIVE PRESENCE
+   16.09 // LIVE PRESENCE
    --------------------------------------------------------- */
 
 .portal .module .h3 + strong {
@@ -5293,11 +5915,11 @@ html body .br-footer-admin a:hover {
     font-size: 6px !important;
     line-height: 1 !important;
     letter-spacing: .8px !important;
-    color: #555 !important;
+    color: var(--br-dim) !important;
 }
 
 /* ---------------------------------------------------------
-   16.09 // PORTAL SCROLLBARS
+   16.10 // PORTAL SCROLLBARS
    --------------------------------------------------------- */
 
 .portal #comments_scroll_div::-webkit-scrollbar {
@@ -5305,12 +5927,12 @@ html body .br-footer-admin a:hover {
 }
 
 .portal #comments_scroll_div::-webkit-scrollbar-track {
-    background: #0d0d0d;
+    background: var(--br-deep);
 }
 
 .portal #comments_scroll_div::-webkit-scrollbar-thumb {
     background: var(--br-border);
-    border: 1px solid #0d0d0d;
+    border: 1px solid var(--br-deep);
 }
 
 .portal #comments_scroll_div::-webkit-scrollbar-thumb:hover {
@@ -5318,7 +5940,7 @@ html body .br-footer-admin a:hover {
 }
 
 /* ---------------------------------------------------------
-   16.10 // PORTAL RESPONSIVE SAFETY
+   16.11 // PORTAL RESPONSIVE SAFETY
 
    Desktop remains the primary Retribution experience.
    Field Terminal is a separate future mobile project.
@@ -5336,6 +5958,29 @@ html body .br-footer-admin a:hover {
     }
 }
 
+/* ---------------------------------------------------------
+   16.12 // INTERFACE MOTION SAFETY
+
+   Retribution uses motion only as operational feedback.
+   Respect the visitor's platform preference without disabling
+   native Forumotion visibility or navigation behavior.
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
 /* =========================================================
    99 // DEVELOPMENT
 
@@ -5349,10 +5994,385 @@ body::after {
     bottom: 14px;
     z-index: 99999;
     padding: 6px 9px;
-    background: #080808;
-    border-left: 2px solid #b00020;
-    color: #f2f2f2;
+    background: var(--br-void);
+    border-left: 2px solid var(--br-red);
+    color: var(--br-paper);
     font: 700 9px monospace;
     letter-spacing: 1px;
     pointer-events: none;
+}
+/* ================================================================
+   SOUL RESONANCE / TYBW INTERACTION LAYER
+   Captain-insignia diamond + golden Getsuga activation
+   ================================================================ */
+
+:root {
+    --br-getsuga-core: #fff6d2;
+    --br-getsuga-gold: #ffc44d;
+    --br-getsuga-orange: #ff7a18;
+    --br-getsuga-ember: #d93b0b;
+}
+
+.br-reiatsu-mark {
+    position: fixed;
+    z-index: 2147483646;
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    isolation: isolate;
+}
+
+/* Pressure wave behind the Captain-style insignia. */
+.br-reiatsu-mark::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 1px solid var(--br-getsuga-gold);
+    opacity: 0;
+    box-shadow:
+        0 0 4px var(--br-getsuga-core),
+        0 0 10px rgba(255, 196, 77, 0.9),
+        0 0 20px rgba(255, 122, 24, 0.62);
+    animation:
+        br-getsuga-wave
+        480ms
+        cubic-bezier(.16, .84, .24, 1)
+        forwards;
+}
+
+/* White-hot ignition point. */
+.br-reiatsu-mark::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        #fff 0 18%,
+        var(--br-getsuga-core) 30%,
+        var(--br-getsuga-gold) 52%,
+        rgba(255, 122, 24, 0) 76%
+    );
+    opacity: 0;
+    box-shadow:
+        0 0 3px var(--br-getsuga-core),
+        0 0 8px var(--br-getsuga-gold),
+        0 0 14px var(--br-getsuga-orange);
+    animation:
+        br-getsuga-core
+        390ms
+        cubic-bezier(.2, .72, .2, 1)
+        forwards;
+}
+
+/* Links and buttons receive a stronger release. */
+.br-reiatsu-mark--strong::before {
+    border-width: 2px;
+    box-shadow:
+        0 0 5px var(--br-getsuga-core),
+        0 0 13px var(--br-getsuga-gold),
+        0 0 25px rgba(255, 122, 24, 0.78),
+        0 0 34px rgba(217, 59, 11, 0.32);
+}
+
+/* Double Captain-insignia diamond. */
+.br-reiatsu-mark__diamond {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--br-getsuga-gold);
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(45deg) scale(.25);
+    box-shadow:
+        0 0 5px rgba(255, 246, 210, .82),
+        0 0 14px rgba(255, 178, 26, .62),
+        inset 0 0 10px rgba(255, 122, 24, .16);
+    animation:
+        br-getsuga-outer
+        470ms
+        cubic-bezier(.16, .84, .24, 1)
+        forwards;
+}
+
+.br-reiatsu-mark__diamond::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid var(--br-getsuga-orange);
+    box-shadow:0 0 8px rgba(255, 122, 24, .7);
+}
+
+.br-reiatsu-mark--strong .br-reiatsu-mark__diamond {
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+}
+
+/* Four diagonal reiatsu fragments released by the click. */
+.br-reiatsu-mark__shard {
+    --br-shard-angle:45deg;
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:3px;
+    height:11px;
+    opacity:0;
+    background:linear-gradient(
+        to top,
+        rgba(217,59,11,0),
+        var(--br-getsuga-orange) 38%,
+        var(--br-getsuga-core)
+    );
+    box-shadow:0 0 7px var(--br-getsuga-orange);
+    transform-origin:50% 50%;
+    animation:
+        br-getsuga-shard
+        430ms
+        cubic-bezier(.12,.72,.2,1)
+        forwards;
+}
+
+.br-reiatsu-mark__shard--1 { --br-shard-angle:45deg; }
+.br-reiatsu-mark__shard--2 { --br-shard-angle:135deg; }
+.br-reiatsu-mark__shard--3 { --br-shard-angle:225deg; }
+.br-reiatsu-mark__shard--4 { --br-shard-angle:315deg; }
+
+@keyframes br-getsuga-outer {
+    0% {
+        opacity: 0;
+        transform:translate(-50%,-50%) rotate(45deg) scale(.25);
+        border-color: var(--br-getsuga-core);
+    }
+
+    16% {
+        opacity: 1;
+        transform:translate(-50%,-50%) rotate(45deg) scale(.72);
+        border-color: var(--br-getsuga-gold);
+    }
+
+    58% {
+        opacity: .92;
+        transform:translate(-50%,-50%) rotate(45deg) scale(1.08);
+        border-color: var(--br-getsuga-orange);
+    }
+
+    100% {
+        opacity: 0;
+        transform:translate(-50%,-50%) rotate(45deg) scale(1.44);
+        border-color: var(--br-getsuga-ember);
+    }
+}
+
+@keyframes br-getsuga-core {
+    0% {
+        opacity: 0;
+        transform: scale(.2);
+    }
+
+    12% {
+        opacity: 1;
+        transform: scale(1.35);
+    }
+
+    42% {
+        opacity: .92;
+        transform: scale(.9);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(.25);
+    }
+}
+
+@keyframes br-getsuga-wave {
+    0% {
+        opacity:0;
+        transform:scale(.18);
+    }
+
+    18% {
+        opacity:.88;
+        transform:scale(.72);
+    }
+
+    100% {
+        opacity:0;
+        transform:scale(2.1);
+    }
+}
+
+@keyframes br-getsuga-shard {
+    0% {
+        opacity:0;
+        transform:
+            translate(-50%,-50%)
+            rotate(var(--br-shard-angle))
+            translateY(-5px)
+            scaleY(.15);
+    }
+
+    22% {
+        opacity:1;
+    }
+
+    100% {
+        opacity:0;
+        transform:
+            translate(-50%,-50%)
+            rotate(var(--br-shard-angle))
+            translateY(-34px)
+            scaleY(.72);
+    }
+}
+
+/* Number state: muted at rest, white on intent, Getsuga on release. */
+#main
+.br-category
+.topiclist.forums
+li.row
+dl.icon > dd.dterm::before,
+.br-topic-row .br-topic-main::before {
+    transition:
+        color 160ms ease,
+        text-shadow 160ms ease,
+        transform 160ms ease;
+}
+
+#main
+.br-category
+.topiclist.forums
+li.row:hover
+dl.icon > dd.dterm::before,
+#main
+.br-category
+.topiclist.forums
+li.row:focus-within
+dl.icon > dd.dterm::before,
+.br-topic-row:hover .br-topic-main::before,
+.br-topic-row:focus-within .br-topic-main::before {
+    color: var(--br-white, #f4f1ea);
+}
+
+#main
+.br-category
+.topiclist.forums
+li.row.br-row-activated
+dl.icon > dd.dterm::before,
+.br-topic-row.br-row-activated .br-topic-main::before {
+    color: var(--br-getsuga-gold) !important;
+    text-shadow:
+        0 0 5px var(--br-getsuga-core),
+        0 0 12px var(--br-getsuga-orange);
+    animation:
+        br-row-number-release
+        440ms
+        cubic-bezier(.16, .84, .24, 1);
+}
+
+@keyframes br-row-number-release {
+    0% {
+        transform:
+            translateY(-50%)
+            translateX(0)
+            scale(1);
+    }
+
+    24% {
+        transform:
+            translateY(-50%)
+            translateX(2px)
+            scale(1.08);
+    }
+
+    100% {
+        transform:
+            translateY(-50%)
+            translateX(0)
+            scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .br-reiatsu-mark {
+        display: none !important;
+    }
+
+    #main
+    .br-category
+    .topiclist.forums
+    li.row
+    dl.icon > dd.dterm::before,
+    .br-topic-row .br-topic-main::before {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+/* =========================================================
+   SUBFORUM DIRECTORY
+   Compact location links inside forum descriptions
+   ========================================================= */
+
+#main .br-category .dterm hr {
+    width: 44px;
+    height: 1px;
+    margin: 8px 0 7px;
+    background: var(--br-red);
+    border: 0;
+    opacity: 0.7;
+}
+
+#main .br-category .br-subforums {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px 16px;
+    width: 100%;
+    max-width: 430px;
+    margin: 0;
+}
+
+#main .br-category .br-subforums a.postlink {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: var(--br-pink) !important;
+    transition:
+        color 0.15s ease,
+        transform 0.15s ease;
+}
+
+#main .br-category .br-subforums a.postlink::before {
+    content: "â€º";
+    flex: 0 0 auto;
+    margin-right: 6px;
+    color: var(--br-red);
+}
+
+#main .br-category .br-subforums a.postlink:hover,
+#main .br-category .br-subforums a.postlink:focus-visible {
+    color: var(--br-white) !important;
+    transform: translateX(2px);
+}
+
+#main .br-category .br-subforums a.postlink:hover::before,
+#main .br-category .br-subforums a.postlink:focus-visible::before {
+    color: var(--br-orange);
+}
+
+@media (max-width: 700px) {
+    #main .br-category .br-subforums {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 4px;
+    }
 }
