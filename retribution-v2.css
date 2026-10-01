@@ -7,6 +7,8 @@
    - White Desert /f32 mapped to shared row and forum-header artwork.
    - White Sand Desert row/forum dossier pulls back to 44% width at 60% vertical position to reveal the night horizon.
    - Hueco Mundo category header frames the crescent moon; monochrome polarity adapted to white bar.
+   - Desert fade begins at its 56% image edge to remove the rectangular seam.
+   - Hueco Mundo category crop shifted to 20% to bring the crescent into the bar.
    - Desert/moon framing awaits visual review.
    - Between Worlds category header uses its approved monochrome seam artwork.
    - Category artwork shares one treatment with separate image tokens; Between Worlds confirmed in screenshot.
@@ -2353,6 +2355,7 @@ a[href*="mode=newtopic"]:focus-visible {
     --br-location-art-y: 60%;
     --br-location-art-size: 44% auto;
     --br-location-art-filter: none;
+    --br-location-art-mask: linear-gradient(90deg, transparent 56%, var(--br-ink) 90%);
     --br-location-row-opacity: .23;
     --br-location-row-hover-opacity: .29;
 }
@@ -2367,7 +2370,7 @@ a[href*="mode=newtopic"]:focus-visible {
 
 #main .br-category:has(a.forumtitle[href^="/f32-"]) {
     --br-category-location-art: var(--br-location-white-desert-art);
-    --br-category-location-art-position: right 0%;
+    --br-category-location-art-position: right 20%;
     --br-category-location-art-size: 56% auto;
     --br-category-location-art-filter: invert(1);
 }
