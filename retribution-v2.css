@@ -17,7 +17,8 @@
    - Karakura row appearance confirmed in desktop screenshot.
    - Naruki artwork reduced to 62% width and bottom-aligned for rooftops.
    - Naruki rooftop crop confirmed in desktop screenshot.
-   - Karakura artwork reduced to 75% width and bottom-aligned; screenshot reviewed.
+   - Karakura artwork reduced to 65% width and bottom-aligned to reveal more bridge.
+   - Updated Karakura bridge crop awaits screenshot review.
    - World of the Living row dividers use shared charcoal/crimson tokens.
    - World of the Living divider behavior confirmed by user.
    - Kagamino City /f37 mapped to shared row/header artwork treatment.
@@ -2277,7 +2278,7 @@ a[href*="mode=newtopic"]:focus-visible {
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f34-"]) {
     --br-location-art: var(--br-location-karakura-art);
     --br-location-art-y: 100%;
-    --br-location-art-size: 75% auto;
+    --br-location-art-size: 65% auto;
 }
 
 .br-forum-dossier:has(.br-forum-path a[href^="/f102-"]),
