@@ -4,6 +4,14 @@
    LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
 
    LATEST UPDATE // OCTOBER 1, 2026
+   - Daylight Dome f64 gains monochrome pillar landscape in row and dossier; 44% width, 70% vertical framing; screenshot review pending.
+   - Karakura Town subforum artwork framing confirmed in user screenshot.
+   - Onose River & Community Park f101 gains monochrome landscape art in row and dossier; 40% width, 65% vertical framing; screenshot review pending.
+   - Karakura General Hospital f35 gains monochrome art; 44% width, rooftop-aligned crop to retain Japanese signage; screenshot review pending.
+   - Urahara Shop f61 gains monochrome storefront art in row and dossier; 40% width, 30% vertical crop for a wider view; screenshot review pending.
+   - Kurosaki Clinic f78 framing reduced to 44% width; row dimensions retained; screenshot review pending.
+   - Karakura High School f60 gains ink artwork in its subforum row and dossier; 48% width, 42% vertical crop; user confirmed.
+   - Category collapse controls use small charcoal minus/plus glyphs with magenta hover and keyboard focus; native action retained; screenshot review pending.
    - Turn Back the Pendulum f13 gains dedicated ink artwork in row and dossier; 48% width, 60% vertical crop; screenshot review pending.
    - Schatten Bereich category header uses approved shadow-figure ink artwork; 48% width, 24% vertical crop; screenshot review pending.
    - Silbern f39 gains monochrome fortress art in its forum row and dossier; 48% width, 72% vertical crop; fade begins at 56% to soften the image boundary; revised screenshot review pending.
@@ -166,6 +174,12 @@
     --br-location-between-worlds-art: url("https://astyrisc.github.io/bleach-retribution/between-worlds-ink.png");
     --br-location-soul-header-art: url("https://astyrisc.github.io/bleach-retribution/soul-society-header-ink.png");
     --br-location-shadow-header-art: url("https://astyrisc.github.io/bleach-retribution/schatten-bereich-header-ink.png");
+    --br-location-daylight-art: url("https://astyrisc.github.io/bleach-retribution/daylight-dome-ink.png");
+    --br-location-river-art: url("https://astyrisc.github.io/bleach-retribution/onose-river-ink.png");
+    --br-location-hospital-art: url("https://astyrisc.github.io/bleach-retribution/karakura-general-hospital-ink.png");
+    --br-location-urahara-art: url("https://astyrisc.github.io/bleach-retribution/urahara-shop-ink.png");
+    --br-location-clinic-art: url("https://astyrisc.github.io/bleach-retribution/kurosaki-clinic-ink.png");
+    --br-location-school-art: url("https://astyrisc.github.io/bleach-retribution/karakura-high-school-ink.png");
     --br-location-pendulum-art: url("https://astyrisc.github.io/bleach-retribution/turn-back-the-pendulum-ink.png");
     --br-location-silbern-art: url("https://astyrisc.github.io/bleach-retribution/silbern-ink.png");
     --br-location-royal-palace-art: url("https://astyrisc.github.io/bleach-retribution/royal-palace-ink.png");
@@ -1505,12 +1519,51 @@ hr {
     z-index: 5 !important;
 }
 
+/* Keep the native collapse action; simplify only its visible icon. */
 .br-category-bar .btn-collapse {
     z-index: 10 !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    min-height: 28px;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    color: var(--br-ink) !important;
 }
 
 .br-category-bar .btn-collapse i {
-    color: var(--br-ink) !important;
+    color: inherit !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    background: transparent !important;
+}
+
+.br-category-bar .btn-collapse i[class*="minus"]::before,
+.br-category-bar .btn-collapse i[class*="plus"]::before {
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 18px !important;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.br-category-bar .btn-collapse i[class*="minus"]::before {
+    content: "âˆ’" !important;
+}
+
+.br-category-bar .btn-collapse i[class*="plus"]::before {
+    content: "+" !important;
+}
+
+.br-category-bar .btn-collapse:is(:hover, :focus-visible) {
+    color: var(--br-pink) !important;
+}
+
+.br-category-bar .btn-collapse:focus-visible {
+    outline: 1px solid var(--br-pink);
+    outline-offset: 2px;
 }
 
 #main .br-category .topiclist.forums {
@@ -2440,6 +2493,72 @@ a[href*="mode=newtopic"]:focus-visible {
     --br-location-row-hover-opacity: .29;
 }
 
+.br-forum-dossier:has(.br-forum-path a[href^="/f64-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f64-"]) {
+    --br-location-art: var(--br-location-daylight-art);
+    --br-location-art-y: 70%;
+    --br-location-art-size: 44% auto;
+    --br-location-art-filter: none;
+    --br-location-art-mask: linear-gradient(90deg, transparent 58%, var(--br-ink) 92%);
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f101-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f101-"]) {
+    --br-location-art: var(--br-location-river-art);
+    --br-location-art-y: 65%;
+    --br-location-art-size: 40% auto;
+    --br-location-art-filter: none;
+    --br-location-art-mask: linear-gradient(90deg, transparent 60%, var(--br-ink) 92%);
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f35-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f35-"]) {
+    --br-location-art: var(--br-location-hospital-art);
+    --br-location-art-y: 0%;
+    --br-location-art-size: 44% auto;
+    --br-location-art-filter: none;
+    --br-location-art-mask: linear-gradient(90deg, transparent 56%, var(--br-ink) 72%);
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f61-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f61-"]) {
+    --br-location-art: var(--br-location-urahara-art);
+    --br-location-art-y: 30%;
+    --br-location-art-size: 40% auto;
+    --br-location-art-filter: none;
+    --br-location-art-mask: linear-gradient(90deg, transparent 60%, var(--br-ink) 92%);
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f78-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f78-"]) {
+    --br-location-art: var(--br-location-clinic-art);
+    --br-location-art-y: 30%;
+    --br-location-art-size: 44% auto;
+    --br-location-art-filter: none;
+    --br-location-art-mask: linear-gradient(90deg, transparent 58%, var(--br-ink) 92%);
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
+.br-forum-dossier:has(.br-forum-path a[href^="/f60-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f60-"]) {
+    --br-location-art: var(--br-location-school-art);
+    --br-location-art-y: 42%;
+    --br-location-art-size: 48% auto;
+    --br-location-art-filter: none;
+    --br-location-art-mask: linear-gradient(90deg, transparent 56%, var(--br-ink) 92%);
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
 .br-forum-dossier:has(.br-forum-path a[href^="/f13-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f13-"]) {
     --br-location-art: var(--br-location-pendulum-art);
@@ -2511,7 +2630,7 @@ a[href*="mode=newtopic"]:focus-visible {
     z-index: 1;
 }
 
-.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"]))::before {
+.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"]))::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -2528,26 +2647,26 @@ a[href*="mode=newtopic"]:focus-visible {
     pointer-events: none;
 }
 
-.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"])) .br-forum-controls {
+.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"])) .br-forum-controls {
     position: relative;
     z-index: 2;
 }
 
 /* Location categories: shared dividers, preserving the final outer edge. */
-#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"])) .topiclist.forums li.row:not(:last-child) {
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"])) .topiclist.forums li.row:not(:last-child) {
     border-bottom-color: var(--br-location-divider) !important;
 }
 
-#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"])) .topiclist.forums li.row:not(:last-child):is(:hover, :focus-within) {
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"])) .topiclist.forums li.row:not(:last-child):is(:hover, :focus-within) {
     border-bottom-color: var(--br-location-divider-active) !important;
 }
 
 /* Location directory rows share one artwork treatment. */
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"])) {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"])) {
     isolation: isolate;
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"]))::after {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"]))::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -2564,18 +2683,18 @@ a[href*="mode=newtopic"]:focus-visible {
     transition: opacity var(--br-motion-standard) var(--br-ease-interface);
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"])):hover::after,
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"])):focus-within::after {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"])):hover::after,
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"])):focus-within::after {
     opacity: var(--br-location-row-hover-opacity);
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"])) dl.icon {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"])) dl.icon {
     position: relative;
     z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    #main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"]))::after {
+    #main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"], [href^="/f61-"], [href^="/f35-"], [href^="/f101-"], [href^="/f64-"]))::after {
         transition: none;
     }
 }
