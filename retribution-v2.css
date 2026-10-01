@@ -17,7 +17,10 @@
    - Naruki rooftop crop confirmed in desktop screenshot.
    - Karakura artwork reduced to 75% width and bottom-aligned; screenshot reviewed.
    - World of the Living row dividers use shared charcoal/crimson tokens.
-   - Divider hover and keyboard-focus appearance pending browser review.
+   - World of the Living divider behavior confirmed by user.
+   - Kagamino City /f37 mapped to shared row/header artwork treatment.
+   - Kagamino uses a 75% bottom-aligned crop; visual review pending.
+   - Kagamino asset deployment pending public URL availability.
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -116,6 +119,7 @@
     --br-ease-interface: cubic-bezier(.4,0,.2,1);
     --br-location-world-art: url("https://astyrisc.github.io/bleach-retribution/world-of-the-living-ink.png");
     --br-location-naruki-art: url("https://astyrisc.github.io/bleach-retribution/naruki-city-ink.png");
+    --br-location-kagamino-art: url("https://astyrisc.github.io/bleach-retribution/kagamino-city-ink.png");
     --br-location-karakura-art: url("https://astyrisc.github.io/bleach-retribution/karakura-town-ink.png");
     --br-location-category-opacity: .14;
     --br-location-dossier-opacity: .18;
@@ -2280,6 +2284,13 @@ a[href*="mode=newtopic"]:focus-visible {
     --br-location-art-size: 62% auto;
 }
 
+.br-forum-dossier:has(.br-forum-path a[href^="/f37-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f37-"]) {
+    --br-location-art: var(--br-location-kagamino-art);
+    --br-location-art-y: 100%;
+    --br-location-art-size: 75% auto;
+}
+
 #main .br-category:has(a.forumtitle[href^="/f34-"]) .br-category-bar .header::before {
     content: "";
     position: absolute;
@@ -2299,7 +2310,7 @@ a[href*="mode=newtopic"]:focus-visible {
     z-index: 1;
 }
 
-.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"]))::before {
+.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"]))::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -2315,7 +2326,7 @@ a[href*="mode=newtopic"]:focus-visible {
     pointer-events: none;
 }
 
-.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"])) .br-forum-controls {
+.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"])) .br-forum-controls {
     position: relative;
     z-index: 2;
 }
@@ -2330,11 +2341,11 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 
 /* Location directory rows share one artwork treatment. */
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"])) {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"])) {
     isolation: isolate;
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"]))::after {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"]))::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -2351,18 +2362,18 @@ a[href*="mode=newtopic"]:focus-visible {
     transition: opacity var(--br-motion-standard) var(--br-ease-interface);
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"])):hover::after,
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"])):focus-within::after {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"])):hover::after,
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"])):focus-within::after {
     opacity: var(--br-location-row-hover-opacity);
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"])) dl.icon {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"])) dl.icon {
     position: relative;
     z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    #main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"]))::after {
+    #main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"]))::after {
         transition: none;
     }
 }
