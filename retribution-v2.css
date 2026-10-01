@@ -25,10 +25,10 @@
    - Kagamino uses a 75% width crop at 55% vertical position.
    - Crop raised to include sky, hills, apartments and residential rooftops; review pending.
    - External Districts /f48 uses the approved Burn the Witch ink panorama.
-   - External uses the shared full-row layer, 62% image width and 35% vertical crop.
-   - External fade starts at the 38% image edge; tower framing uses a higher vertical crop.
+   - External uses the shared full-row layer, 62% image width and 48% vertical crop.
+   - External fade starts at the 38% image edge; artwork shifted upward to reveal more of the lower building and bridge.
    - Latest screenshot confirmed prior framing defects; full-row correction replaces that approach.
-   - Removed separate artwork widths after loaded CSS was confirmed; new crops await visual review.
+   - Removed separate artwork widths after loaded CSS was confirmed; shared framing confirmed by user; upward External crop awaits visual review.
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
@@ -2303,7 +2303,7 @@ a[href*="mode=newtopic"]:focus-visible {
 .br-forum-dossier:has(.br-forum-path a[href^="/f48-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f48-"]) {
     --br-location-art: var(--br-location-external-art);
-    --br-location-art-y: 35%;
+    --br-location-art-y: 48%;
     --br-location-art-size: 62% auto;
     --br-location-art-mask: linear-gradient(90deg, transparent 38%, var(--br-ink) 65%);
 }
