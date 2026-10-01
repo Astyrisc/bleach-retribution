@@ -4,7 +4,9 @@
    LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
 
    LATEST UPDATE // SEPTEMBER 30, 2026
-   - Forest of Menos /f33 added to shared row/dossier art; 52% width, 60% vertical crop; review pending.
+   - Hueco Mundo category header uses dedicated moon/tower artwork; 56% width, 5% vertical crop; visual review pending.
+   - Forest of Menos and Las Noches row framing confirmed in the latest desktop screenshot.
+   - Forest of Menos /f33 added to shared row/dossier art; 52% width, 60% vertical crop.
    - Las Noches /f31 artwork increased to 52% width at 42% vertical position; fade starts at 48%, row dimensions preserved; review pending.
    - White Sand Desert horizon/fade and Hueco Mundo crescent confirmed in screenshot.
    - White Desert /f32 mapped to shared row and forum-header artwork.
@@ -52,7 +54,7 @@
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
-   - Topic portrait preserved from the recovered September 17â€“19 post lineage.
+   - Topic portrait preserved from the recovered September 17Ã¢â‚¬â€œ19 post lineage.
    - Post-header positioning correction prevents the header layer from occluding the upper portrait.
    - Character dossier/content rail added as canonical post architecture.
    - Later verified desktop systems consolidated forward.
@@ -155,6 +157,7 @@
     --br-location-menos-art: url("https://astyrisc.github.io/bleach-retribution/forest-of-menos-ink.png");
     --br-location-las-noches-art: url("https://astyrisc.github.io/bleach-retribution/las-noches-ink.png");
     --br-location-white-desert-art: url("https://astyrisc.github.io/bleach-retribution/white-desert-ink.png");
+    --br-location-hueco-header-art: url("https://astyrisc.github.io/bleach-retribution/hueco-mundo-header-ink.png");
     --br-location-dangai-art: url("https://astyrisc.github.io/bleach-retribution/dangai-ink.png");
     --br-location-category-opacity: .17;
     --br-location-dossier-opacity: .25;
@@ -1147,7 +1150,7 @@ hr {
 }
 
 #fa_ticker_container:before {
-    content: "è­¦" !important;
+    content: "Ã¨Â­Â¦" !important;
     position: absolute !important;
     left: 13px !important;
     top: 50% !important;
@@ -2396,8 +2399,8 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 
 #main .br-category:has(a.forumtitle[href^="/f32-"]) {
-    --br-category-location-art: var(--br-location-white-desert-art);
-    --br-category-location-art-position: right 20%;
+    --br-category-location-art: var(--br-location-hueco-header-art);
+    --br-category-location-art-position: right 5%;
     --br-category-location-art-size: 56% auto;
     --br-category-location-art-filter: invert(1);
 }
@@ -2618,7 +2621,7 @@ a[href*="mode=newtopic"]:focus-visible {
    - Character dossier: 290px
    - Intentional gutter: 30px
    - Content offset: 320px
-   - Canonical portrait: exact 250 Ã— 400 presentation
+   - Canonical portrait: exact 250 Ãƒâ€” 400 presentation
 
    Forumotion positions the profile rail independently from
    the post body. The permanent content offset prevents long
@@ -2710,9 +2713,9 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 
 /* 08.54 // CANONICAL CHARACTER PORTRAIT
-   RETRIBUTION STANDARD // 250 Ã— 400
+   RETRIBUTION STANDARD // 250 Ãƒâ€” 400
 
-   Recovered from the September 17â€“19 approved post lineage.
+   Recovered from the September 17Ã¢â‚¬â€œ19 approved post lineage.
    Keep the fixed dossier presentation while preserving the complete
    uploaded composition. No crop. No circle. */
 .br-post .br-post-profile .postprofile-avatar {
@@ -2843,7 +2846,7 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 .br-post .br-post-profile .postprofile-info .label span { color: inherit !important; }
 .br-post .br-post-profile .postprofile-info .label::before {
-    content: "Â·";
+    content: "Ã‚Â·";
     margin-right: 5px;
     color: var(--br-orange);
     font-size: 9px;
@@ -4532,7 +4535,7 @@ html body .br-footer-admin a:hover {
 }
 
 .br-post .vote > a.ion-minus-circled::before {
-    content: "âˆ’";
+    content: "Ã¢Ë†â€™";
 
     font-family: "JetBrains Mono", monospace !important;
     font-size: 11px !important;
@@ -4867,7 +4870,7 @@ html body .br-footer-admin a:hover {
    --------------------------------------------------------- */
 
 .br-post .fa_like_div .rep-button.fa_dislike::before {
-    content: "âˆ’";
+    content: "Ã¢Ë†â€™";
 
     font-family: "JetBrains Mono", monospace;
     font-size: 10px;
@@ -5453,7 +5456,7 @@ html body .br-footer-admin a:hover {
 }
 
 .portal > .column:first-child .module-footer::after {
-    content: "â†’";
+    content: "Ã¢â€ â€™";
     font-size: 8px;
     color: var(--br-red);
 }
@@ -6353,7 +6356,7 @@ dl.icon > dd.dterm::before,
 }
 
 #main .br-category .br-subforums a.postlink::before {
-    content: "â€º";
+    content: "Ã¢â‚¬Âº";
     flex: 0 0 auto;
     margin-right: 6px;
     color: var(--br-red);
