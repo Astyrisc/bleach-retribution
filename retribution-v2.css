@@ -4,7 +4,7 @@
    LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
 
    LATEST UPDATE // OCTOBER 1, 2026
-   - Assembly Hall f88 gains monochrome hall artwork in row and dossier; 26% width, 28% vertical framing prioritizes full emblem and steps; screenshot review pending.
+   - Assembly Hall f88 gains monochrome hall artwork in row and dossier; 30% width, 22% vertical framing tightens the view around the emblem banner and stage while trimming foreground floor; revised screenshot review pending.
    - Throne Hall f51 gains monochrome throne artwork in row and dossier; 30% width, 58% vertical framing to retain curved back, seat and arms; screenshot review pending.
    - Sternritter Quarters f65 gains monochrome room artwork in row and dossier; 40% width retained; image shifted downward with 32% vertical alignment, brighter resting opacity and modest brightness adjustment; revised screenshot review pending.
    - Silbern Outskirts f63 gains approved frozen-city artwork in row and dossier; 44% width, 58% vertical framing; user approved rooftop-focused crop.
@@ -2504,10 +2504,10 @@ a[href*="mode=newtopic"]:focus-visible {
 .br-forum-dossier:has(.br-forum-path a[href^="/f88-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f88-"]) {
     --br-location-art: var(--br-location-assembly-art);
-    --br-location-art-y: 28%;
-    --br-location-art-size: 26% auto;
+    --br-location-art-y: 22%;
+    --br-location-art-size: 30% auto;
     --br-location-art-filter: brightness(1.08);
-    --br-location-art-mask: linear-gradient(90deg, transparent 74%, var(--br-ink) 82%);
+    --br-location-art-mask: linear-gradient(90deg, transparent 70%, var(--br-ink) 80%);
     --br-location-row-opacity: .28;
     --br-location-row-hover-opacity: .33;
 }
