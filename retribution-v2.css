@@ -4,6 +4,7 @@
    LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
 
    LATEST UPDATE // OCTOBER 1, 2026
+   - Category collapse controls use small charcoal minus/plus glyphs with magenta hover and keyboard focus; native action retained; screenshot review pending.
    - Turn Back the Pendulum f13 gains dedicated ink artwork in row and dossier; 48% width, 60% vertical crop; screenshot review pending.
    - Schatten Bereich category header uses approved shadow-figure ink artwork; 48% width, 24% vertical crop; screenshot review pending.
    - Silbern f39 gains monochrome fortress art in its forum row and dossier; 48% width, 72% vertical crop; fade begins at 56% to soften the image boundary; revised screenshot review pending.
@@ -64,7 +65,7 @@
 
    PROVENANCE
    - Foundation preserved from September 17 RC02.
-   - Topic portrait preserved from the recovered September 17Ã¢â‚¬â€œ19 post lineage.
+   - Topic portrait preserved from the recovered September 17â€“19 post lineage.
    - Post-header positioning correction prevents the header layer from occluding the upper portrait.
    - Character dossier/content rail added as canonical post architecture.
    - Later verified desktop systems consolidated forward.
@@ -1167,7 +1168,7 @@ hr {
 }
 
 #fa_ticker_container:before {
-    content: "Ã¨Â­Â¦" !important;
+    content: "è­¦" !important;
     position: absolute !important;
     left: 13px !important;
     top: 50% !important;
@@ -1505,12 +1506,51 @@ hr {
     z-index: 5 !important;
 }
 
+/* Keep the native collapse action; simplify only its visible icon. */
 .br-category-bar .btn-collapse {
     z-index: 10 !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    min-height: 28px;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    color: var(--br-ink) !important;
 }
 
 .br-category-bar .btn-collapse i {
-    color: var(--br-ink) !important;
+    color: inherit !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    background: transparent !important;
+}
+
+.br-category-bar .btn-collapse i[class*="minus"]::before,
+.br-category-bar .btn-collapse i[class*="plus"]::before {
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 18px !important;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.br-category-bar .btn-collapse i[class*="minus"]::before {
+    content: "−" !important;
+}
+
+.br-category-bar .btn-collapse i[class*="plus"]::before {
+    content: "+" !important;
+}
+
+.br-category-bar .btn-collapse:is(:hover, :focus-visible) {
+    color: var(--br-pink) !important;
+}
+
+.br-category-bar .btn-collapse:focus-visible {
+    outline: 1px solid var(--br-pink);
+    outline-offset: 2px;
 }
 
 #main .br-category .topiclist.forums {
@@ -2707,7 +2747,7 @@ a[href*="mode=newtopic"]:focus-visible {
    - Character dossier: 290px
    - Intentional gutter: 30px
    - Content offset: 320px
-   - Canonical portrait: exact 250 Ãƒâ€” 400 presentation
+   - Canonical portrait: exact 250 Ã— 400 presentation
 
    Forumotion positions the profile rail independently from
    the post body. The permanent content offset prevents long
@@ -2799,9 +2839,9 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 
 /* 08.54 // CANONICAL CHARACTER PORTRAIT
-   RETRIBUTION STANDARD // 250 Ãƒâ€” 400
+   RETRIBUTION STANDARD // 250 Ã— 400
 
-   Recovered from the September 17Ã¢â‚¬â€œ19 approved post lineage.
+   Recovered from the September 17â€“19 approved post lineage.
    Keep the fixed dossier presentation while preserving the complete
    uploaded composition. No crop. No circle. */
 .br-post .br-post-profile .postprofile-avatar {
@@ -2932,7 +2972,7 @@ a[href*="mode=newtopic"]:focus-visible {
 }
 .br-post .br-post-profile .postprofile-info .label span { color: inherit !important; }
 .br-post .br-post-profile .postprofile-info .label::before {
-    content: "Ã‚Â·";
+    content: "Â·";
     margin-right: 5px;
     color: var(--br-orange);
     font-size: 9px;
@@ -4621,7 +4661,7 @@ html body .br-footer-admin a:hover {
 }
 
 .br-post .vote > a.ion-minus-circled::before {
-    content: "Ã¢Ë†â€™";
+    content: "âˆ’";
 
     font-family: "JetBrains Mono", monospace !important;
     font-size: 11px !important;
@@ -4956,7 +4996,7 @@ html body .br-footer-admin a:hover {
    --------------------------------------------------------- */
 
 .br-post .fa_like_div .rep-button.fa_dislike::before {
-    content: "Ã¢Ë†â€™";
+    content: "âˆ’";
 
     font-family: "JetBrains Mono", monospace;
     font-size: 10px;
@@ -5542,7 +5582,7 @@ html body .br-footer-admin a:hover {
 }
 
 .portal > .column:first-child .module-footer::after {
-    content: "Ã¢â€ â€™";
+    content: "â†’";
     font-size: 8px;
     color: var(--br-red);
 }
@@ -6442,7 +6482,7 @@ dl.icon > dd.dterm::before,
 }
 
 #main .br-category .br-subforums a.postlink::before {
-    content: "Ã¢â‚¬Âº";
+    content: "â€º";
     flex: 0 0 auto;
     margin-right: 6px;
     color: var(--br-red);
