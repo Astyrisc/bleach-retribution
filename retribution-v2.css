@@ -4,6 +4,7 @@
    LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
 
    LATEST UPDATE // OCTOBER 1, 2026
+   - Schatten Bereich category header uses approved shadow-figure ink artwork; 48% width, 24% vertical crop; screenshot review pending.
    - Silbern f39 gains monochrome fortress art in its forum row and dossier; 48% width, 72% vertical crop; fade begins at 56% to soften the image boundary; revised screenshot review pending.
    - Soul Society category header gains dedicated approved skyline art; 48% width, 28% vertical crop; review pending.
    - Soul Society location rows confirmed in desktop screenshot; original pale-cloud Royal Palace retained.
@@ -163,6 +164,7 @@
     --br-location-garganta-art: url("https://astyrisc.github.io/bleach-retribution/garganta-ink.png");
     --br-location-between-worlds-art: url("https://astyrisc.github.io/bleach-retribution/between-worlds-ink.png");
     --br-location-soul-header-art: url("https://astyrisc.github.io/bleach-retribution/soul-society-header-ink.png");
+    --br-location-shadow-header-art: url("https://astyrisc.github.io/bleach-retribution/schatten-bereich-header-ink.png");
     --br-location-silbern-art: url("https://astyrisc.github.io/bleach-retribution/silbern-ink.png");
     --br-location-royal-palace-art: url("https://astyrisc.github.io/bleach-retribution/royal-palace-ink.png");
     --br-location-seireitei-art: url("https://astyrisc.github.io/bleach-retribution/seireitei-ink.png");
@@ -2469,7 +2471,14 @@ a[href*="mode=newtopic"]:focus-visible {
     --br-category-location-art-filter: none;
 }
 
-#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f32-"], [href^="/f30-"])) .br-category-bar .header::before {
+#main .br-category:has(a.forumtitle[href^="/f39-"]) {
+    --br-category-location-art: var(--br-location-shadow-header-art);
+    --br-category-location-art-position: right 24%;
+    --br-category-location-art-size: 48% auto;
+    --br-category-location-art-filter: none;
+}
+
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f32-"], [href^="/f30-"], [href^="/f39-"])) .br-category-bar .header::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -2484,7 +2493,7 @@ a[href*="mode=newtopic"]:focus-visible {
     pointer-events: none;
 }
 
-#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f32-"], [href^="/f30-"])) .br-category-bar .header dl.icon {
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f32-"], [href^="/f30-"], [href^="/f39-"])) .br-category-bar .header dl.icon {
     position: relative;
     z-index: 1;
 }
