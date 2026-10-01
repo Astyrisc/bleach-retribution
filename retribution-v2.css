@@ -25,7 +25,9 @@
    - Kagamino uses a 75% width crop at 55% vertical position.
    - Crop raised to include sky, hills, apartments and residential rooftops; review pending.
    - External Districts /f48 uses the approved Burn the Witch ink panorama.
-   - External artwork URL verified; 48% width, 55% vertical crop awaits review.
+   - External artwork URL verified; 48% width, 45% vertical crop.
+   - External fade starts at its 52% image boundary to remove the hard seam.
+   - Revised fade and tower framing await screenshot review.
    - Per-location mask token reveals the clock tower beside the description.
 
    PROVENANCE
@@ -2301,9 +2303,9 @@ a[href*="mode=newtopic"]:focus-visible {
 .br-forum-dossier:has(.br-forum-path a[href^="/f48-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f48-"]) {
     --br-location-art: var(--br-location-external-art);
-    --br-location-art-y: 55%;
+    --br-location-art-y: 45%;
     --br-location-art-size: 48% auto;
-    --br-location-art-mask: linear-gradient(90deg, transparent 35%, var(--br-ink) 60%);
+    --br-location-art-mask: linear-gradient(90deg, transparent 52%, var(--br-ink) 66%);
 }
 
 #main .br-category:has(a.forumtitle[href^="/f34-"]) .br-category-bar .header::before {
