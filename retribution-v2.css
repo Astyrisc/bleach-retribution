@@ -8,6 +8,8 @@
    - Karakura Town and Naruki City row/header artwork mapped by forum ID.
    - Karakura homepage row gains a masked ink background and hover fade.
    - Location artwork URLs and opacity use shared tokens.
+   - Artwork visibility increased: rows .17, hovered rows .23, forum headers .22.
+   - White category-header artwork remains at .14; brighter art awaits visual review.
    - Existing layout and subforum directory styling preserved.
    - No JavaScript changes required.
    - Header appearance confirmed in desktop screenshots.
@@ -19,7 +21,8 @@
    - World of the Living row dividers use shared charcoal/crimson tokens.
    - World of the Living divider behavior confirmed by user.
    - Kagamino City /f37 mapped to shared row/header artwork treatment.
-   - Kagamino uses a 75% bottom-aligned crop; visual review pending.
+   - Kagamino uses a 75% width crop at 55% vertical position.
+   - Crop raised to include sky, hills, apartments and residential rooftops; review pending.
    - Kagamino asset deployment pending public URL availability.
 
    PROVENANCE
@@ -122,9 +125,9 @@
     --br-location-kagamino-art: url("https://astyrisc.github.io/bleach-retribution/kagamino-city-ink.png");
     --br-location-karakura-art: url("https://astyrisc.github.io/bleach-retribution/karakura-town-ink.png");
     --br-location-category-opacity: .14;
-    --br-location-dossier-opacity: .18;
-    --br-location-row-opacity: .13;
-    --br-location-row-hover-opacity: .19;
+    --br-location-dossier-opacity: .22;
+    --br-location-row-opacity: .17;
+    --br-location-row-hover-opacity: .23;
     --br-location-divider: var(--br-border2);
     --br-location-divider-active: var(--br-blood);
     --br-post-rail: 290px;
@@ -2287,7 +2290,7 @@ a[href*="mode=newtopic"]:focus-visible {
 .br-forum-dossier:has(.br-forum-path a[href^="/f37-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f37-"]) {
     --br-location-art: var(--br-location-kagamino-art);
-    --br-location-art-y: 100%;
+    --br-location-art-y: 55%;
     --br-location-art-size: 75% auto;
 }
 
