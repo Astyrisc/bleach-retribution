@@ -4,6 +4,8 @@
    LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
 
    LATEST UPDATE // OCTOBER 1, 2026
+   - Soul Society category header gains dedicated approved skyline art; 48% width, 28% vertical crop; review pending.
+   - Soul Society location rows confirmed in desktop screenshot; original pale-cloud Royal Palace retained.
    - Royal Palace /f38 added using the approved pale-sky ink artwork; 44% width, 30% vertical crop; review pending.
    - Seireitei /f15 added to shared row/dossier art; 48% width, 36% vertical crop; visual review pending.
    - Rukongai artwork confirmed by user.
@@ -159,6 +161,7 @@
     --br-location-karakura-art: url("https://astyrisc.github.io/bleach-retribution/karakura-town-ink.png");
     --br-location-garganta-art: url("https://astyrisc.github.io/bleach-retribution/garganta-ink.png");
     --br-location-between-worlds-art: url("https://astyrisc.github.io/bleach-retribution/between-worlds-ink.png");
+    --br-location-soul-header-art: url("https://astyrisc.github.io/bleach-retribution/soul-society-header-ink.png");
     --br-location-royal-palace-art: url("https://astyrisc.github.io/bleach-retribution/royal-palace-ink.png");
     --br-location-seireitei-art: url("https://astyrisc.github.io/bleach-retribution/seireitei-ink.png");
     --br-location-rukongai-art: url("https://astyrisc.github.io/bleach-retribution/rukongai-ink.png");
@@ -2446,7 +2449,14 @@ a[href*="mode=newtopic"]:focus-visible {
     --br-category-location-art-filter: invert(1);
 }
 
-#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f32-"])) .br-category-bar .header::before {
+#main .br-category:has(a.forumtitle[href^="/f30-"]) {
+    --br-category-location-art: var(--br-location-soul-header-art);
+    --br-category-location-art-position: right 28%;
+    --br-category-location-art-size: 48% auto;
+    --br-category-location-art-filter: none;
+}
+
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f32-"], [href^="/f30-"])) .br-category-bar .header::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -2461,7 +2471,7 @@ a[href*="mode=newtopic"]:focus-visible {
     pointer-events: none;
 }
 
-#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f32-"])) .br-category-bar .header dl.icon {
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f32-"], [href^="/f30-"])) .br-category-bar .header dl.icon {
     position: relative;
     z-index: 1;
 }
