@@ -4,6 +4,7 @@
    LOCATION HEADERS + ROW ART + DIVIDERS // REVIEW BUILD
 
    LATEST UPDATE // OCTOBER 1, 2026
+   - Kurosaki Clinic f78 gains ink artwork in subforum row and dossier; 48% width, 30% vertical crop; screenshot review pending.
    - Karakura High School f60 gains ink artwork in its subforum row and dossier; 48% width, 42% vertical crop; screenshot review pending.
    - Category collapse controls use small charcoal minus/plus glyphs with magenta hover and keyboard focus; native action retained; screenshot review pending.
    - Turn Back the Pendulum f13 gains dedicated ink artwork in row and dossier; 48% width, 60% vertical crop; screenshot review pending.
@@ -168,6 +169,7 @@
     --br-location-between-worlds-art: url("https://astyrisc.github.io/bleach-retribution/between-worlds-ink.png");
     --br-location-soul-header-art: url("https://astyrisc.github.io/bleach-retribution/soul-society-header-ink.png");
     --br-location-shadow-header-art: url("https://astyrisc.github.io/bleach-retribution/schatten-bereich-header-ink.png");
+    --br-location-clinic-art: url("https://astyrisc.github.io/bleach-retribution/kurosaki-clinic-ink.png");
     --br-location-school-art: url("https://astyrisc.github.io/bleach-retribution/karakura-high-school-ink.png");
     --br-location-pendulum-art: url("https://astyrisc.github.io/bleach-retribution/turn-back-the-pendulum-ink.png");
     --br-location-silbern-art: url("https://astyrisc.github.io/bleach-retribution/silbern-ink.png");
@@ -2482,6 +2484,17 @@ a[href*="mode=newtopic"]:focus-visible {
     --br-location-row-hover-opacity: .29;
 }
 
+.br-forum-dossier:has(.br-forum-path a[href^="/f78-"]),
+#main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f78-"]) {
+    --br-location-art: var(--br-location-clinic-art);
+    --br-location-art-y: 30%;
+    --br-location-art-size: 48% auto;
+    --br-location-art-filter: none;
+    --br-location-art-mask: linear-gradient(90deg, transparent 56%, var(--br-ink) 92%);
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
+}
+
 .br-forum-dossier:has(.br-forum-path a[href^="/f60-"]),
 #main .br-category .topiclist.forums li.row:has(a.forumtitle[href^="/f60-"]) {
     --br-location-art: var(--br-location-school-art);
@@ -2564,7 +2577,7 @@ a[href*="mode=newtopic"]:focus-visible {
     z-index: 1;
 }
 
-.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"]))::before {
+.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"]))::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -2581,26 +2594,26 @@ a[href*="mode=newtopic"]:focus-visible {
     pointer-events: none;
 }
 
-.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"])) .br-forum-controls {
+.br-forum-dossier:has(.br-forum-path a:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"])) .br-forum-controls {
     position: relative;
     z-index: 2;
 }
 
 /* Location categories: shared dividers, preserving the final outer edge. */
-#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"])) .topiclist.forums li.row:not(:last-child) {
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"])) .topiclist.forums li.row:not(:last-child) {
     border-bottom-color: var(--br-location-divider) !important;
 }
 
-#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"])) .topiclist.forums li.row:not(:last-child):is(:hover, :focus-within) {
+#main .br-category:has(a.forumtitle:is([href^="/f34-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"])) .topiclist.forums li.row:not(:last-child):is(:hover, :focus-within) {
     border-bottom-color: var(--br-location-divider-active) !important;
 }
 
 /* Location directory rows share one artwork treatment. */
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"])) {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"])) {
     isolation: isolate;
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"]))::after {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"]))::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -2617,18 +2630,18 @@ a[href*="mode=newtopic"]:focus-visible {
     transition: opacity var(--br-motion-standard) var(--br-ease-interface);
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"])):hover::after,
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"])):focus-within::after {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"])):hover::after,
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"])):focus-within::after {
     opacity: var(--br-location-row-hover-opacity);
 }
 
-#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"])) dl.icon {
+#main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"])) dl.icon {
     position: relative;
     z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    #main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"]))::after {
+    #main .br-category .topiclist.forums li.row:has(a.forumtitle:is([href^="/f34-"], [href^="/f102-"], [href^="/f37-"], [href^="/f48-"], [href^="/f85-"], [href^="/f54-"], [href^="/f32-"], [href^="/f31-"], [href^="/f33-"], [href^="/f30-"], [href^="/f15-"], [href^="/f38-"], [href^="/f39-"], [href^="/f13-"], [href^="/f60-"], [href^="/f78-"]))::after {
         transition: none;
     }
 }
