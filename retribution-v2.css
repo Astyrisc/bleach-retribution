@@ -10,7 +10,9 @@
    - Between Worlds shares the World of the Living hover divider treatment.
    - Garganta artwork reduced from 70% to 56% width; container dimensions preserved.
    - Garganta artwork top-aligned to reveal the stepped opening; 56% width retained.
-   - Top-aligned Garganta crop awaits screenshot review.
+   - Top-aligned Garganta crop confirmed in desktop screenshot.
+   - Garganta and Dangai row opacity raised to .23, hover .29; headers and cities preserved.
+   - Passage brightness adjustment awaits screenshot review.
    - World of the Living category header artwork added.
    - Karakura Town and Naruki City row/header artwork mapped by forum ID.
    - Karakura homepage row gains a masked ink background and hover fade.
@@ -2323,6 +2325,8 @@ a[href*="mode=newtopic"]:focus-visible {
     --br-location-art-y: 0%;
     --br-location-art-size: 56% auto;
     --br-location-art-filter: none;
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
 }
 
 .br-forum-dossier:has(.br-forum-path a[href^="/f54-"]),
@@ -2331,6 +2335,8 @@ a[href*="mode=newtopic"]:focus-visible {
     --br-location-art-y: 58%;
     --br-location-art-size: 62% auto;
     --br-location-art-filter: none;
+    --br-location-row-opacity: .23;
+    --br-location-row-hover-opacity: .29;
 }
 
 #main .br-category:has(a.forumtitle[href^="/f34-"]) .br-category-bar .header::before {
