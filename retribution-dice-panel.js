@@ -74,6 +74,7 @@
     var user = window._userdata && window._userdata.user_id;
     if (!user || Number(user) < 1) return;
     var key = 'br-dice-test-v1:' + user + ':' + CONFIG.topic;
+    var historyKey = key + ':history';
     var record = null, ready = false, busy = false, timer = null, checking = false, frame;
     var panel = document.createElement('section');
     panel.id = 'br-dice-panel';
@@ -85,7 +86,7 @@
         '<div class="br-dice-fields">' +
         '<label>Action<select id="br-dice-kind"><option>Defense</option><option>Attack</option><option>Other check</option></select></label>' +
         '<label>Technique<input id="br-dice-technique" type="text" maxlength="100" placeholder="Shunpo / Cero / sword strike" /></label>' +
-        '<label>Stat<select id="br-dice-stat"><option>Mobility</option><option>Offense</option><option>Defense</option><option>Spiritual Arts</option><option>Intellect</option><option>Physical Conditioning</option></select></label>' +
+        '<label>Stat<select id="br-dice-stat"><option>Mobility</option><option>Offense</option><option>Defense</option><option>Spiritual Arts</option><option>Intellect</option><option>Strength</option></select></label>' +
         '<label>Declared modifier<input id="br-dice-mod" type="number" min="0" max="20" step="1" value="0" /></label>' +
         '<label>Opposing post URL<input id="br-dice-target" type="url" placeholder="Paste the attack post link" /></label>' +
         '<label>Opposing total (optional)<input id="br-dice-opposing" type="number" min="1" max="100" step="1" /></label>' +
@@ -93,9 +94,10 @@
         '<p class="br-dice-note">Modifiers and opposing totals are declared by the player, not verified against a character sheet. Ties favor the defender. No damage is calculated here.</p>' +
         '<div class="br-dice-buttons"><button type="button" id="br-dice-roll" disabled>Post declaration &amp; roll</button>' +
         '<button type="button" id="br-dice-check" disabled>Check recorded result</button>' +
-        '<button type="button" id="br-dice-insert" disabled>Attach result to draft</button></div>' +
+        '<button type="button" id="br-dice-insert" disabled>Attach result to draft</button>' +
+        '<button type="button" id="br-dice-new" disabled>New action</button></div>' +
         '<p id="br-dice-status" role="status" aria-live="polite">Loading the native reply form...</p>' +
-        '<div id="br-dice-result"></div>';
+        '<div id="br-dice-result"></div><div id="br-dice-history"></div>';
     var posting = document.getElementById('postingbox');
     if (!posting) return;
     posting.parentNode.insertBefore(panel, posting);
@@ -112,6 +114,7 @@
     function controls() {
         el('roll').disabled = !ready || busy || Boolean(record);
         el('check').disabled = !record || busy;
+        el('new').disabled = !record || record.state !== 'resolved' || busy || checking;
         el('insert').disabled = !record || record.state !== 'resolved' || busy;
         panel.querySelectorAll('.br-dice-fields input,.br-dice-fields select').forEach(function (input) {
             input.disabled = Boolean(record) || busy;
@@ -119,7 +122,21 @@
     }
     function urlForPost(id) { return location.origin + '/t' + CONFIG.topic + '-dice-rolls-test#' + id.replace(/^p/, ''); }
     function addText(node, tag, text) { var item = document.createElement(tag); item.textContent = text; node.appendChild(item); return item; }
+    function renderHistory() {
+        var box = el('history'); box.replaceChildren();
+        var history;
+        try { history = JSON.parse(localStorage.getItem(historyKey) || '[]'); }
+        catch (error) { return; }
+        if (!Array.isArray(history) || !history.length) return;
+        addText(box, 'h3', 'RECORDED ACTIONS');
+        history.forEach(function (r) {
+            var line = addText(box, 'p', r.kind + ' // ' + r.technique + ' // D20 ' + r.face + ' + ' + r.modifier + ' = ' + r.total + ' ');
+            var link = addText(line, 'a', 'GM record'); link.href = r.resultUrl;
+            link.target = '_blank'; link.rel = 'noopener';
+        });
+    }
     function render() {
+        renderHistory();
         var box = el('result'); box.replaceChildren();
         if (!record) return;
         addText(box, 'p', record.kind + ' // ' + record.technique + ' // ' + record.stat + ' +' + record.modifier);
@@ -174,7 +191,7 @@
     });
     panel.appendChild(frame);
     record = loadRecord();
-    if (record) { render(); status('An existing test roll was restored. Check its recorded result; this panel will not submit another roll.'); }
+    if (record) { render(); status('An existing test roll was restored. Check its recorded result; use New action after its GM result is verified.'); }
     function parseResult(doc) {
         var posts = Array.from(doc.querySelectorAll('.post[id^="p"]'));
         var index = posts.findIndex(function (post) {
@@ -253,7 +270,7 @@
                 }
                 record.state = 'resolved'; record.face = result.face; record.total = result.face + record.modifier;
                 record.resultUrl = result.resultUrl; record.declarationUrl = result.declarationUrl;
-                persist(record); busy = false; render(); status('Native result found. Write your roleplay response, then attach this reference.'); return;
+                persist(record); busy = false; render(); status('Native result found. Attach this reference to your draft, or choose New action for a separate action.'); return true;
             }
             // A native submission may show a confirmation/meta-refresh page first.
             if (busy && Date.now() - record.created < CONFIG.timeout) {
@@ -263,7 +280,7 @@
             status('No uniquely matching GM result was found. Open the test thread and check the declaration. Do not reroll; use Check recorded result after confirming it exists.');
         } catch (error) {
             busy = false; controls(); status('Could not verify the result. No retry roll was submitted. Check the test thread, then use Check recorded result.');
-        } finally { checking = false; }
+        } finally { checking = false; controls(); }
     }
     el('roll').addEventListener('click', function () {
         if (busy || record || loadRecord()) { record = record || loadRecord(); render(); return; }
@@ -320,6 +337,34 @@
         if (editor) { editor.val(text + receipt); editor.updateOriginal(); } else { textarea.value = text + receipt; }
         status('Reference attached. Keep the native dice selector empty when sending this roleplay reply to avoid rolling again.');
     });
+    el('new').addEventListener('click', async function () {
+        if (!record || record.state !== 'resolved' || busy || checking) return;
+        var previousId = record.id;
+        busy = true; controls(); status('Confirming the GM record before opening a new action...');
+        var confirmed = await checkResult();
+        if (!confirmed || !record || record.id !== previousId || record.state !== 'resolved') return;
+        // Refuse to discard another tab's pending action.
+        var stored = loadRecord();
+        if (!stored || stored.id !== previousId) {
+            record = stored; render(); controls(); status('Another tab changed the active action. Its record has been restored.'); return;
+        }
+        try {
+            var history = JSON.parse(localStorage.getItem(historyKey) || '[]');
+            if (!Array.isArray(history)) throw new Error('Invalid history');
+            if (!history.some(function (r) { return r.id === record.id; })) history.push(record);
+            localStorage.setItem(historyKey, JSON.stringify(history));
+            localStorage.removeItem(key);
+        } catch (error) {
+            status('Could not preserve the completed reference. The current action remains locked.'); return;
+        }
+        record = null; ready = false; busy = false;
+        el('technique').value = ''; el('mod').value = '0';
+        el('target').value = ''; el('opposing').value = ''; el('kind').value = 'Defense';
+        el('stat').value = 'Mobility'; el('die').replaceChildren();
+        render(); controls(); status('Completed roll saved below. Loading a fresh form for your next action...');
+        frame.src = '/post?t=' + CONFIG.topic + '&mode=reply&br_action=' + Date.now();
+    });
+    renderHistory();
     window.addEventListener('storage', function (event) { if (event.key === key) { record = loadRecord(); render(); controls(); } });
     controls();
 })();
