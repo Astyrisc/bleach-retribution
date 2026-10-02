@@ -1,11 +1,83 @@
 /* BLEACH // RETRIBUTION // NATIVE PRE-ROLL PROTOTYPE
- * October 2, 2026. Full replies in test topic 2227 only.
+ * October 2, 2026. Test topic 2227: native pre-roll, repeat actions, linked defenses.
+ * Defend reads the saved declaration and native GM result; stats remain declared.
  * Native Forumotion rolls; no client-generated dice and no GM credentials.
  * Records remain editable by administrators. Local locks are convenience only.
  */
 (function () {
     'use strict';
     if (window.top !== window.self || document.getElementById('br-dice-panel')) return;
+    var CONFIG = { topic: '2227', gmUser: '332', timeout: 45000 };
+    function declarationText(source) {
+        var copy = source.cloneNode(true);
+        copy.querySelectorAll('.br-dice-gm-card').forEach(function (n) { n.remove(); });
+        copy.querySelectorAll('br').forEach(function (n) { n.replaceWith('\n'); });
+        return copy.textContent;
+    }
+    function recordedAttack(request, gm) {
+        if (!request || !gm) return null;
+        var source = request.querySelector('.br-post-content,.postbody .content');
+        var body = gm.querySelector('.br-post-content,.postbody .content');
+        var author = request.querySelector('.postprofile-name');
+        var gmAvatar = gm.querySelector('.postprofile-avatar[data-id]');
+        var owner = request.querySelector('.postprofile-avatar[data-id]');
+        if (!source || !body || !author || !owner || !gmAvatar || gmAvatar.dataset.id !== CONFIG.gmUser) return null;
+        var text = declarationText(source);
+        var id = text.match(/^\s*ROLL DECLARATION \/\/ (BRD-[a-f0-9]{24})(?:\s|$)/);
+        function field(label) {
+            var line = text.split(/\r?\n/).find(function (s) { return s.startsWith(label + ': '); });
+            return line ? line.slice(label.length + 2).trim() : '';
+        }
+        if (!id || field('Action') !== 'Attack') return null;
+        var modifier = field('Declared modifier');
+        var technique = field('Technique');
+        var die = field('Native die').split(/ \/\/ | \u2014 | \u00e2/)[0];
+        if (!/^\+\d+$/.test(modifier) || Number(modifier) > 20 || !technique || !/d\s*20\b/i.test(die)) return null;
+        var native = body.cloneNode(true);
+        native.querySelectorAll('.br-dice-gm-card').forEach(function (n) { n.remove(); });
+        var member = native.querySelector('strong,b');
+        if (!member || member.textContent.trim() !== author.textContent.trim() || !native.textContent.includes(die)) return null;
+        var faces = Array.from(native.querySelectorAll('img[src]')).map(function (img) {
+            try { var url = new URL(img.getAttribute('src'), location.origin);
+                var m = url.pathname.match(/^\/bleach-retribution\/(0[1-9]|1\d|20)-dice\.png$/);
+                return url.hostname === 'astyrisc.github.io' && m ? Number(m[1]) : null;
+            } catch (error) { return null; }
+        }).filter(function (v) { return v !== null; });
+        if (faces.length !== 1) return null;
+        return { id: id[1], gmPost: gm.id, requester: author.textContent.trim(), user: owner.dataset.id,
+            technique: technique, modifier: Number(modifier), face: faces[0], total: faces[0] + Number(modifier),
+            resultUrl: location.origin + '/t2227-dice-rolls-test#' + gm.id.replace(/^p/, '') };
+    }
+    async function readAttack(gmPost, actionId) {
+        // The URL carries identifiers only. Read the real declaration and GM face again.
+        var queue = ['/t2227-dice-rolls-test'], seenPages = new Set(), postsById = new Map();
+        for (var count = 0; queue.length && count < 25; count++) {
+            var path = queue.shift(); if (seenPages.has(path)) { count--; continue; }
+            seenPages.add(path);
+            var controller = new AbortController();
+            var timer = setTimeout(function () { controller.abort(); }, 12000);
+            var doc;
+            try {
+                var response = await fetch(path, { credentials: 'same-origin', cache: 'no-store', signal: controller.signal });
+                if (!response.ok) throw new Error('The attack record could not be loaded.');
+                doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+            } finally { clearTimeout(timer); }
+            doc.querySelectorAll('.post[id^="p"]').forEach(function (p) { postsById.set(p.id, p); });
+            var posts = Array.from(postsById.values()).sort(function (a, b) { return Number(a.id.slice(1)) - Number(b.id.slice(1)); });
+            var index = posts.findIndex(function (p) { return p.id === gmPost; });
+            if (index > 0) {
+                var attack = recordedAttack(posts[index - 1], posts[index]);
+                if (attack && attack.id === actionId) return attack;
+            }
+            doc.querySelectorAll('a[href]').forEach(function (a) {
+                try { var url = new URL(a.getAttribute('href'), location.origin);
+                    if (url.origin === location.origin && /^\/t2227p\d+(?:-|$)/.test(url.pathname) &&
+                        !seenPages.has(url.pathname) && !queue.includes(url.pathname)) queue.push(url.pathname);
+                } catch (error) { /* Ignore unrelated links. */ }
+            });
+        }
+        throw new Error('No matching attack declaration and native GM result were found. No defense was submitted.');
+    }
     // Presentation only: original request and native GM result stay on the server.
     function combineGmCards() {
         if (!/^\/t2227(?:p\d+)?(?:-|$)/.test(location.pathname)) return;
@@ -50,6 +122,15 @@
             link.textContent = 'Show original request';
             link.addEventListener('click', function () { request.classList.remove('br-dice-request-folded'); });
             card.appendChild(link);
+            var attack = recordedAttack(request, gm);
+            if (attack) {
+                var total = document.createElement('p');
+                total.textContent = 'Attack total: D20 ' + attack.face + ' + declared modifier ' + attack.modifier + ' = ' + attack.total;
+                card.appendChild(total);
+                var defend = document.createElement('a'); defend.className = 'br-dice-defend';
+                defend.href = '/post?t=2227&mode=reply&br_defend=' + gm.id.slice(1) + '&br_attack=' + attack.id;
+                defend.textContent = 'Defend against this action'; card.appendChild(defend);
+            }
             body.insertBefore(card, body.firstChild);
             request.classList.add('br-dice-request-folded');
             function revealAnchor() {
@@ -61,7 +142,6 @@
         });
     }
     combineGmCards();
-    var CONFIG = { topic: '2227', gmUser: '332', timeout: 45000 };
     var form = document.querySelector('form[name="post"]');
     if (!form || document.querySelector('.br-pm-compose-marker')) return;
     var query = new URLSearchParams(location.search);
@@ -74,6 +154,9 @@
     var user = window._userdata && window._userdata.user_id;
     if (!user || Number(user) < 1) return;
     var key = 'br-dice-test-v1:' + user + ':' + CONFIG.topic;
+    var linkedAttack = null, linking = false;
+    var incomingPost = query.get('br_defend'), incomingId = query.get('br_attack');
+    var hasIncoming = /^\d+$/.test(incomingPost || '') && /^BRD-[a-f0-9]{24}$/.test(incomingId || '');
     var historyKey = key + ':history';
     var record = null, ready = false, busy = false, timer = null, checking = false, frame;
     var panel = document.createElement('section');
@@ -83,15 +166,16 @@
     panel.innerHTML = '<h2 id="br-dice-title">01 // ACTION RESOLUTION // TEST</h2>' +
         '<p>Your roll declaration will be posted in Dice Rolls Test before your roleplay reply. ' +
         'The result is a native Forumotion roll; staff can still edit its record.</p>' +
+        '<div id="br-dice-linked" role="status"></div>' +
         '<div class="br-dice-fields">' +
         '<label>Action<select id="br-dice-kind"><option>Defense</option><option>Attack</option><option>Other check</option></select></label>' +
         '<label>Technique<input id="br-dice-technique" type="text" maxlength="100" placeholder="Shunpo / Cero / sword strike" /></label>' +
         '<label>Stat<select id="br-dice-stat"><option>Mobility</option><option>Offense</option><option>Defense</option><option>Spiritual Arts</option><option>Intellect</option><option>Strength</option></select></label>' +
         '<label>Declared modifier<input id="br-dice-mod" type="number" min="0" max="20" step="1" value="0" /></label>' +
-        '<label>Opposing post URL<input id="br-dice-target" type="url" placeholder="Paste the attack post link" /></label>' +
+        '<label>Attack / opposing post URL<input id="br-dice-target" type="url" placeholder="Paste the attack post link" /></label>' +
         '<label>Opposing total (optional)<input id="br-dice-opposing" type="number" min="1" max="100" step="1" /></label>' +
         '<label>Native die<select id="br-dice-die"></select></label></div>' +
-        '<p class="br-dice-note">Modifiers and opposing totals are declared by the player, not verified against a character sheet. Ties favor the defender. No damage is calculated here.</p>' +
+        '<p class="br-dice-note">Your modifier is declared, not checked against a character sheet. Linked attacks use the native GM face plus the attacker\'s declared modifier. Ties favor the defender. No damage is calculated here.</p>' +
         '<div class="br-dice-buttons"><button type="button" id="br-dice-roll" disabled>Post declaration &amp; roll</button>' +
         '<button type="button" id="br-dice-check" disabled>Check recorded result</button>' +
         '<button type="button" id="br-dice-insert" disabled>Attach result to draft</button>' +
@@ -112,13 +196,16 @@
         catch (error) { throw new Error('Browser storage is unavailable. No roll was submitted.'); }
     }
     function controls() {
-        el('roll').disabled = !ready || busy || Boolean(record);
+        el('roll').disabled = !ready || busy || linking || Boolean(record);
         el('check').disabled = !record || busy;
         el('new').disabled = !record || record.state !== 'resolved' || busy || checking;
         el('insert').disabled = !record || record.state !== 'resolved' || busy;
         panel.querySelectorAll('.br-dice-fields input,.br-dice-fields select').forEach(function (input) {
-            input.disabled = Boolean(record) || busy;
+            input.disabled = Boolean(record) || busy || linking;
         });
+        el('target').readOnly = Boolean(linkedAttack);
+        el('opposing').readOnly = Boolean(linkedAttack);
+        if (linkedAttack && !record) el('kind').disabled = true;
     }
     function urlForPost(id) { return location.origin + '/t' + CONFIG.topic + '-dice-rolls-test#' + id.replace(/^p/, ''); }
     function addText(node, tag, text) { var item = document.createElement(tag); item.textContent = text; node.appendChild(item); return item; }
@@ -162,6 +249,7 @@
             '\nNative die: ' + r.dieName + ' // one roll\n' +
             'Opposing action: ' + (r.target || 'None specified') + '\n' +
             'Opposing total: ' + (r.opposing === null ? 'Not specified' : r.opposing) + '\n' +
+            (r.attackId ? 'Opposing action ID: ' + r.attackId + '\n' : '') +
             'Roll purpose is committed before the result. Do not reroll this action without an explicit recorded ruling.';
     }
     function freshForm() {
@@ -282,8 +370,20 @@
             busy = false; controls(); status('Could not verify the result. No retry roll was submitted. Check the test thread, then use Check recorded result.');
         } finally { checking = false; controls(); }
     }
-    el('roll').addEventListener('click', function () {
+    el('roll').addEventListener('click', async function () {
         if (busy || record || loadRecord()) { record = record || loadRecord(); render(); return; }
+        if (linking) return;
+        if (linkedAttack) {
+            linking = true; controls(); status('Checking the linked attack record...');
+            try {
+                var latest = await readAttack(linkedAttack.gmPost, linkedAttack.id);
+                if (latest.face !== linkedAttack.face || latest.modifier !== linkedAttack.modifier || latest.total !== linkedAttack.total || latest.technique !== linkedAttack.technique || latest.user !== linkedAttack.user) {
+                    status('The linked attack changed. Reload this defense link and review it before rolling.'); return;
+                }
+            } catch (error) { status(error.message); return; }
+            finally { linking = false; controls(); }
+            if (loadRecord()) { record = loadRecord(); render(); return; }
+        }
         var inner = freshForm();
         if (!ready || !inner) return;
         var technique = el('technique').value.trim();
@@ -305,7 +405,7 @@
         if (!dice || !rolls || !textarea || !send || typeof inner.requestSubmit !== 'function') { status('Required native controls are unavailable; no roll was submitted.'); return; }
         var next = { id: uuid(), state: 'pending', created: Date.now(), kind: el('kind').value,
             technique: technique, stat: el('stat').value, modifier: modifier, target: target,
-            opposing: opposing ? Number(opposing) : null, dieName: el('die').selectedOptions[0].textContent.trim() };
+            opposing: opposing ? Number(opposing) : null, attackId: linkedAttack ? linkedAttack.id : null, dieName: el('die').selectedOptions[0].textContent.trim() };
         try {
             var message = declaration(next);
             var jq = frame.contentWindow.jQuery;
@@ -333,6 +433,7 @@
         if (text.includes(record.id)) { status('This result reference is already in your draft.'); return; }
         var receipt = '\n\n[b]ROLL REFERENCE // ' + record.id + '[/b]\n' + record.kind + ': ' + record.technique +
             '\nD20 ' + record.face + ' + ' + record.stat + ' ' + record.modifier + ' = ' + record.total +
+            (record.attackId ? '\nResponding to action: ' + record.attackId + ' (total ' + record.opposing + ')' : '') +
             '\n[url=' + record.declarationUrl + ']Committed declaration[/url] | [url=' + record.resultUrl + ']Native GM result[/url]';
         if (editor) { editor.val(text + receipt); editor.updateOriginal(); } else { textarea.value = text + receipt; }
         status('Reference attached. Keep the native dice selector empty when sending this roleplay reply to avoid rolling again.');
@@ -357,13 +458,48 @@
         } catch (error) {
             status('Could not preserve the completed reference. The current action remains locked.'); return;
         }
-        record = null; ready = false; busy = false;
+        record = null; linkedAttack = null; ready = false; busy = false;
         el('technique').value = ''; el('mod').value = '0';
         el('target').value = ''; el('opposing').value = ''; el('kind').value = 'Defense';
         el('stat').value = 'Mobility'; el('die').replaceChildren();
         render(); controls(); status('Completed roll saved below. Loading a fresh form for your next action...');
         frame.src = '/post?t=' + CONFIG.topic + '&mode=reply&br_action=' + Date.now();
+        linkedAttack = null; applyIncoming();
     });
+    async function applyIncoming() {
+        if (!hasIncoming) return;
+        var box = el('linked'); box.replaceChildren();
+        if (record) {
+            addText(box, 'p', 'A defense link is waiting. Finish the current roll, attach its reference if needed, then choose New action.');
+            return;
+        }
+        linking = true; controls();
+        addText(box, 'p', 'Loading the selected attack record...');
+        try {
+            var attack = await readAttack('p' + incomingPost, incomingId);
+            if (record || loadRecord()) { addText(box, 'p', 'An active roll was found. Finish it before loading this defense.'); return; }
+            linkedAttack = attack; hasIncoming = false;
+            var cleanUrl = new URL(location.href); cleanUrl.searchParams.delete('br_defend'); cleanUrl.searchParams.delete('br_attack');
+            history.replaceState(null, '', cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+            el('kind').value = 'Defense'; el('target').value = attack.resultUrl; el('opposing').value = attack.total;
+            box.replaceChildren();
+            addText(box, 'p', 'Responding to ' + attack.requester + ': ' + attack.technique + ' // Total ' + attack.total);
+            addText(box, 'p', 'Action: ' + attack.id + '. Choose your defense technique, stat, and modifier.');
+            var link = addText(box, 'a', 'View attack GM record'); link.href = attack.resultUrl; link.target = '_blank'; link.rel = 'noopener';
+            var clear = addText(box, 'button', 'Use a manual reference instead'); clear.type = 'button';
+            clear.addEventListener('click', function () {
+                if (record || busy || linking) return;
+                hasIncoming = false; linkedAttack = null; el('target').value = ''; el('opposing').value = '';
+                box.replaceChildren(); controls();
+            });
+        } catch (error) {
+            box.replaceChildren(); addText(box, 'p', error.message);
+            // Keep automatic defense submission unavailable until explicitly switching to manual mode.
+            hasIncoming = false;
+            addText(box, 'p', 'You may enter a manual attack link and total, or reopen the Defend button to retry.');
+        } finally { linking = false; controls(); }
+    }
+    applyIncoming();
     renderHistory();
     window.addEventListener('storage', function (event) { if (event.key === key) { record = loadRecord(); render(); controls(); } });
     controls();
