@@ -1,5 +1,5 @@
 /* BLEACH // RETRIBUTION // NATIVE PRE-ROLL PROTOTYPE
- * October 2, 2026. Test topic 2227: native pre-roll, repeat actions, linked defenses.
+ * October 2, 2026. Test topic 2227: linked defenses, native click submission and visible recovery.
  * Defend reads the saved declaration and native GM result; stats remain declared.
  * Native Forumotion rolls; no client-generated dice and no GM credentials.
  * Records remain editable by administrators. Local locks are convenience only.
@@ -179,7 +179,9 @@
         '<div class="br-dice-buttons"><button type="button" id="br-dice-roll" disabled>Post declaration &amp; roll</button>' +
         '<button type="button" id="br-dice-check" disabled>Check recorded result</button>' +
         '<button type="button" id="br-dice-insert" disabled>Attach result to draft</button>' +
-        '<button type="button" id="br-dice-new" disabled>New action</button></div>' +
+        '<button type="button" id="br-dice-new" disabled>New action</button>' +
+        '<button type="button" id="br-dice-inspect">Show native submission</button>' +
+        '<button type="button" id="br-dice-recover" disabled>Prepare pending declaration</button></div>' +
         '<p id="br-dice-status" role="status" aria-live="polite">Loading the native reply form...</p>' +
         '<div id="br-dice-result"></div><div id="br-dice-history"></div>';
     var posting = document.getElementById('postingbox');
@@ -198,6 +200,7 @@
     function controls() {
         el('roll').disabled = !ready || busy || linking || Boolean(record);
         el('check').disabled = !record || busy;
+        el('recover').disabled = !record || record.state === 'resolved' || busy || checking || linking;
         el('new').disabled = !record || record.state !== 'resolved' || busy || checking;
         el('insert').disabled = !record || record.state !== 'resolved' || busy;
         panel.querySelectorAll('.br-dice-fields input,.br-dice-fields select').forEach(function (input) {
@@ -256,14 +259,46 @@
         var doc = frame.contentDocument;
         return doc && doc.querySelector('form[name="post"]');
     }
+    function showSubmission() {
+        frame.hidden = false;
+        frame.style.cssText = 'display:block;width:100%;height:650px;border:1px solid var(--br-red,#ff0066)';
+    }
+    function fillNative(inner, r, dieValue) {
+        var textarea = inner.querySelector('textarea[name="message"]');
+        var dice = inner.querySelector('select[name="post_dice_0"]');
+        var rolls = inner.querySelector('input[name="nb_rolls_0"]');
+        var send = inner.querySelector('input[type="submit"][name="post"]');
+        if (!textarea || !dice || !rolls || !send || send.disabled) throw new Error('Native reply controls unavailable. Nothing was submitted.');
+        var jq = frame.contentWindow.jQuery;
+        var editor = jq && jq.fn.sceditor && jq(textarea).sceditor('instance');
+        if (editor) { editor.val(declaration(r)); editor.updateOriginal(); }
+        else textarea.value = declaration(r);
+        inner.querySelectorAll('select[name^="post_dice_"]').forEach(function (select) { select.value = ''; });
+        dice.value = dieValue; rolls.value = '1';
+        if (!dice.value || dice.value !== dieValue) throw new Error('Selected native die unavailable. Nothing was submitted.');
+        return send;
+    }
+    function watchNative(inner) {
+        if (!inner || inner.dataset.brDiceWatched) return;
+        inner.dataset.brDiceWatched = '1';
+        inner.addEventListener('invalid', function () {
+            showSubmission();
+            status('The native form needs a required field. Review the visible form; your roleplay draft is unchanged.');
+        }, true);
+    }
     frame = document.createElement('iframe');
     frame.hidden = true; frame.title = 'Native dice test submission';
     // Intentionally same-origin: the user's own native form supplies fresh hidden fields.
     // No hidden auth values are copied into files or console output.
     frame.src = '/post?t=' + CONFIG.topic + '&mode=reply';
     frame.addEventListener('load', function () {
-        if (record) { if (busy) checkResult(); return; }
+        if (record) {
+            watchNative(freshForm());
+            if (busy) { showSubmission(); checkResult(); }
+            return;
+        }
         var inner = freshForm();
+        watchNative(inner);
         var dice = inner && inner.querySelector('select[name="post_dice_0"]');
         var send = inner && inner.querySelector('input[type="submit"][name="post"]');
         if (!dice || !send || send.disabled) {
@@ -364,7 +399,7 @@
             if (busy && Date.now() - record.created < CONFIG.timeout) {
                 timer = setTimeout(checkResult, 1800); return;
             }
-            busy = false; controls();
+            busy = false; controls(); showSubmission();
             status('No uniquely matching GM result was found. Open the test thread and check the declaration. Do not reroll; use Check recorded result after confirming it exists.');
         } catch (error) {
             busy = false; controls(); status('Could not verify the result. No retry roll was submitted. Check the test thread, then use Check recorded result.');
@@ -402,26 +437,79 @@
         var rolls = inner.querySelector('input[name="nb_rolls_0"]');
         var textarea = inner.querySelector('textarea[name="message"]');
         var send = inner.querySelector('input[type="submit"][name="post"]');
-        if (!dice || !rolls || !textarea || !send || typeof inner.requestSubmit !== 'function') { status('Required native controls are unavailable; no roll was submitted.'); return; }
+        if (!dice || !rolls || !textarea || !send) { status('Required native controls are unavailable; no roll was submitted.'); return; }
         var next = { id: uuid(), state: 'pending', created: Date.now(), kind: el('kind').value,
             technique: technique, stat: el('stat').value, modifier: modifier, target: target,
             opposing: opposing ? Number(opposing) : null, attackId: linkedAttack ? linkedAttack.id : null, dieName: el('die').selectedOptions[0].textContent.trim() };
         try {
-            var message = declaration(next);
-            var jq = frame.contentWindow.jQuery;
-            var editor = jq && jq.fn.sceditor && jq(textarea).sceditor('instance');
-            if (editor) { editor.val(message); editor.updateOriginal(); } else { textarea.value = message; }
-            inner.querySelectorAll('select[name^="post_dice_"]').forEach(function (select) { select.value = ''; });
-            dice.value = el('die').value; rolls.value = '1';
-            if (dice.value !== el('die').value) throw new Error('Selected die is unavailable.');
+            send = fillNative(inner, next, el('die').value);
+            watchNative(inner);
+            if (!inner.checkValidity()) {
+                showSubmission(); inner.reportValidity();
+                status('Native form validation blocked submission. Complete the required field before trying again. No pending roll was saved.');
+                return;
+            }
             // Refuse an unrecorded submission if storage cannot hold the pending declaration.
             persist(next); record = next; busy = true; controls(); render();
             status('Submitting your declaration and native roll. Your main roleplay draft has not been submitted.');
-            inner.requestSubmit(send);
+            showSubmission();
+            // Native click runs Forumotion's button click handlers as well as form submission.
+            send.click();
             timer = setTimeout(checkResult, 2500);
         } catch (error) {
-            busy = false; controls(); status(record ? 'Submission status is uncertain. Check the thread before doing anything else; do not reroll.' : error.message);
+            busy = false; controls(); showSubmission(); status(record ? 'Submission status is uncertain. Check the thread before doing anything else; do not reroll.' : error.message);
         }
+    });
+    el('inspect').addEventListener('click', function () {
+        showSubmission();
+        status('Native form shown. After a restored session this may be a fresh form, not the original response. Do not send a blank or duplicate request.');
+    });
+    el('recover').addEventListener('click', async function () {
+        if (!record || record.state === 'resolved' || busy || checking || linking) return;
+        var pendingId = record.id;
+        busy = true; controls(); status('Checking every accessible test-topic page before preparing the existing declaration...');
+        try {
+            var queue = ['/t2227-dice-rolls-test'], seen = new Set();
+            while (queue.length) {
+                var path = queue.shift(); if (seen.has(path)) continue;
+                if (seen.size >= 25) throw new Error('The topic has too many pages for a complete recovery check. Ask staff to inspect it.');
+                seen.add(path);
+                var controller = new AbortController();
+                var timeout = setTimeout(function () { controller.abort(); }, 12000);
+                var response, doc;
+                try {
+                    response = await fetch(path, { credentials: 'same-origin', cache: 'no-store', signal: controller.signal });
+                    if (!response.ok) throw new Error('A topic page could not be checked. Recovery remains locked.');
+                    doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+                } finally { clearTimeout(timeout); }
+                if (!doc.querySelector('.post[id^="p"]')) throw new Error('Topic posts could not be inspected. Check login and topic access.');
+                var exists = Array.from(doc.querySelectorAll('.post[id^="p"]')).some(function (post) {
+                    var body = post.querySelector('.br-post-content,.postbody .content');
+                    return body && declarationText(body).includes(pendingId);
+                });
+                if (exists) throw new Error('This declaration already exists in the topic. Do not submit it again. Check its GM result or ask staff to inspect the record.');
+                doc.querySelectorAll('a[href]').forEach(function (a) {
+                    var url = new URL(a.getAttribute('href'), location.origin);
+                    if (url.origin === location.origin && /^\/t2227p\d+(?:-|$)/.test(url.pathname) && !seen.has(url.pathname) && !queue.includes(url.pathname)) queue.push(url.pathname);
+                });
+            }
+            var stored = loadRecord();
+            if (!stored || stored.id !== pendingId || !record || record.id !== pendingId || record.state === 'resolved') throw new Error('The active record changed. Nothing was prepared.');
+            var inner = freshForm();
+            if (!inner) throw new Error('Open Show native submission and check the native page. A fresh reply form is required.');
+            var dice = inner.querySelector('select[name="post_dice_0"]');
+            var option = dice && Array.from(dice.options).find(function (o) { return o.value && o.textContent.trim() === record.dieName; });
+            if (!option) throw new Error('The original native die is unavailable. Nothing was prepared.');
+            fillNative(inner, record, option.value); watchNative(inner); showSubmission();
+            // A manual native send can display new-member restrictions/captcha without hiding them.
+            inner.addEventListener('submit', function () {
+                busy = true; controls();
+                status('Native submission started for the existing declaration. Read any notice in the visible frame; do not send twice.');
+                timer = setTimeout(checkResult, 2500);
+            }, { once: true });
+            status('No matching declaration was found on the accessible topic pages. The SAME declaration ID is prepared below; no roll has been submitted. Review the native message and die, then click Send inside that frame ONCE. Any native rejection will remain visible.');
+        } catch (error) { status(error.message); }
+        finally { busy = false; controls(); }
     });
     el('check').addEventListener('click', function () { busy = true; controls(); checkResult(); });
     el('insert').addEventListener('click', function () {
