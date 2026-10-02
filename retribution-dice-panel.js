@@ -1,4 +1,4 @@
-/* BLEACH // RETRIBUTION â€” NATIVE PRE-ROLL PROTOTYPE
+/* BLEACH // RETRIBUTION // NATIVE PRE-ROLL PROTOTYPE
  * October 2, 2026. Full replies in test topic 2227 only.
  * Native Forumotion rolls; no client-generated dice and no GM credentials.
  * Records remain editable by administrators. Local locks are convenience only.
@@ -6,6 +6,61 @@
 (function () {
     'use strict';
     if (window.top !== window.self || document.getElementById('br-dice-panel')) return;
+    // Presentation only: original request and native GM result stay on the server.
+    function combineGmCards() {
+        if (!/^\/t2227(?:p\d+)?(?:-|$)/.test(location.pathname)) return;
+        var posts = Array.from(document.querySelectorAll('.post[id^="p"]'));
+        posts.forEach(function (request, index) {
+            var source = request.querySelector('.br-post-content, .postbody .content');
+            var gm = posts[index + 1];
+            if (!source || !gm || gm.querySelector('.br-dice-gm-card')) return;
+            var first = source.querySelector('strong, b');
+            if (!first || !/^ROLL DECLARATION \/\/ BRD-[a-f0-9]{24}$/.test(first.textContent.trim())) return;
+            var avatar = gm.querySelector('.postprofile-avatar[data-id]');
+            if (!avatar || avatar.getAttribute('data-id') !== '332') return;
+            var body = gm.querySelector('.br-post-content, .postbody .content');
+            var name = request.querySelector('.postprofile-name');
+            var member = body && body.querySelector('strong, b');
+            if (!body || !name || !member || name.textContent.trim() !== member.textContent.trim()) return;
+            var faces = Array.from(body.querySelectorAll('img[src]')).filter(function (img) {
+                try { var url = new URL(img.getAttribute('src'), location.origin);
+                    return url.hostname === 'astyrisc.github.io' && /^\/bleach-retribution\/(?:0[1-9]|1\d|20)-dice\.png$/.test(url.pathname);
+                } catch (error) { return false; }
+            });
+            if (faces.length !== 1) return;
+            var card = document.createElement('section');
+            card.className = 'br-dice-gm-card';
+            var title = document.createElement('h3');
+            title.textContent = '01 // ACTION RECORD'; card.appendChild(title);
+            var by = document.createElement('p');
+            by.textContent = 'Requested by ' + name.textContent.trim() + ' // Native GM result below';
+            card.appendChild(by);
+            var details = document.createElement('div');
+            details.className = 'br-dice-gm-details';
+            // Copy only the declaration, stopping before any signature or unrelated text.
+            var text = source.innerText || source.innerHTML.replace(/<br\s*\/?\s*>/gi, '\n').replace(/<[^>]*>/g, '');
+            var end = 'Roll purpose is committed before the result. Do not reroll this action without an explicit recorded ruling.';
+            var stop = text.indexOf(end);
+            if (stop === -1) return;
+            var clean = document.createElement('textarea');
+            clean.innerHTML = text.slice(0, stop + end.length);
+            details.textContent = clean.value; card.appendChild(details);
+            var link = document.createElement('a');
+            link.href = '#' + request.id.replace(/^p/, '');
+            link.textContent = 'Show original request';
+            link.addEventListener('click', function () { request.classList.remove('br-dice-request-folded'); });
+            card.appendChild(link);
+            body.insertBefore(card, body.firstChild);
+            request.classList.add('br-dice-request-folded');
+            function revealAnchor() {
+                if (location.hash.replace(/^#p?/, '') === request.id.replace(/^p/, '')) {
+                    request.classList.remove('br-dice-request-folded');
+                }
+            }
+            window.addEventListener('hashchange', revealAnchor); revealAnchor();
+        });
+    }
+    combineGmCards();
     var CONFIG = { topic: '2227', gmUser: '332', timeout: 45000 };
     var form = document.querySelector('form[name="post"]');
     if (!form || document.querySelector('.br-pm-compose-marker')) return;
@@ -24,7 +79,7 @@
     panel.id = 'br-dice-panel';
     panel.className = 'br-dice-panel';
     panel.setAttribute('aria-labelledby', 'br-dice-title');
-    panel.innerHTML = '<h2 id="br-dice-title">01 // ACTION RESOLUTION â€” TEST</h2>' +
+    panel.innerHTML = '<h2 id="br-dice-title">01 // ACTION RESOLUTION // TEST</h2>' +
         '<p>Your roll declaration will be posted in Dice Rolls Test before your roleplay reply. ' +
         'The result is a native Forumotion roll; staff can still edit its record.</p>' +
         '<div class="br-dice-fields">' +
@@ -39,7 +94,7 @@
         '<div class="br-dice-buttons"><button type="button" id="br-dice-roll" disabled>Post declaration &amp; roll</button>' +
         '<button type="button" id="br-dice-check" disabled>Check recorded result</button>' +
         '<button type="button" id="br-dice-insert" disabled>Attach result to draft</button></div>' +
-        '<p id="br-dice-status" role="status" aria-live="polite">Loading the native reply formâ€¦</p>' +
+        '<p id="br-dice-status" role="status" aria-live="polite">Loading the native reply form...</p>' +
         '<div id="br-dice-result"></div>';
     var posting = document.getElementById('postingbox');
     if (!posting) return;
@@ -67,7 +122,7 @@
     function render() {
         var box = el('result'); box.replaceChildren();
         if (!record) return;
-        addText(box, 'p', record.kind + ' // ' + record.technique + ' â€” ' + record.stat + ' +' + record.modifier);
+        addText(box, 'p', record.kind + ' // ' + record.technique + ' // ' + record.stat + ' +' + record.modifier);
         addText(box, 'p', 'Reference: ' + record.id);
         if (record.state === 'resolved') {
             addText(box, 'strong', 'D20 ' + record.face + ' + ' + record.modifier + ' = ' + record.total);
@@ -87,7 +142,7 @@
     function declaration(r) {
         return '[b]ROLL DECLARATION // ' + r.id + '[/b]\n' +
             'Action: ' + r.kind + '\nTechnique: ' + r.technique + '\nStat: ' + r.stat + '\nDeclared modifier: +' + r.modifier +
-            '\nNative die: ' + r.dieName + ' â€” one roll\n' +
+            '\nNative die: ' + r.dieName + ' // one roll\n' +
             'Opposing action: ' + (r.target || 'None specified') + '\n' +
             'Opposing total: ' + (r.opposing === null ? 'Not specified' : r.opposing) + '\n' +
             'Roll purpose is committed before the result. Do not reroll this action without an explicit recorded ruling.';
