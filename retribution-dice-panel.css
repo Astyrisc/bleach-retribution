@@ -53,3 +53,19 @@
 .br-dice-gm-card p { margin: 0 0 12px; }
 .br-dice-gm-details { white-space: pre-line; overflow-wrap: anywhere; line-height: 1.7; }
 .br-dice-gm-card a { display: inline-block; margin-top: 12px; }
+
+/* Linked defense controls */
+.br-dice-gm-card .br-dice-defend {
+    display: inline-block; padding: 9px 12px; margin: 8px 0 0;
+    border: 1px solid var(--br-pink, #d0005b); color: var(--br-content, #e8e8e8);
+    background: var(--br-ink, #111); font-weight: 600;
+}
+#br-dice-linked:not(:empty) {
+    margin-bottom: 16px; padding: 12px; border-left: 2px solid var(--br-pink, #d0005b);
+    background: var(--br-ink, #111);
+}
+#br-dice-linked button {
+    color: var(--br-content, #e8e8e8); background: var(--br-deep, #0d0d0d);
+    border: 1px solid var(--br-border2, #444); padding: 8px; margin: 10px;
+}
+.br-dice-panel input[readonly] { opacity: .8; }
